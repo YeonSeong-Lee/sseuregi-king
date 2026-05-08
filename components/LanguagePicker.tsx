@@ -2,6 +2,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 import type { Locale } from '@/types';
+import { setLang } from '@/lib/storage';
 
 const LANGUAGES: { code: Locale; flag: string; label: string }[] = [
   { code: 'en', flag: '🇺🇸', label: 'English' },
@@ -27,6 +28,7 @@ export function LanguagePicker({ locale }: { locale: string }) {
   }, []);
 
   function switchLocale(newLocale: Locale) {
+    setLang(newLocale);
     const segments = pathname.split('/');
     segments[1] = newLocale;
     router.push(segments.join('/'));
