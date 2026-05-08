@@ -1,0 +1,33 @@
+{
+  "home": {
+    "title": "Trash Dex",
+    "subtitle": "Scan your trash to learn how to dispose of it correctly in Korea"
+  },
+  "scan": {
+    "camera": "Camera",
+    "gallery": "Gallery",
+    "retake": "Retake",
+    "see_guide": "See Disposal Guide"
+  },
+  "analyzing": { "label": "Analyzing..." },
+  "overlay": {
+    "tap_hint": "Tap items to select",
+    "no_items": "No waste items detected. Try a clearer photo."
+  },
+  "video": {
+    "back": "← Back",
+    "no_video": "No disposal guide available for this item yet."
+  },
+  "collection": {
+    "title": "My Collection",
+    "locked": "???",
+    "progress": "{n} / {total} discovered"
+  },
+  "categories": {
+    "recycling": "Recycling ♻️",
+    "food": "Food Waste 🍃",
+    "general": "General 🗑️",
+    "large": "Large Waste 🚛"
+  },
+  "nav": { "scan": "Scan", "collection": "Collection" }
+}

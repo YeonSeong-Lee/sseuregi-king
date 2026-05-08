@@ -1,0 +1,13 @@
+{
+  "home": {
+    "title": "ゴミ図鑑",
+    "subtitle": "ゴミを撮影して韓国での正しい捨て方を確認しましょう"
+  },
+  "scan": { "camera": "カメラ", "gallery": "ギャラリー", "retake": "撮り直す", "see_guide": "処分ガイドを見る" },
+  "analyzing": { "label": "分析中..." },
+  "overlay": { "tap_hint": "アイテムをタップして選択", "no_items": "ゴミが検出されませんでした。" },
+  "video": { "back": "← 戻る", "no_video": "このアイテムの処分ガイドはまだありません。" },
+  "collection": { "title": "マイコレクション", "locked": "???", "progress": "{n} / {total} 発見" },
+  "categories": { "recycling": "リサイクル ♻️", "food": "生ごみ 🍃", "general": "一般ごみ 🗑️", "large": "大型廃棄物 🚛" },
+  "nav": { "scan": "スキャン", "collection": "コレクション" }
+}

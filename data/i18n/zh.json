@@ -1,0 +1,13 @@
+{
+  "home": {
+    "title": "垃圾图鉴",
+    "subtitle": "拍摄垃圾，了解在韩国如何正确处理"
+  },
+  "scan": { "camera": "拍照", "gallery": "相册", "retake": "重新拍照", "see_guide": "查看处理指南" },
+  "analyzing": { "label": "分析中..." },
+  "overlay": { "tap_hint": "点击选择物品", "no_items": "未检测到废弃物，请尝试更清晰的照片。" },
+  "video": { "back": "← 返回", "no_video": "暂无该物品的处理指南。" },
+  "collection": { "title": "我的收藏", "locked": "???", "progress": "已发现 {n} / {total}" },
+  "categories": { "recycling": "可回收 ♻️", "food": "厨余垃圾 🍃", "general": "一般垃圾 🗑️", "large": "大型废弃物 🚛" },
+  "nav": { "scan": "扫描", "collection": "收藏" }
+}
