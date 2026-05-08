@@ -13,6 +13,7 @@ export default function CollectionPage({ params }: { params: Promise<{ locale: s
   const { locale } = use(params);
   const t = useTranslations('collection');
   const { unlockedIds } = useCollection();
+  const unlockedCount = allItems.filter(item => unlockedIds.includes(item.id)).length;
 
   return (
     <TrashDex
@@ -20,7 +21,7 @@ export default function CollectionPage({ params }: { params: Promise<{ locale: s
       unlockedIds={unlockedIds}
       locale={locale as Locale}
       lockedLabel={t('locked')}
-      progressTemplate={t('progress')}
+      progress={t('progress', { n: unlockedCount, total: allItems.length })}
     />
   );
 }

@@ -13,14 +13,11 @@ interface TrashDexProps {
   unlockedIds: string[];
   locale: Locale;
   lockedLabel: string;
-  progressTemplate: string;
+  progress: string;
 }
 
-export function TrashDex({ items, unlockedIds, locale, lockedLabel, progressTemplate }: TrashDexProps) {
+export function TrashDex({ items, unlockedIds, locale, lockedLabel, progress }: TrashDexProps) {
   const unlockedCount = items.filter(item => unlockedIds.includes(item.id)).length;
-  const progress = progressTemplate
-    .replace('{n}', String(unlockedCount))
-    .replace('{total}', String(items.length));
 
   return (
     <div className="flex flex-col h-full bg-zinc-950">
