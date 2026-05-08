@@ -44,7 +44,7 @@ export default function ScanPage({ params }: { params: Promise<{ locale: string 
   }
 
   if (state === 'capture') return (
-    <div className="flex flex-col items-center justify-center h-full px-6 gap-8">
+    <div className="flex flex-col items-center justify-center h-full px-4 gap-8">
       <div className="text-center">
         <div className="text-5xl mb-2">📷</div>
         <p className="text-zinc-400 text-sm">{t('overlay.tap_hint')}</p>

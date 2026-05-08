@@ -37,7 +37,7 @@ export function CameraCapture({ onCapture, cameraLabel, galleryLabel }: CameraCa
   }
 
   return (
-    <div className="flex flex-col gap-4 w-full max-w-sm mx-auto">
+    <div className="flex flex-col gap-4 w-full">
       <input ref={cameraRef} type="file" accept="image/*" capture="environment"
         className="hidden" onChange={e => handleFile(e.target.files?.[0])} />
       <input ref={galleryRef} type="file" accept="image/*"
