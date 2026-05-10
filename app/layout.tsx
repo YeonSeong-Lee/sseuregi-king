@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "sseuregi-king",
+  title: "sseuregi-killer",
   description: "Trash Dex — scan and identify waste",
 };
 

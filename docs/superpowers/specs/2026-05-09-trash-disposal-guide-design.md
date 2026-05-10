@@ -207,7 +207,7 @@ Only detect items that are clearly waste or trash.
 ## 폴더 구조
 
 ```
-sseuregi-king/
+sseuregi-killer/
 ├── app/
 │   ├── [locale]/
 │   │   ├── page.tsx              ← 언어 선택 홈

@@ -50,7 +50,7 @@
 - [ ] **Step 1: Scaffold Next.js 15 project**
 
 ```bash
-cd /Users/yeonseong/project/sseuregi-king
+cd /Users/yeonseong/project/sseuregi-killer
 npx create-next-app@latest . --typescript --tailwind --app --src-dir=no --import-alias="@/*" --yes
 ```
 
