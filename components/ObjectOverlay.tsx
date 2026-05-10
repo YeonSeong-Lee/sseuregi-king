@@ -1,10 +1,17 @@
 // components/ObjectOverlay.tsx
 'use client';
 import { useState } from 'react';
-import type { DetectedObject, Locale } from '@/types';
+import type { DetectedObject, Locale, WasteCategory } from '@/types';
 
 const NAME_KEY: Record<Locale, keyof Pick<DetectedObject, 'nameEn' | 'nameZh' | 'nameJa' | 'nameRu'>> = {
   en: 'nameEn', zh: 'nameZh', ja: 'nameJa', ru: 'nameRu',
+};
+
+const CATEGORY_BG: Record<WasteCategory, string> = {
+  recycling: 'bg-blue-500',
+  food:      'bg-emerald-500',
+  general:   'bg-zinc-600',
+  large:     'bg-orange-500',
 };
 
 interface ObjectOverlayProps {
@@ -41,8 +48,8 @@ export function ObjectOverlay({ imageBase64, objects, locale, tapHint, seeGuideL
           const isSelected = selectedNames.has(obj.nameEn);
           return (
             <button key={obj.nameEn} onClick={() => toggle(obj.nameEn)}
-              className={`absolute -translate-x-1/2 -translate-y-1/2 px-3 py-1 rounded-full text-sm font-semibold shadow-lg transition-all ${
-                isSelected ? 'bg-blue-500 text-white scale-110' : 'bg-zinc-800/80 text-white border border-zinc-500'
+              className={`absolute -translate-x-1/2 -translate-y-1/2 px-3 py-1 rounded-full text-sm font-semibold shadow-lg transition-all text-white border border-black/20 ${CATEGORY_BG[obj.category]} ${
+                isSelected ? 'ring-2 ring-white scale-110' : ''
               }`}
               style={{ left: `${cx}%`, top: `${cy}%` }}>
               {obj[nameKey]}
