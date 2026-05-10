@@ -37,6 +37,31 @@ describe('enrichObjects', () => {
     expect(result[0].itemId).toBeNull();
     expect(result[0].videoUrl).toBeNull();
   });
+
+  it('prefers catalog category and translations over raw values when matched', () => {
+    const result = enrichObjects([{
+      nameEn: 'Newspaper',
+      nameZh: 'wrong-zh', nameJa: 'wrong-ja', nameRu: 'wrong-ru',
+      category: 'huge',
+      bbox: { x: 0, y: 0, w: 10, h: 10 },
+    }]);
+    expect(result[0].category).toBe('recycling');
+    expect(result[0].nameZh).toBe('报纸');
+    expect(result[0].nameJa).toBe('新聞紙');
+    expect(result[0].nameRu).toBe('Газета');
+  });
+
+  it('falls back to raw values when no match', () => {
+    const result = enrichObjects([{
+      nameEn: 'Spaceship',
+      nameZh: 'zh', nameJa: 'ja', nameRu: 'ru',
+      category: 'general',
+      bbox: { x: 0, y: 0, w: 10, h: 10 },
+    }]);
+    expect(result[0].nameEn).toBe('Spaceship');
+    expect(result[0].nameZh).toBe('zh');
+    expect(result[0].category).toBe('general');
+  });
 });
 
 describe('getAllItems', () => {

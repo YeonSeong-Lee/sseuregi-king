@@ -87,6 +87,6 @@
     "names": { "en": "Electronic Waste", "zh": "电子垃圾", "ja": "電子廃棄物", "ru": "Электронные отходы" },
     "videoUrl": "https://sseuregi-king-videos.s3.ap-northeast-2.amazonaws.com/electronic-waste.mp4",
     "thumbnailUrl": "https://sseuregi-king-videos.s3.ap-northeast-2.amazonaws.com/electronic-waste-thumb.jpg",
-    "aiAliases": ["phone", "smartphone", "tablet", "laptop", "computer", "electronic device", "e-waste", "electronics"]
+    "aiAliases": ["phone", "smartphone", "tablet", "laptop", "computer", "electronic device", "e-waste", "electronics", "mobile phone", "tablet computer"]
   }
 }

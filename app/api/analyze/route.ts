@@ -1,6 +1,5 @@
 import { NextResponse } from 'next/server';
-import { analyzeImage } from '@/lib/analyze';
-import { enrichObjects } from '@/lib/matcher';
+import { detectWaste } from '@/lib/detect';
 
 export async function POST(request: Request) {
   let body: { image?: string };
@@ -15,8 +14,7 @@ export async function POST(request: Request) {
   }
 
   try {
-    const rawObjects = await analyzeImage(body.image);
-    const objects = enrichObjects(rawObjects);
+    const objects = await detectWaste(body.image);
     return NextResponse.json({ objects });
   } catch (err) {
     console.error('analyze error:', err);

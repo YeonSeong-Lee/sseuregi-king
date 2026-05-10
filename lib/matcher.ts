@@ -26,11 +26,11 @@ export function enrichObjects(rawObjects: RawObject[]): DetectedObject[] {
   return rawObjects.map(obj => {
     const match = matchItem(obj.nameEn);
     return {
-      nameEn: obj.nameEn,
-      nameZh: obj.nameZh,
-      nameJa: obj.nameJa,
-      nameRu: obj.nameRu,
-      category: obj.category as WasteCategory,
+      nameEn: match?.names.en ?? obj.nameEn,
+      nameZh: match?.names.zh ?? obj.nameZh,
+      nameJa: match?.names.ja ?? obj.nameJa,
+      nameRu: match?.names.ru ?? obj.nameRu,
+      category: (match?.category ?? obj.category) as WasteCategory,
       bbox: obj.bbox,
       itemId: match?.id ?? null,
       videoUrl: match?.videoUrl ?? null,
