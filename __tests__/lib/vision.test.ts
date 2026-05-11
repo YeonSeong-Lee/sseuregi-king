@@ -14,7 +14,11 @@ vi.mock('@google-cloud/vision', () => ({
 
 import { cloudVisionDetect } from '@/lib/vision';
 
-beforeEach(() => objectLocalizationMock.mockReset());
+beforeEach(() => {
+  objectLocalizationMock.mockReset();
+  process.env.GOOGLE_CREDENTIALS_JSON = '{"type":"authorized_user","client_id":"x","client_secret":"y","refresh_token":"z"}';
+  process.env.GOOGLE_CLOUD_PROJECT = 'test-project';
+});
 
 describe('cloudVisionDetect', () => {
   it('converts normalizedVertices to BBox in percent coordinates', async () => {
