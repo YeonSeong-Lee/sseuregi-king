@@ -30,8 +30,16 @@ export interface DetectedObject {
   thumbnailUrl: string | null;
 }
 
+export type SupportedDistrict = 'gangnam' | 'mapo';
+
+export interface DistrictPreference {
+  code: SupportedDistrict;
+  auto: boolean;
+}
+
 export interface StorageData {
   lang: Locale;
   unlockedIds: string[];
   lastScanAt: string | null;
+  district: DistrictPreference | null;
 }

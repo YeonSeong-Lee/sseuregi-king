@@ -1,7 +1,15 @@
 import vision from '@google-cloud/vision';
-import type { RawDetected } from './analyze';
 
 const SCORE_THRESHOLD = 0.5;
+
+export type RawDetected = {
+  nameEn: string;
+  nameZh: string;
+  nameJa: string;
+  nameRu: string;
+  category: string;
+  bbox: { x: number; y: number; w: number; h: number };
+};
 
 type VisionClient = InstanceType<typeof vision.ImageAnnotatorClient>;
 
@@ -12,8 +20,13 @@ function getClient(): VisionClient {
   const projectId = process.env.GOOGLE_CLOUD_PROJECT;
   if (!raw) throw new Error('GOOGLE_CREDENTIALS_JSON not set');
   if (!projectId) throw new Error('GOOGLE_CLOUD_PROJECT not set');
+  const credentials = JSON.parse(raw);
+  // ADC user credentials (authorized_user type) require a quota project on the
+  // credentials object itself; the client-level quotaProjectId option is ignored.
+  // Harmless for service-account keys, which carry their own project.
+  if (!credentials.quota_project_id) credentials.quota_project_id = projectId;
   _client = new vision.ImageAnnotatorClient({
-    credentials: JSON.parse(raw),
+    credentials,
     projectId,
   });
   return _client;

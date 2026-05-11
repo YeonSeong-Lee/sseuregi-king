@@ -21,12 +21,22 @@ interface VideoPlayerProps {
   backLabel: string;
   noVideoLabel: string;
   onBack: () => void;
+  disposalTexts?: Record<string, string | null>;
+  disposalSubtitle?: string | null;
+  unsupportedHint?: string | null;
 }
 
-export function VideoPlayer({ objects, locale, categoryLabels, backLabel, noVideoLabel, onBack }: VideoPlayerProps) {
+export function VideoPlayer({
+  objects, locale, categoryLabels, backLabel, noVideoLabel, onBack,
+  disposalTexts, disposalSubtitle, unsupportedHint,
+}: VideoPlayerProps) {
   const [activeIndex, setActiveIndex] = useState(0);
   const active = objects[activeIndex];
   const nameKey = NAME_KEY[locale];
+  const activeKey = active.itemId ?? active.nameEn;
+  const disposalText = disposalTexts?.[activeKey] ?? null;
+  const showDisposal = disposalText !== null;
+  const showUnsupported = !showDisposal && unsupportedHint;
 
   return (
     <div className="flex flex-col h-full bg-zinc-950">
@@ -40,7 +50,7 @@ export function VideoPlayer({ objects, locale, categoryLabels, backLabel, noVide
       {objects.length > 1 && (
         <div className="flex gap-2 px-4 py-2 overflow-x-auto border-b border-zinc-800 shrink-0">
           {objects.map((obj, i) => (
-            <button key={obj.nameEn} onClick={() => setActiveIndex(i)}
+            <button key={`${obj.nameEn}-${i}`} onClick={() => setActiveIndex(i)}
               className={`shrink-0 px-3 py-1 rounded-full text-sm ${i === activeIndex ? 'bg-blue-500 text-white' : 'bg-zinc-800 text-zinc-300'}`}>
               {obj[nameKey]}
             </button>
@@ -53,6 +63,19 @@ export function VideoPlayer({ objects, locale, categoryLabels, backLabel, noVide
           : <p className="text-zinc-400 text-center">{noVideoLabel}</p>
         }
       </div>
+      {showDisposal && (
+        <div className="px-4 py-3 border-t border-zinc-800 shrink-0 bg-zinc-900/60">
+          {disposalSubtitle && (
+            <div className="text-xs text-blue-400 font-semibold mb-1">{disposalSubtitle}</div>
+          )}
+          <p className="text-zinc-200 text-sm leading-relaxed">{disposalText}</p>
+        </div>
+      )}
+      {showUnsupported && (
+        <div className="px-4 py-3 border-t border-zinc-800 shrink-0 bg-zinc-900/60">
+          <p className="text-amber-300/90 text-sm leading-relaxed">{unsupportedHint}</p>
+        </div>
+      )}
     </div>
   );
 }

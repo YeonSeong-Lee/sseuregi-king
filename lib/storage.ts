@@ -1,4 +1,4 @@
-import type { Locale, StorageData } from '@/types';
+import type { DistrictPreference, Locale, StorageData } from '@/types';
 
 const STORAGE_KEY = 'trashdex';
 
@@ -6,6 +6,7 @@ const defaultData: StorageData = {
   lang: 'en',
   unlockedIds: [],
   lastScanAt: null,
+  district: null,
 };
 
 export function getStorage(): StorageData {
@@ -40,4 +41,12 @@ export function unlockItems(ids: string[]): StorageData {
 
 export function getUnlockedIds(): string[] {
   return getStorage().unlockedIds;
+}
+
+export function getDistrict(): DistrictPreference | null {
+  return getStorage().district ?? null;
+}
+
+export function setDistrict(district: DistrictPreference | null): void {
+  setStorage({ district });
 }

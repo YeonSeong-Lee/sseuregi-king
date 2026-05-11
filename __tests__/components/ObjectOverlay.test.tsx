@@ -27,14 +27,16 @@ const fixture: DetectedObject[] = [
   },
 ];
 
-function renderOverlay() {
+function renderOverlay(objects: DetectedObject[] = fixture) {
   return render(
     <ObjectOverlay
       imageBase64=""
-      objects={fixture}
+      objects={objects}
       locale="en"
       tapHint="Tap an object"
       seeGuideLabel="See Guide"
+      selectAllLabel="Select all"
+      deselectAllLabel="Deselect all"
       onSeeGuide={vi.fn()}
     />
   );
@@ -63,5 +65,40 @@ describe('ObjectOverlay category colors', () => {
     await user.click(food);
     expect(food.className).not.toContain('ring-2');
     expect(food.className).toContain('bg-emerald-500');
+  });
+});
+
+describe('ObjectOverlay select-all toggle', () => {
+  it('selects every tag, then deselects, flipping the label between calls', async () => {
+    const user = userEvent.setup();
+    renderOverlay();
+
+    const tagNames = fixture.map(o => o.nameEn);
+    const tagButtons = () => tagNames.map(n => screen.getByRole('button', { name: n }));
+
+    tagButtons().forEach(b => expect(b.className).not.toContain('ring-2'));
+
+    await user.click(screen.getByRole('button', { name: 'Select all' }));
+    tagButtons().forEach(b => expect(b.className).toContain('ring-2'));
+
+    await user.click(screen.getByRole('button', { name: 'Deselect all' }));
+    tagButtons().forEach(b => expect(b.className).not.toContain('ring-2'));
+    expect(screen.getByRole('button', { name: 'Select all' })).toBeTruthy();
+  });
+
+  it('flips label back to "Select all" when one tag is manually deselected after select-all', async () => {
+    const user = userEvent.setup();
+    renderOverlay();
+
+    await user.click(screen.getByRole('button', { name: 'Select all' }));
+    expect(screen.getByRole('button', { name: 'Deselect all' })).toBeTruthy();
+
+    await user.click(screen.getByRole('button', { name: 'Food Waste' }));
+    expect(screen.getByRole('button', { name: 'Select all' })).toBeTruthy();
+  });
+
+  it('disables the toggle when no objects are detected', () => {
+    renderOverlay([]);
+    expect(screen.getByRole('button', { name: 'Select all' }).hasAttribute('disabled')).toBe(true);
   });
 });

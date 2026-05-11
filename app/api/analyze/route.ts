@@ -20,7 +20,13 @@ export async function POST(request: Request) {
     const objects = await detectWaste(body.image);
     return NextResponse.json({ objects });
   } catch (err) {
-    console.error('analyze error:', err);
+    const e = err as { code?: unknown; details?: unknown; message?: unknown };
+    console.error('analyze error:', {
+      message: e.message,
+      code: e.code,
+      details: e.details,
+      err,
+    });
     return NextResponse.json({ error: 'Analysis failed' }, { status: 500 });
   }
 }

@@ -5,9 +5,24 @@
   },
   "scan": { "camera": "カメラ", "gallery": "ギャラリー", "retake": "撮り直す", "see_guide": "処分ガイドを見る" },
   "analyzing": { "label": "分析中..." },
-  "overlay": { "tap_hint": "アイテムをタップして選択", "no_items": "ゴミが検出されませんでした。" },
+  "overlay": { "tap_hint": "アイテムをタップして選択", "no_items": "ゴミが検出されませんでした。", "select_all": "すべて選択", "deselect_all": "選択解除" },
   "video": { "back": "← 戻る", "no_video": "このアイテムの処分ガイドはまだありません。" },
   "collection": { "title": "マイコレクション", "locked": "???", "progress": "{n} / {total} 発見" },
   "categories": { "recycling": "リサイクル ♻️", "food": "生ごみ 🍃", "general": "一般ごみ 🗑️", "large": "大型廃棄物 🚛" },
-  "nav": { "scan": "スキャン", "collection": "コレクション" }
+  "nav": { "scan": "スキャン", "collection": "コレクション" },
+  "district": {
+    "set": "位置を設定",
+    "use_gps": "現在地を使う",
+    "select_manual": "地区を選ぶ",
+    "skip": "スキップ",
+    "auto_suffix": "（自動）",
+    "denied": "位置情報オフ",
+    "detecting": "検出中…",
+    "unsupported_chip": "{name}（未対応）",
+    "unsupported_hint": "{name}の分別ルールはまだ用意されていません。位置のチップをタップして江南区または麻浦区に切り替えてください。",
+    "no_match_chip": "ソウル外",
+    "no_match_hint": "現在地をソウルの区にマッチできませんでした。江南区または麻浦区を手動で選んで分別ルールを確認してください。",
+    "supported_subtitle": "{name}の捨て方",
+    "first_prompt": "あなたの地区の分別ルールを表示しますか？"
+  }
 }

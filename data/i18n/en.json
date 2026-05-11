@@ -12,7 +12,9 @@
   "analyzing": { "label": "Analyzing..." },
   "overlay": {
     "tap_hint": "Tap items to select",
-    "no_items": "No waste items detected. Try a clearer photo."
+    "no_items": "No waste items detected. Try a clearer photo.",
+    "select_all": "Select all",
+    "deselect_all": "Deselect all"
   },
   "video": {
     "back": "← Back",
@@ -29,5 +31,20 @@
     "general": "General 🗑️",
     "large": "Large Waste 🚛"
   },
-  "nav": { "scan": "Scan", "collection": "Collection" }
+  "nav": { "scan": "Scan", "collection": "Collection" },
+  "district": {
+    "set": "Set location",
+    "use_gps": "Use my location",
+    "select_manual": "Select district",
+    "skip": "Skip",
+    "auto_suffix": " (auto)",
+    "denied": "Location off",
+    "detecting": "Detecting…",
+    "unsupported_chip": "{name} (not supported yet)",
+    "unsupported_hint": "Disposal rules for {name} aren't available yet. Tap the location pill to switch to Gangnam-gu or Mapo-gu.",
+    "no_match_chip": "Outside Seoul",
+    "no_match_hint": "We couldn't match your location to a Seoul district. Pick Gangnam-gu or Mapo-gu manually to see disposal rules.",
+    "supported_subtitle": "{name} disposal",
+    "first_prompt": "Show disposal rules for your district?"
+  }
 }

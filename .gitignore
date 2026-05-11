@@ -42,3 +42,6 @@ next-env.d.ts
 
 # local tools
 .superpowers/
+
+# secrets
+sseuregi-vision-key.json
