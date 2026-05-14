@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { matchItem, enrichObjects, getAllItems } from '@/lib/matcher';
+import { matchItem, enrichObjects } from '@/lib/matcher';
 
 describe('matchItem', () => {
   it('matches exact alias', () => {
@@ -61,11 +61,5 @@ describe('enrichObjects', () => {
     expect(result[0].nameEn).toBe('Spaceship');
     expect(result[0].nameZh).toBe('zh');
     expect(result[0].category).toBe('general');
-  });
-});
-
-describe('getAllItems', () => {
-  it('returns all 10 items', () => {
-    expect(getAllItems()).toHaveLength(10);
   });
 });

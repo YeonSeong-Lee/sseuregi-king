@@ -1,6 +1,7 @@
 // components/ObjectOverlay.tsx
 'use client';
 import { useState } from 'react';
+import Image from 'next/image';
 import type { DetectedObject, Locale, WasteCategory } from '@/types';
 
 const NAME_KEY: Record<Locale, keyof Pick<DetectedObject, 'nameEn' | 'nameZh' | 'nameJa' | 'nameRu'>> = {
@@ -31,7 +32,8 @@ export function ObjectOverlay({ imageBase64, objects, locale, tapHint, seeGuideL
   function toggle(nameEn: string) {
     setSelectedNames(prev => {
       const next = new Set(prev);
-      next.has(nameEn) ? next.delete(nameEn) : next.add(nameEn);
+      if (next.has(nameEn)) next.delete(nameEn);
+      else next.add(nameEn);
       return next;
     });
   }
@@ -52,8 +54,8 @@ export function ObjectOverlay({ imageBase64, objects, locale, tapHint, seeGuideL
   return (
     <div className="flex flex-col h-full">
       <div className="relative flex-1 min-h-0 bg-black">
-        <img src={`data:image/jpeg;base64,${imageBase64}`} alt="scanned trash"
-          className="w-full h-full object-contain" />
+        <Image src={`data:image/jpeg;base64,${imageBase64}`} alt="scanned trash"
+          fill unoptimized className="object-contain" />
         {objects.map((obj, i) => {
           const cx = obj.bbox.x + obj.bbox.w / 2;
           const cy = obj.bbox.y + obj.bbox.h / 2;

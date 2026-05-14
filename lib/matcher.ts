@@ -38,7 +38,3 @@ export function enrichObjects(rawObjects: RawObject[]): DetectedObject[] {
     };
   });
 }
-
-export function getAllItems(): WasteItem[] {
-  return Object.values(wasteItems);
-}

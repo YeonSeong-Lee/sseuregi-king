@@ -6,6 +6,7 @@ vi.mock('@/lib/detect', () => ({
 
 import { detectWaste } from '@/lib/detect';
 import { POST } from '@/app/api/analyze/route';
+import type { DetectedObject } from '@/types';
 
 describe('POST /api/analyze', () => {
   beforeEach(() => vi.clearAllMocks());
@@ -20,12 +21,12 @@ describe('POST /api/analyze', () => {
   });
 
   it('returns detected objects on success', async () => {
-    const mockEnriched = [{
+    const mockEnriched: DetectedObject[] = [{
       nameEn: 'Plastic Bottle', nameZh: '塑料瓶', nameJa: 'ペットボトル', nameRu: 'Пластиковая бутылка',
       category: 'recycling', bbox: { x: 10, y: 10, w: 20, h: 20 },
       itemId: 'plastic_bottle', videoUrl: 'https://s3.../v.mp4', thumbnailUrl: 'https://s3.../t.jpg',
     }];
-    vi.mocked(detectWaste).mockResolvedValue(mockEnriched as any);
+    vi.mocked(detectWaste).mockResolvedValue(mockEnriched);
 
     const req = new Request('http://localhost/api/analyze', {
       method: 'POST',

@@ -39,8 +39,6 @@ export interface DistrictPreference {
 
 export interface StorageData {
   lang: Locale;
-  unlockedIds: string[];
-  lastScanAt: string | null;
   district: DistrictPreference | null;
 }
 

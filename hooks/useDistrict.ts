@@ -40,6 +40,7 @@ export function useDistrict() {
     const stored = getDistrict();
     if (!stored) return;
     const info = getSupportedDistrictInfo(stored.code);
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- hydrate from localStorage after mount; SSR can't read it
     setState(stored.auto
       ? { status: 'detected', info, auto: true }
       : { status: 'manual', info, auto: false });

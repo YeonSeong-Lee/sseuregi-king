@@ -4,8 +4,6 @@ const STORAGE_KEY = 'trashdex';
 
 const defaultData: StorageData = {
   lang: 'en',
-  unlockedIds: [],
-  lastScanAt: null,
   district: null,
 };
 
@@ -25,22 +23,8 @@ function setStorage(data: Partial<StorageData>): StorageData {
   return next;
 }
 
-export function getLang(): Locale {
-  return getStorage().lang;
-}
-
 export function setLang(lang: Locale): void {
   setStorage({ lang });
-}
-
-export function unlockItems(ids: string[]): StorageData {
-  const current = getStorage();
-  const merged = Array.from(new Set([...current.unlockedIds, ...ids]));
-  return setStorage({ unlockedIds: merged, lastScanAt: new Date().toISOString() });
-}
-
-export function getUnlockedIds(): string[] {
-  return getStorage().unlockedIds;
 }
 
 export function getDistrict(): DistrictPreference | null {
