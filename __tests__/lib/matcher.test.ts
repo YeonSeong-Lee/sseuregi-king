@@ -14,13 +14,16 @@ describe('enrichObjects', () => {
     expect(result[0].nameRu).toBe('Бумага');
   });
 
-  it('falls back to general for unknown labels and preserves raw nameEn', () => {
+  it('falls back to etc for unknown labels and replaces the raw name with the localized "Other" label', () => {
     const result = enrichObjects([{
       nameEn: 'Spaceship', nameZh: 'zh', nameJa: 'ja', nameRu: 'ru',
       category: '', bbox: { x: 0, y: 0, w: 10, h: 10 },
     }]);
-    expect(result[0].category).toBe('general');
-    expect(result[0].nameEn).toBe('Spaceship');
+    expect(result[0].category).toBe('etc');
+    expect(result[0].nameEn).toBe('Other ❓');
+    expect(result[0].nameZh).toBe('其他 ❓');
+    expect(result[0].nameJa).toBe('その他 ❓');
+    expect(result[0].nameRu).toBe('Другое ❓');
   });
 
   it('routes plastic-ish labels via category alias even without a specific name', () => {

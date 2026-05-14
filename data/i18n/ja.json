@@ -39,7 +39,8 @@
     "lightbulb": "電球 💡",
     "food": "生ごみ 🍃",
     "general": "一般ごみ 🗑️",
-    "large": "大型 🛋️"
+    "large": "大型 🛋️",
+    "etc": "その他 ❓"
   },
   "nav": { "scan": "スキャン", "guide": "ガイド" },
   "theme": {

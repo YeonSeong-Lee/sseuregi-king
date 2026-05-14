@@ -85,4 +85,24 @@ describe('getCategoryDef', () => {
   it('returns the catalog entry for a known category', () => {
     expect(getCategoryDef('food').names.en).toBe('Food Waste');
   });
+
+  it('aliases etc → general so disposal data still resolves', () => {
+    expect(getCategoryDef('etc')).toBe(getCategoryDef('general'));
+  });
+});
+
+describe('etc pseudo-category', () => {
+  it('produces the same disposal text as general', () => {
+    expect(getCategoryDisposalText('etc', 'gangnam', 'en')).toBe(
+      getCategoryDisposalText('general', 'gangnam', 'en'),
+    );
+    expect(getCategoryDisposalText('etc', 'mapo', 'ja')).toBe(
+      getCategoryDisposalText('general', 'mapo', 'ja'),
+    );
+  });
+
+  it('is excluded from CATEGORY_IDS so it never leaks into the filter row', () => {
+    expect(CATEGORY_IDS).not.toContain('etc');
+    expect(CATEGORY_IDS).toHaveLength(12);
+  });
 });

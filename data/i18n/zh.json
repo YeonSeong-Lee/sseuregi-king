@@ -39,7 +39,8 @@
     "lightbulb": "灯泡 💡",
     "food": "厨余 🍃",
     "general": "一般垃圾 🗑️",
-    "large": "大型 🛋️"
+    "large": "大型 🛋️",
+    "etc": "其他 ❓"
   },
   "nav": { "scan": "扫描", "guide": "指南" },
   "theme": {

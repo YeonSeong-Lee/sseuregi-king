@@ -94,7 +94,9 @@ export default function ScanPage({ params }: { params: Promise<{ locale: string 
           seeGuideLabel={t('scan.see_guide')}
           selectAllLabel={t('overlay.select_all')}
           deselectAllLabel={t('overlay.deselect_all')}
+          retakeLabel={t('scan.retake')}
           onSeeGuide={sel => { setSelected(sel); setState('video'); }}
+          onRetake={() => { setObjects([]); setImageBase64(''); setError(''); setState('capture'); }}
         />
       </div>
     </div>

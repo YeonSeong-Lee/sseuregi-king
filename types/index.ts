@@ -12,7 +12,8 @@ export type WasteCategory =
   | 'lightbulb'
   | 'food'
   | 'general'
-  | 'large';
+  | 'large'
+  | 'etc';
 
 export interface BBox {
   x: number; // % of image width (0-100)

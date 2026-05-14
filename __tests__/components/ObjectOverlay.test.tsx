@@ -33,7 +33,9 @@ function renderOverlay(objects: DetectedObject[] = fixture) {
       seeGuideLabel="See Guide"
       selectAllLabel="Select all"
       deselectAllLabel="Deselect all"
+      retakeLabel="Retake"
       onSeeGuide={vi.fn()}
+      onRetake={vi.fn()}
     />
   );
 }
@@ -61,6 +63,43 @@ describe('ObjectOverlay category colors', () => {
     await user.click(food);
     expect(food.className).not.toContain('ring-2');
     expect(food.className).toContain('bg-lime-500');
+  });
+});
+
+describe('ObjectOverlay etc (unclear) chip', () => {
+  const etcObject: DetectedObject = {
+    nameEn: 'Other ❓', nameZh: '其他 ❓', nameJa: 'その他 ❓', nameRu: 'Другое ❓',
+    category: 'etc', bbox: { x: 50, y: 50, w: 10, h: 10 },
+  };
+
+  it('renders the etc chip with a dashed border and the neutral slate fill', () => {
+    renderOverlay([etcObject]);
+    const chip = screen.getByRole('button', { name: 'Other ❓' });
+    expect(chip.className).toContain('border-dashed');
+    expect(chip.className).toContain('bg-slate-500/70');
+    expect(chip.className).not.toContain('border-black/20');
+  });
+
+  it('forwards etc-category objects through onSeeGuide unchanged', async () => {
+    const user = userEvent.setup();
+    const onSeeGuide = vi.fn();
+    render(
+      <ObjectOverlay
+        imageBase64=""
+        objects={[etcObject]}
+        locale="en"
+        tapHint="Tap an object"
+        seeGuideLabel="See Guide"
+        selectAllLabel="Select all"
+        deselectAllLabel="Deselect all"
+        retakeLabel="Retake"
+        onSeeGuide={onSeeGuide}
+        onRetake={vi.fn()}
+      />,
+    );
+    await user.click(screen.getByRole('button', { name: 'Other ❓' }));
+    await user.click(screen.getByRole('button', { name: 'See Guide →' }));
+    expect(onSeeGuide).toHaveBeenCalledWith([etcObject]);
   });
 });
 

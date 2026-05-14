@@ -24,11 +24,23 @@ export const CATEGORY_IDS: WasteCategory[] = [
   'large',
 ];
 
+// `etc` is a pseudo-category used when detection can't be alias-matched.
+// It deliberately stays out of CATEGORY_IDS so it never appears in the
+// /guide filter row or disposal cards, but it aliases to `general` at the
+// data-lookup boundary so VideoPlayer / disposal text fall back gracefully.
+export const ETC_NAMES: Record<Locale, string> = {
+  en: 'Other ❓',
+  zh: '其他 ❓',
+  ja: 'その他 ❓',
+  ru: 'Другое ❓',
+};
+
 // `categoriesData` also carries an `_sources` key alongside the 12 category
 // entries. We only ever index by `WasteCategory` so the extra key is benign.
 const categories = categoriesData as unknown as Record<WasteCategory, WasteCategoryDef>;
 
 export function getCategoryDef(id: WasteCategory): WasteCategoryDef {
+  if (id === 'etc') return categories.general;
   return categories[id];
 }
 
@@ -47,16 +59,19 @@ export function matchCategoryByAlias(label: string): WasteCategory | null {
 export function buildCategoryLabels(
   t: (key: string) => string,
 ): Record<WasteCategory, string> {
-  return Object.fromEntries(
-    CATEGORY_IDS.map(id => [id, t(`categories.${id}`)]),
-  ) as Record<WasteCategory, string>;
+  return {
+    ...Object.fromEntries(CATEGORY_IDS.map(id => [id, t(`categories.${id}`)])),
+    etc: t('categories.etc'),
+  } as Record<WasteCategory, string>;
 }
 
 export function getCategoryName(id: WasteCategory, locale: Locale): string {
+  if (id === 'etc') return ETC_NAMES[locale];
   return categories[id].names[locale];
 }
 
 export function getCategoryExamples(id: WasteCategory, locale: Locale): string | null {
+  if (id === 'etc') return null;
   return categories[id].examples[locale] ?? null;
 }
 
@@ -65,7 +80,7 @@ export function getCategoryDisposal(
   district: SupportedDistrict | null,
 ): { steps: StepId[]; districtRule: DistrictRule } | null {
   if (!district) return null;
-  const def = categories[id];
+  const def = getCategoryDef(id);
   if (!def) return null;
   const districtRule = def.districts[district];
   if (!districtRule) return null;

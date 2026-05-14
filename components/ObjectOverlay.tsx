@@ -21,6 +21,7 @@ const CATEGORY_BG: Record<WasteCategory, string> = {
   food:         'bg-lime-500',
   general:      'bg-zinc-600',
   large:        'bg-red-500',
+  etc:          'bg-slate-500/70',
 };
 
 interface ObjectOverlayProps {
@@ -31,10 +32,12 @@ interface ObjectOverlayProps {
   seeGuideLabel: string;
   selectAllLabel: string;
   deselectAllLabel: string;
+  retakeLabel: string;
   onSeeGuide: (selected: DetectedObject[]) => void;
+  onRetake: () => void;
 }
 
-export function ObjectOverlay({ imageBase64, objects, locale, tapHint, seeGuideLabel, selectAllLabel, deselectAllLabel, onSeeGuide }: ObjectOverlayProps) {
+export function ObjectOverlay({ imageBase64, objects, locale, tapHint, seeGuideLabel, selectAllLabel, deselectAllLabel, retakeLabel, onSeeGuide, onRetake }: ObjectOverlayProps) {
   const [selectedNames, setSelectedNames] = useState<Set<string>>(new Set());
 
   function toggle(nameEn: string) {
@@ -64,13 +67,20 @@ export function ObjectOverlay({ imageBase64, objects, locale, tapHint, seeGuideL
       <div className="relative flex-1 min-h-0 bg-black">
         <Image src={`data:image/jpeg;base64,${imageBase64}`} alt="scanned trash"
           fill unoptimized className="object-contain" />
+        <button type="button" onClick={onRetake}
+          className="absolute left-3 top-3 z-10 flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-black/60 text-white text-sm font-medium backdrop-blur-sm border border-white/20 active:scale-95 transition-transform">
+          <span aria-hidden>📷</span>
+          {retakeLabel}
+        </button>
         {objects.map((obj, i) => {
           const cx = obj.bbox.x + obj.bbox.w / 2;
           const cy = obj.bbox.y + obj.bbox.h / 2;
           const isSelected = selectedNames.has(obj.nameEn);
           return (
             <button key={`${obj.nameEn}-${i}`} onClick={() => toggle(obj.nameEn)}
-              className={`absolute -translate-x-1/2 -translate-y-1/2 px-3 py-1 rounded-full text-sm font-semibold shadow-lg transition-all text-white border border-black/20 ${CATEGORY_BG[obj.category]} ${
+              className={`absolute -translate-x-1/2 -translate-y-1/2 px-3 py-1 rounded-full text-sm font-semibold shadow-lg transition-all text-white ${
+                obj.category === 'etc' ? 'border-2 border-dashed border-white/70' : 'border border-black/20'
+              } ${CATEGORY_BG[obj.category]} ${
                 isSelected ? 'ring-2 ring-white scale-110' : ''
               }`}
               style={{ left: `${cx}%`, top: `${cy}%` }}>

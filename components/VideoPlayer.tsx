@@ -18,6 +18,7 @@ const CATEGORY_COLORS: Record<WasteCategory, string> = {
   food:         'bg-lime-100 text-lime-800 dark:bg-lime-500/20 dark:text-lime-300',
   general:      'bg-zinc-200 text-zinc-700 dark:bg-zinc-500/20 dark:text-zinc-300',
   large:        'bg-red-100 text-red-800 dark:bg-red-500/20 dark:text-red-300',
+  etc:          'bg-slate-100 text-slate-700 border border-dashed border-slate-400 dark:bg-slate-500/20 dark:text-slate-200 dark:border-slate-400/60',
 };
 
 const NAME_KEY: Record<Locale, keyof Pick<DetectedObject, 'nameEn' | 'nameZh' | 'nameJa' | 'nameRu'>> = {

@@ -15,6 +15,7 @@ const COLORS: Record<WasteCategory, string> = {
   food:         'border-lime-300 text-lime-800 data-[active=true]:bg-lime-100 dark:border-lime-500/40 dark:text-lime-300 dark:data-[active=true]:bg-lime-500/20',
   general:      'border-zinc-300 text-zinc-700 data-[active=true]:bg-zinc-200 dark:border-zinc-500/40 dark:text-zinc-300 dark:data-[active=true]:bg-zinc-500/30',
   large:        'border-red-300 text-red-800 data-[active=true]:bg-red-100 dark:border-red-500/40 dark:text-red-300 dark:data-[active=true]:bg-red-500/20',
+  etc:          'border-dashed border-slate-400 text-slate-700 data-[active=true]:bg-slate-100 dark:border-slate-400/60 dark:text-slate-200 dark:data-[active=true]:bg-slate-500/20',
 };
 
 interface CategoryChipsProps {

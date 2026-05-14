@@ -1,7 +1,7 @@
-import { getCategoryDef, matchCategoryByAlias } from '@/lib/categories';
+import { ETC_NAMES, getCategoryDef, matchCategoryByAlias } from '@/lib/categories';
 import type { DetectedObject, WasteCategory } from '@/types';
 
-const DEFAULT_CATEGORY: WasteCategory = 'general';
+const DEFAULT_CATEGORY: WasteCategory = 'etc';
 
 type RawObject = {
   nameEn: string;
@@ -27,10 +27,10 @@ export function enrichObjects(rawObjects: RawObject[]): DetectedObject[] {
       };
     }
     return {
-      nameEn: obj.nameEn,
-      nameZh: obj.nameZh,
-      nameJa: obj.nameJa,
-      nameRu: obj.nameRu,
+      nameEn: ETC_NAMES.en,
+      nameZh: ETC_NAMES.zh,
+      nameJa: ETC_NAMES.ja,
+      nameRu: ETC_NAMES.ru,
       category: DEFAULT_CATEGORY,
       bbox: obj.bbox,
     };

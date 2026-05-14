@@ -56,7 +56,8 @@
     "lightbulb": "Bulb 💡",
     "food": "Food 🍃",
     "general": "General 🗑️",
-    "large": "Large 🛋️"
+    "large": "Large 🛋️",
+    "etc": "Other ❓"
   },
   "nav": { "scan": "Scan", "guide": "Guide" },
   "theme": {

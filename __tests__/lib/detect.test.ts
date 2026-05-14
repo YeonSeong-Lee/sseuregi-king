@@ -25,7 +25,7 @@ describe('detectWaste orchestrator', () => {
     expect(result[1].category).toBe('vinyl');
   });
 
-  it('falls back to general for unmatched Vision labels', async () => {
+  it('falls back to etc (unclear) for unmatched Vision labels', async () => {
     vi.mocked(cloudVisionDetect).mockResolvedValue([
       { nameEn: 'Newspaper', nameZh: '', nameJa: '', nameRu: '', category: '',
         bbox: { x: 0, y: 0, w: 10, h: 10 } },
@@ -37,7 +37,7 @@ describe('detectWaste orchestrator', () => {
 
     expect(result).toHaveLength(2);
     expect(result[0].category).toBe('paper');
-    expect(result[1].category).toBe('general');
+    expect(result[1].category).toBe('etc');
   });
 
   it('returns an empty array when Vision finds nothing', async () => {
