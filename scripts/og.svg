@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0b1220"/>
+      <stop offset="55%" stop-color="#1e3a8a"/>
+      <stop offset="100%" stop-color="#2563eb"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#60a5fa" stop-opacity="0.42"/>
+      <stop offset="100%" stop-color="#60a5fa" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="mascotHalo" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.16"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <ellipse cx="980" cy="140" rx="520" ry="300" fill="url(#glow)"/>
+
+  <g fill="#ffffff">
+    <circle cx="920" cy="80" r="2.5" opacity="0.9"/>
+    <circle cx="980" cy="50" r="1.8" opacity="0.7"/>
+    <circle cx="1050" cy="100" r="3" opacity="0.95"/>
+    <circle cx="1120" cy="60" r="2" opacity="0.8"/>
+    <circle cx="1080" cy="200" r="2.2" opacity="0.75"/>
+    <circle cx="1010" cy="240" r="1.5" opacity="0.55"/>
+    <circle cx="870" cy="150" r="1.8" opacity="0.6"/>
+    <circle cx="950" cy="210" r="2.5" opacity="0.8"/>
+    <circle cx="1150" cy="150" r="1.6" opacity="0.55"/>
+    <circle cx="830" cy="90" r="1.4" opacity="0.45"/>
+    <g transform="translate(1060 135)" opacity="0.95">
+      <path d="M 0 -16 L 2.5 -2.5 L 16 0 L 2.5 2.5 L 0 16 L -2.5 2.5 L -16 0 L -2.5 -2.5 Z"/>
+    </g>
+    <g transform="translate(900 110)" opacity="0.8">
+      <path d="M 0 -9 L 1.6 -1.6 L 9 0 L 1.6 1.6 L 0 9 L -1.6 1.6 L -9 0 L -1.6 -1.6 Z"/>
+    </g>
+  </g>
+
+  <ellipse cx="285" cy="335" rx="270" ry="270" fill="url(#mascotHalo)"/>
+
+  <g transform="translate(60 110) scale(3.6)">
+    <path d="M 44 40 Q 38 48 32 58 Q 22 80 26 96 Q 30 110 50 110 Q 70 110 74 96 Q 78 80 68 58 Q 62 48 56 40 Z"
+          fill="#e2e8f0" stroke="#0f172a" stroke-width="2.5" stroke-linejoin="round"/>
+    <path d="M 44 40 Q 46 30 50 36 Q 54 28 58 36 Q 60 30 56 40 Z"
+          fill="#e2e8f0" stroke="#0f172a" stroke-width="2" stroke-linejoin="round"/>
+    <circle cx="42" cy="70" r="2" fill="#0f172a"/>
+    <circle cx="56" cy="70" r="2" fill="#0f172a"/>
+    <path d="M 42 78 Q 49 84 56 78" stroke="#0f172a" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+    <circle cx="36" cy="78" r="2" fill="#fecaca" opacity="0.85"/>
+    <circle cx="62" cy="78" r="2" fill="#fecaca" opacity="0.85"/>
+    <circle cx="68" cy="62" r="3.5" fill="#e2e8f0" stroke="#0f172a" stroke-width="2"/>
+    <g transform="rotate(-32 68 62)">
+      <rect x="68" y="58" width="38" height="8" rx="2" fill="#374151" stroke="#0f172a" stroke-width="2"/>
+      <rect x="62" y="55" width="9" height="14" rx="1.5" fill="#1f2937" stroke="#0f172a" stroke-width="2"/>
+      <rect x="102" y="54" width="8" height="16" rx="1.5" fill="#1f2937" stroke="#0f172a" stroke-width="2"/>
+      <circle cx="106" cy="62" r="2.5" fill="#dbeafe" stroke="#0f172a" stroke-width="1.2"/>
+    </g>
+  </g>
+
+  <text x="540" y="295" font-family="Helvetica Neue, Helvetica, Arial, sans-serif"
+        font-weight="800" font-size="124" fill="#ffffff" letter-spacing="-4">Trash Dex</text>
+  <text x="540" y="352" font-family="Helvetica Neue, Helvetica, Arial, sans-serif"
+        font-weight="500" font-size="30" fill="#ffffff" opacity="0.94">Scan your trash. Sort it right.</text>
+  <text x="540" y="394" font-family="Helvetica Neue, Helvetica, Arial, sans-serif"
+        font-weight="400" font-size="28" fill="#ffffff" opacity="0.78">A field guide for living in Korea.</text>
+
+  <g transform="translate(540 478)">
+    <rect x="0" y="0" width="360" height="58" rx="29" fill="#ffffff" opacity="0.12"/>
+    <rect x="0" y="0" width="360" height="58" rx="29" fill="none" stroke="#ffffff" stroke-opacity="0.28" stroke-width="1.5"/>
+    <circle cx="32" cy="29" r="6" fill="#34d399"/>
+    <circle cx="32" cy="29" r="11" fill="#34d399" opacity="0.25"/>
+    <text x="56" y="37" font-family="Helvetica Neue, Helvetica, Arial, sans-serif"
+          font-weight="600" font-size="22" fill="#ffffff">sseuregi-killer · 4 languages</text>
+  </g>
+
+  <text x="1144" y="595" font-family="SF Mono, Menlo, Consolas, monospace"
+        font-weight="400" font-size="20" fill="#ffffff" opacity="0.55" text-anchor="end">sseuregi-king.vercel.app</text>
+</svg>

@@ -1,4 +1,8 @@
 {
+  "meta": {
+    "title": "Trash Dex — sort your trash in Korea",
+    "description": "Scan any waste item and find the right bag, day, and disposal site for your district in Korea. A field guide for residents and travelers."
+  },
   "home": {
     "title": "Trash Dex",
     "subtitle": "Scan your trash to learn how to dispose of it correctly in Korea"

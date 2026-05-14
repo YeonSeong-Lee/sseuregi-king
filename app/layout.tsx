@@ -12,9 +12,26 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://sseuregi-king.vercel.app";
+
 export const metadata: Metadata = {
-  title: "sseuregi-killer",
-  description: "Trash Dex — scan and identify waste",
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: "Trash Dex — sseuregi-killer",
+    template: "%s · sseuregi-killer",
+  },
+  description: "Scan your trash and learn how to dispose of it correctly in Korea.",
+  applicationName: "sseuregi-killer",
+  openGraph: {
+    type: "website",
+    siteName: "sseuregi-killer",
+    images: [{ url: "/og.png", width: 1200, height: 630, alt: "Trash Dex — a trash-bag mascot peers through a telescope at the night sky" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: ["/og.png"],
+  },
+  icons: { icon: "/favicon.ico" },
 };
 
 const themeInitScript = `(function(){try{var t=localStorage.getItem('theme')||'system';var d=t==='dark'||(t==='system'&&matchMedia('(prefers-color-scheme: dark)').matches);if(d)document.documentElement.classList.add('dark');}catch(e){}})();`;
