@@ -44,7 +44,6 @@
     "unsupported_hint": "Disposal rules for {name} aren't available yet. Tap the location pill to switch to Gangnam-gu or Mapo-gu.",
     "no_match_chip": "Outside Seoul",
     "no_match_hint": "We couldn't match your location to a Seoul district. Pick Gangnam-gu or Mapo-gu manually to see disposal rules.",
-    "supported_subtitle": "{name} disposal",
-    "first_prompt": "Show disposal rules for your district?"
+    "supported_subtitle": "{name} disposal"
   }
 }

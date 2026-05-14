@@ -22,13 +22,11 @@ interface VideoPlayerProps {
   noVideoLabel: string;
   onBack: () => void;
   disposalTexts?: Record<string, string | null>;
-  disposalSubtitle?: string | null;
-  unsupportedHint?: string | null;
 }
 
 export function VideoPlayer({
   objects, locale, categoryLabels, backLabel, noVideoLabel, onBack,
-  disposalTexts, disposalSubtitle, unsupportedHint,
+  disposalTexts,
 }: VideoPlayerProps) {
   const [activeIndex, setActiveIndex] = useState(0);
   const active = objects[activeIndex];
@@ -36,7 +34,6 @@ export function VideoPlayer({
   const activeKey = active.itemId ?? active.nameEn;
   const disposalText = disposalTexts?.[activeKey] ?? null;
   const showDisposal = disposalText !== null;
-  const showUnsupported = !showDisposal && unsupportedHint;
 
   return (
     <div className="flex flex-col h-full bg-zinc-950">
@@ -65,15 +62,7 @@ export function VideoPlayer({
       </div>
       {showDisposal && (
         <div className="px-4 py-3 border-t border-zinc-800 shrink-0 bg-zinc-900/60">
-          {disposalSubtitle && (
-            <div className="text-xs text-blue-400 font-semibold mb-1">{disposalSubtitle}</div>
-          )}
           <p className="text-zinc-200 text-sm leading-relaxed">{disposalText}</p>
-        </div>
-      )}
-      {showUnsupported && (
-        <div className="px-4 py-3 border-t border-zinc-800 shrink-0 bg-zinc-900/60">
-          <p className="text-amber-300/90 text-sm leading-relaxed">{unsupportedHint}</p>
         </div>
       )}
     </div>

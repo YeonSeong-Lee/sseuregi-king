@@ -22,7 +22,6 @@
     "unsupported_hint": "暂不支持{name}的分类规则。点击位置标签切换到江南区或麻浦区。",
     "no_match_chip": "首尔以外",
     "no_match_hint": "无法将您的位置匹配到首尔的某个区。请手动选择江南区或麻浦区查看分类规则。",
-    "supported_subtitle": "{name}的处理方法",
-    "first_prompt": "是否显示您所在区的分类规则？"
+    "supported_subtitle": "{name}的处理方法"
   }
 }

@@ -22,7 +22,6 @@
     "unsupported_hint": "{name}の分別ルールはまだ用意されていません。位置のチップをタップして江南区または麻浦区に切り替えてください。",
     "no_match_chip": "ソウル外",
     "no_match_hint": "現在地をソウルの区にマッチできませんでした。江南区または麻浦区を手動で選んで分別ルールを確認してください。",
-    "supported_subtitle": "{name}の捨て方",
-    "first_prompt": "あなたの地区の分別ルールを表示しますか？"
+    "supported_subtitle": "{name}の捨て方"
   }
 }
