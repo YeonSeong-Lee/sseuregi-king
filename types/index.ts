@@ -43,3 +43,50 @@ export interface StorageData {
   lastScanAt: string | null;
   district: DistrictPreference | null;
 }
+
+export type BagColor = 'transparent' | 'yellow' | 'white' | 'green' | 'special' | 'none';
+
+export type StepId =
+  | 'empty'
+  | 'rinse'
+  | 'remove_label'
+  | 'remove_cap'
+  | 'crush_flat'
+  | 'flatten'
+  | 'bundle_dry'
+  | 'remove_tape_staples'
+  | 'drain_water'
+  | 'bag_transparent'
+  | 'bag_food_waste'
+  | 'bag_special'
+  | 'drop_off_battery'
+  | 'drop_off_dong_center'
+  | 'request_pickup_ewaste';
+
+export interface DisposalStep {
+  id: StepId;
+  icon: StepId;
+  labels: Record<Locale, string>;
+}
+
+export type BagType = 'recycle' | 'food' | 'general' | 'special' | 'none';
+
+export interface DistrictRule {
+  bagColor: BagColor;
+  bagType: BagType;
+  schedule: Record<Locale, string>;
+}
+
+export interface ItemRule {
+  steps: StepId[];
+  districts: Partial<Record<SupportedDistrict, DistrictRule>>;
+}
+
+export interface DisposalRulesFile {
+  _sources: Record<string, string>;
+  items: Record<string, ItemRule>;
+}
+
+export interface DisposalStepsFile {
+  steps: Record<StepId, DisposalStep>;
+}

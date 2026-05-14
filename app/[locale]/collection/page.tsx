@@ -1,27 +1,9 @@
-// app/[locale]/collection/page.tsx
 'use client';
 import { use } from 'react';
-import { useTranslations } from 'next-intl';
-import { TrashDex } from '@/components/TrashDex';
-import { useCollection } from '@/hooks/useCollection';
-import wasteItemsData from '@/data/waste-items.json';
-import type { WasteItem, Locale } from '@/types';
-
-const allItems = Object.values(wasteItemsData) as WasteItem[];
+import { DisposalGuide } from '@/components/DisposalGuide';
+import type { Locale } from '@/types';
 
 export default function CollectionPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = use(params);
-  const t = useTranslations('collection');
-  const { unlockedIds } = useCollection();
-  const unlockedCount = allItems.filter(item => unlockedIds.includes(item.id)).length;
-
-  return (
-    <TrashDex
-      items={allItems}
-      unlockedIds={unlockedIds}
-      locale={locale as Locale}
-      lockedLabel={t('locked')}
-      progress={t('progress', { n: unlockedCount, total: allItems.length })}
-    />
-  );
+  return <DisposalGuide locale={locale as Locale} />;
 }

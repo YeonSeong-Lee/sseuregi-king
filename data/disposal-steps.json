@@ -1,0 +1,154 @@
+{
+  "steps": {
+    "empty": {
+      "id": "empty",
+      "icon": "empty",
+      "labels": {
+        "en": "Empty",
+        "zh": "倒空",
+        "ja": "中身を空に",
+        "ru": "Опорожнить"
+      }
+    },
+    "rinse": {
+      "id": "rinse",
+      "icon": "rinse",
+      "labels": {
+        "en": "Rinse",
+        "zh": "冲洗",
+        "ja": "すすぐ",
+        "ru": "Ополоснуть"
+      }
+    },
+    "remove_label": {
+      "id": "remove_label",
+      "icon": "remove_label",
+      "labels": {
+        "en": "Remove label",
+        "zh": "撕掉标签",
+        "ja": "ラベルを剥がす",
+        "ru": "Снять этикетку"
+      }
+    },
+    "remove_cap": {
+      "id": "remove_cap",
+      "icon": "remove_cap",
+      "labels": {
+        "en": "Remove cap",
+        "zh": "去盖",
+        "ja": "キャップを外す",
+        "ru": "Снять крышку"
+      }
+    },
+    "crush_flat": {
+      "id": "crush_flat",
+      "icon": "crush_flat",
+      "labels": {
+        "en": "Crush flat",
+        "zh": "压扁",
+        "ja": "潰す",
+        "ru": "Сплющить"
+      }
+    },
+    "flatten": {
+      "id": "flatten",
+      "icon": "flatten",
+      "labels": {
+        "en": "Flatten",
+        "zh": "压平",
+        "ja": "平らに",
+        "ru": "Расплющить"
+      }
+    },
+    "bundle_dry": {
+      "id": "bundle_dry",
+      "icon": "bundle_dry",
+      "labels": {
+        "en": "Bundle (dry)",
+        "zh": "捆扎（干燥）",
+        "ja": "束ねる（乾）",
+        "ru": "Связать (сухой)"
+      }
+    },
+    "remove_tape_staples": {
+      "id": "remove_tape_staples",
+      "icon": "remove_tape_staples",
+      "labels": {
+        "en": "Remove tape & staples",
+        "zh": "去胶带订书钉",
+        "ja": "テープ・ホチキスを外す",
+        "ru": "Убрать скотч и скобы"
+      }
+    },
+    "drain_water": {
+      "id": "drain_water",
+      "icon": "drain_water",
+      "labels": {
+        "en": "Drain water",
+        "zh": "沥干水分",
+        "ja": "水気を切る",
+        "ru": "Слить воду"
+      }
+    },
+    "bag_transparent": {
+      "id": "bag_transparent",
+      "icon": "bag_transparent",
+      "labels": {
+        "en": "Transparent bag",
+        "zh": "透明袋",
+        "ja": "透明袋",
+        "ru": "Прозрачный пакет"
+      }
+    },
+    "bag_food_waste": {
+      "id": "bag_food_waste",
+      "icon": "bag_food_waste",
+      "labels": {
+        "en": "Food-waste bag",
+        "zh": "厨余专用袋",
+        "ja": "生ごみ袋",
+        "ru": "Пакет для пищевых"
+      }
+    },
+    "bag_special": {
+      "id": "bag_special",
+      "icon": "bag_special",
+      "labels": {
+        "en": "Special bag (마대)",
+        "zh": "特殊厚布袋（마대）",
+        "ja": "特殊麻袋（마대）",
+        "ru": "Спец. мешок (마대)"
+      }
+    },
+    "drop_off_battery": {
+      "id": "drop_off_battery",
+      "icon": "drop_off_battery",
+      "labels": {
+        "en": "Battery box",
+        "zh": "电池回收箱",
+        "ja": "電池回収箱",
+        "ru": "Ящик для батареек"
+      }
+    },
+    "drop_off_dong_center": {
+      "id": "drop_off_dong_center",
+      "icon": "drop_off_dong_center",
+      "labels": {
+        "en": "Dong community center",
+        "zh": "洞居民中心",
+        "ja": "洞住民センター",
+        "ru": "Общинный центр"
+      }
+    },
+    "request_pickup_ewaste": {
+      "id": "request_pickup_ewaste",
+      "icon": "request_pickup_ewaste",
+      "labels": {
+        "en": "Request free pickup",
+        "zh": "申请上门收取",
+        "ja": "無料訪問回収依頼",
+        "ru": "Заказ вывоза"
+      }
+    }
+  }
+}

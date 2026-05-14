@@ -7,9 +7,24 @@
   "analyzing": { "label": "分析中..." },
   "overlay": { "tap_hint": "点击选择物品", "no_items": "未检测到废弃物，请尝试更清晰的照片。", "select_all": "全选", "deselect_all": "取消全选" },
   "video": { "back": "← 返回", "no_video": "暂无该物品的处理指南。" },
-  "collection": { "title": "我的收藏", "locked": "???", "progress": "已发现 {n} / {total}" },
+  "guide": {
+    "title": "处理指南",
+    "subtitle": "{name} 的分类规则",
+    "no_district": "请在顶栏设置您所在的区以查看本地分类规则。",
+    "all": "全部",
+    "empty_category": "此类别下暂无项目。",
+    "pin_step_hint": "点击步骤以固定显示。"
+  },
+  "bag": {
+    "transparent": "透明袋",
+    "yellow": "黄色厨余专用袋",
+    "white": "白色一般垃圾袋",
+    "green": "绿色网袋",
+    "special": "特殊厚布袋（마대）",
+    "none": "无需袋装 — 直接投放"
+  },
   "categories": { "recycling": "可回收 ♻️", "food": "厨余垃圾 🍃", "general": "一般垃圾 🗑️", "large": "大型废弃物 🚛" },
-  "nav": { "scan": "扫描", "collection": "收藏" },
+  "nav": { "scan": "扫描", "guide": "指南" },
   "district": {
     "set": "设置位置",
     "use_gps": "使用我的位置",

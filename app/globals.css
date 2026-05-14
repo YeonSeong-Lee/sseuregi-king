@@ -10,6 +10,49 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --animate-step-active: step-active 1.2s ease-in-out infinite;
+  --animate-float: float 3s ease-in-out infinite;
+  --animate-pour-out: pour-out 1.8s ease-in-out infinite;
+  --animate-water-drops: water-drops 1.6s ease-in-out infinite;
+  --animate-peel: peel 1.8s ease-in-out infinite;
+  --animate-squish: squish 1.4s ease-in-out infinite;
+  --animate-bob: bob 1.8s ease-in-out infinite;
+  --animate-drop: drop 1.6s ease-in-out infinite;
+}
+
+@keyframes step-active {
+  0%, 100% { transform: scale(1); filter: brightness(1); }
+  50%      { transform: scale(1.12); filter: brightness(1.25); }
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-6px); }
+}
+@keyframes pour-out {
+  0%   { transform: rotate(0deg); }
+  60%  { transform: rotate(-35deg); }
+  100% { transform: rotate(0deg); }
+}
+@keyframes water-drops {
+  0%, 100% { opacity: 0; transform: translateY(-4px); }
+  50%      { opacity: 1; transform: translateY(2px); }
+}
+@keyframes peel {
+  0%, 100% { transform: rotate(0deg) translateX(0); }
+  50%      { transform: rotate(8deg) translateX(2px); }
+}
+@keyframes squish {
+  0%, 100% { transform: scaleY(1); }
+  50%      { transform: scaleY(0.82); }
+}
+@keyframes bob {
+  0%, 100% { transform: translateY(0) rotate(-1deg); }
+  50%      { transform: translateY(-4px) rotate(1deg); }
+}
+@keyframes drop {
+  0%   { transform: translateY(-10px); opacity: 0.4; }
+  60%  { transform: translateY(0);     opacity: 1; }
+  100% { transform: translateY(0);     opacity: 1; }
 }
 
 @media (prefers-color-scheme: dark) {
@@ -19,8 +62,19 @@
   }
 }
 
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+.scrollbar-none { scrollbar-width: none; }
+.scrollbar-none::-webkit-scrollbar { display: none; }

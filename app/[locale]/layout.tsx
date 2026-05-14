@@ -30,7 +30,7 @@ export default async function LocaleLayout({
             <LanguagePicker locale={locale} />
           </header>
           <main className="flex-1 min-h-0 overflow-hidden">{children}</main>
-          <BottomNav locale={locale} scanLabel={t('scan')} collectionLabel={t('collection')} />
+          <BottomNav locale={locale} scanLabel={t('scan')} guideLabel={t('guide')} />
         </div>
       </DistrictProvider>
     </NextIntlClientProvider>

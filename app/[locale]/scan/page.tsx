@@ -5,7 +5,6 @@ import { useTranslations } from 'next-intl';
 import { CameraCapture } from '@/components/CameraCapture';
 import { ObjectOverlay } from '@/components/ObjectOverlay';
 import { VideoPlayer } from '@/components/VideoPlayer';
-import { useCollection } from '@/hooks/useCollection';
 import { useDistrictContext } from '@/contexts/DistrictContext';
 import { isSupported } from '@/data/districts';
 import { getDisposalText } from '@/lib/disposal';
@@ -17,7 +16,6 @@ export default function ScanPage({ params }: { params: Promise<{ locale: string 
   const { locale: rawLocale } = use(params);
   const locale = rawLocale as Locale;
   const t = useTranslations();
-  const { unlock } = useCollection();
   const district = useDistrictContext();
 
   const [state, setState] = useState<ScanState>('capture');
@@ -51,8 +49,6 @@ export default function ScanPage({ params }: { params: Promise<{ locale: string 
       if (!res.ok) throw new Error('Analysis failed');
       const data: { objects: DetectedObject[] } = await res.json();
       setObjects(data.objects);
-      const validIds = data.objects.map(o => o.itemId).filter((id): id is string => id !== null);
-      if (validIds.length > 0) unlock(validIds);
       setState('overlay');
     } catch {
       setError('Failed to analyze. Please try again.');

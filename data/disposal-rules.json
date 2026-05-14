@@ -3,128 +3,256 @@
     "gangnam": "https://clean.gangnam.go.kr/use/guid/USEGUID01000000.do?contentId=con2411150005",
     "mapo": "https://www.mapo.go.kr/site/main/content/mapo05060501"
   },
-  "gangnam": {
+  "items": {
     "plastic_bottle": {
-      "en": "Empty, rinse, remove the label, and crush flat. Place in a transparent bag — single-family homes and villas put it out on Thursdays.",
-      "zh": "倒空、冲洗、撕掉标签、压扁。装入透明袋中——单独住宅和别墅在周四投放。",
-      "ja": "中身を空にし、すすぎ、ラベルを剥がして潰す。透明袋に入れ、戸建て・低層住宅は木曜日に排出。",
-      "ru": "Опорожните, ополосните, снимите этикетку и сплющите. Поместите в прозрачный пакет — для частных домов и вилл вынос по четвергам."
+      "steps": ["empty", "rinse", "remove_label", "crush_flat", "bag_transparent"],
+      "districts": {
+        "gangnam": {
+          "bagColor": "transparent",
+          "bagType": "recycle",
+          "schedule": {
+            "en": "Single-family homes and villas put it out on Thursdays.",
+            "zh": "单独住宅和别墅在周四投放。",
+            "ja": "戸建て・低層住宅は木曜日に排出。",
+            "ru": "Частные дома и виллы — вынос по четвергам."
+          }
+        },
+        "mapo": {
+          "bagColor": "transparent",
+          "bagType": "recycle",
+          "schedule": {
+            "en": "Put out Wednesday 18:00–24:00 (Nov–Mar) or 19:00–24:00 (Apr–Oct).",
+            "zh": "周三 18:00–24:00（11–3月）或 19:00–24:00（4–10月）投放。",
+            "ja": "水曜日 18:00–24:00（11–3月）または 19:00–24:00（4–10月）に排出。",
+            "ru": "Вынос в среду 18:00–24:00 (ноя–мар) или 19:00–24:00 (апр–окт)."
+          }
+        }
+      }
     },
     "newspaper": {
-      "en": "Keep newspapers dry, then tie or bundle them. Remove any plastic coating, tape, or staples first.",
-      "zh": "保持报纸干燥后捆扎。先去除塑料覆膜、胶带和订书钉。",
-      "ja": "新聞紙は濡れないようにまとめて束ねる。ビニールコーティング、テープ、ホチキスは先に外す。",
-      "ru": "Газеты держите сухими и свяжите в пачки. Сначала удалите плёнку, скотч и скобы."
+      "steps": ["bundle_dry", "remove_tape_staples"],
+      "districts": {
+        "gangnam": {
+          "bagColor": "none",
+          "bagType": "recycle",
+          "schedule": {
+            "en": "Keep dry and bundle. Put out with recyclables; remove plastic coating and tape first.",
+            "zh": "保持干燥并捆扎。与可回收物一同投放；先去除塑料覆膜和胶带。",
+            "ja": "乾いた状態でまとめる。資源ごみとして排出、ビニールコーティングとテープは先に外す。",
+            "ru": "Связать сухими и вынести с переработкой; сначала снять плёнку и скотч."
+          }
+        },
+        "mapo": {
+          "bagColor": "none",
+          "bagType": "recycle",
+          "schedule": {
+            "en": "Put out Sun/Mon/Tue/Thu evening with paper recycling.",
+            "zh": "周日/一/二/四晚间作为纸类回收投放。",
+            "ja": "日・月・火・木の夕方、紙類回収に出す。",
+            "ru": "Вынос вечером в воскресенье/понедельник/вторник/четверг с макулатурой."
+          }
+        }
+      }
     },
     "glass_bottle": {
-      "en": "Remove the cap and rinse. Put out in the green net cart on Mon/Tue/Wed/Fri/Sun. Wrap broken glass in newspaper and dispose as general waste.",
-      "zh": "去盖冲洗。周一/二/三/五/日放入绿色网袋投放。碎玻璃用报纸包好按一般垃圾处理。",
-      "ja": "キャップを外してすすぐ。月・火・水・金・日に緑のネットカートへ。割れたガラスは新聞紙で包み一般ごみへ。",
-      "ru": "Снимите крышку и ополосните. Выносите в зелёную сетку по пн/вт/ср/пт/вс. Битое стекло заверните в газету и выбросьте как обычный мусор."
+      "steps": ["remove_cap", "rinse", "bag_transparent"],
+      "districts": {
+        "gangnam": {
+          "bagColor": "green",
+          "bagType": "recycle",
+          "schedule": {
+            "en": "Put out in the green net cart on Mon/Tue/Wed/Fri/Sun. Wrap broken glass in newspaper and dispose as general waste.",
+            "zh": "周一/二/三/五/日放入绿色网袋投放。碎玻璃用报纸包好按一般垃圾处理。",
+            "ja": "月・火・水・金・日に緑のネットカートへ。割れたガラスは新聞紙で包み一般ごみへ。",
+            "ru": "Выносите в зелёную сетку по пн/вт/ср/пт/вс. Битое стекло заверните в газету и выбросьте как обычный мусор."
+          }
+        },
+        "mapo": {
+          "bagColor": "transparent",
+          "bagType": "recycle",
+          "schedule": {
+            "en": "Put out Sun/Mon/Tue/Thu recycling. Broken glass goes in the special heavy-duty bag (특수규격 마대), not regular trash.",
+            "zh": "周日/一/二/四投放。碎玻璃使用专用厚布袋（특수규격 마대），不可混入普通垃圾。",
+            "ja": "日・月・火・木に資源ごみとして排出。割れたガラスは特殊規格の麻袋（특수규격 마대）に入れる。",
+            "ru": "Вынос в вс/пн/вт/чт. Битое стекло — в специальный мешок (특수규격 마대), а не в обычный мусор."
+          }
+        }
+      }
     },
     "aluminum_can": {
-      "en": "Empty and rinse. Crushing helps save space. Put out in the green net cart on Mon/Tue/Wed/Fri/Sun.",
-      "zh": "倒空并冲洗。压扁可节省空间。周一/二/三/五/日放入绿色网袋投放。",
-      "ja": "中身を空にしてすすぐ。潰すとかさが減る。月・火・水・金・日に緑のネットカートへ。",
-      "ru": "Опорожните и ополосните. Сплющивание экономит место. Выносите в зелёную сетку по пн/вт/ср/пт/вс."
+      "steps": ["empty", "rinse", "crush_flat", "bag_transparent"],
+      "districts": {
+        "gangnam": {
+          "bagColor": "green",
+          "bagType": "recycle",
+          "schedule": {
+            "en": "Put out in the green net cart on Mon/Tue/Wed/Fri/Sun.",
+            "zh": "周一/二/三/五/日放入绿色网袋投放。",
+            "ja": "月・火・水・金・日に緑のネットカートへ。",
+            "ru": "Выносите в зелёную сетку по пн/вт/ср/пт/вс."
+          }
+        },
+        "mapo": {
+          "bagColor": "transparent",
+          "bagType": "recycle",
+          "schedule": {
+            "en": "Put out Sun/Mon/Tue/Thu evening with recycling.",
+            "zh": "周日/一/二/四晚间作为可回收物投放。",
+            "ja": "日・月・火・木の夕方、資源ごみに出す。",
+            "ru": "Вынос вечером в вс/пн/вт/чт с переработкой."
+          }
+        }
+      }
     },
     "food_waste": {
-      "en": "Drain as much water as possible. Use the official food-waste bag (음식물 종량제봉투) and place at the designated collection point. No bones, shells, or wood.",
-      "zh": "尽量沥干水分。使用官方厨余专用袋（음식물 종량제봉투），放至指定收集点。不可混入骨头、贝壳或木屑。",
-      "ja": "水気をできるだけ切る。指定の生ごみ袋（음식물 종량제봉투）に入れて指定場所に排出。骨・貝殻・木片は不可。",
-      "ru": "Слейте как можно больше воды. Используйте официальный мешок для пищевых отходов (음식물 종량제봉투) и вынесите в указанное место. Без костей, раковин и древесины."
+      "steps": ["drain_water", "bag_food_waste"],
+      "districts": {
+        "gangnam": {
+          "bagColor": "yellow",
+          "bagType": "food",
+          "schedule": {
+            "en": "Use the official food-waste bag (음식물 종량제봉투) and place at the designated collection point. No bones, shells, or wood.",
+            "zh": "使用官方厨余专用袋（음식물 종량제봉투），放至指定收集点。不可混入骨头、贝壳或木屑。",
+            "ja": "指定の生ごみ袋（음식물 종량제봉투）に入れて指定場所に排出。骨・貝殻・木片は不可。",
+            "ru": "Используйте официальный мешок (음식물 종량제봉투) и вынесите в указанное место. Без костей, раковин и древесины."
+          }
+        },
+        "mapo": {
+          "bagColor": "yellow",
+          "bagType": "food",
+          "schedule": {
+            "en": "Use the Mapo food-waste bag (음식물 종량제봉투) and place in the door-front collection bin (문전수거통). No clamshells, bones, or cardboard.",
+            "zh": "使用麻浦区厨余专用袋（음식물 종량제봉투），放入门前收集桶（문전수거통）。不可混入贝壳、骨头或纸板。",
+            "ja": "麻浦区指定の生ごみ袋（음식물 종량제봉투）に入れ、戸口の収集容器（문전수거통）へ。貝殻・骨・段ボールは不可。",
+            "ru": "Мешок Мапхо (음식물 종량제봉투) — в придверный контейнер (문전수거통). Без раковин, костей, картона."
+          }
+        }
+      }
     },
     "cardboard": {
-      "en": "Flatten the box. Remove tape, labels, and staples. Bundle with other paper recyclables and keep dry.",
-      "zh": "压扁纸箱。去除胶带、标签和订书钉。与其他纸类一起捆扎，保持干燥。",
-      "ja": "段ボールは平らにつぶす。テープ、ラベル、ホチキスを外す。他の紙類とまとめて束ね、濡らさない。",
-      "ru": "Расплющите коробку. Удалите скотч, этикетки и скобы. Свяжите с остальной макулатурой, держите сухой."
+      "steps": ["flatten", "remove_tape_staples", "bundle_dry"],
+      "districts": {
+        "gangnam": {
+          "bagColor": "none",
+          "bagType": "recycle",
+          "schedule": {
+            "en": "Bundle with other paper recyclables and keep dry.",
+            "zh": "与其他纸类一起捆扎，保持干燥。",
+            "ja": "他の紙類とまとめて束ね、濡らさない。",
+            "ru": "Свяжите с остальной макулатурой, держите сухой."
+          }
+        },
+        "mapo": {
+          "bagColor": "none",
+          "bagType": "recycle",
+          "schedule": {
+            "en": "Put out on paper-recycling days. Keep dry.",
+            "zh": "在纸类回收日投放，保持干燥。",
+            "ja": "紙類回収日に排出、濡らさない。",
+            "ru": "Выносите в дни сбора макулатуры, держите сухой."
+          }
+        }
+      }
     },
     "styrofoam": {
-      "en": "Rinse off food residue and remove all stickers and tape. Put out with recyclables. Heavily soiled foam goes in general waste.",
-      "zh": "冲洗食物残渣，去除所有贴纸和胶带。与可回收物一同投放。严重污染的发泡塑料按一般垃圾处理。",
-      "ja": "食品残りをすすぎ、シールやテープを全て剥がす。資源ごみと一緒に排出。汚れがひどい場合は一般ごみへ。",
-      "ru": "Смойте остатки еды и удалите все наклейки и скотч. Сдавайте с переработкой. Сильно загрязнённый пенопласт — в обычный мусор."
+      "steps": ["rinse", "remove_label", "bag_transparent"],
+      "districts": {
+        "gangnam": {
+          "bagColor": "transparent",
+          "bagType": "recycle",
+          "schedule": {
+            "en": "Put out with recyclables. Heavily soiled foam goes in general waste.",
+            "zh": "与可回收物一同投放。严重污染的发泡塑料按一般垃圾处理。",
+            "ja": "資源ごみと一緒に排出。汚れがひどい場合は一般ごみへ。",
+            "ru": "Сдавайте с переработкой. Сильно загрязнённый пенопласт — в обычный мусор."
+          }
+        },
+        "mapo": {
+          "bagColor": "transparent",
+          "bagType": "recycle",
+          "schedule": {
+            "en": "Put out with recyclables on collection days.",
+            "zh": "在回收日与可回收物一同投放。",
+            "ja": "収集日に資源ごみと一緒に排出。",
+            "ru": "Сдавайте с переработкой в дни сбора."
+          }
+        }
+      }
     },
     "plastic_bag": {
-      "en": "Empty and rinse. Squeeze out air to reduce volume. Place in a transparent bag and put out on Thursday (single-family homes and villas).",
-      "zh": "倒空并冲洗。挤出空气以减小体积。装入透明袋中，周四投放（单独住宅和别墅）。",
-      "ja": "中身を出してすすぐ。空気を抜いてかさを減らす。透明袋に入れ、戸建て・低層住宅は木曜日に排出。",
-      "ru": "Опорожните и ополосните. Выдавите воздух, чтобы уменьшить объём. Поместите в прозрачный пакет и выносите по четвергам (частные дома и виллы)."
+      "steps": ["empty", "rinse", "bag_transparent"],
+      "districts": {
+        "gangnam": {
+          "bagColor": "transparent",
+          "bagType": "recycle",
+          "schedule": {
+            "en": "Squeeze out air. Single-family homes and villas put it out on Thursdays.",
+            "zh": "挤出空气。单独住宅和别墅周四投放。",
+            "ja": "空気を抜く。戸建て・低層住宅は木曜日に排出。",
+            "ru": "Выдавите воздух. Частные дома и виллы — вынос по четвергам."
+          }
+        },
+        "mapo": {
+          "bagColor": "transparent",
+          "bagType": "recycle",
+          "schedule": {
+            "en": "Put out Wednesday evening (18:00–24:00 winter, 19:00–24:00 summer).",
+            "zh": "周三晚间投放（冬季 18:00–24:00，夏季 19:00–24:00）。",
+            "ja": "水曜日の夕方に排出（冬季 18:00–24:00、夏季 19:00–24:00）。",
+            "ru": "Вынос вечером в среду (зимой 18:00–24:00, летом 19:00–24:00)."
+          }
+        }
+      }
     },
     "battery": {
-      "en": "Never put batteries in regular trash. Drop them in the dedicated battery box at your dong community center (동주민센터) or apartment. Gangnam collects every Thursday.",
-      "zh": "切勿将电池丢入普通垃圾。请投入您所在洞居民中心（동주민센터）或公寓的专用电池回收箱。江南区每周四收集。",
-      "ja": "電池を一般ごみに捨てない。最寄りの洞住民センター（동주민센터）またはマンション内の専用回収箱へ。江南区は毎週木曜回収。",
-      "ru": "Никогда не выбрасывайте батарейки в обычный мусор. Сдайте в специальный ящик в вашем общинном центре (동주민센터) или в доме. В Каннам-гу сбор по четвергам."
+      "steps": ["drop_off_dong_center", "drop_off_battery"],
+      "districts": {
+        "gangnam": {
+          "bagColor": "none",
+          "bagType": "none",
+          "schedule": {
+            "en": "Never put batteries in regular trash. Gangnam collects every Thursday from dedicated battery boxes.",
+            "zh": "切勿将电池丢入普通垃圾。江南区每周四从专用电池回收箱收集。",
+            "ja": "電池を一般ごみに捨てない。江南区は毎週木曜、専用回収箱から回収。",
+            "ru": "Никогда не выбрасывайте батарейки в обычный мусор. В Каннам-гу сбор по четвергам из спец. ящиков."
+          }
+        },
+        "mapo": {
+          "bagColor": "none",
+          "bagType": "none",
+          "schedule": {
+            "en": "Remove batteries from devices and drop in the dedicated box. Never mix with regular trash.",
+            "zh": "从设备中取出电池后投入专用回收箱。切勿混入普通垃圾。",
+            "ja": "電池は機器から外し、専用回収箱へ。一般ごみに混ぜない。",
+            "ru": "Извлеките батарейки из приборов и сдайте в спец. ящик. Не выбрасывайте с обычным мусором."
+          }
+        }
+      }
     },
     "electronic_waste": {
-      "en": "Large appliances: request free pickup at edtd.co.kr or call 1599-0903 (e-Soonwhan Governance). Small electronics: drop off at your dong community center.",
-      "zh": "大型家电：在 edtd.co.kr 或拨打 1599-0903（e-순환거버넌스）申请免费上门收取。小型电子产品：送至洞居民中心。",
-      "ja": "大型家電：edtd.co.kr または 1599-0903（e-循環ガバナンス）で無料訪問回収を申請。小型電子機器：洞住民センターへ。",
-      "ru": "Крупная техника: бесплатный вывоз через edtd.co.kr или по тел. 1599-0903 (e-Soonwhan Governance). Мелкая электроника — в общинный центр."
-    }
-  },
-  "mapo": {
-    "plastic_bottle": {
-      "en": "Empty, rinse, remove the label, and crush flat. Place in a transparent bag and put out on Wednesday between 18:00–24:00 (Nov–Mar) or 19:00–24:00 (Apr–Oct).",
-      "zh": "倒空、冲洗、撕标签、压扁。装入透明袋，周三 18:00–24:00（11–3月）或 19:00–24:00（4–10月）投放。",
-      "ja": "中身を空にし、すすぎ、ラベルを剥がして潰す。透明袋に入れ、水曜日 18:00–24:00（11–3月）または 19:00–24:00（4–10月）に排出。",
-      "ru": "Опорожните, ополосните, снимите этикетку и сплющите. Поместите в прозрачный пакет и выносите по средам с 18:00 до 24:00 (ноя–мар) или с 19:00 до 24:00 (апр–окт)."
-    },
-    "newspaper": {
-      "en": "Keep newspapers dry, then tie or bundle them. Remove plastic coating and tape. Put out on Sun/Mon/Tue/Thu evening recycling collection.",
-      "zh": "保持报纸干燥后捆扎。去除塑料覆膜和胶带。在周日/一/二/四的晚间可回收物投放。",
-      "ja": "新聞紙は濡らさずに束ねる。ビニールコーティングとテープを外す。日・月・火・木の夕方資源ごみ排出。",
-      "ru": "Газеты держите сухими и свяжите. Удалите плёнку и скотч. Выносите вечером в воскресенье/понедельник/вторник/четверг."
-    },
-    "glass_bottle": {
-      "en": "Remove the cap and rinse. Put out on Sun/Mon/Tue/Thu recycling collection. Broken glass goes in the special heavy-duty bag (특수규격 마대), not regular trash.",
-      "zh": "去盖冲洗。周日/一/二/四投放。碎玻璃使用专用厚布袋（특수규격 마대），不可混入普通垃圾。",
-      "ja": "キャップを外してすすぐ。日・月・火・木に資源ごみとして排出。割れたガラスは特殊規格の麻袋（특수규격 마대）に入れる。",
-      "ru": "Снимите крышку и ополосните. Выносите по воскресеньям/понедельникам/вторникам/четвергам. Битое стекло — в специальный мешок (특수규격 마대), а не в обычный мусор."
-    },
-    "aluminum_can": {
-      "en": "Empty and rinse. Crushing optional. Put out on Sun/Mon/Tue/Thu evening recycling collection.",
-      "zh": "倒空并冲洗。可选择压扁。周日/一/二/四晚间投放。",
-      "ja": "中身を空にしてすすぐ。潰すのは任意。日・月・火・木の夕方資源ごみ排出。",
-      "ru": "Опорожните и ополосните. Сплющивание по желанию. Выносите вечером в воскресенье/понедельник/вторник/четверг."
-    },
-    "food_waste": {
-      "en": "Drain water. Use the Mapo food-waste bag (음식물 종량제봉투) and place in the door-front collection bin (문전수거통). No clamshells, bones, or cardboard.",
-      "zh": "沥干水分。使用麻浦区厨余专用袋（음식물 종량제봉투），放入门前收集桶（문전수거통）。不可混入贝壳、骨头或纸板。",
-      "ja": "水気を切る。麻浦区指定の生ごみ袋（음식물 종량제봉투）に入れ、戸口の収集容器（문전수거통）へ。貝殻・骨・段ボールは不可。",
-      "ru": "Слейте воду. Используйте мешок Мапхо для пищевых отходов (음식물 종량제봉투) и поставьте в придверный контейнер (문전수거통). Без раковин, костей и картона."
-    },
-    "cardboard": {
-      "en": "Flatten and bundle. Remove tape and staples. Put out on paper recycling days. Keep dry.",
-      "zh": "压扁并捆扎。去除胶带和订书钉。在纸类回收日投放，保持干燥。",
-      "ja": "平らにつぶして束ねる。テープとホチキスを外す。紙類回収日に排出、濡らさない。",
-      "ru": "Расплющите и свяжите. Удалите скотч и скобы. Выносите в дни сбора макулатуры, держите сухой."
-    },
-    "styrofoam": {
-      "en": "Rinse off food residue and remove labels and other materials. Put out with recyclables on collection days.",
-      "zh": "冲洗食物残渣，去除标签和其他材料。在回收日与可回收物一同投放。",
-      "ja": "食品残りをすすぎ、ラベルや異素材を取り除く。収集日に資源ごみと一緒に排出。",
-      "ru": "Смойте остатки еды, удалите этикетки и другие материалы. Сдавайте с переработкой в дни сбора."
-    },
-    "plastic_bag": {
-      "en": "Empty and rinse. Place in a transparent bag and put out on Wednesday evening (18:00–24:00 in winter, 19:00–24:00 in summer).",
-      "zh": "倒空并冲洗。装入透明袋，周三晚间投放（冬季 18:00–24:00，夏季 19:00–24:00）。",
-      "ja": "中身を出してすすぐ。透明袋に入れ、水曜日の夕方に排出（冬季 18:00–24:00、夏季 19:00–24:00）。",
-      "ru": "Опорожните и ополосните. Поместите в прозрачный пакет и выносите вечером в среду (зимой 18:00–24:00, летом 19:00–24:00)."
-    },
-    "battery": {
-      "en": "Remove batteries from devices. Drop them in the dedicated battery box at your dong community center (동주민센터). Never mix with regular trash.",
-      "zh": "从设备中取出电池。投入所在洞居民中心（동주민센터）的专用电池回收箱。切勿混入普通垃圾。",
-      "ja": "電池は機器から取り外す。最寄りの洞住民センター（동주민센터）の専用回収箱へ。一般ごみに混ぜない。",
-      "ru": "Извлеките батарейки из приборов. Сдайте в специальный ящик в общинном центре (동주민센터). Не выбрасывайте в обычный мусор."
-    },
-    "electronic_waste": {
-      "en": "Large appliances: free pickup via edtd.co.kr or 1599-0903. Small electronics: drop off at your dong community center.",
-      "zh": "大型家电：通过 edtd.co.kr 或 1599-0903 申请免费上门收取。小型电子产品：送至洞居民中心。",
-      "ja": "大型家電：edtd.co.kr または 1599-0903 で無料訪問回収。小型電子機器：洞住民センターへ。",
-      "ru": "Крупная техника: бесплатный вывоз через edtd.co.kr или по тел. 1599-0903. Мелкая электроника — в общинный центр."
+      "steps": ["request_pickup_ewaste", "drop_off_dong_center"],
+      "districts": {
+        "gangnam": {
+          "bagColor": "none",
+          "bagType": "none",
+          "schedule": {
+            "en": "Large appliances: free pickup via edtd.co.kr or 1599-0903. Small electronics: drop off at your dong community center.",
+            "zh": "大型家电：通过 edtd.co.kr 或 1599-0903 申请免费上门收取。小型电子产品：送至洞居民中心。",
+            "ja": "大型家電：edtd.co.kr または 1599-0903 で無料訪問回収。小型電子機器：洞住民センターへ。",
+            "ru": "Крупная техника: бесплатный вывоз через edtd.co.kr или 1599-0903. Мелкая электроника — в общинный центр."
+          }
+        },
+        "mapo": {
+          "bagColor": "none",
+          "bagType": "none",
+          "schedule": {
+            "en": "Large appliances: free pickup via edtd.co.kr or 1599-0903. Small electronics: drop off at your dong community center.",
+            "zh": "大型家电：通过 edtd.co.kr 或 1599-0903 申请免费上门收取。小型电子产品：送至洞居民中心。",
+            "ja": "大型家電：edtd.co.kr または 1599-0903 で無料訪問回収。小型電子機器：洞住民センターへ。",
+            "ru": "Крупная техника: бесплатный вывоз через edtd.co.kr или 1599-0903. Мелкая электроника — в общинный центр."
+          }
+        }
+      }
     }
   }
 }

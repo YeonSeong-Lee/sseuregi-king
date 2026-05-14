@@ -23,10 +23,21 @@
     "back": "← Back",
     "no_video": "No disposal guide available for this item yet."
   },
-  "collection": {
-    "title": "My Collection",
-    "locked": "???",
-    "progress": "{n} / {total} discovered"
+  "guide": {
+    "title": "Disposal Guide",
+    "subtitle": "Rules for {name}",
+    "no_district": "Set your district from the top bar to see local disposal rules.",
+    "all": "All",
+    "empty_category": "No items in this category.",
+    "pin_step_hint": "Tap a step to pin it."
+  },
+  "bag": {
+    "transparent": "Transparent bag",
+    "yellow": "Yellow food-waste bag",
+    "white": "White general-waste bag",
+    "green": "Green net cart",
+    "special": "Special bag (마대)",
+    "none": "No bag — drop-off"
   },
   "categories": {
     "recycling": "Recycling ♻️",
@@ -34,7 +45,7 @@
     "general": "General 🗑️",
     "large": "Large Waste 🚛"
   },
-  "nav": { "scan": "Scan", "collection": "Collection" },
+  "nav": { "scan": "Scan", "guide": "Guide" },
   "district": {
     "set": "Set location",
     "use_gps": "Use my location",

@@ -7,9 +7,24 @@
   "analyzing": { "label": "分析中..." },
   "overlay": { "tap_hint": "アイテムをタップして選択", "no_items": "ゴミが検出されませんでした。", "select_all": "すべて選択", "deselect_all": "選択解除" },
   "video": { "back": "← 戻る", "no_video": "このアイテムの処分ガイドはまだありません。" },
-  "collection": { "title": "マイコレクション", "locked": "???", "progress": "{n} / {total} 発見" },
+  "guide": {
+    "title": "処分ガイド",
+    "subtitle": "{name}のルール",
+    "no_district": "上部から地区を選択して、地域別のルールを表示しましょう。",
+    "all": "すべて",
+    "empty_category": "このカテゴリにはアイテムがありません。",
+    "pin_step_hint": "ステップをタップで固定。"
+  },
+  "bag": {
+    "transparent": "透明袋",
+    "yellow": "黄色の生ごみ袋",
+    "white": "白色の一般ごみ袋",
+    "green": "緑のネットカート",
+    "special": "特殊規格の麻袋（마대）",
+    "none": "袋不要 — 持ち込み"
+  },
   "categories": { "recycling": "リサイクル ♻️", "food": "生ごみ 🍃", "general": "一般ごみ 🗑️", "large": "大型廃棄物 🚛" },
-  "nav": { "scan": "スキャン", "collection": "コレクション" },
+  "nav": { "scan": "スキャン", "guide": "ガイド" },
   "district": {
     "set": "位置を設定",
     "use_gps": "現在地を使う",
