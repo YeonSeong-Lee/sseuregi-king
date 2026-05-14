@@ -5,6 +5,7 @@ import { useTranslations } from 'next-intl';
 import { CameraCapture } from '@/components/CameraCapture';
 import { ObjectOverlay } from '@/components/ObjectOverlay';
 import { VideoPlayer } from '@/components/VideoPlayer';
+import { MainBgWatcher } from '@/components/svg/MainBgWatcher';
 import { useDistrictContext } from '@/contexts/DistrictContext';
 import { isSupported } from '@/data/districts';
 import { getDisposalText } from '@/lib/disposal';
@@ -58,17 +59,20 @@ export default function ScanPage({ params }: { params: Promise<{ locale: string 
 
   if (state === 'capture') return (
     <div className="flex flex-col h-full">
-      <div className="flex flex-col items-center justify-center flex-1 px-4 gap-8">
-        <div className="text-center">
+      <div className="relative flex flex-col items-center justify-center flex-1 px-4 gap-8">
+        <MainBgWatcher className="absolute left-2 bottom-2 w-28 h-28 pointer-events-none select-none opacity-90" />
+        <div className="relative z-10 text-center">
           <div className="text-5xl mb-2">📷</div>
           <p className="text-zinc-400 text-sm">{t('overlay.tap_hint')}</p>
         </div>
-        {error && <p className="text-red-400 text-sm text-center">{error}</p>}
-        <CameraCapture onCapture={handleCapture}
-          onError={() => setError('Failed to process image. Please try again.')}
-          cameraLabel={t('scan.camera')} galleryLabel={t('scan.gallery')}
-          shutterAria={t('scan.shutter_aria')} cancelAria={t('scan.cancel_aria')}
-          usePhotoLabel={t('scan.use_photo')} retakeLabel={t('scan.retake')} />
+        {error && <p className="relative z-10 text-red-400 text-sm text-center">{error}</p>}
+        <div className="relative z-10 w-full">
+          <CameraCapture onCapture={handleCapture}
+            onError={() => setError('Failed to process image. Please try again.')}
+            cameraLabel={t('scan.camera')} galleryLabel={t('scan.gallery')}
+            shutterAria={t('scan.shutter_aria')} cancelAria={t('scan.cancel_aria')}
+            usePhotoLabel={t('scan.use_photo')} retakeLabel={t('scan.retake')} />
+        </div>
       </div>
     </div>
   );
