@@ -66,7 +66,7 @@ export function DisposalGuide({ locale }: { locale: Locale }) {
   };
 
   return (
-    <div className="flex flex-col h-full overflow-y-auto">
+    <div className="flex flex-col h-full overflow-y-auto overflow-x-hidden">
       <header className="px-4 pt-4 pb-2 sticky top-0 bg-zinc-950/95 backdrop-blur z-10">
         <h1 className="text-xl font-bold text-white">{t('guide.title')}</h1>
         <p className="text-xs text-zinc-400 mt-0.5">{t('guide.subtitle', { name: districtName })}</p>
