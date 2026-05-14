@@ -10,6 +10,17 @@
   "scan": { "camera": "カメラ", "gallery": "ギャラリー", "retake": "撮り直す", "see_guide": "処分ガイドを見る", "shutter_aria": "撮影", "use_photo": "この写真を使う", "cancel_aria": "カメラを閉じる" },
   "analyzing": { "label": "分析中..." },
   "overlay": { "tap_hint": "アイテムをタップして選択", "no_items": "ゴミが検出されませんでした。", "select_all": "すべて選択", "deselect_all": "選択解除" },
+  "tips": {
+    "title": "認識精度を上げるコツ",
+    "cta": "上手に撮るコツ",
+    "lighting_title": "明るい場所で",
+    "lighting_body": "光が十分にある場所で撮影してください。",
+    "single_title": "一つずつ撮る",
+    "single_body": "アイテムを分けて撮ると認識しやすくなります。",
+    "distance_title": "適切な距離",
+    "distance_body": "アイテムが画面のおよそ半分を占めるように。",
+    "close_aria": "閉じる"
+  },
   "video": { "back": "← 戻る", "watch_on_youtube": "YouTubeで見る", "no_video": "このアイテムの処分ガイドはまだありません。" },
   "guide": {
     "title": "処分ガイド",

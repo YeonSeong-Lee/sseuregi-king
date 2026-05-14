@@ -5,6 +5,7 @@ import { useTranslations } from 'next-intl';
 import { CameraCapture } from '@/components/CameraCapture';
 import { ObjectOverlay } from '@/components/ObjectOverlay';
 import { VideoPlayer } from '@/components/VideoPlayer';
+import { PhotoTipsSheet } from '@/components/PhotoTipsSheet';
 import { MainBgWatcher } from '@/components/svg/MainBgWatcher';
 import { useDistrictContext } from '@/contexts/DistrictContext';
 import { isSupported } from '@/data/districts';
@@ -24,6 +25,22 @@ export default function ScanPage({ params }: { params: Promise<{ locale: string 
   const [objects, setObjects] = useState<DetectedObject[]>([]);
   const [selected, setSelected] = useState<DetectedObject[]>([]);
   const [error, setError] = useState('');
+  const [tipsOpen, setTipsOpen] = useState(false);
+
+  const tipItems = [
+    { emoji: '💡', title: t('tips.lighting_title'), body: t('tips.lighting_body') },
+    { emoji: '🎯', title: t('tips.single_title'), body: t('tips.single_body') },
+    { emoji: '📏', title: t('tips.distance_title'), body: t('tips.distance_body') },
+  ];
+  const tipsSheet = (
+    <PhotoTipsSheet
+      open={tipsOpen}
+      onClose={() => setTipsOpen(false)}
+      title={t('tips.title')}
+      closeAria={t('tips.close_aria')}
+      tips={tipItems}
+    />
+  );
 
   const supportedCode =
     (district.state.status === 'detected' || district.state.status === 'manual') &&
@@ -50,6 +67,7 @@ export default function ScanPage({ params }: { params: Promise<{ locale: string 
       const data: { objects: DetectedObject[] } = await res.json();
       setObjects(data.objects);
       setState('overlay');
+      if (data.objects.length === 0) setTipsOpen(true);
     } catch {
       setError('Failed to analyze. Please try again.');
       setState('capture');
@@ -57,64 +75,83 @@ export default function ScanPage({ params }: { params: Promise<{ locale: string 
   }
 
   if (state === 'capture') return (
-    <div className="flex flex-col h-full">
-      <div className="relative flex flex-col items-center justify-center flex-1 px-4 gap-8">
-        <MainBgWatcher className="absolute left-2 bottom-2 w-28 h-28 pointer-events-none select-none opacity-90" />
-        <div className="relative z-10 text-center">
-          <div className="text-5xl mb-2">📷</div>
-          <p className="text-fg-muted text-sm">{t('overlay.tap_hint')}</p>
-        </div>
-        {error && <p className="relative z-10 text-red-600 dark:text-red-400 text-sm text-center">{error}</p>}
-        <div className="relative z-10 w-full">
-          <CameraCapture onCapture={handleCapture}
-            onError={() => setError('Failed to process image. Please try again.')}
-            cameraLabel={t('scan.camera')} galleryLabel={t('scan.gallery')}
-            shutterAria={t('scan.shutter_aria')} cancelAria={t('scan.cancel_aria')}
-            usePhotoLabel={t('scan.use_photo')} retakeLabel={t('scan.retake')} />
+    <>
+      <div className="flex flex-col h-full">
+        <div className="relative flex flex-col items-center justify-center flex-1 px-4 gap-8">
+          <MainBgWatcher className="absolute left-2 bottom-2 w-28 h-28 pointer-events-none select-none opacity-90" />
+          <div className="relative z-10 text-center">
+            <div className="text-5xl mb-2">📷</div>
+            <p className="text-fg-muted text-sm">{t('overlay.tap_hint')}</p>
+          </div>
+          {error && <p className="relative z-10 text-red-600 dark:text-red-400 text-sm text-center">{error}</p>}
+          <div className="relative z-10 w-full">
+            <CameraCapture onCapture={handleCapture}
+              onError={() => setError('Failed to process image. Please try again.')}
+              cameraLabel={t('scan.camera')} galleryLabel={t('scan.gallery')}
+              shutterAria={t('scan.shutter_aria')} cancelAria={t('scan.cancel_aria')}
+              usePhotoLabel={t('scan.use_photo')} retakeLabel={t('scan.retake')} />
+          </div>
+          <button
+            type="button"
+            onClick={() => setTipsOpen(true)}
+            className="relative z-10 text-fg-muted text-sm underline-offset-4 hover:underline active:scale-95 transition-transform"
+          >
+            💡 {t('tips.cta')}
+          </button>
         </div>
       </div>
-    </div>
+      {tipsSheet}
+    </>
   );
 
   if (state === 'analyzing') return (
-    <div className="flex flex-col items-center justify-center h-full gap-4">
-      <div className="text-5xl animate-pulse">🔍</div>
-      <p className="text-fg text-lg font-medium">{t('analyzing.label')}</p>
-    </div>
+    <>
+      <div className="flex flex-col items-center justify-center h-full gap-4">
+        <div className="text-5xl animate-pulse">🔍</div>
+        <p className="text-fg text-lg font-medium">{t('analyzing.label')}</p>
+      </div>
+      {tipsSheet}
+    </>
   );
 
   if (state === 'overlay') return (
-    <div className="flex flex-col h-full">
-      <div className="flex-1 min-h-0">
-        <ObjectOverlay
-          imageBase64={imageBase64}
-          objects={objects}
-          locale={locale}
-          tapHint={objects.length === 0 ? t('overlay.no_items') : t('overlay.tap_hint')}
-          seeGuideLabel={t('scan.see_guide')}
-          selectAllLabel={t('overlay.select_all')}
-          deselectAllLabel={t('overlay.deselect_all')}
-          retakeLabel={t('scan.retake')}
-          onSeeGuide={sel => { setSelected(sel); setState('video'); }}
-          onRetake={() => { setObjects([]); setImageBase64(''); setError(''); setState('capture'); }}
-        />
+    <>
+      <div className="flex flex-col h-full">
+        <div className="flex-1 min-h-0">
+          <ObjectOverlay
+            imageBase64={imageBase64}
+            objects={objects}
+            locale={locale}
+            tapHint={objects.length === 0 ? t('overlay.no_items') : t('overlay.tap_hint')}
+            seeGuideLabel={t('scan.see_guide')}
+            selectAllLabel={t('overlay.select_all')}
+            deselectAllLabel={t('overlay.deselect_all')}
+            retakeLabel={t('scan.retake')}
+            onSeeGuide={sel => { setSelected(sel); setState('video'); }}
+            onRetake={() => { setObjects([]); setImageBase64(''); setError(''); setState('capture'); }}
+          />
+        </div>
       </div>
-    </div>
+      {tipsSheet}
+    </>
   );
 
   return (
-    <div className="flex flex-col h-full">
-      <div className="flex-1 min-h-0">
-        <VideoPlayer
-          objects={selected}
-          locale={locale}
-          categoryLabels={buildCategoryLabels(t)}
-          backLabel={t('video.back')}
-          watchOnYoutubeLabel={t('video.watch_on_youtube')}
-          onBack={() => setState('overlay')}
-          disposalTexts={disposalTexts}
-        />
+    <>
+      <div className="flex flex-col h-full">
+        <div className="flex-1 min-h-0">
+          <VideoPlayer
+            objects={selected}
+            locale={locale}
+            categoryLabels={buildCategoryLabels(t)}
+            backLabel={t('video.back')}
+            watchOnYoutubeLabel={t('video.watch_on_youtube')}
+            onBack={() => setState('overlay')}
+            disposalTexts={disposalTexts}
+          />
+        </div>
       </div>
-    </div>
+      {tipsSheet}
+    </>
   );
 }

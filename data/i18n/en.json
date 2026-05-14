@@ -23,6 +23,17 @@
     "select_all": "Select all",
     "deselect_all": "Deselect all"
   },
+  "tips": {
+    "title": "Tips for better recognition",
+    "cta": "Tips for better photos",
+    "lighting_title": "Bright lighting",
+    "lighting_body": "Take photos in a well-lit area.",
+    "single_title": "One item at a time",
+    "single_body": "Photograph each item separately.",
+    "distance_title": "Right distance",
+    "distance_body": "Fill about half the frame with the item.",
+    "close_aria": "Close tips"
+  },
   "video": {
     "back": "← Back",
     "watch_on_youtube": "Watch on YouTube",

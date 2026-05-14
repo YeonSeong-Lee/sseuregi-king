@@ -10,6 +10,17 @@
   "scan": { "camera": "拍照", "gallery": "相册", "retake": "重新拍照", "see_guide": "查看处理指南", "shutter_aria": "拍照", "use_photo": "使用照片", "cancel_aria": "关闭相机" },
   "analyzing": { "label": "分析中..." },
   "overlay": { "tap_hint": "点击选择物品", "no_items": "未检测到废弃物，请尝试更清晰的照片。", "select_all": "全选", "deselect_all": "取消全选" },
+  "tips": {
+    "title": "提高识别率的技巧",
+    "cta": "拍摄小贴士",
+    "lighting_title": "光线充足",
+    "lighting_body": "请在光线明亮的地方拍摄。",
+    "single_title": "一次拍一件",
+    "single_body": "分开拍摄每件物品，识别更准确。",
+    "distance_title": "保持适当距离",
+    "distance_body": "让物品占据画面大约一半。",
+    "close_aria": "关闭提示"
+  },
   "video": { "back": "← 返回", "watch_on_youtube": "在 YouTube 上观看", "no_video": "暂无该物品的处理指南。" },
   "guide": {
     "title": "处理指南",
