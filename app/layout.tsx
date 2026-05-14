@@ -31,7 +31,6 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     images: ["/og.png"],
   },
-  icons: { icon: "/favicon.ico" },
 };
 
 const themeInitScript = `(function(){try{var t=localStorage.getItem('theme')||'system';var d=t==='dark'||(t==='system'&&matchMedia('(prefers-color-scheme: dark)').matches);if(d)document.documentElement.classList.add('dark');}catch(e){}})();`;
