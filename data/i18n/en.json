@@ -21,6 +21,7 @@
   },
   "video": {
     "back": "← Back",
+    "watch_on_youtube": "Watch on YouTube",
     "no_video": "No disposal guide available for this item yet."
   },
   "guide": {
@@ -29,7 +30,11 @@
     "no_district": "Set your district from the top bar to see local disposal rules.",
     "all": "All",
     "empty_category": "No items in this category.",
-    "pin_step_hint": "Tap a step to pin it."
+    "pin_step_hint": "Tap a step to pin it.",
+    "tap_card_hint": "Tap a card for details.",
+    "detail": {
+      "examples_title": "Also includes"
+    }
   },
   "bag": {
     "transparent": "Transparent bag",
@@ -40,12 +45,26 @@
     "none": "No bag — drop-off"
   },
   "categories": {
-    "recycling": "Recycling ♻️",
-    "food": "Food Waste 🍃",
+    "paper": "Paper 📰",
+    "paper_carton": "Paper Carton 🥛",
+    "glass": "Glass 🍾",
+    "metal_can": "Metal Can 🥫",
+    "plastic": "Plastic 🍶",
+    "vinyl": "Vinyl 🛍️",
+    "styrofoam": "Styrofoam 🫙",
+    "clothing": "Clothing 👕",
+    "lightbulb": "Bulb 💡",
+    "food": "Food 🍃",
     "general": "General 🗑️",
-    "large": "Large Waste 🚛"
+    "large": "Large 🛋️"
   },
   "nav": { "scan": "Scan", "guide": "Guide" },
+  "theme": {
+    "aria_label": "Change theme",
+    "system": "System",
+    "light": "Light",
+    "dark": "Dark"
+  },
   "district": {
     "set": "Set location",
     "use_gps": "Use my location",

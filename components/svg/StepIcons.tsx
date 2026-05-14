@@ -176,6 +176,9 @@ function BagTransparent({ active }: { active: boolean }) {
 function BagFood({ active }: { active: boolean }) {
   return <BagShape color="rgb(250 204 21 / 0.55)" active={active} />;
 }
+function BagGeneral({ active }: { active: boolean }) {
+  return <BagShape color="rgb(244 244 245 / 0.45)" active={active} />;
+}
 function BagSpecial({ active }: { active: boolean }) {
   return <BagShape color="rgb(120 113 108 / 0.55)" active={active} />;
 }
@@ -237,6 +240,7 @@ const ICONS: Record<StepId, (props: { active: boolean }) => ReactNode> = {
   drain_water: DrainWater,
   bag_transparent: BagTransparent,
   bag_food_waste: BagFood,
+  bag_general: BagGeneral,
   bag_special: BagSpecial,
   drop_off_battery: DropOffBattery,
   drop_off_dong_center: DropOffDongCenter,

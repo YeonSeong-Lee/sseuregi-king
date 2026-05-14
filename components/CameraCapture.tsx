@@ -60,7 +60,7 @@ export function CameraCapture({
         📷 {cameraLabel}
       </button>
       <button onClick={() => galleryRef.current?.click()}
-        className="flex items-center justify-center gap-2 bg-zinc-700 text-white rounded-2xl py-4 text-lg font-semibold active:scale-95 transition-transform">
+        className="flex items-center justify-center gap-2 bg-surface-elev border border-line-strong text-fg rounded-2xl py-4 text-lg font-semibold active:scale-95 transition-transform">
         🖼️ {galleryLabel}
       </button>
       {showLive && (

@@ -1,0 +1,473 @@
+{
+  "_sources": {
+    "gangnam": "https://clean.gangnam.go.kr/use/guid/USEGUID01000000.do?contentId=con2411150005",
+    "mapo": "https://www.mapo.go.kr/site/main/content/mapo05060501"
+  },
+  "paper": {
+    "id": "paper",
+    "emoji": "📰",
+    "names": { "en": "Paper", "zh": "纸类", "ja": "紙類", "ru": "Бумага" },
+    "aliases": [
+      "paper", "newspaper", "magazine", "book", "flyer", "envelope",
+      "cardboard", "cardboard box", "box", "shipping box", "corrugated box",
+      "office paper", "printed paper", "notebook", "calendar", "poster"
+    ],
+    "examples": {
+      "en": "Newspaper, magazines, cardboard boxes, books, envelopes, office paper",
+      "zh": "报纸、杂志、纸箱、书籍、信封、办公用纸",
+      "ja": "新聞紙、雑誌、段ボール、本、封筒、コピー用紙",
+      "ru": "Газеты, журналы, картонные коробки, книги, конверты, офисная бумага"
+    },
+    "steps": ["bundle_dry", "remove_tape_staples"],
+    "districts": {
+      "gangnam": {
+        "bagColor": "none",
+        "bagType": "recycle",
+        "schedule": {
+          "en": "Keep dry and bundle. Put out with recyclables; remove plastic coating and tape first.",
+          "zh": "保持干燥并捆扎。与可回收物一同投放；先去除塑料覆膜和胶带。",
+          "ja": "乾いた状態でまとめる。資源ごみとして排出、ビニールコーティングとテープは先に外す。",
+          "ru": "Связать сухими и вынести с переработкой; сначала снять плёнку и скотч."
+        }
+      },
+      "mapo": {
+        "bagColor": "none",
+        "bagType": "recycle",
+        "schedule": {
+          "en": "Put out Sun/Mon/Tue/Thu evening with paper recycling.",
+          "zh": "周日/一/二/四晚间作为纸类回收投放。",
+          "ja": "日・月・火・木の夕方、紙類回収に出す。",
+          "ru": "Вынос вечером в воскресенье/понедельник/вторник/четверг с макулатурой."
+        }
+      }
+    }
+  },
+  "paper_carton": {
+    "id": "paper_carton",
+    "emoji": "🥛",
+    "names": { "en": "Paper Carton", "zh": "纸盒", "ja": "紙パック", "ru": "Тетрапак" },
+    "aliases": [
+      "milk carton", "juice carton", "carton", "tetra pak", "drink carton",
+      "beverage carton", "soy milk carton", "soju carton"
+    ],
+    "examples": {
+      "en": "Milk cartons, juice cartons, soy milk packs, soju packs",
+      "zh": "牛奶盒、果汁盒、豆浆盒、烧酒纸盒",
+      "ja": "牛乳パック、ジュースパック、豆乳パック、焼酎パック",
+      "ru": "Упаковки из-под молока, сока, соевого молока, соджу"
+    },
+    "steps": ["rinse", "flatten", "bundle_dry"],
+    "districts": {
+      "gangnam": {
+        "bagColor": "none",
+        "bagType": "recycle",
+        "schedule": {
+          "en": "Rinse, flatten and dry. Put out separately from regular paper if possible.",
+          "zh": "冲洗、压平并晾干。条件允许时与普通纸类分开投放。",
+          "ja": "すすいで平らに潰し、乾かす。可能なら普通の紙類と分けて排出。",
+          "ru": "Ополосните, расплющите и высушите. По возможности — отдельно от обычной бумаги."
+        }
+      },
+      "mapo": {
+        "bagColor": "none",
+        "bagType": "recycle",
+        "schedule": {
+          "en": "Rinse, flatten and dry. Put out with paper recycling on Sun/Mon/Tue/Thu evening.",
+          "zh": "冲洗、压平并晾干。周日/一/二/四晚间随纸类一同投放。",
+          "ja": "すすいで平らに潰し乾かす。日・月・火・木の夕方、紙類と一緒に排出。",
+          "ru": "Ополосните, расплющите, высушите. Вынос вечером в вс/пн/вт/чт с макулатурой."
+        }
+      }
+    }
+  },
+  "glass": {
+    "id": "glass",
+    "emoji": "🍾",
+    "names": { "en": "Glass", "zh": "玻璃类", "ja": "ガラス類", "ru": "Стекло" },
+    "aliases": [
+      "glass bottle", "glass jar", "jar", "wine bottle", "beer bottle",
+      "soju bottle", "bottle", "glass container"
+    ],
+    "examples": {
+      "en": "Glass bottles, jars, wine/beer/soju bottles",
+      "zh": "玻璃瓶、玻璃罐、葡萄酒/啤酒/烧酒瓶",
+      "ja": "ガラス瓶、ジャム瓶、ワイン/ビール/焼酎の瓶",
+      "ru": "Стеклянные бутылки, банки, бутылки из-под вина/пива/соджу"
+    },
+    "steps": ["remove_cap", "rinse", "bag_transparent"],
+    "districts": {
+      "gangnam": {
+        "bagColor": "green",
+        "bagType": "recycle",
+        "schedule": {
+          "en": "Put out in the green net cart on Mon/Tue/Wed/Fri/Sun. Wrap broken glass in newspaper and dispose as general waste.",
+          "zh": "周一/二/三/五/日放入绿色网袋投放。碎玻璃用报纸包好按一般垃圾处理。",
+          "ja": "月・火・水・金・日に緑のネットカートへ。割れたガラスは新聞紙で包み一般ごみへ。",
+          "ru": "Выносите в зелёную сетку по пн/вт/ср/пт/вс. Битое стекло заверните в газету и выбросьте как обычный мусор."
+        }
+      },
+      "mapo": {
+        "bagColor": "transparent",
+        "bagType": "recycle",
+        "schedule": {
+          "en": "Put out Sun/Mon/Tue/Thu recycling. Broken glass goes in the special heavy-duty bag (특수규격 마대), not regular trash.",
+          "zh": "周日/一/二/四投放。碎玻璃使用专用厚布袋（특수규격 마대），不可混入普通垃圾。",
+          "ja": "日・月・火・木に資源ごみとして排出。割れたガラスは特殊規格の麻袋（특수규격 마대）に入れる。",
+          "ru": "Вынос в вс/пн/вт/чт. Битое стекло — в специальный мешок (특수규격 마대), а не в обычный мусор."
+        }
+      }
+    }
+  },
+  "metal_can": {
+    "id": "metal_can",
+    "emoji": "🥫",
+    "names": { "en": "Metal Can", "zh": "金属罐", "ja": "金属缶", "ru": "Металлические банки" },
+    "aliases": [
+      "aluminum can", "aluminium can", "can", "tin can", "soda can",
+      "beer can", "food can", "metal can", "spray can", "aerosol can"
+    ],
+    "examples": {
+      "en": "Aluminum cans, tin cans, food cans, spray cans (empty)",
+      "zh": "铝罐、锡罐、食品罐、喷雾罐（空罐）",
+      "ja": "アルミ缶、スチール缶、食品缶、スプレー缶（空）",
+      "ru": "Алюминиевые банки, жестяные банки, банки от консервов, баллончики (пустые)"
+    },
+    "steps": ["empty", "rinse", "crush_flat", "bag_transparent"],
+    "districts": {
+      "gangnam": {
+        "bagColor": "green",
+        "bagType": "recycle",
+        "schedule": {
+          "en": "Put out in the green net cart on Mon/Tue/Wed/Fri/Sun.",
+          "zh": "周一/二/三/五/日放入绿色网袋投放。",
+          "ja": "月・火・水・金・日に緑のネットカートへ。",
+          "ru": "Выносите в зелёную сетку по пн/вт/ср/пт/вс."
+        }
+      },
+      "mapo": {
+        "bagColor": "transparent",
+        "bagType": "recycle",
+        "schedule": {
+          "en": "Put out Sun/Mon/Tue/Thu evening with recycling.",
+          "zh": "周日/一/二/四晚间作为可回收物投放。",
+          "ja": "日・月・火・木の夕方、資源ごみに出す。",
+          "ru": "Вынос вечером в вс/пн/вт/чт с переработкой."
+        }
+      }
+    }
+  },
+  "plastic": {
+    "id": "plastic",
+    "emoji": "🍶",
+    "names": { "en": "Plastic", "zh": "塑料", "ja": "プラスチック", "ru": "Пластик" },
+    "aliases": [
+      "plastic bottle", "pet bottle", "water bottle", "soda bottle", "beverage bottle",
+      "plastic container", "plastic cup", "yogurt cup", "yogurt container",
+      "plastic lid", "plastic tray", "plastic toy", "plastic bowl",
+      "plastic", "container"
+    ],
+    "examples": {
+      "en": "PET bottles, plastic containers, cups, lids, hard plastic items",
+      "zh": "PET瓶、塑料容器、塑料杯、瓶盖、硬塑料制品",
+      "ja": "ペットボトル、プラスチック容器、プラスチックカップ、蓋、硬質プラスチック",
+      "ru": "ПЭТ-бутылки, пластиковые контейнеры, стаканчики, крышки, твёрдый пластик"
+    },
+    "steps": ["empty", "rinse", "remove_label", "crush_flat", "bag_transparent"],
+    "districts": {
+      "gangnam": {
+        "bagColor": "transparent",
+        "bagType": "recycle",
+        "schedule": {
+          "en": "Single-family homes and villas put it out on Thursdays.",
+          "zh": "单独住宅和别墅在周四投放。",
+          "ja": "戸建て・低層住宅は木曜日に排出。",
+          "ru": "Частные дома и виллы — вынос по четвергам."
+        }
+      },
+      "mapo": {
+        "bagColor": "transparent",
+        "bagType": "recycle",
+        "schedule": {
+          "en": "Put out Wednesday 18:00–24:00 (Nov–Mar) or 19:00–24:00 (Apr–Oct).",
+          "zh": "周三 18:00–24:00（11–3月）或 19:00–24:00（4–10月）投放。",
+          "ja": "水曜日 18:00–24:00（11–3月）または 19:00–24:00（4–10月）に排出。",
+          "ru": "Вынос в среду 18:00–24:00 (ноя–мар) или 19:00–24:00 (апр–окт)."
+        }
+      }
+    }
+  },
+  "vinyl": {
+    "id": "vinyl",
+    "emoji": "🛍️",
+    "names": { "en": "Vinyl / Plastic Film", "zh": "塑料袋/塑料膜", "ja": "ビニール類", "ru": "Полиэтилен / Плёнка" },
+    "aliases": [
+      "plastic bag", "shopping bag", "grocery bag", "vinyl bag", "trash bag",
+      "wrapper", "candy wrapper", "snack wrapper", "pouch", "ramen pouch",
+      "film", "plastic film", "plastic wrap", "bubble wrap"
+    ],
+    "examples": {
+      "en": "Plastic bags, food wrappers, snack/ramen pouches, plastic film",
+      "zh": "塑料袋、食品包装袋、零食/泡面袋、塑料薄膜",
+      "ja": "ビニール袋、食品包装、スナック/ラーメンの袋、ビニールフィルム",
+      "ru": "Пакеты, обёртки от еды, упаковки от снеков/рамёна, плёнка"
+    },
+    "steps": ["empty", "rinse", "bag_transparent"],
+    "districts": {
+      "gangnam": {
+        "bagColor": "transparent",
+        "bagType": "recycle",
+        "schedule": {
+          "en": "Squeeze out air. Single-family homes and villas put it out on Thursdays.",
+          "zh": "挤出空气。单独住宅和别墅周四投放。",
+          "ja": "空気を抜く。戸建て・低層住宅は木曜日に排出。",
+          "ru": "Выдавите воздух. Частные дома и виллы — вынос по четвергам."
+        }
+      },
+      "mapo": {
+        "bagColor": "transparent",
+        "bagType": "recycle",
+        "schedule": {
+          "en": "Put out Wednesday evening (18:00–24:00 winter, 19:00–24:00 summer).",
+          "zh": "周三晚间投放（冬季 18:00–24:00，夏季 19:00–24:00）。",
+          "ja": "水曜日の夕方に排出（冬季 18:00–24:00、夏季 19:00–24:00）。",
+          "ru": "Вынос вечером в среду (зимой 18:00–24:00, летом 19:00–24:00)."
+        }
+      }
+    }
+  },
+  "styrofoam": {
+    "id": "styrofoam",
+    "emoji": "🫙",
+    "names": { "en": "Styrofoam", "zh": "泡沫塑料", "ja": "発泡スチロール", "ru": "Пенопласт" },
+    "aliases": [
+      "styrofoam", "foam", "polystyrene", "foam cup", "foam tray",
+      "foam container", "packing foam", "ramen cup"
+    ],
+    "examples": {
+      "en": "Foam trays, foam cups, packing foam, ramen cups",
+      "zh": "泡沫托盘、泡沫杯、包装泡沫、泡面碗",
+      "ja": "発泡スチロールトレイ・カップ、緩衝材、カップ麺の容器",
+      "ru": "Пенопластовые лотки, стаканы, упаковочный пенопласт, лапша в стаканах"
+    },
+    "steps": ["rinse", "remove_label", "bag_transparent"],
+    "districts": {
+      "gangnam": {
+        "bagColor": "transparent",
+        "bagType": "recycle",
+        "schedule": {
+          "en": "Put out with recyclables. Heavily soiled foam goes in general waste.",
+          "zh": "与可回收物一同投放。严重污染的发泡塑料按一般垃圾处理。",
+          "ja": "資源ごみと一緒に排出。汚れがひどい場合は一般ごみへ。",
+          "ru": "Сдавайте с переработкой. Сильно загрязнённый пенопласт — в обычный мусор."
+        }
+      },
+      "mapo": {
+        "bagColor": "transparent",
+        "bagType": "recycle",
+        "schedule": {
+          "en": "Put out with recyclables on collection days.",
+          "zh": "在回收日与可回收物一同投放。",
+          "ja": "収集日に資源ごみと一緒に排出。",
+          "ru": "Сдавайте с переработкой в дни сбора."
+        }
+      }
+    }
+  },
+  "clothing": {
+    "id": "clothing",
+    "emoji": "👕",
+    "names": { "en": "Used Clothing", "zh": "旧衣物", "ja": "古着", "ru": "Старая одежда" },
+    "aliases": [
+      "clothing", "clothes", "shirt", "t-shirt", "pants", "jeans",
+      "jacket", "coat", "sweater", "dress", "skirt", "hoodie",
+      "fabric", "textile", "sock", "scarf"
+    ],
+    "examples": {
+      "en": "Shirts, pants, jackets, sweaters, fabric scraps",
+      "zh": "衬衫、裤子、外套、毛衣、布料",
+      "ja": "シャツ、ズボン、ジャケット、セーター、布類",
+      "ru": "Рубашки, брюки, куртки, свитера, ткани"
+    },
+    "steps": ["drop_off_dong_center"],
+    "districts": {
+      "gangnam": {
+        "bagColor": "none",
+        "bagType": "none",
+        "schedule": {
+          "en": "Drop off in a clothing collection bin (의류수거함) or at the dong community center. Do not put out with regular trash.",
+          "zh": "投入小区或街边的旧衣回收箱（의류수거함），或送至洞居民中心。请勿混入普通垃圾。",
+          "ja": "古着回収ボックス（의류수거함）か洞住民センターに持ち込む。一般ごみには出さない。",
+          "ru": "Сдайте в контейнер для одежды (의류수거함) или в общинный центр. Не выбрасывайте с обычным мусором."
+        }
+      },
+      "mapo": {
+        "bagColor": "none",
+        "bagType": "none",
+        "schedule": {
+          "en": "Drop off in a clothing collection bin (의류수거함) or at the dong community center. Do not put out with regular trash.",
+          "zh": "投入小区或街边的旧衣回收箱（의류수거함），或送至洞居民中心。请勿混入普通垃圾。",
+          "ja": "古着回収ボックス（의류수거함）か洞住民センターに持ち込む。一般ごみには出さない。",
+          "ru": "Сдайте в контейнер для одежды (의류수거함) или в общинный центр. Не выбрасывайте с обычным мусором."
+        }
+      }
+    }
+  },
+  "lightbulb": {
+    "id": "lightbulb",
+    "emoji": "💡",
+    "names": { "en": "Lights & Bulbs", "zh": "灯具/灯泡", "ja": "蛍光灯・照明", "ru": "Лампы и лампочки" },
+    "aliases": [
+      "lightbulb", "light bulb", "bulb", "fluorescent lamp", "fluorescent tube",
+      "lamp", "led bulb", "halogen bulb", "compact fluorescent"
+    ],
+    "examples": {
+      "en": "Fluorescent tubes, LED bulbs, halogen and incandescent bulbs",
+      "zh": "荧光灯管、LED灯泡、卤素灯、白炽灯",
+      "ja": "蛍光灯、LED電球、ハロゲン電球、白熱電球",
+      "ru": "Люминесцентные трубки, LED-лампы, галогенные и лампы накаливания"
+    },
+    "steps": ["drop_off_dong_center"],
+    "districts": {
+      "gangnam": {
+        "bagColor": "none",
+        "bagType": "none",
+        "schedule": {
+          "en": "Drop off intact bulbs in the dedicated bin at the dong community center or apartment management office. Never put in regular trash.",
+          "zh": "完好的灯泡投入洞居民中心或公寓管理处的专用回收箱。切勿混入普通垃圾。",
+          "ja": "壊れていない電球は洞住民センターやマンション管理事務所の専用回収箱へ。一般ごみは不可。",
+          "ru": "Целые лампы — в спец. контейнер в общинном центре или офисе управления домом. Никогда не выбрасывать с обычным мусором."
+        }
+      },
+      "mapo": {
+        "bagColor": "none",
+        "bagType": "none",
+        "schedule": {
+          "en": "Drop off intact bulbs in the dedicated bin at the dong community center or apartment management office. Never put in regular trash.",
+          "zh": "完好的灯泡投入洞居民中心或公寓管理处的专用回收箱。切勿混入普通垃圾。",
+          "ja": "壊れていない電球は洞住民センターやマンション管理事務所の専用回収箱へ。一般ごみは不可。",
+          "ru": "Целые лампы — в спец. контейнер в общинном центре или офисе управления домом. Никогда не выбрасывать с обычным мусором."
+        }
+      }
+    }
+  },
+  "food": {
+    "id": "food",
+    "emoji": "🍱",
+    "names": { "en": "Food Waste", "zh": "厨余垃圾", "ja": "生ごみ", "ru": "Пищевые отходы" },
+    "aliases": [
+      "food", "food waste", "food scraps", "leftovers", "banana peel",
+      "vegetable scraps", "fruit peel", "rice", "noodles"
+    ],
+    "examples": {
+      "en": "Leftover rice, soft fruit/vegetable peels, banana peels (no bones, shells, or pits)",
+      "zh": "剩饭、软质果蔬皮、香蕉皮（不含骨头、贝壳、果核）",
+      "ja": "残飯、柔らかい野菜くず、バナナの皮（骨・貝殻・種は不可）",
+      "ru": "Остатки риса, мягкие очистки овощей и фруктов, банановая кожура (без костей, раковин, косточек)"
+    },
+    "steps": ["drain_water", "bag_food_waste"],
+    "districts": {
+      "gangnam": {
+        "bagColor": "yellow",
+        "bagType": "food",
+        "schedule": {
+          "en": "Use the official food-waste bag (음식물 종량제봉투) and place at the designated collection point. No bones, shells, or wood.",
+          "zh": "使用官方厨余专用袋（음식물 종량제봉투），放至指定收集点。不可混入骨头、贝壳或木屑。",
+          "ja": "指定の生ごみ袋（음식물 종량제봉투）に入れて指定場所に排出。骨・貝殻・木片は不可。",
+          "ru": "Используйте официальный мешок (음식물 종량제봉투) и вынесите в указанное место. Без костей, раковин и древесины."
+        }
+      },
+      "mapo": {
+        "bagColor": "yellow",
+        "bagType": "food",
+        "schedule": {
+          "en": "Use the Mapo food-waste bag (음식물 종량제봉투) and place in the door-front collection bin (문전수거통). No clamshells, bones, or cardboard.",
+          "zh": "使用麻浦区厨余专用袋（음식물 종량제봉투），放入门前收集桶（문전수거통）。不可混入贝壳、骨头或纸板。",
+          "ja": "麻浦区指定の生ごみ袋（음식물 종량제봉투）に入れ、戸口の収集容器（문전수거통）へ。貝殻・骨・段ボールは不可。",
+          "ru": "Мешок Мапхо (음식물 종량제봉투) — в придверный контейнер (문전수거통). Без раковин, костей, картона."
+        }
+      }
+    }
+  },
+  "general": {
+    "id": "general",
+    "emoji": "🗑️",
+    "names": { "en": "General Waste", "zh": "一般垃圾", "ja": "一般ごみ", "ru": "Общий мусор" },
+    "aliases": [
+      "battery", "batteries",
+      "bone", "fish bone", "eggshell", "fruit seed", "fruit pit",
+      "onion peel", "vegetable root", "tea bag", "diaper",
+      "cigarette", "ash", "chopsticks", "toothpick"
+    ],
+    "examples": {
+      "en": "Fish/meat bones, eggshells, fruit seeds, onion peels, vegetable roots, anything not recyclable",
+      "zh": "鱼/肉骨、蛋壳、果核、洋葱皮、菜根，以及无法回收的物品",
+      "ja": "魚や肉の骨、卵の殻、果物の種、玉ねぎの皮、野菜の根、その他リサイクルできないもの",
+      "ru": "Рыбьи/мясные кости, яичная скорлупа, косточки фруктов, луковая шелуха, корни овощей и всё, что нельзя переработать"
+    },
+    "steps": ["drain_water", "bag_general"],
+    "districts": {
+      "gangnam": {
+        "bagColor": "white",
+        "bagType": "general",
+        "schedule": {
+          "en": "Use the standard white general-waste bag (종량제봉투) and put out on collection days. Batteries go in the dedicated battery box, not in general trash.",
+          "zh": "使用白色一般垃圾袋（종량제봉투），在收集日投放。电池请投入专用电池回收箱，不可混入普通垃圾。",
+          "ja": "白色の一般ごみ袋（종량제봉투）に入れ、収集日に排出。電池は専用回収箱へ、一般ごみには出さない。",
+          "ru": "Используйте белый пакет для общего мусора (종량제봉투) и выносите в день сбора. Батарейки — в спец. ящик, не в общий мусор."
+        }
+      },
+      "mapo": {
+        "bagColor": "white",
+        "bagType": "general",
+        "schedule": {
+          "en": "Use the Mapo general-waste bag (종량제봉투) and put out on collection days. Batteries go in the dedicated battery box.",
+          "zh": "使用麻浦区一般垃圾袋（종량제봉투），在收集日投放。电池请投入专用电池回收箱。",
+          "ja": "麻浦区指定の一般ごみ袋（종량제봉투）に入れて収集日に排出。電池は専用回収箱へ。",
+          "ru": "Используйте мешок Мапхо для общего мусора (종량제봉투) и выносите в день сбора. Батарейки — в спец. ящик."
+        }
+      }
+    }
+  },
+  "large": {
+    "id": "large",
+    "emoji": "🛋️",
+    "names": { "en": "Large Waste", "zh": "大型废弃物", "ja": "大型廃棄物", "ru": "Крупногабаритный мусор" },
+    "aliases": [
+      "furniture", "sofa", "couch", "chair", "desk", "table",
+      "mattress", "bed", "wardrobe", "bookshelf",
+      "television", "tv", "refrigerator", "washing machine",
+      "appliance", "microwave", "air conditioner",
+      "phone", "smartphone", "mobile phone", "tablet", "tablet computer",
+      "laptop", "computer", "monitor", "electronic device", "electronics", "e-waste"
+    ],
+    "examples": {
+      "en": "Furniture, mattresses, large appliances, TVs, phones, laptops, e-waste",
+      "zh": "家具、床垫、大型家电、电视、手机、笔记本电脑、电子废弃物",
+      "ja": "家具、マットレス、大型家電、テレビ、スマートフォン、ノートパソコン、電子廃棄物",
+      "ru": "Мебель, матрасы, крупная бытовая техника, ТВ, телефоны, ноутбуки, электронные отходы"
+    },
+    "steps": ["request_pickup_ewaste", "drop_off_dong_center"],
+    "districts": {
+      "gangnam": {
+        "bagColor": "none",
+        "bagType": "none",
+        "schedule": {
+          "en": "Large appliances: free pickup via edtd.co.kr or 1599-0903. Furniture/mattresses: request a sticker from the dong office. Small electronics: drop off at your dong community center.",
+          "zh": "大型家电：通过 edtd.co.kr 或 1599-0903 申请免费上门收取。家具/床垫：到洞事务所申请贴纸。小型电子产品：送至洞居民中心。",
+          "ja": "大型家電：edtd.co.kr または 1599-0903 で無料訪問回収。家具・マットレス：洞事務所でステッカーを申請。小型電子機器：洞住民センターへ。",
+          "ru": "Крупная техника: бесплатный вывоз через edtd.co.kr или 1599-0903. Мебель/матрасы: получите наклейку в офисе тона. Мелкая электроника — в общинный центр."
+        }
+      },
+      "mapo": {
+        "bagColor": "none",
+        "bagType": "none",
+        "schedule": {
+          "en": "Large appliances: free pickup via edtd.co.kr or 1599-0903. Furniture/mattresses: request a sticker from the dong office. Small electronics: drop off at your dong community center.",
+          "zh": "大型家电：通过 edtd.co.kr 或 1599-0903 申请免费上门收取。家具/床垫：到洞事务所申请贴纸。小型电子产品：送至洞居民中心。",
+          "ja": "大型家電：edtd.co.kr または 1599-0903 で無料訪問回収。家具・マットレス：洞事務所でステッカーを申請。小型電子機器：洞住民センターへ。",
+          "ru": "Крупная техника: бесплатный вывоз через edtd.co.kr или 1599-0903. Мебель/матрасы: получите наклейку в офисе тона. Мелкая электроника — в общинный центр."
+        }
+      }
+    }
+  }
+}

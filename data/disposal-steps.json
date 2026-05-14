@@ -110,6 +110,16 @@
         "ru": "Пакет для пищевых"
       }
     },
+    "bag_general": {
+      "id": "bag_general",
+      "icon": "bag_general",
+      "labels": {
+        "en": "General-waste bag",
+        "zh": "一般垃圾袋",
+        "ja": "一般ごみ袋",
+        "ru": "Пакет для общего мусора"
+      }
+    },
     "bag_special": {
       "id": "bag_special",
       "icon": "bag_special",

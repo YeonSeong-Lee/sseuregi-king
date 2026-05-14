@@ -7,23 +7,19 @@ import type { DetectedObject } from '@/types';
 const fixture: DetectedObject[] = [
   {
     nameEn: 'Plastic Bottle', nameZh: '塑料瓶', nameJa: 'ペットボトル', nameRu: 'Пластиковая бутылка',
-    category: 'recycling', bbox: { x: 10, y: 10, w: 10, h: 10 },
-    itemId: 'plastic_bottle', videoUrl: null, thumbnailUrl: null,
+    category: 'plastic', bbox: { x: 10, y: 10, w: 10, h: 10 },
   },
   {
     nameEn: 'Food Waste', nameZh: '厨余垃圾', nameJa: '生ごみ', nameRu: 'Пищевые отходы',
     category: 'food', bbox: { x: 30, y: 10, w: 10, h: 10 },
-    itemId: 'food_waste', videoUrl: null, thumbnailUrl: null,
   },
   {
     nameEn: 'Plastic Bag', nameZh: '塑料袋', nameJa: 'ビニール袋', nameRu: 'Полиэтиленовый пакет',
-    category: 'general', bbox: { x: 50, y: 10, w: 10, h: 10 },
-    itemId: 'plastic_bag', videoUrl: null, thumbnailUrl: null,
+    category: 'vinyl', bbox: { x: 50, y: 10, w: 10, h: 10 },
   },
   {
     nameEn: 'Phone', nameZh: '手机', nameJa: '電話', nameRu: 'Телефон',
     category: 'large', bbox: { x: 70, y: 10, w: 10, h: 10 },
-    itemId: 'electronic_waste', videoUrl: null, thumbnailUrl: null,
   },
 ];
 
@@ -46,9 +42,9 @@ describe('ObjectOverlay category colors', () => {
   it('renders each category with its mapped background class', () => {
     renderOverlay();
     expect(screen.getByRole('button', { name: 'Plastic Bottle' }).className).toContain('bg-blue-500');
-    expect(screen.getByRole('button', { name: 'Food Waste' }).className).toContain('bg-emerald-500');
-    expect(screen.getByRole('button', { name: 'Plastic Bag' }).className).toContain('bg-zinc-600');
-    expect(screen.getByRole('button', { name: 'Phone' }).className).toContain('bg-orange-500');
+    expect(screen.getByRole('button', { name: 'Food Waste' }).className).toContain('bg-lime-500');
+    expect(screen.getByRole('button', { name: 'Plastic Bag' }).className).toContain('bg-cyan-500');
+    expect(screen.getByRole('button', { name: 'Phone' }).className).toContain('bg-red-500');
   });
 
   it('toggles ring-2 on the tag when tapped, keeping its category color', async () => {
@@ -60,11 +56,11 @@ describe('ObjectOverlay category colors', () => {
 
     await user.click(food);
     expect(food.className).toContain('ring-2');
-    expect(food.className).toContain('bg-emerald-500');
+    expect(food.className).toContain('bg-lime-500');
 
     await user.click(food);
     expect(food.className).not.toContain('ring-2');
-    expect(food.className).toContain('bg-emerald-500');
+    expect(food.className).toContain('bg-lime-500');
   });
 });
 

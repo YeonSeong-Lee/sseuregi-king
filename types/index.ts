@@ -1,15 +1,18 @@
 export type Locale = 'en' | 'zh' | 'ja' | 'ru';
-export type WasteCategory = 'recycling' | 'food' | 'general' | 'large';
 
-export interface WasteItem {
-  id: string;
-  emoji: string;
-  category: WasteCategory;
-  names: Record<Locale, string>;
-  videoUrl: string;
-  thumbnailUrl: string;
-  aiAliases: string[];
-}
+export type WasteCategory =
+  | 'paper'
+  | 'paper_carton'
+  | 'glass'
+  | 'metal_can'
+  | 'plastic'
+  | 'vinyl'
+  | 'styrofoam'
+  | 'clothing'
+  | 'lightbulb'
+  | 'food'
+  | 'general'
+  | 'large';
 
 export interface BBox {
   x: number; // % of image width (0-100)
@@ -25,9 +28,11 @@ export interface DetectedObject {
   nameRu: string;
   category: WasteCategory;
   bbox: BBox;
-  itemId: string | null;
-  videoUrl: string | null;
-  thumbnailUrl: string | null;
+}
+
+export interface YoutubePick {
+  id: string;
+  title: string;
 }
 
 export type SupportedDistrict = 'gangnam' | 'mapo';
@@ -36,6 +41,8 @@ export interface DistrictPreference {
   code: SupportedDistrict;
   auto: boolean;
 }
+
+export type Theme = 'system' | 'light' | 'dark';
 
 export interface StorageData {
   lang: Locale;
@@ -56,6 +63,7 @@ export type StepId =
   | 'drain_water'
   | 'bag_transparent'
   | 'bag_food_waste'
+  | 'bag_general'
   | 'bag_special'
   | 'drop_off_battery'
   | 'drop_off_dong_center'
@@ -75,14 +83,15 @@ export interface DistrictRule {
   schedule: Record<Locale, string>;
 }
 
-export interface ItemRule {
+export interface WasteCategoryDef {
+  id: WasteCategory;
+  emoji: string;
+  names: Record<Locale, string>;
+  aliases: string[];
+  examples: Record<Locale, string>;
+  youtube?: Partial<Record<Locale, YoutubePick>>;
   steps: StepId[];
   districts: Partial<Record<SupportedDistrict, DistrictRule>>;
-}
-
-export interface DisposalRulesFile {
-  _sources: Record<string, string>;
-  items: Record<string, ItemRule>;
 }
 
 export interface DisposalStepsFile {

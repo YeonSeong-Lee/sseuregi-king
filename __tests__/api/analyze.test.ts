@@ -22,9 +22,8 @@ describe('POST /api/analyze', () => {
 
   it('returns detected objects on success', async () => {
     const mockEnriched: DetectedObject[] = [{
-      nameEn: 'Plastic Bottle', nameZh: '塑料瓶', nameJa: 'ペットボトル', nameRu: 'Пластиковая бутылка',
-      category: 'recycling', bbox: { x: 10, y: 10, w: 20, h: 20 },
-      itemId: 'plastic_bottle', videoUrl: 'https://s3.../v.mp4', thumbnailUrl: 'https://s3.../t.jpg',
+      nameEn: 'Plastic', nameZh: '塑料', nameJa: 'プラスチック', nameRu: 'Пластик',
+      category: 'plastic', bbox: { x: 10, y: 10, w: 20, h: 20 },
     }];
     vi.mocked(detectWaste).mockResolvedValue(mockEnriched);
 
@@ -35,7 +34,7 @@ describe('POST /api/analyze', () => {
     const res = await POST(req);
     const body = await res.json();
     expect(res.status).toBe(200);
-    expect(body.objects[0].itemId).toBe('plastic_bottle');
+    expect(body.objects[0].category).toBe('plastic');
   });
 
   it('returns 500 when detect throws', async () => {

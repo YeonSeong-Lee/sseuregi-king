@@ -2,7 +2,12 @@
 'use client';
 import { useEffect, useRef } from 'react';
 
-const STROKE = '#0f172a';
+const STROKE = 'var(--mascot-stroke)';
+const BAG = 'var(--mascot-bag)';
+const SCOPE = 'var(--mascot-scope)';
+const EYEPIECE = 'var(--mascot-eyepiece)';
+const CHEEK = 'var(--mascot-cheek)';
+const LENS = 'var(--mascot-lens)';
 const PIVOT_X = 68;
 const PIVOT_Y = 62;
 const VIEWBOX = 120;
@@ -47,7 +52,7 @@ export function MainBgWatcher({ className }: MainBgWatcherProps) {
         {/* Bag body — pinched top, rounded bottom */}
         <path
           d="M 44 40 Q 38 48 32 58 Q 22 80 26 96 Q 30 110 50 110 Q 70 110 74 96 Q 78 80 68 58 Q 62 48 56 40 Z"
-          fill="#f8fafc"
+          fill={BAG}
           stroke={STROKE}
           strokeWidth="2.5"
           strokeLinejoin="round"
@@ -55,7 +60,7 @@ export function MainBgWatcher({ className }: MainBgWatcherProps) {
         {/* Tied knot at the top */}
         <path
           d="M 44 40 Q 46 30 50 36 Q 54 28 58 36 Q 60 30 56 40 Z"
-          fill="#f8fafc"
+          fill={BAG}
           stroke={STROKE}
           strokeWidth="2"
           strokeLinejoin="round"
@@ -72,15 +77,15 @@ export function MainBgWatcher({ className }: MainBgWatcherProps) {
           fill="none"
         />
         {/* Subtle cheek blush */}
-        <circle cx="36" cy="78" r="2" fill="#fecaca" opacity="0.85" />
-        <circle cx="62" cy="78" r="2" fill="#fecaca" opacity="0.85" />
+        <circle cx="36" cy="78" r="2" fill={CHEEK} opacity="0.85" />
+        <circle cx="62" cy="78" r="2" fill={CHEEK} opacity="0.85" />
 
         {/* Hand gripping the eyepiece — also visual anchor for the rotation pivot */}
         <circle
           cx={PIVOT_X}
           cy={PIVOT_Y}
           r="3.5"
-          fill="#f8fafc"
+          fill={BAG}
           stroke={STROKE}
           strokeWidth="2"
         />
@@ -101,7 +106,7 @@ export function MainBgWatcher({ className }: MainBgWatcherProps) {
             width="38"
             height="8"
             rx="2"
-            fill="#374151"
+            fill={SCOPE}
             stroke={STROKE}
             strokeWidth="2"
           />
@@ -112,7 +117,7 @@ export function MainBgWatcher({ className }: MainBgWatcherProps) {
             width="9"
             height="14"
             rx="1.5"
-            fill="#1f2937"
+            fill={EYEPIECE}
             stroke={STROKE}
             strokeWidth="2"
           />
@@ -123,7 +128,7 @@ export function MainBgWatcher({ className }: MainBgWatcherProps) {
             width="8"
             height="16"
             rx="1.5"
-            fill="#1f2937"
+            fill={EYEPIECE}
             stroke={STROKE}
             strokeWidth="2"
           />
@@ -132,7 +137,7 @@ export function MainBgWatcher({ className }: MainBgWatcherProps) {
             cx="106"
             cy="62"
             r="2.5"
-            fill="#dbeafe"
+            fill={LENS}
             stroke={STROKE}
             strokeWidth="1.2"
           />

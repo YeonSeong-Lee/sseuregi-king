@@ -1,11 +1,11 @@
 import { describe, it, expect } from 'vitest';
 import {
-  getDisposalRule,
-  getDisposalText,
-  getItemRule,
-  getStepLabel,
-  listItemIds,
-} from '@/lib/disposal';
+  CATEGORY_IDS,
+  getCategoryDef,
+  getCategoryDisposal,
+  getCategoryDisposalText,
+} from '@/lib/categories';
+import { getStepLabel } from '@/lib/disposal';
 import { SUPPORTED_DISTRICTS } from '@/data/districts';
 import disposalSteps from '@/data/disposal-steps.json';
 
@@ -13,32 +13,28 @@ const BAG_COLORS = new Set(['transparent', 'yellow', 'white', 'green', 'special'
 const BAG_TYPES = new Set(['recycle', 'food', 'general', 'special', 'none']);
 const STEP_IDS = new Set(Object.keys(disposalSteps.steps));
 
-describe('getDisposalRule', () => {
-  it('returns null for unknown item', () => {
-    expect(getDisposalRule('nope', 'gangnam')).toBeNull();
+describe('getCategoryDisposal', () => {
+  it('returns null when district is missing', () => {
+    expect(getCategoryDisposal('plastic', null)).toBeNull();
   });
 
-  it('returns null when district missing', () => {
-    expect(getDisposalRule('plastic_bottle', null)).toBeNull();
-  });
-
-  it('returns structured rule for known (item, district)', () => {
-    const found = getDisposalRule('plastic_bottle', 'gangnam');
+  it('returns structured rule for known (category, district)', () => {
+    const found = getCategoryDisposal('plastic', 'gangnam');
     expect(found).not.toBeNull();
-    expect(found!.rule.steps).toContain('empty');
+    expect(found!.steps).toContain('empty');
     expect(found!.districtRule.bagColor).toBe('transparent');
     expect(found!.districtRule.schedule.en).toMatch(/thursday/i);
   });
 
-  it('resolves every (item × supported district) pair with valid enum values', () => {
-    for (const id of listItemIds()) {
+  it('resolves every (category × supported district) pair with valid enum values', () => {
+    for (const id of CATEGORY_IDS) {
       for (const district of SUPPORTED_DISTRICTS) {
-        const found = getDisposalRule(id, district);
+        const found = getCategoryDisposal(id, district);
         expect(found, `${id} / ${district}`).not.toBeNull();
-        expect(found!.rule.steps.length).toBeGreaterThan(0);
+        expect(found!.steps.length).toBeGreaterThan(0);
         expect(BAG_COLORS.has(found!.districtRule.bagColor)).toBe(true);
         expect(BAG_TYPES.has(found!.districtRule.bagType)).toBe(true);
-        for (const stepId of found!.rule.steps) {
+        for (const stepId of found!.steps) {
           expect(STEP_IDS.has(stepId), `${id} step "${stepId}" not in library`).toBe(true);
         }
         for (const locale of ['en', 'zh', 'ja', 'ru'] as const) {
@@ -61,18 +57,16 @@ describe('disposal-steps.json library', () => {
   });
 });
 
-describe('getDisposalText (compat shim)', () => {
+describe('getCategoryDisposalText', () => {
   it('joins step labels and schedule for VideoPlayer', () => {
-    const text = getDisposalText('plastic_bottle', 'gangnam', 'en');
+    const text = getCategoryDisposalText('plastic', 'gangnam', 'en');
     expect(text).toContain('Empty');
     expect(text).toContain('Rinse');
     expect(text).toMatch(/thursday/i);
   });
 
   it('returns null when inputs missing', () => {
-    expect(getDisposalText(null, 'gangnam', 'en')).toBeNull();
-    expect(getDisposalText('plastic_bottle', null, 'en')).toBeNull();
-    expect(getDisposalText('unknown', 'gangnam', 'en')).toBeNull();
+    expect(getCategoryDisposalText('plastic', null, 'en')).toBeNull();
   });
 });
 
@@ -81,13 +75,14 @@ describe('getStepLabel', () => {
     expect(getStepLabel('empty', 'en')).toBe('Empty');
     expect(getStepLabel('empty', 'ja')).toBe('中身を空に');
   });
+
+  it('returns label for the new bag_general step', () => {
+    expect(getStepLabel('bag_general', 'en')).toBe('General-waste bag');
+  });
 });
 
-describe('getItemRule', () => {
-  it('returns the item rule', () => {
-    expect(getItemRule('food_waste')?.steps).toContain('drain_water');
-  });
-  it('returns null for missing item', () => {
-    expect(getItemRule('missing')).toBeNull();
+describe('getCategoryDef', () => {
+  it('returns the catalog entry for a known category', () => {
+    expect(getCategoryDef('food').names.en).toBe('Food Waste');
   });
 });

@@ -39,20 +39,20 @@ export function LanguagePicker({ locale }: { locale: string }) {
     <div ref={ref} className="relative">
       <button
         onClick={() => setOpen(o => !o)}
-        className="flex items-center gap-1 text-zinc-300 text-xs bg-zinc-800 hover:bg-zinc-700 border border-zinc-700 rounded-full px-3 py-1.5 transition-colors"
+        className="flex items-center gap-1 text-fg-muted text-xs bg-surface-elev hover:bg-surface-soft border border-line-strong rounded-full px-3 py-1.5 transition-colors"
       >
         🌐 {locale.toUpperCase()} ▾
       </button>
       {open && (
-        <div className="absolute right-0 top-full mt-1 bg-zinc-800 border border-zinc-700 rounded-xl overflow-hidden z-50 min-w-[120px]">
+        <div className="absolute right-0 top-full mt-1 bg-surface-elev border border-line-strong rounded-xl overflow-hidden z-50 min-w-[120px] shadow-lg">
           {LANGUAGES.map(lang => (
             <button
               key={lang.code}
               onClick={() => switchLocale(lang.code)}
               className={`flex items-center gap-2 w-full px-4 py-2.5 text-sm text-left transition-colors ${
                 lang.code === locale
-                  ? 'bg-zinc-700 text-white'
-                  : 'text-zinc-300 hover:bg-zinc-700'
+                  ? 'bg-accent/15 text-fg'
+                  : 'text-fg-muted hover:bg-surface-soft'
               }`}
             >
               {lang.flag} {lang.label}

@@ -8,7 +8,7 @@ import { VideoPlayer } from '@/components/VideoPlayer';
 import { MainBgWatcher } from '@/components/svg/MainBgWatcher';
 import { useDistrictContext } from '@/contexts/DistrictContext';
 import { isSupported } from '@/data/districts';
-import { getDisposalText } from '@/lib/disposal';
+import { buildCategoryLabels, getCategoryDisposalText } from '@/lib/categories';
 import type { DetectedObject, Locale } from '@/types';
 
 type ScanState = 'capture' | 'analyzing' | 'overlay' | 'video';
@@ -33,8 +33,7 @@ export default function ScanPage({ params }: { params: Promise<{ locale: string 
 
   const disposalTexts: Record<string, string | null> = {};
   for (const obj of selected) {
-    const key = obj.itemId ?? obj.nameEn;
-    disposalTexts[key] = getDisposalText(obj.itemId, supportedCode, locale);
+    disposalTexts[obj.category] = getCategoryDisposalText(obj.category, supportedCode, locale);
   }
 
   async function handleCapture(base64: string) {
@@ -63,9 +62,9 @@ export default function ScanPage({ params }: { params: Promise<{ locale: string 
         <MainBgWatcher className="absolute left-2 bottom-2 w-28 h-28 pointer-events-none select-none opacity-90" />
         <div className="relative z-10 text-center">
           <div className="text-5xl mb-2">📷</div>
-          <p className="text-zinc-400 text-sm">{t('overlay.tap_hint')}</p>
+          <p className="text-fg-muted text-sm">{t('overlay.tap_hint')}</p>
         </div>
-        {error && <p className="relative z-10 text-red-400 text-sm text-center">{error}</p>}
+        {error && <p className="relative z-10 text-red-600 dark:text-red-400 text-sm text-center">{error}</p>}
         <div className="relative z-10 w-full">
           <CameraCapture onCapture={handleCapture}
             onError={() => setError('Failed to process image. Please try again.')}
@@ -80,7 +79,7 @@ export default function ScanPage({ params }: { params: Promise<{ locale: string 
   if (state === 'analyzing') return (
     <div className="flex flex-col items-center justify-center h-full gap-4">
       <div className="text-5xl animate-pulse">🔍</div>
-      <p className="text-white text-lg font-medium">{t('analyzing.label')}</p>
+      <p className="text-fg text-lg font-medium">{t('analyzing.label')}</p>
     </div>
   );
 
@@ -107,14 +106,9 @@ export default function ScanPage({ params }: { params: Promise<{ locale: string 
         <VideoPlayer
           objects={selected}
           locale={locale}
-          categoryLabels={{
-            recycling: t('categories.recycling'),
-            food: t('categories.food'),
-            general: t('categories.general'),
-            large: t('categories.large'),
-          }}
+          categoryLabels={buildCategoryLabels(t)}
           backLabel={t('video.back')}
-          noVideoLabel={t('video.no_video')}
+          watchOnYoutubeLabel={t('video.watch_on_youtube')}
           onBack={() => setState('overlay')}
           disposalTexts={disposalTexts}
         />

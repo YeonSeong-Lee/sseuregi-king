@@ -9,10 +9,18 @@ const NAME_KEY: Record<Locale, keyof Pick<DetectedObject, 'nameEn' | 'nameZh' | 
 };
 
 const CATEGORY_BG: Record<WasteCategory, string> = {
-  recycling: 'bg-blue-500',
-  food:      'bg-emerald-500',
-  general:   'bg-zinc-600',
-  large:     'bg-orange-500',
+  paper:        'bg-amber-500',
+  paper_carton: 'bg-yellow-500',
+  glass:        'bg-emerald-500',
+  metal_can:    'bg-slate-400',
+  plastic:      'bg-blue-500',
+  vinyl:        'bg-cyan-500',
+  styrofoam:    'bg-rose-300',
+  clothing:     'bg-violet-500',
+  lightbulb:    'bg-orange-400',
+  food:         'bg-lime-500',
+  general:      'bg-zinc-600',
+  large:        'bg-red-500',
 };
 
 interface ObjectOverlayProps {
@@ -71,16 +79,16 @@ export function ObjectOverlay({ imageBase64, objects, locale, tapHint, seeGuideL
           );
         })}
       </div>
-      <div className="p-4 bg-zinc-900 shrink-0">
+      <div className="p-4 bg-surface-elev shrink-0">
         <div className="flex items-center justify-between mb-3 gap-3">
-          <p className="text-zinc-400 text-sm">{tapHint}</p>
+          <p className="text-fg-muted text-sm">{tapHint}</p>
           <button type="button" onClick={toggleAll} disabled={objects.length === 0}
-            className="text-zinc-300 text-sm font-medium underline underline-offset-2 disabled:text-zinc-600 disabled:no-underline shrink-0">
+            className="text-fg text-sm font-medium underline underline-offset-2 disabled:text-fg-faint disabled:no-underline shrink-0">
             {allSelected ? deselectAllLabel : selectAllLabel}
           </button>
         </div>
         <button disabled={selected.length === 0} onClick={() => onSeeGuide(selected)}
-          className="w-full bg-purple-600 disabled:bg-zinc-700 disabled:text-zinc-500 text-white rounded-2xl py-4 text-lg font-semibold active:scale-95 transition-transform">
+          className="w-full bg-purple-600 disabled:opacity-40 text-white rounded-2xl py-4 text-lg font-semibold active:scale-95 transition-transform">
           {seeGuideLabel} →
         </button>
       </div>

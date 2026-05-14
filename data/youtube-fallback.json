@@ -1,0 +1,19 @@
+{
+  "_note": "Per-locale general fallback YouTube picks for Korean waste-disposal guidance, foreigner-targeted. Verified via youtube.com/oembed. The zh slot reuses the EN video id because no foreigner-targeted Chinese-language Korean disposal tutorial surfaced in research; the title is in zh and notes the audio language.",
+  "en": {
+    "id": "euW-Z8fUV0M",
+    "title": "Recycling 101: How To Properly Throw Out Trash in Korea"
+  },
+  "ja": {
+    "id": "VlfQQs25utU",
+    "title": "【日本はつらいよ】ゴミ出し事情がこう違う！ - 韓国 編 -"
+  },
+  "zh": {
+    "id": "euW-Z8fUV0M",
+    "title": "Recycling 101: 韩国垃圾分类指南（英文讲解）"
+  },
+  "ru": {
+    "id": "Pygt4v9aFgU",
+    "title": "Сортировка мусора в Южной Корее"
+  }
+}

@@ -31,16 +31,16 @@ function chipColor(state: DistrictState): string {
   switch (state.status) {
     case 'detected':
     case 'manual':
-      return 'bg-blue-500/20 text-blue-300 border-blue-500/40';
+      return 'bg-blue-100 text-blue-800 border-blue-300 dark:bg-blue-500/20 dark:text-blue-300 dark:border-blue-500/40';
     case 'detecting':
-      return 'bg-zinc-700 text-zinc-300 border-zinc-600 animate-pulse';
+      return 'bg-surface-elev text-fg-muted border-line-strong animate-pulse';
     case 'unsupported':
     case 'no_match':
-      return 'bg-amber-500/20 text-amber-300 border-amber-500/40';
+      return 'bg-amber-100 text-amber-800 border-amber-300 dark:bg-amber-500/20 dark:text-amber-300 dark:border-amber-500/40';
     case 'denied':
     case 'unknown':
     default:
-      return 'bg-zinc-800 text-zinc-400 border-zinc-700';
+      return 'bg-surface-elev text-fg-faint border-line-strong';
   }
 }
 
@@ -68,7 +68,7 @@ export function DistrictBadge({ state, locale, onRequestGPS, onSetManual, onClea
             onClick={() => setOpen(false)}
             aria-hidden
           />
-          <div className="absolute right-0 mt-2 w-64 z-40 bg-zinc-900 border border-zinc-800 rounded-2xl shadow-xl p-3 flex flex-col gap-2">
+          <div className="absolute right-0 mt-2 w-64 z-40 bg-surface-elev border border-line rounded-2xl shadow-xl p-3 flex flex-col gap-2">
             <button
               type="button"
               onClick={() => { setOpen(false); onRequestGPS(); }}
@@ -77,7 +77,7 @@ export function DistrictBadge({ state, locale, onRequestGPS, onSetManual, onClea
               {t('district.use_gps')}
             </button>
 
-            <div className="text-xs text-zinc-500 px-1 pt-1">{t('district.select_manual')}</div>
+            <div className="text-xs text-fg-faint px-1 pt-1">{t('district.select_manual')}</div>
             {SUPPORTED_DISTRICTS.map(code => {
               const info = getSupportedDistrictInfo(code);
               const active = currentCode === code;
@@ -88,8 +88,8 @@ export function DistrictBadge({ state, locale, onRequestGPS, onSetManual, onClea
                   onClick={() => { setOpen(false); onSetManual(code); }}
                   className={`text-left px-3 py-2 rounded-xl text-sm transition-colors ${
                     active
-                      ? 'bg-blue-500/20 text-blue-300 border border-blue-500/40'
-                      : 'bg-zinc-800 text-zinc-200 border border-zinc-700'
+                      ? 'bg-blue-100 text-blue-800 border border-blue-300 dark:bg-blue-500/20 dark:text-blue-300 dark:border-blue-500/40'
+                      : 'bg-surface text-fg border border-line'
                   }`}
                 >
                   {info.names[locale]}
@@ -101,7 +101,7 @@ export function DistrictBadge({ state, locale, onRequestGPS, onSetManual, onClea
               <button
                 type="button"
                 onClick={() => { setOpen(false); onClear(); }}
-                className="text-left px-3 py-2 rounded-xl text-xs text-zinc-500"
+                className="text-left px-3 py-2 rounded-xl text-xs text-fg-faint"
               >
                 {t('district.skip')}
               </button>

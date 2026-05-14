@@ -1,17 +1,7 @@
-import wasteItemsData from '@/data/waste-items.json';
-import type { WasteItem, WasteCategory, DetectedObject } from '@/types';
+import { getCategoryDef, matchCategoryByAlias } from '@/lib/categories';
+import type { DetectedObject, WasteCategory } from '@/types';
 
-const wasteItems = wasteItemsData as Record<string, WasteItem>;
-
-export function matchItem(nameEn: string): WasteItem | null {
-  const normalized = nameEn.toLowerCase().trim();
-  for (const item of Object.values(wasteItems)) {
-    if (item.aiAliases.some(alias => alias.toLowerCase() === normalized)) {
-      return item;
-    }
-  }
-  return null;
-}
+const DEFAULT_CATEGORY: WasteCategory = 'general';
 
 type RawObject = {
   nameEn: string;
@@ -24,17 +14,25 @@ type RawObject = {
 
 export function enrichObjects(rawObjects: RawObject[]): DetectedObject[] {
   return rawObjects.map(obj => {
-    const match = matchItem(obj.nameEn);
+    const matched = matchCategoryByAlias(obj.nameEn);
+    if (matched) {
+      const def = getCategoryDef(matched);
+      return {
+        nameEn: def.names.en,
+        nameZh: def.names.zh,
+        nameJa: def.names.ja,
+        nameRu: def.names.ru,
+        category: matched,
+        bbox: obj.bbox,
+      };
+    }
     return {
-      nameEn: match?.names.en ?? obj.nameEn,
-      nameZh: match?.names.zh ?? obj.nameZh,
-      nameJa: match?.names.ja ?? obj.nameJa,
-      nameRu: match?.names.ru ?? obj.nameRu,
-      category: (match?.category ?? obj.category) as WasteCategory,
+      nameEn: obj.nameEn,
+      nameZh: obj.nameZh,
+      nameJa: obj.nameJa,
+      nameRu: obj.nameRu,
+      category: DEFAULT_CATEGORY,
       bbox: obj.bbox,
-      itemId: match?.id ?? null,
-      videoUrl: match?.videoUrl ?? null,
-      thumbnailUrl: match?.thumbnailUrl ?? null,
     };
   });
 }

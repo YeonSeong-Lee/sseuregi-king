@@ -6,14 +6,18 @@
   "scan": { "camera": "カメラ", "gallery": "ギャラリー", "retake": "撮り直す", "see_guide": "処分ガイドを見る", "shutter_aria": "撮影", "use_photo": "この写真を使う", "cancel_aria": "カメラを閉じる" },
   "analyzing": { "label": "分析中..." },
   "overlay": { "tap_hint": "アイテムをタップして選択", "no_items": "ゴミが検出されませんでした。", "select_all": "すべて選択", "deselect_all": "選択解除" },
-  "video": { "back": "← 戻る", "no_video": "このアイテムの処分ガイドはまだありません。" },
+  "video": { "back": "← 戻る", "watch_on_youtube": "YouTubeで見る", "no_video": "このアイテムの処分ガイドはまだありません。" },
   "guide": {
     "title": "処分ガイド",
     "subtitle": "{name}のルール",
     "no_district": "上部から地区を選択して、地域別のルールを表示しましょう。",
     "all": "すべて",
     "empty_category": "このカテゴリにはアイテムがありません。",
-    "pin_step_hint": "ステップをタップで固定。"
+    "pin_step_hint": "ステップをタップで固定。",
+    "tap_card_hint": "カードをタップで詳細。",
+    "detail": {
+      "examples_title": "こんなものも"
+    }
   },
   "bag": {
     "transparent": "透明袋",
@@ -23,8 +27,27 @@
     "special": "特殊規格の麻袋（마대）",
     "none": "袋不要 — 持ち込み"
   },
-  "categories": { "recycling": "リサイクル ♻️", "food": "生ごみ 🍃", "general": "一般ごみ 🗑️", "large": "大型廃棄物 🚛" },
+  "categories": {
+    "paper": "紙類 📰",
+    "paper_carton": "紙パック 🥛",
+    "glass": "ガラス 🍾",
+    "metal_can": "金属缶 🥫",
+    "plastic": "プラスチック 🍶",
+    "vinyl": "ビニール 🛍️",
+    "styrofoam": "発泡スチロール 🫙",
+    "clothing": "古着 👕",
+    "lightbulb": "電球 💡",
+    "food": "生ごみ 🍃",
+    "general": "一般ごみ 🗑️",
+    "large": "大型 🛋️"
+  },
   "nav": { "scan": "スキャン", "guide": "ガイド" },
+  "theme": {
+    "aria_label": "テーマを変更",
+    "system": "システム",
+    "light": "ライト",
+    "dark": "ダーク"
+  },
   "district": {
     "set": "位置を設定",
     "use_gps": "現在地を使う",
