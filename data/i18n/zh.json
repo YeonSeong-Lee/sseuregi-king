@@ -3,7 +3,7 @@
     "title": "垃圾图鉴",
     "subtitle": "拍摄垃圾，了解在韩国如何正确处理"
   },
-  "scan": { "camera": "拍照", "gallery": "相册", "retake": "重新拍照", "see_guide": "查看处理指南" },
+  "scan": { "camera": "拍照", "gallery": "相册", "retake": "重新拍照", "see_guide": "查看处理指南", "shutter_aria": "拍照", "use_photo": "使用照片", "cancel_aria": "关闭相机" },
   "analyzing": { "label": "分析中..." },
   "overlay": { "tap_hint": "点击选择物品", "no_items": "未检测到废弃物，请尝试更清晰的照片。", "select_all": "全选", "deselect_all": "取消全选" },
   "video": { "back": "← 返回", "no_video": "暂无该物品的处理指南。" },

@@ -70,7 +70,9 @@ export default function ScanPage({ params }: { params: Promise<{ locale: string 
         {error && <p className="text-red-400 text-sm text-center">{error}</p>}
         <CameraCapture onCapture={handleCapture}
           onError={() => setError('Failed to process image. Please try again.')}
-          cameraLabel={t('scan.camera')} galleryLabel={t('scan.gallery')} />
+          cameraLabel={t('scan.camera')} galleryLabel={t('scan.gallery')}
+          shutterAria={t('scan.shutter_aria')} cancelAria={t('scan.cancel_aria')}
+          usePhotoLabel={t('scan.use_photo')} retakeLabel={t('scan.retake')} />
       </div>
     </div>
   );

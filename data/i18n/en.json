@@ -7,7 +7,10 @@
     "camera": "Camera",
     "gallery": "Gallery",
     "retake": "Retake",
-    "see_guide": "See Disposal Guide"
+    "see_guide": "See Disposal Guide",
+    "shutter_aria": "Take photo",
+    "use_photo": "Use photo",
+    "cancel_aria": "Close camera"
   },
   "analyzing": { "label": "Analyzing..." },
   "overlay": {

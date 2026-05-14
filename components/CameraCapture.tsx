@@ -1,43 +1,33 @@
 // components/CameraCapture.tsx
 'use client';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
+import { LiveCamera } from './LiveCamera';
+import { fileToBase64 } from '@/lib/image';
 
 interface CameraCaptureProps {
   onCapture: (base64: string) => void;
   onError?: () => void;
   cameraLabel: string;
   galleryLabel: string;
+  shutterAria: string;
+  cancelAria: string;
+  usePhotoLabel: string;
+  retakeLabel: string;
 }
 
-function fileToBase64(file: File): Promise<string> {
-  return new Promise((resolve, reject) => {
-    const img = new Image();
-    const url = URL.createObjectURL(file);
-    img.onload = () => {
-      try {
-        const MAX = 1024;
-        const scale = Math.min(1, MAX / Math.max(img.width, img.height));
-        const canvas = document.createElement('canvas');
-        canvas.width = img.width * scale;
-        canvas.height = img.height * scale;
-        const ctx = canvas.getContext('2d');
-        if (!ctx) { URL.revokeObjectURL(url); reject(new Error('canvas context unavailable')); return; }
-        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-        URL.revokeObjectURL(url);
-        resolve(canvas.toDataURL('image/jpeg', 0.8).split(',')[1]);
-      } catch (err) {
-        URL.revokeObjectURL(url);
-        reject(err);
-      }
-    };
-    img.onerror = () => { URL.revokeObjectURL(url); reject(new Error('image load failed')); };
-    img.src = url;
-  });
+function liveCameraSupported(): boolean {
+  return typeof navigator !== 'undefined'
+    && !!navigator.mediaDevices?.getUserMedia
+    && (typeof window === 'undefined' || window.isSecureContext);
 }
 
-export function CameraCapture({ onCapture, onError, cameraLabel, galleryLabel }: CameraCaptureProps) {
+export function CameraCapture({
+  onCapture, onError, cameraLabel, galleryLabel,
+  shutterAria, cancelAria, usePhotoLabel, retakeLabel,
+}: CameraCaptureProps) {
   const cameraRef = useRef<HTMLInputElement>(null);
   const galleryRef = useRef<HTMLInputElement>(null);
+  const [showLive, setShowLive] = useState(false);
 
   async function handleFile(file: File | undefined, input: HTMLInputElement) {
     input.value = '';
@@ -49,13 +39,23 @@ export function CameraCapture({ onCapture, onError, cameraLabel, galleryLabel }:
     }
   }
 
+  function handleCameraTap() {
+    if (liveCameraSupported()) setShowLive(true);
+    else cameraRef.current?.click();
+  }
+
+  function handleUnsupported() {
+    setShowLive(false);
+    cameraRef.current?.click();
+  }
+
   return (
     <div className="flex flex-col gap-4 w-full">
       <input ref={cameraRef} type="file" accept="image/*" capture="environment"
         className="hidden" onChange={e => handleFile(e.target.files?.[0], e.target as HTMLInputElement)} />
       <input ref={galleryRef} type="file" accept="image/*"
         className="hidden" onChange={e => handleFile(e.target.files?.[0], e.target as HTMLInputElement)} />
-      <button onClick={() => cameraRef.current?.click()}
+      <button onClick={handleCameraTap}
         className="flex items-center justify-center gap-2 bg-blue-500 text-white rounded-2xl py-4 text-lg font-semibold active:scale-95 transition-transform">
         📷 {cameraLabel}
       </button>
@@ -63,6 +63,17 @@ export function CameraCapture({ onCapture, onError, cameraLabel, galleryLabel }:
         className="flex items-center justify-center gap-2 bg-zinc-700 text-white rounded-2xl py-4 text-lg font-semibold active:scale-95 transition-transform">
         🖼️ {galleryLabel}
       </button>
+      {showLive && (
+        <LiveCamera
+          onCapture={(b64) => { setShowLive(false); onCapture(b64); }}
+          onCancel={() => setShowLive(false)}
+          onUnsupported={handleUnsupported}
+          shutterAria={shutterAria}
+          cancelAria={cancelAria}
+          usePhotoLabel={usePhotoLabel}
+          retakeLabel={retakeLabel}
+        />
+      )}
     </div>
   );
 }

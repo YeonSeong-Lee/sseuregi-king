@@ -3,7 +3,7 @@
     "title": "ゴミ図鑑",
     "subtitle": "ゴミを撮影して韓国での正しい捨て方を確認しましょう"
   },
-  "scan": { "camera": "カメラ", "gallery": "ギャラリー", "retake": "撮り直す", "see_guide": "処分ガイドを見る" },
+  "scan": { "camera": "カメラ", "gallery": "ギャラリー", "retake": "撮り直す", "see_guide": "処分ガイドを見る", "shutter_aria": "撮影", "use_photo": "この写真を使う", "cancel_aria": "カメラを閉じる" },
   "analyzing": { "label": "分析中..." },
   "overlay": { "tap_hint": "アイテムをタップして選択", "no_items": "ゴミが検出されませんでした。", "select_all": "すべて選択", "deselect_all": "選択解除" },
   "video": { "back": "← 戻る", "no_video": "このアイテムの処分ガイドはまだありません。" },
