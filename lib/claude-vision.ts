@@ -67,7 +67,10 @@ function coerceItem(item: ClaudeItem): DetectedObject | null {
     !b ||
     typeof b.x !== 'number' || typeof b.y !== 'number' ||
     typeof b.w !== 'number' || typeof b.h !== 'number'
-  ) return null;
+  ) {
+    console.warn('claude-vision: dropping malformed item', item);
+    return null;
+  }
 
   const category = resolveCategory(item.category);
   const names = category === 'etc'

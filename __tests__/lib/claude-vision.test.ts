@@ -142,4 +142,34 @@ describe('claudeDetect', () => {
 
     await expect(claudeDetect('base64data')).rejects.toThrow(/no text content/);
   });
+
+  it('returns empty array when Claude detects no waste', async () => {
+    process.env.ANTHROPIC_API_KEY = 'test-key';
+    messagesCreateMock.mockResolvedValue({
+      content: [{ type: 'text', text: '[]' }],
+    });
+
+    const result = await claudeDetect('base64data');
+
+    expect(result).toEqual([]);
+  });
+
+  it('drops malformed items, keeps good ones, warns', async () => {
+    process.env.ANTHROPIC_API_KEY = 'test-key';
+    const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {});
+    messagesCreateMock.mockResolvedValue({
+      content: [{ type: 'text', text: JSON.stringify([
+        { category: 'paper', label: 'newspaper', bbox: { x: 0, y: 0, w: 0.1, h: 0.1 } },
+        { category: 'plastic', label: 'no bbox' },
+        { category: 'glass', label: 'partial bbox', bbox: { x: 0.5, y: 0.5 } },
+      ]) }],
+    });
+
+    const result = await claudeDetect('base64data');
+
+    expect(result).toHaveLength(1);
+    expect(result[0].category).toBe('paper');
+    expect(warnSpy).toHaveBeenCalledTimes(2);
+    warnSpy.mockRestore();
+  });
 });
