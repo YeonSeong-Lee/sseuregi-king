@@ -10,11 +10,15 @@ vi.mock('@anthropic-ai/sdk', () => ({
   },
 }));
 
-import { claudeDetect } from '@/lib/claude-vision';
+// claudeDetect is re-imported in beforeEach so the module-level
+// `_client` and `_systemPrompt` singletons are fresh per test.
+let claudeDetect: typeof import('@/lib/claude-vision').claudeDetect;
 
-beforeEach(() => {
+beforeEach(async () => {
   messagesCreateMock.mockReset();
   delete process.env.ANTHROPIC_API_KEY;
+  vi.resetModules();
+  ({ claudeDetect } = await import('@/lib/claude-vision'));
 });
 
 describe('claudeDetect', () => {
@@ -169,6 +173,25 @@ describe('claudeDetect', () => {
 
     expect(result).toHaveLength(1);
     expect(result[0].category).toBe('paper');
+    expect(warnSpy).toHaveBeenCalledTimes(2);
+    warnSpy.mockRestore();
+  });
+
+  it('drops items with non-positive width or height', async () => {
+    process.env.ANTHROPIC_API_KEY = 'test-key';
+    const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {});
+    messagesCreateMock.mockResolvedValue({
+      content: [{ type: 'text', text: JSON.stringify([
+        { category: 'paper', label: 'zero w', bbox: { x: 0.1, y: 0.1, w: 0, h: 0.2 } },
+        { category: 'plastic', label: 'negative h', bbox: { x: 0.1, y: 0.1, w: 0.2, h: -0.1 } },
+        { category: 'glass', label: 'good', bbox: { x: 0.1, y: 0.1, w: 0.2, h: 0.2 } },
+      ]) }],
+    });
+
+    const result = await claudeDetect('base64data');
+
+    expect(result).toHaveLength(1);
+    expect(result[0].category).toBe('glass');
     expect(warnSpy).toHaveBeenCalledTimes(2);
     warnSpy.mockRestore();
   });

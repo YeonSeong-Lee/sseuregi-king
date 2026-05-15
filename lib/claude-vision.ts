@@ -72,6 +72,11 @@ function coerceItem(item: ClaudeItem): DetectedObject | null {
     return null;
   }
 
+  if (b.w <= 0 || b.h <= 0) {
+    console.warn('claude-vision: dropping item with non-positive dimensions', item);
+    return null;
+  }
+
   const category = resolveCategory(item.category);
   const names = category === 'etc'
     ? ETC_NAMES
