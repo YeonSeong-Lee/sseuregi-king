@@ -18,7 +18,7 @@
       "ja": "新聞紙、雑誌、段ボール、本、封筒、コピー用紙",
       "ru": "Газеты, журналы, картонные коробки, книги, конверты, офисная бумага"
     },
-    "steps": ["bundle_dry", "remove_tape_staples"],
+    "steps": ["V15", "V12"],
     "districts": {
       "gangnam": {
         "bagColor": "none",
@@ -56,7 +56,7 @@
       "ja": "牛乳パック、ジュースパック、豆乳パック、焼酎パック",
       "ru": "Упаковки из-под молока, сока, соевого молока, соджу"
     },
-    "steps": ["rinse", "flatten", "bundle_dry"],
+    "steps": ["V05", "V08", "V15"],
     "districts": {
       "gangnam": {
         "bagColor": "none",
@@ -94,7 +94,7 @@
       "ja": "ガラス瓶、ジャム瓶、ワイン/ビール/焼酎の瓶",
       "ru": "Стеклянные бутылки, банки, бутылки из-под вина/пива/соджу"
     },
-    "steps": ["remove_cap", "rinse", "bag_transparent"],
+    "steps": ["V01", "V05", "V09"],
     "districts": {
       "gangnam": {
         "bagColor": "green",
@@ -132,7 +132,7 @@
       "ja": "アルミ缶、スチール缶、食品缶、スプレー缶（空）",
       "ru": "Алюминиевые банки, жестяные банки, банки от консервов, баллончики (пустые)"
     },
-    "steps": ["empty", "rinse", "crush_flat", "bag_transparent"],
+    "steps": ["V04", "V05", "V03", "V09"],
     "districts": {
       "gangnam": {
         "bagColor": "green",
@@ -172,7 +172,7 @@
       "ja": "ペットボトル、プラスチック容器、プラスチックカップ、蓋、硬質プラスチック",
       "ru": "ПЭТ-бутылки, пластиковые контейнеры, стаканчики, крышки, твёрдый пластик"
     },
-    "steps": ["empty", "rinse", "remove_label", "crush_flat", "bag_transparent"],
+    "steps": ["V04", "V05", "V02", "V03", "V09"],
     "districts": {
       "gangnam": {
         "bagColor": "transparent",
@@ -211,7 +211,7 @@
       "ja": "ビニール袋、食品包装、スナック/ラーメンの袋、ビニールフィルム",
       "ru": "Пакеты, обёртки от еды, упаковки от снеков/рамёна, плёнка"
     },
-    "steps": ["empty", "rinse", "bag_transparent"],
+    "steps": ["V04", "V05", "V09"],
     "districts": {
       "gangnam": {
         "bagColor": "transparent",
@@ -249,7 +249,7 @@
       "ja": "発泡スチロールトレイ・カップ、緩衝材、カップ麺の容器",
       "ru": "Пенопластовые лотки, стаканы, упаковочный пенопласт, лапша в стаканах"
     },
-    "steps": ["rinse", "remove_label", "bag_transparent"],
+    "steps": ["V05", "V02", "V09"],
     "districts": {
       "gangnam": {
         "bagColor": "transparent",
@@ -288,7 +288,7 @@
       "ja": "シャツ、ズボン、ジャケット、セーター、布類",
       "ru": "Рубашки, брюки, куртки, свитера, ткани"
     },
-    "steps": ["drop_off_dong_center"],
+    "steps": ["V25"],
     "districts": {
       "gangnam": {
         "bagColor": "none",
@@ -326,7 +326,7 @@
       "ja": "蛍光灯、LED電球、ハロゲン電球、白熱電球",
       "ru": "Люминесцентные трубки, LED-лампы, галогенные и лампы накаливания"
     },
-    "steps": ["drop_off_dong_center"],
+    "steps": ["V25"],
     "districts": {
       "gangnam": {
         "bagColor": "none",
@@ -364,7 +364,7 @@
       "ja": "残飯、柔らかい野菜くず、バナナの皮（骨・貝殻・種は不可）",
       "ru": "Остатки риса, мягкие очистки овощей и фруктов, банановая кожура (без костей, раковин, косточек)"
     },
-    "steps": ["drain_water", "bag_food_waste"],
+    "steps": ["V30", "V31"],
     "districts": {
       "gangnam": {
         "bagColor": "yellow",
@@ -404,7 +404,7 @@
       "ja": "魚や肉の骨、卵の殻、果物の種、玉ねぎの皮、野菜の根、その他リサイクルできないもの",
       "ru": "Рыбьи/мясные кости, яичная скорлупа, косточки фруктов, луковая шелуха, корни овощей и всё, что нельзя переработать"
     },
-    "steps": ["drain_water", "bag_general"],
+    "steps": ["V30", "V13"],
     "districts": {
       "gangnam": {
         "bagColor": "white",
@@ -444,7 +444,7 @@
       "ja": "スマートフォン、タブレット、ノートパソコン、モニター、電子レンジなどの小型電子機器",
       "ru": "Телефоны, планшеты, ноутбуки, мониторы, микроволновки и другая мелкая электроника"
     },
-    "steps": ["drop_off_dong_center"],
+    "steps": ["V25"],
     "districts": {
       "gangnam": {
         "bagColor": "none",
@@ -484,7 +484,7 @@
       "ja": "家具、マットレス、大型家電、テレビ、冷蔵庫、エアコン",
       "ru": "Мебель, матрасы, крупная бытовая техника, ТВ, холодильники, кондиционеры"
     },
-    "steps": ["request_pickup_ewaste"],
+    "steps": ["V24"],
     "districts": {
       "gangnam": {
         "bagColor": "none",

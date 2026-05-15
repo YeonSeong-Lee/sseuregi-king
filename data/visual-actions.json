@@ -1,0 +1,444 @@
+{
+  "actions": {
+    "V01": {
+      "id": "V01",
+      "name": {
+        "en": "Remove Cap / Lid / Pump",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "description": "Hand twisting off a bottle cap or pulling off a pump nozzle",
+      "animation": "Twist-off motion"
+    },
+    "V02": {
+      "id": "V02",
+      "name": {
+        "en": "Peel Off Label",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "description": "Fingers peeling a label/sticker off a bottle",
+      "animation": "Peeling motion"
+    },
+    "V03": {
+      "id": "V03",
+      "name": {
+        "en": "Crush / Flatten (Bottle/Can)",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "description": "Hands crushing a plastic bottle or aluminum can flat",
+      "animation": "Squish/compress motion"
+    },
+    "V04": {
+      "id": "V04",
+      "name": {
+        "en": "Empty Contents / Pour Out",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "description": "Bottle or container being tipped upside down, liquid pouring out",
+      "animation": "Tipping/pouring motion"
+    },
+    "V05": {
+      "id": "V05",
+      "name": {
+        "en": "Rinse With Water",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "description": "Container under running water tap being rinsed",
+      "animation": "Water splash"
+    },
+    "V06": {
+      "id": "V06",
+      "name": {
+        "en": "Remove Food Residue / Scrape Clean",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "description": "Spoon or hand scraping food bits out of a container",
+      "animation": "Scraping motion"
+    },
+    "V07": {
+      "id": "V07",
+      "name": {
+        "en": "Stack Together",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "description": "Multiple cups or containers being stacked neatly",
+      "animation": "Stacking motion"
+    },
+    "V08": {
+      "id": "V08",
+      "name": {
+        "en": "Flatten / Fold Flat",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "description": "Hands pressing something flat (paper, vinyl, cardboard)",
+      "animation": "Press-down motion"
+    },
+    "V09": {
+      "id": "V09",
+      "name": {
+        "en": "Place In Correct Bin / Bag",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "description": "Hand placing item into the correct colored bin or bag",
+      "animation": "Drop-in motion"
+    },
+    "V10": {
+      "id": "V10",
+      "name": {
+        "en": "Pop Bubbles",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "description": "Fingers popping bubble wrap with a satisfying pop effect",
+      "animation": "Pop pop pop animation"
+    },
+    "V11": {
+      "id": "V11",
+      "name": {
+        "en": "Break Into Pieces",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "description": "Hands breaking styrofoam into smaller chunks",
+      "animation": "Snap/break motion"
+    },
+    "V12": {
+      "id": "V12",
+      "name": {
+        "en": "Remove Tape / Labels / Stickers",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "description": "Hands peeling tape and shipping labels off a box",
+      "animation": "Peeling motion"
+    },
+    "V13": {
+      "id": "V13",
+      "name": {
+        "en": "Just Toss It In (General Waste)",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "description": "Hand casually tossing item into a white general waste bag",
+      "animation": "Casual toss arc"
+    },
+    "V14": {
+      "id": "V14",
+      "name": {
+        "en": "Flatten Cardboard Box",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "description": "Hands stomping/pressing a cardboard box completely flat",
+      "animation": "Stomp/flatten"
+    },
+    "V15": {
+      "id": "V15",
+      "name": {
+        "en": "Tie With String / Stack Neatly",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "description": "Hands tying a bundle of paper/cardboard with string",
+      "animation": "Tying motion"
+    },
+    "V16": {
+      "id": "V16",
+      "name": {
+        "en": "Remove Plastic Window",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "description": "Fingers pulling the clear plastic window out of an envelope",
+      "animation": "Pull-out motion"
+    },
+    "V17": {
+      "id": "V17",
+      "name": {
+        "en": "Place Gently In Glass Bin",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "description": "Hands carefully placing a glass bottle into a green glass recycling bin",
+      "animation": "Gentle placement"
+    },
+    "V18": {
+      "id": "V18",
+      "name": {
+        "en": "Wrap In Newspaper (Safety)",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "description": "Hands wrapping a sharp/fragile item in newspaper layers",
+      "animation": "Wrapping motion"
+    },
+    "V19": {
+      "id": "V19",
+      "name": {
+        "en": "Write Warning Label On Bag",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "description": "Hand writing Korean text (유리조각/도자기) on outside of trash bag with marker",
+      "animation": "Writing motion"
+    },
+    "V20": {
+      "id": "V20",
+      "name": {
+        "en": "Open Can Fully",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "description": "Can opener opening a tin can all the way",
+      "animation": "Opening motion"
+    },
+    "V21": {
+      "id": "V21",
+      "name": {
+        "en": "Ensure Completely Empty (Pressurized)",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "description": "Shaking an aerosol/spray can to confirm it's empty, no sound",
+      "animation": "Shake-check motion"
+    },
+    "V22": {
+      "id": "V22",
+      "name": {
+        "en": "Puncture / Release Gas (Safely Outdoors)",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "description": "Puncturing an aerosol can cap outdoors with ventilation",
+      "animation": "Puncture with caution icon"
+    },
+    "V23": {
+      "id": "V23",
+      "name": {
+        "en": "Factory Reset / Wipe Data",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "description": "Phone or laptop screen showing 'Factory Reset' confirmation",
+      "animation": "Screen wipe animation"
+    },
+    "V24": {
+      "id": "V24",
+      "name": {
+        "en": "Call 1599-0903 / Drop At 주민센터",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "description": "Phone dialing 1599-0903 or person walking to 주민센터 building",
+      "animation": "Phone call or walking"
+    },
+    "V25": {
+      "id": "V25",
+      "name": {
+        "en": "Drop At Special Collection Box",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "description": "Hand dropping item into a labeled collection box (battery/fluorescent/medicine)",
+      "animation": "Drop-in motion"
+    },
+    "V26": {
+      "id": "V26",
+      "name": {
+        "en": "Register Online At Gangnam-gu Website",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "description": "Phone/laptop screen showing Gangnam-gu bulky waste registration page",
+      "animation": "Screen tap/click"
+    },
+    "V27": {
+      "id": "V27",
+      "name": {
+        "en": "Pay The Fee",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "description": "Payment screen showing fee amount with card/transfer payment",
+      "animation": "Payment confirmation"
+    },
+    "V28": {
+      "id": "V28",
+      "name": {
+        "en": "Stick Number & Put Outside",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "description": "Hand sticking a numbered sticker on furniture, then placing it outside building",
+      "animation": "Stick + carry outside"
+    },
+    "V29": {
+      "id": "V29",
+      "name": {
+        "en": "Schedule Pickup Date",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "description": "Calendar screen with a pickup date being selected",
+      "animation": "Calendar tap"
+    },
+    "V30": {
+      "id": "V30",
+      "name": {
+        "en": "Drain All Liquid",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "description": "Hands squeezing/draining liquid from food waste over a sink",
+      "animation": "Squeeze/drain motion"
+    },
+    "V31": {
+      "id": "V31",
+      "name": {
+        "en": "Put In Food Waste Bin / Yellow Bag",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "description": "Hand placing food into a yellow food waste bag or RFID food waste bin",
+      "animation": "Drop into yellow"
+    },
+    "V32": {
+      "id": "V32",
+      "name": {
+        "en": "Put In A Bag / Fold",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "description": "Hands folding clothes and putting them in a bag",
+      "animation": "Folding motion"
+    },
+    "V33": {
+      "id": "V33",
+      "name": {
+        "en": "Drop In Clothing Donation Bin (의류수거함)",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "description": "Person dropping a bag into a large green/white clothing donation bin on the street",
+      "animation": "Drop into large bin"
+    },
+    "V34": {
+      "id": "V34",
+      "name": {
+        "en": "Soak In Newspaper / Paper Towels",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "description": "Pouring used cooking oil onto newspaper/paper towels to absorb",
+      "animation": "Pouring + absorbing"
+    },
+    "V35": {
+      "id": "V35",
+      "name": {
+        "en": "Scoop Out Wax",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "description": "Spoon scooping remaining wax out of a candle jar",
+      "animation": "Scooping motion"
+    },
+    "V36": {
+      "id": "V36",
+      "name": {
+        "en": "Separate Materials / Disassemble",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "description": "Hands pulling apart different materials (glass from frame, metal from fabric)",
+      "animation": "Pull-apart motion"
+    },
+    "V37": {
+      "id": "V37",
+      "name": {
+        "en": "Pop And Deflate",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "description": "Hands popping air pillows and pressing air out",
+      "animation": "Pop + deflate"
+    },
+    "V38": {
+      "id": "V38",
+      "name": {
+        "en": "Fold In Half",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "description": "Hands folding a mask or mat in half",
+      "animation": "Fold motion"
+    },
+    "V39": {
+      "id": "V39",
+      "name": {
+        "en": "Cut Ear Loops / Strings",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "description": "Scissors cutting the ear loops off a disposable mask",
+      "animation": "Snip motion"
+    },
+    "V45": {
+      "id": "V45",
+      "name": {
+        "en": "Remove Batteries",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "description": "Hands opening battery compartment and removing batteries",
+      "animation": "Open + remove"
+    }
+  }
+}

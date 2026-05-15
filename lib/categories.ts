@@ -1,10 +1,10 @@
 import categoriesData from '@/data/waste-categories.json';
-import { getStepLabel } from '@/lib/disposal';
+import { getActionLabel } from '@/lib/disposal';
 import type {
   DistrictRule,
   Locale,
-  StepId,
   SupportedDistrict,
+  VisualActionId,
   WasteCategory,
   WasteCategoryDef,
 } from '@/types';
@@ -102,7 +102,7 @@ export function getCategoryExamples(id: WasteCategory, locale: Locale): string |
 export function getCategoryDisposal(
   id: WasteCategory,
   district: SupportedDistrict | null,
-): { steps: StepId[]; districtRule: DistrictRule } | null {
+): { steps: VisualActionId[]; districtRule: DistrictRule } | null {
   if (!district) return null;
   const def = getCategoryDef(id);
   if (!def) return null;
@@ -118,7 +118,7 @@ export function getCategoryDisposalText(
 ): string | null {
   const found = getCategoryDisposal(id, district);
   if (!found) return null;
-  const stepText = found.steps.map(s => getStepLabel(s, locale)).join(' · ');
+  const stepText = found.steps.map(s => getActionLabel(s, locale)).join(' · ');
   const schedule = found.districtRule.schedule[locale];
   return stepText ? `${stepText}. ${schedule}` : schedule;
 }

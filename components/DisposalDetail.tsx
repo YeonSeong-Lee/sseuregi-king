@@ -4,12 +4,13 @@ import { BagChip } from '@/components/BagChip';
 import { CATEGORY_BADGE } from '@/components/DisposalCard';
 import { StepRow } from '@/components/StepRow';
 import { YoutubeLinkCard } from '@/components/YoutubeLinkCard';
+import { getActionLabel } from '@/lib/disposal';
 import { getYoutubeVideo } from '@/lib/youtube';
-import type { DistrictRule, Locale, StepId, WasteCategoryDef } from '@/types';
+import type { DistrictRule, Locale, VisualActionId, WasteCategoryDef } from '@/types';
 
 interface DisposalDetailProps {
   category: WasteCategoryDef;
-  steps: StepId[];
+  steps: VisualActionId[];
   districtRule: DistrictRule;
   locale: Locale;
   categoryLabel: string;
@@ -59,7 +60,10 @@ export function DisposalDetail({
       </div>
 
       <div className="px-3 pt-4">
-        <StepRow steps={steps} locale={locale} interactive />
+        <StepRow
+          steps={steps.map(id => ({ visualId: id, label: getActionLabel(id, locale) }))}
+          interactive
+        />
         <p className="text-[10px] text-fg-faint text-center pt-1">{t('guide.pin_step_hint')}</p>
       </div>
 

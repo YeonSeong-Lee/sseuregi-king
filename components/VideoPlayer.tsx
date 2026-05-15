@@ -7,12 +7,14 @@ import { SpeechBubble } from '@/components/SpeechBubble';
 import { StepRow } from '@/components/StepRow';
 import { YoutubeLinkCard } from '@/components/YoutubeLinkCard';
 import { getCategoryDef } from '@/lib/categories';
+import { getActionLabel } from '@/lib/disposal';
 import { getYoutubeVideo } from '@/lib/youtube';
 import {
   getTrashItemById,
   getTrashItemDestination,
   getTrashItemFunnyFact,
   getTrashItemMascot,
+  getTrashItemSpecialNote,
 } from '@/lib/trash-items';
 import type {
   BagColor,
@@ -84,8 +86,18 @@ export function VideoPlayer({
     <div className="flex flex-col h-full bg-surface">
       <div className="flex items-center gap-3 p-4 border-b border-line shrink-0">
         <button onClick={onBack} className="text-blue-600 dark:text-blue-400 text-sm font-medium shrink-0">{backLabel}</button>
-        <span className="text-fg font-semibold truncate">{active[nameKey]}</span>
-        <span className={`ml-auto shrink-0 text-xs px-2 py-1 rounded-full ${CATEGORY_COLORS[active.category]}`}>
+        <div className="flex-1 min-w-0">
+          <span className="block text-fg font-semibold truncate">{active[nameKey]}</span>
+          {item?.koreanTag && (
+            <span className="block text-[11px] text-fg-faint truncate">{item.koreanTag}</span>
+          )}
+        </div>
+        {item?.isHazardous && (
+          <span className="shrink-0 text-[10px] px-2 py-0.5 rounded-full bg-red-500 text-white font-semibold tracking-wide">
+            ⚠ {t('item.hazardous')}
+          </span>
+        )}
+        <span className={`shrink-0 text-xs px-2 py-1 rounded-full ${CATEGORY_COLORS[active.category]}`}>
           {categoryLabels[active.category]}
         </span>
       </div>
@@ -121,9 +133,22 @@ export function VideoPlayer({
 
         {item && item.actionSteps.length > 0 && (
           <div className="-mx-1">
-            <StepRow steps={item.actionSteps} locale={locale} interactive />
+            <StepRow
+              steps={item.actionSteps.map(s => ({
+                visualId: s.visualId,
+                label: s.text[locale] || s.text.en || getActionLabel(s.visualId, locale),
+              }))}
+              interactive
+            />
             <p className="text-[10px] text-fg-faint text-center pt-1">{t('guide.pin_step_hint')}</p>
           </div>
+        )}
+
+        {item && getTrashItemSpecialNote(item, locale) && (
+          <p className="text-xs italic text-fg-muted leading-relaxed px-1">
+            <span className="text-fg-faint">{t('item.note_prefix')} </span>
+            {getTrashItemSpecialNote(item, locale)}
+          </p>
         )}
 
         {showBulkyCta && item && (

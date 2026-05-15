@@ -5,13 +5,14 @@ import {
   getCategoryDisposal,
   getCategoryDisposalText,
 } from '@/lib/categories';
-import { getStepLabel } from '@/lib/disposal';
+import { getActionLabel, getVisualAction } from '@/lib/disposal';
 import { SUPPORTED_DISTRICTS } from '@/data/districts';
-import disposalSteps from '@/data/disposal-steps.json';
+import visualActions from '@/data/visual-actions.json';
+import type { VisualActionId } from '@/types';
 
 const BAG_COLORS = new Set(['transparent', 'yellow', 'white', 'green', 'special', 'none']);
 const BAG_TYPES = new Set(['recycle', 'food', 'general', 'special', 'none']);
-const STEP_IDS = new Set(Object.keys(disposalSteps.steps));
+const ACTION_IDS = new Set(Object.keys(visualActions.actions));
 
 describe('getCategoryDisposal', () => {
   it('returns null when district is missing', () => {
@@ -21,7 +22,8 @@ describe('getCategoryDisposal', () => {
   it('returns structured rule for known (category, district)', () => {
     const found = getCategoryDisposal('plastic', 'gangnam');
     expect(found).not.toBeNull();
-    expect(found!.steps).toContain('empty');
+    // Plastic recycling starts with V04 (Empty Contents).
+    expect(found!.steps).toContain<VisualActionId>('V04');
     expect(found!.districtRule.bagColor).toBe('transparent');
     expect(found!.districtRule.schedule.en).toMatch(/thursday/i);
   });
@@ -35,7 +37,7 @@ describe('getCategoryDisposal', () => {
         expect(BAG_COLORS.has(found!.districtRule.bagColor)).toBe(true);
         expect(BAG_TYPES.has(found!.districtRule.bagType)).toBe(true);
         for (const stepId of found!.steps) {
-          expect(STEP_IDS.has(stepId), `${id} step "${stepId}" not in library`).toBe(true);
+          expect(ACTION_IDS.has(stepId), `${id} step "${stepId}" not in library`).toBe(true);
         }
         for (const locale of ['en', 'zh', 'ja', 'ru'] as const) {
           expect(found!.districtRule.schedule[locale].length).toBeGreaterThan(0);
@@ -45,24 +47,22 @@ describe('getCategoryDisposal', () => {
   });
 });
 
-describe('disposal-steps.json library', () => {
-  it('every step has at least an English label; non-EN may be empty (UI falls back to EN)', () => {
-    for (const [stepId, step] of Object.entries(disposalSteps.steps)) {
-      expect(step.id).toBe(stepId);
-      expect(STEP_IDS.has(step.icon)).toBe(true);
-      expect(step.labels.en.length, `${stepId} missing English label`).toBeGreaterThan(0);
-      // Non-EN labels are allowed to be empty for CSV-derived steps until
-      // translations land; getStepLabel() falls back to English at runtime.
+describe('visual-actions.json library', () => {
+  it('every action has at least an English name; non-EN may be empty (UI falls back to EN)', () => {
+    for (const [actionId, action] of Object.entries(visualActions.actions)) {
+      expect(action.id).toBe(actionId);
+      expect(action.name.en.length, `${actionId} missing English name`).toBeGreaterThan(0);
       for (const locale of ['zh', 'ja', 'ru'] as const) {
-        expect(typeof step.labels[locale], `${stepId} ${locale} should be a string`).toBe('string');
+        expect(typeof action.name[locale], `${actionId} ${locale} should be a string`).toBe('string');
       }
     }
   });
 });
 
 describe('getCategoryDisposalText', () => {
-  it('joins step labels and schedule for VideoPlayer', () => {
+  it('joins action labels and schedule for VideoPlayer', () => {
     const text = getCategoryDisposalText('plastic', 'gangnam', 'en');
+    // V04 = Empty Contents / Pour Out, V05 = Rinse With Water.
     expect(text).toContain('Empty');
     expect(text).toContain('Rinse');
     expect(text).toMatch(/thursday/i);
@@ -73,14 +73,19 @@ describe('getCategoryDisposalText', () => {
   });
 });
 
-describe('getStepLabel', () => {
-  it('returns localized label', () => {
-    expect(getStepLabel('empty', 'en')).toBe('Empty');
-    expect(getStepLabel('empty', 'ja')).toBe('中身を空に');
+describe('getActionLabel / getVisualAction', () => {
+  it('returns the action name for a known visualId', () => {
+    expect(getActionLabel('V04', 'en')).toBe('Empty Contents / Pour Out');
   });
 
-  it('returns label for the new bag_general step', () => {
-    expect(getStepLabel('bag_general', 'en')).toBe('General-waste bag');
+  it('falls back to English when the locale label is empty', () => {
+    expect(getActionLabel('V04', 'ja')).toBe('Empty Contents / Pour Out');
+  });
+
+  it('exposes the underlying action record', () => {
+    const a = getVisualAction('V01');
+    expect(a?.name.en).toMatch(/Cap/);
+    expect(a?.animation).toBeTruthy();
   });
 });
 

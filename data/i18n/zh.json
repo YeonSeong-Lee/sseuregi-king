@@ -59,7 +59,9 @@
   "item": {
     "goes_in": "投放至：",
     "did_you_know": "你知道吗？",
-    "register_bulky": "在线登记 → clean.gangnam.go.kr"
+    "register_bulky": "在线登记 → clean.gangnam.go.kr",
+    "hazardous": "有害",
+    "note_prefix": "注意 —"
   },
   "categories": {
     "paper": "纸类 📰",

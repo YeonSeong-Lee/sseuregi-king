@@ -1,6 +1,7 @@
 import { StepRow } from '@/components/StepRow';
 import { BagChip } from '@/components/BagChip';
-import type { DistrictRule, Locale, StepId, WasteCategory, WasteCategoryDef } from '@/types';
+import { getActionLabel } from '@/lib/disposal';
+import type { DistrictRule, Locale, VisualActionId, WasteCategory, WasteCategoryDef } from '@/types';
 
 export const CATEGORY_BADGE: Record<WasteCategory, string> = {
   paper:        'bg-amber-100 text-amber-800 dark:bg-amber-500/20 dark:text-amber-300',
@@ -21,7 +22,7 @@ export const CATEGORY_BADGE: Record<WasteCategory, string> = {
 
 interface DisposalCardProps {
   category: WasteCategoryDef;
-  steps: StepId[];
+  steps: VisualActionId[];
   districtRule: DistrictRule;
   locale: Locale;
   categoryLabel: string;
@@ -58,7 +59,10 @@ export function DisposalCard({
         </div>
       </div>
       <div className="px-3 pt-3">
-        <StepRow steps={steps} locale={locale} interactive={false} />
+        <StepRow
+          steps={steps.map(id => ({ visualId: id, label: getActionLabel(id, locale) }))}
+          interactive={false}
+        />
       </div>
       <p className="px-4 py-3 mt-1 text-sm text-fg-muted leading-relaxed border-t border-line bg-surface/40">
         {districtRule.schedule[locale]}

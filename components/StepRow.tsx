@@ -1,23 +1,27 @@
 'use client';
 import { useEffect, useState } from 'react';
 import { StepIcon } from '@/components/svg/StepIcons';
-import { getStepLabel } from '@/lib/disposal';
-import type { Locale, StepId } from '@/types';
+import type { VisualActionId } from '@/types';
 
 const CYCLE_MS = 1500;
 
+export interface StepItem {
+  visualId: VisualActionId;
+  label: string;
+}
+
 interface StepRowProps {
-  steps: StepId[];
-  locale: Locale;
+  steps: StepItem[];
   interactive?: boolean;
 }
 
-export function StepRow({ steps, locale, interactive = true }: StepRowProps) {
+export function StepRow({ steps, interactive = true }: StepRowProps) {
   const [activeIndex, setActiveIndex] = useState(0);
   const [pinned, setPinned] = useState<number | null>(null);
 
   useEffect(() => {
     if (interactive && pinned !== null) return;
+    if (steps.length === 0) return;
     const id = setInterval(() => {
       setActiveIndex(i => (i + 1) % steps.length);
     }, CYCLE_MS);
@@ -42,17 +46,17 @@ export function StepRow({ steps, locale, interactive = true }: StepRowProps) {
                 {i + 1}
               </span>
               <span className={`block w-9 h-9 ${isActive ? 'animate-step-active' : ''}`}>
-                <StepIcon id={step} active={isActive} />
+                <StepIcon id={step.visualId} active={isActive} />
               </span>
             </span>
             <span className="text-[10px] leading-tight text-center truncate w-full">
-              {getStepLabel(step, locale)}
+              {step.label}
             </span>
           </>
         );
 
         return (
-          <li key={step + i} className="shrink-0 w-16">
+          <li key={`${step.visualId}-${i}`} className="shrink-0 w-16">
             {interactive ? (
               <button
                 type="button"

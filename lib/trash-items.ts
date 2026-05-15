@@ -25,6 +25,17 @@ const byAlias = (() => {
   return m;
 })();
 
+// Korean tag → item. Detection paths that yield a Korean noun (생수병, 우유팩, …)
+// look up here directly without alias-tokenizing.
+const byKoreanTag = (() => {
+  const m = new Map<string, TrashItem>();
+  for (const item of items) {
+    const key = item.koreanTag.trim();
+    if (key && !m.has(key)) m.set(key, item);
+  }
+  return m;
+})();
+
 export function getTrashItemById(id: string): TrashItem | undefined {
   return byId.get(id);
 }
@@ -34,6 +45,14 @@ export function getTrashItemById(id: string): TrashItem | undefined {
 // "AA battery" picks `batteries` via the 2-token alias before the 1-token one,
 // and so that "tablet" never matches an alias like "table" by character substring.
 export function findTrashItemByLabel(label: string): TrashItem | undefined {
+  const raw = label.trim();
+  if (!raw) return undefined;
+
+  // Korean exact match short-circuits the Latin token logic — Korean nouns
+  // don't tokenize via the [a-z0-9] regex used by `normalize`.
+  const korean = byKoreanTag.get(raw);
+  if (korean) return korean;
+
   const labelTokens = tokens(label);
   if (labelTokens.length === 0) return undefined;
 
@@ -61,4 +80,8 @@ export function getTrashItemMascot(item: TrashItem, locale: Locale): string {
 
 export function getTrashItemFunnyFact(item: TrashItem, locale: Locale): string {
   return item.funnyFact[locale] || item.funnyFact.en || '';
+}
+
+export function getTrashItemSpecialNote(item: TrashItem, locale: Locale): string {
+  return item.specialNote[locale] || item.specialNote.en || '';
 }

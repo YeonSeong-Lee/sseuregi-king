@@ -8,8 +8,8 @@ describe('enrichObjects', () => {
       category: '', bbox: { x: 10, y: 10, w: 20, h: 20 },
     }]);
     expect(result[0].category).toBe('paper');
-    expect(result[0].trashItemId).toBe('newspaper_office_paper');
-    expect(result[0].nameEn).toBe('Newspaper / office paper');
+    expect(result[0].trashItemId).toBe('T020');
+    expect(result[0].nameEn).toBe('Newspaper');
     // Detector-supplied locale names are preserved when the item's translation is empty.
     expect(result[0].nameZh).toBe('报纸');
     expect(result[0].nameJa).toBe('新聞');
@@ -22,11 +22,11 @@ describe('enrichObjects', () => {
       category: '', bbox: { x: 0, y: 0, w: 10, h: 10 },
     }]);
     expect(result[0].category).toBe('paper');
-    expect(result[0].trashItemId).toBe('cardboard_box');
-    expect(result[0].nameEn).toBe('Cardboard box');
-    expect(result[0].nameZh).toBe('Cardboard box');
-    expect(result[0].nameJa).toBe('Cardboard box');
-    expect(result[0].nameRu).toBe('Cardboard box');
+    expect(result[0].trashItemId).toBe('T019');
+    expect(result[0].nameEn).toBe('Cardboard Box');
+    expect(result[0].nameZh).toBe('Cardboard Box');
+    expect(result[0].nameJa).toBe('Cardboard Box');
+    expect(result[0].nameRu).toBe('Cardboard Box');
   });
 
   it('falls back to etc for unknown labels but still shows the raw name with a ❓ marker', () => {
@@ -61,7 +61,9 @@ describe('enrichObjects', () => {
   });
 
   it('routes small electronics to e_waste, not large', () => {
-    const cases = ['Phone', 'Smartphone', 'Tablet', 'Laptop', 'Monitor', 'Microwave'];
+    // Monitor was previously here but the new CSV groups it with TVs under T060
+    // (Free Pickup + Appliance large). See routes-large test below for that case.
+    const cases = ['Phone', 'Smartphone', 'Tablet', 'Laptop', 'Microwave'];
     for (const nameEn of cases) {
       const result = enrichObjects([{
         nameEn, nameZh: '', nameJa: '', nameRu: '',
@@ -84,9 +86,9 @@ describe('enrichObjects', () => {
       nameEn: 'Battery', nameZh: '', nameJa: '', nameRu: '',
       category: '', bbox: { x: 0, y: 0, w: 10, h: 10 },
     }]);
-    // Item-level match wins: batteries item routes to e_waste (drop-off collection),
+    // Item-level match wins: T045 (Batteries, Hazardous) routes to e_waste,
     // overriding the legacy general-waste alias.
     expect(result[0].category).toBe('e_waste');
-    expect(result[0].trashItemId).toBe('batteries');
+    expect(result[0].trashItemId).toBe('T045');
   });
 });

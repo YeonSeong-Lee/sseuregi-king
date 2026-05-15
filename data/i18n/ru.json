@@ -59,7 +59,9 @@
   "item": {
     "goes_in": "Куда:",
     "did_you_know": "А вы знали?",
-    "register_bulky": "Регистрация онлайн → clean.gangnam.go.kr"
+    "register_bulky": "Регистрация онлайн → clean.gangnam.go.kr",
+    "hazardous": "ОПАСНО",
+    "note_prefix": "Примечание —"
   },
   "categories": {
     "paper": "Бумага 📰",

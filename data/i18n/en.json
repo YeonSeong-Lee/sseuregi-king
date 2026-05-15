@@ -69,7 +69,9 @@
   "item": {
     "goes_in": "Goes in:",
     "did_you_know": "Did you know?",
-    "register_bulky": "Register online → clean.gangnam.go.kr"
+    "register_bulky": "Register online → clean.gangnam.go.kr",
+    "hazardous": "HAZARDOUS",
+    "note_prefix": "Note —"
   },
   "categories": {
     "paper": "Paper 📰",

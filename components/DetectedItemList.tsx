@@ -1,6 +1,7 @@
 // components/DetectedItemList.tsx
 'use client';
 import { getCategoryGroup, type CategoryGroup } from '@/lib/categories';
+import { getTrashItemById } from '@/lib/trash-items';
 import type { DetectedObject, Locale } from '@/types';
 
 const NAME_KEY: Record<Locale, keyof Pick<DetectedObject, 'nameEn' | 'nameZh' | 'nameJa' | 'nameRu'>> = {
@@ -26,6 +27,7 @@ export function DetectedItemList({ objects, locale, groupLabels, onTapItem }: De
     <ul className="flex flex-col gap-3 w-full">
       {objects.map((obj, i) => {
         const group = getCategoryGroup(obj.category);
+        const item = obj.trashItemId ? getTrashItemById(obj.trashItemId) : undefined;
         return (
           <li key={`${obj.nameEn}-${i}`}>
             <button
@@ -39,8 +41,13 @@ export function DetectedItemList({ objects, locale, groupLabels, onTapItem }: De
               >
                 {i + 1}
               </span>
-              <span className="flex-1 min-w-0 font-[family-name:var(--font-fraunces)] font-bold text-lg truncate">
-                {obj[nameKey]}
+              <span className="flex-1 min-w-0">
+                <span className="block font-[family-name:var(--font-fraunces)] font-bold text-lg truncate">
+                  {obj[nameKey]}
+                </span>
+                {item?.koreanTag && (
+                  <span className="block text-[11px] text-fg-faint truncate">{item.koreanTag}</span>
+                )}
               </span>
               <span
                 className={`shrink-0 px-3 py-1 rounded-full text-[10px] font-bold tracking-widest uppercase ${GROUP_PILL[group]}`}

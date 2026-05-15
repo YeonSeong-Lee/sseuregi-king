@@ -30,7 +30,7 @@ export interface DetectedObject {
   nameRu: string;
   category: WasteCategory;
   bbox: BBox;
-  trashItemId?: string;
+  trashItemId?: string; // T001..T150 when an item-level match landed
 }
 
 export interface YoutubePick {
@@ -54,76 +54,30 @@ export interface StorageData {
 
 export type BagColor = 'transparent' | 'yellow' | 'white' | 'green' | 'special' | 'none';
 
-export type ActionStepId =
-  // Existing 16 (used by /data/waste-categories.json):
-  | 'empty'
-  | 'rinse'
-  | 'remove_label'
-  | 'remove_cap'
-  | 'crush_flat'
-  | 'flatten'
-  | 'bundle_dry'
-  | 'remove_tape_staples'
-  | 'drain_water'
-  | 'bag_transparent'
-  | 'bag_food_waste'
-  | 'bag_general'
-  | 'bag_special'
-  | 'drop_off_battery'
-  | 'drop_off_dong_center'
-  | 'request_pickup_ewaste'
-  // New from /data/trash-items.json (CSV-derived):
-  | 'peel_label'
-  | 'remove_pump'
-  | 'shake_off_food'
-  | 'wipe_clean'
-  | 'bundle_together'
-  | 'remove_tape'
-  | 'remove_sticker'
-  | 'break_pieces'
-  | 'put_in_bag'
-  | 'flatten_box'
-  | 'tie_with_string'
-  | 'remove_plastic_inserts'
-  | 'stack_flat'
-  | 'return_for_deposit'
-  | 'place_gently'
-  | 'empty_food'
-  | 'use_until_empty'
-  | 'puncture_hole_outdoors'
-  | 'place_in_bin'
-  | 'drain_moisture'
-  | 'put_in_food_bag'
-  | 'wrap_in_newspaper'
-  | 'find_collection_box'
-  | 'drop_in'
-  | 'drop_in_carefully'
-  | 'take_to_pharmacy'
-  | 'drop_in_box'
-  | 'cool_down'
-  | 'pour_in_container'
-  | 'take_to_collection'
-  | 'check_wearable'
-  | 'fold_neatly'
-  | 'drop_in_bin'
-  | 'register_online'
-  | 'pay_fee'
-  | 'attach_sticker_and_place_outside'
-  | 'check_free_pickup'
-  | 'attach_sticker'
-  | 'call_1599_0903'
-  | 'schedule_pickup'
-  | 'place_outside'
-  | 'empty_liquid'
-  | 'rinse_inside';
+// Visual action IDs — sourced from visual_actions_library.csv (V01–V39 + V45).
+// Keys in `data/visual-actions.json` and referenced from `data/trash-items.json` and
+// each category's `steps` array in `data/waste-categories.json`.
+export type VisualActionId =
+  | 'V01' | 'V02' | 'V03' | 'V04' | 'V05' | 'V06' | 'V07' | 'V08' | 'V09' | 'V10'
+  | 'V11' | 'V12' | 'V13' | 'V14' | 'V15' | 'V16' | 'V17' | 'V18' | 'V19' | 'V20'
+  | 'V21' | 'V22' | 'V23' | 'V24' | 'V25' | 'V26' | 'V27' | 'V28' | 'V29' | 'V30'
+  | 'V31' | 'V32' | 'V33' | 'V34' | 'V35' | 'V36' | 'V37' | 'V38' | 'V39' | 'V45';
 
-// Legacy name — same union, kept so existing imports keep compiling.
-export type StepId = ActionStepId;
+export interface VisualAction {
+  id: VisualActionId;
+  name: Record<Locale, string>;
+  description: string;
+  animation: string;
+}
 
-export interface DisposalStep {
-  id: ActionStepId;
-  icon: ActionStepId;
-  labels: Record<Locale, string>;
+export interface VisualActionsFile {
+  actions: Partial<Record<VisualActionId, VisualAction>>;
+}
+
+// Per-item disposal step: a visual + a contextual label.
+export interface ActionStep {
+  visualId: VisualActionId;
+  text: Record<Locale, string>;
 }
 
 export type BagType = 'recycle' | 'food' | 'general' | 'special' | 'none';
@@ -141,26 +95,26 @@ export interface WasteCategoryDef {
   aliases: string[];
   examples: Record<Locale, string>;
   youtube?: Partial<Record<Locale, YoutubePick>>;
-  steps: StepId[];
+  steps: VisualActionId[];
   districts: Partial<Record<SupportedDistrict, DistrictRule>>;
 }
 
-export interface DisposalStepsFile {
-  steps: Partial<Record<ActionStepId, DisposalStep>>;
-}
-
 export interface TrashItem {
-  id: string;
-  category: WasteCategory;
+  id: string;                          // T001..T150 (stable)
+  category: WasteCategory;             // mapped from CSV category × sub_category
+  subCategory: string;                 // verbatim CSV sub_category
   names: Record<Locale, string>;
+  koreanTag: string;                   // CSV korean_tag — display + matching
   aliases: string[];
   destination: Record<Locale, string>;
   bagColor: BagColor;
-  actionSteps: ActionStepId[];
+  actionSteps: ActionStep[];           // max 3
   funnyMascot: Record<Locale, string>;
   funnyFact: Record<Locale, string>;
   isBulky: boolean;
+  isHazardous: boolean;
   bulkyWebsiteUrl: string | null;
+  specialNote: Record<Locale, string>;
 }
 
 export interface TrashItemsFile {
