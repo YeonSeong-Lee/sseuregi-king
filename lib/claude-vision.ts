@@ -36,9 +36,43 @@ function getSystemPrompt(): string {
   return _systemPrompt;
 }
 
+type ClaudeItem = {
+  category?: unknown;
+  label?: unknown;
+  bbox?: { x?: unknown; y?: unknown; w?: unknown; h?: unknown };
+};
+
+function clamp(n: number, lo: number, hi: number): number {
+  return Math.max(lo, Math.min(hi, n));
+}
+
+function coerceItem(item: ClaudeItem): DetectedObject | null {
+  const b = item.bbox;
+  if (
+    !b ||
+    typeof b.x !== 'number' || typeof b.y !== 'number' ||
+    typeof b.w !== 'number' || typeof b.h !== 'number'
+  ) return null;
+
+  const def = getCategoryDef('paper'); // placeholder — replaced in next task
+  return {
+    nameEn: def.names.en,
+    nameZh: def.names.zh,
+    nameJa: def.names.ja,
+    nameRu: def.names.ru,
+    category: 'paper',
+    bbox: {
+      x: clamp(b.x * 100, 0, 100),
+      y: clamp(b.y * 100, 0, 100),
+      w: clamp(b.w * 100, 0, 100),
+      h: clamp(b.h * 100, 0, 100),
+    },
+  };
+}
+
 export async function claudeDetect(base64Image: string): Promise<DetectedObject[]> {
   const client = getClient();
-  await client.messages.create({
+  const response = await client.messages.create({
     model: MODEL,
     max_tokens: MAX_TOKENS,
     system: [{ type: 'text', text: getSystemPrompt(), cache_control: { type: 'ephemeral' } }],
@@ -50,5 +84,10 @@ export async function claudeDetect(base64Image: string): Promise<DetectedObject[
       ],
     }],
   });
-  return [];
+
+  const textBlock = response.content.find(b => b.type === 'text') as { type: 'text'; text: string } | undefined;
+  if (!textBlock) throw new Error('Claude returned no text content');
+
+  const parsed = JSON.parse(textBlock.text) as ClaudeItem[];
+  return parsed.map(coerceItem).filter((x): x is DetectedObject => x !== null);
 }

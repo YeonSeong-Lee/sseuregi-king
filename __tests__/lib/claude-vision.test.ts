@@ -35,4 +35,26 @@ describe('claudeDetect', () => {
       expect(systemText).toContain(id);
     }
   });
+
+  it('parses a single well-formed item with bbox converted to 0-100 percent', async () => {
+    process.env.ANTHROPIC_API_KEY = 'test-key';
+    messagesCreateMock.mockResolvedValue({
+      content: [{
+        type: 'text',
+        text: JSON.stringify([
+          { category: 'paper', label: 'Newspaper', bbox: { x: 0.1, y: 0.2, w: 0.3, h: 0.4 } },
+        ]),
+      }],
+    });
+
+    const result = await claudeDetect('base64data');
+
+    expect(result).toHaveLength(1);
+    expect(result[0].category).toBe('paper');
+    expect(result[0].nameEn).toBe('Paper');
+    expect(result[0].bbox.x).toBeCloseTo(10);
+    expect(result[0].bbox.y).toBeCloseTo(20);
+    expect(result[0].bbox.w).toBeCloseTo(30);
+    expect(result[0].bbox.h).toBeCloseTo(40);
+  });
 });
