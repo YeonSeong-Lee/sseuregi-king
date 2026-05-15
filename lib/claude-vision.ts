@@ -107,6 +107,18 @@ export async function claudeDetect(base64Image: string): Promise<DetectedObject[
   const textBlock = response.content.find(b => b.type === 'text') as { type: 'text'; text: string } | undefined;
   if (!textBlock) throw new Error('Claude returned no text content');
 
-  const parsed = JSON.parse(stripJsonFences(textBlock.text)) as ClaudeItem[];
-  return parsed.map(coerceItem).filter((x): x is DetectedObject => x !== null);
+  const cleaned = stripJsonFences(textBlock.text);
+  let parsed: unknown;
+  try {
+    parsed = JSON.parse(cleaned);
+  } catch {
+    throw new Error(`Claude returned invalid JSON: ${cleaned.slice(0, 200)}`);
+  }
+  if (!Array.isArray(parsed)) {
+    throw new Error('Claude returned non-array JSON');
+  }
+
+  return (parsed as ClaudeItem[])
+    .map(coerceItem)
+    .filter((x): x is DetectedObject => x !== null);
 }

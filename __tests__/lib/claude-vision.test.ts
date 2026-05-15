@@ -117,4 +117,29 @@ describe('claudeDetect', () => {
     expect(result).toHaveLength(1);
     expect(result[0].category).toBe('plastic');
   });
+
+  it('throws with diagnostic when response is not valid JSON', async () => {
+    process.env.ANTHROPIC_API_KEY = 'test-key';
+    messagesCreateMock.mockResolvedValue({
+      content: [{ type: 'text', text: 'I see a newspaper and a plastic bottle.' }],
+    });
+
+    await expect(claudeDetect('base64data')).rejects.toThrow(/invalid JSON/);
+  });
+
+  it('throws when JSON is not an array', async () => {
+    process.env.ANTHROPIC_API_KEY = 'test-key';
+    messagesCreateMock.mockResolvedValue({
+      content: [{ type: 'text', text: '{"category":"paper"}' }],
+    });
+
+    await expect(claudeDetect('base64data')).rejects.toThrow(/non-array/);
+  });
+
+  it('throws when there is no text content block', async () => {
+    process.env.ANTHROPIC_API_KEY = 'test-key';
+    messagesCreateMock.mockResolvedValue({ content: [] });
+
+    await expect(claudeDetect('base64data')).rejects.toThrow(/no text content/);
+  });
 });
