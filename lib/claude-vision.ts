@@ -55,6 +55,12 @@ function resolveCategory(raw: unknown): WasteCategory {
   return 'etc';
 }
 
+function stripJsonFences(text: string): string {
+  const trimmed = text.trim();
+  const fenced = trimmed.match(/^```(?:json)?\s*([\s\S]*?)\s*```$/);
+  return fenced ? fenced[1].trim() : trimmed;
+}
+
 function coerceItem(item: ClaudeItem): DetectedObject | null {
   const b = item.bbox;
   if (
@@ -101,6 +107,6 @@ export async function claudeDetect(base64Image: string): Promise<DetectedObject[
   const textBlock = response.content.find(b => b.type === 'text') as { type: 'text'; text: string } | undefined;
   if (!textBlock) throw new Error('Claude returned no text content');
 
-  const parsed = JSON.parse(textBlock.text) as ClaudeItem[];
+  const parsed = JSON.parse(stripJsonFences(textBlock.text)) as ClaudeItem[];
   return parsed.map(coerceItem).filter((x): x is DetectedObject => x !== null);
 }

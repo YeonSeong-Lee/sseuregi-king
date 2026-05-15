@@ -102,4 +102,19 @@ describe('claudeDetect', () => {
     expect(result[0].category).toBe('etc');
     expect(result[0].nameEn).toBe('Other ❓');
   });
+
+  it('strips markdown fences before parsing', async () => {
+    process.env.ANTHROPIC_API_KEY = 'test-key';
+    const json = JSON.stringify([
+      { category: 'plastic', label: 'bottle', bbox: { x: 0.1, y: 0.1, w: 0.2, h: 0.2 } },
+    ]);
+    messagesCreateMock.mockResolvedValue({
+      content: [{ type: 'text', text: '```json\n' + json + '\n```' }],
+    });
+
+    const result = await claudeDetect('base64data');
+
+    expect(result).toHaveLength(1);
+    expect(result[0].category).toBe('plastic');
+  });
 });
