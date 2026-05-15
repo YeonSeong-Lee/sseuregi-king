@@ -2,28 +2,40 @@ import { describe, it, expect } from 'vitest';
 import { enrichObjects } from '@/lib/matcher';
 
 describe('enrichObjects', () => {
-  it('maps a known label to its category and pulls names from the catalog', () => {
+  it('keeps the raw detected name and assigns the matched category', () => {
     const result = enrichObjects([{
-      nameEn: 'Newspaper', nameZh: 'wrong-zh', nameJa: 'wrong-ja', nameRu: 'wrong-ru',
+      nameEn: 'Newspaper', nameZh: '报纸', nameJa: '新聞', nameRu: 'Газета',
       category: '', bbox: { x: 10, y: 10, w: 20, h: 20 },
     }]);
     expect(result[0].category).toBe('paper');
-    expect(result[0].nameEn).toBe('Paper');
-    expect(result[0].nameZh).toBe('纸类');
-    expect(result[0].nameJa).toBe('紙類');
-    expect(result[0].nameRu).toBe('Бумага');
+    expect(result[0].nameEn).toBe('Newspaper');
+    expect(result[0].nameZh).toBe('报纸');
+    expect(result[0].nameJa).toBe('新聞');
+    expect(result[0].nameRu).toBe('Газета');
   });
 
-  it('falls back to etc for unknown labels and replaces the raw name with the localized "Other" label', () => {
+  it('falls back to the raw English name for locales the detector did not translate', () => {
     const result = enrichObjects([{
-      nameEn: 'Spaceship', nameZh: 'zh', nameJa: 'ja', nameRu: 'ru',
+      nameEn: 'Cardboard box', nameZh: '', nameJa: '', nameRu: '',
+      category: '', bbox: { x: 0, y: 0, w: 10, h: 10 },
+    }]);
+    expect(result[0].category).toBe('paper');
+    expect(result[0].nameEn).toBe('Cardboard box');
+    expect(result[0].nameZh).toBe('Cardboard box');
+    expect(result[0].nameJa).toBe('Cardboard box');
+    expect(result[0].nameRu).toBe('Cardboard box');
+  });
+
+  it('falls back to etc for unknown labels but still shows the raw name with a ❓ marker', () => {
+    const result = enrichObjects([{
+      nameEn: 'Spaceship', nameZh: '', nameJa: '', nameRu: '',
       category: '', bbox: { x: 0, y: 0, w: 10, h: 10 },
     }]);
     expect(result[0].category).toBe('etc');
-    expect(result[0].nameEn).toBe('Other ❓');
-    expect(result[0].nameZh).toBe('其他 ❓');
-    expect(result[0].nameJa).toBe('その他 ❓');
-    expect(result[0].nameRu).toBe('Другое ❓');
+    expect(result[0].nameEn).toBe('Spaceship ❓');
+    expect(result[0].nameZh).toBe('Spaceship ❓');
+    expect(result[0].nameJa).toBe('Spaceship ❓');
+    expect(result[0].nameRu).toBe('Spaceship ❓');
   });
 
   it('routes plastic-ish labels via category alias even without a specific name', () => {

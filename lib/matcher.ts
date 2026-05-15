@@ -1,4 +1,4 @@
-import { ETC_NAMES, getCategoryDef, matchCategoryByAlias } from '@/lib/categories';
+import { matchCategoryByAlias } from '@/lib/categories';
 import type { DetectedObject, WasteCategory } from '@/types';
 
 const DEFAULT_CATEGORY: WasteCategory = 'etc';
@@ -12,26 +12,22 @@ type RawObject = {
   bbox: { x: number; y: number; w: number; h: number };
 };
 
+function titleCase(s: string): string {
+  const t = s.trim();
+  return t ? t.charAt(0).toUpperCase() + t.slice(1) : '';
+}
+
 export function enrichObjects(rawObjects: RawObject[]): DetectedObject[] {
   return rawObjects.map(obj => {
     const matched = matchCategoryByAlias(obj.nameEn);
-    if (matched) {
-      const def = getCategoryDef(matched);
-      return {
-        nameEn: def.names.en,
-        nameZh: def.names.zh,
-        nameJa: def.names.ja,
-        nameRu: def.names.ru,
-        category: matched,
-        bbox: obj.bbox,
-      };
-    }
+    const en = titleCase(obj.nameEn) || '?';
+    const suffix = matched ? '' : ' ❓';
     return {
-      nameEn: ETC_NAMES.en,
-      nameZh: ETC_NAMES.zh,
-      nameJa: ETC_NAMES.ja,
-      nameRu: ETC_NAMES.ru,
-      category: DEFAULT_CATEGORY,
+      nameEn: en + suffix,
+      nameZh: (obj.nameZh.trim() || en) + suffix,
+      nameJa: (obj.nameJa.trim() || en) + suffix,
+      nameRu: (obj.nameRu.trim() || en) + suffix,
+      category: matched ?? DEFAULT_CATEGORY,
       bbox: obj.bbox,
     };
   });
