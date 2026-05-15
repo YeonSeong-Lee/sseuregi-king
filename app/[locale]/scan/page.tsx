@@ -100,7 +100,7 @@ export default function ScanPage({ params }: { params: Promise<{ locale: string 
             shutterAria={t('scan.shutter_aria')} cancelAria={t('scan.cancel_aria')}
             usePhotoLabel={t('scan.use_photo')} retakeLabel={t('scan.retake')} />
           <Link
-            href={`/${locale}/collection`}
+            href={`/${locale}/trash101`}
             className="flex items-center justify-center w-full rounded-full border-2 border-fg text-fg py-4 text-sm font-bold tracking-[0.15em] active:scale-95 transition-transform"
           >
             {t('home.teach_me')}

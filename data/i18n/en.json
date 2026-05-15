@@ -98,5 +98,97 @@
     "no_match_chip": "Outside Seoul",
     "no_match_hint": "We couldn't match your location to a Seoul district. Pick Gangnam-gu or Mapo-gu manually to see disposal rules.",
     "supported_subtitle": "{name} disposal"
+  },
+  "trash101": {
+    "title": "TRASH 101",
+    "back_aria": "Back",
+    "mascot_greeting": "welcome to trash school, foreigner.",
+    "tip_label": "Pro tip —",
+    "lessons": {
+      "ceremony": {
+        "title": "the ceremony",
+        "tagline": "why koreans take trash so seriously",
+        "intro": "Korea didn't always sort like this. The system is younger than you think — and the stakes are higher than you'd guess.",
+        "s1": {
+          "heading": "It's the law (since 1995)",
+          "body": "Korea runs on a pay-as-you-throw system called 종량제 (jongnyangje). You buy a specific government-issued bag, fill it with the right type of trash, and put it out on the right day. Get it wrong and you pay a fine — up to ₩300,000 (about $230) for a single bag in the wrong place."
+        },
+        "s2": {
+          "heading": "It actually works",
+          "body": "Korea recycles around 60% of its household waste — one of the highest rates in the world. That number doesn't happen by accident. It happens because every apartment building has a watchful 경비 아저씨 (security uncle) and every neighbor notices when you drop off the wrong bag."
+        },
+        "s3": {
+          "heading": "Sorting is a social act",
+          "body": "Kids learn it in kindergarten. Convenience stores sell the bags next to the cigarettes. Trash day is a quiet neighborhood ritual. You're not just throwing things out — you're participating in something everyone here grew up with."
+        },
+        "tip": "When in doubt, watch what your neighbors do at the collection point. The bag color and the day of the week tell you almost everything."
+      },
+      "bags": {
+        "title": "know your bags",
+        "tagline": "colors, sizes, and where to buy",
+        "intro": "The bag is the price tag. Buying it is how you pay for collection — so the bag has to match your district, the trash type, and the volume.",
+        "s1": {
+          "heading": "Each district has its own bag",
+          "body": "A 구 (district) bag from Gangnam will not be accepted in Mapo. Always buy the bag for the district you're throwing trash out in. The district name is printed on the bag in Hangul."
+        },
+        "s2": {
+          "heading": "The colors",
+          "body": "White / clear — general waste (일반쓰레기), the everyday stuff.\nYellow — food waste (음식물쓰레기), in many districts.\nTransparent — recyclables (재활용), in some districts.\nBlue / green — varies; check the print on the bag."
+        },
+        "s3": {
+          "heading": "Sizes",
+          "body": "Sold in 3L, 5L, 10L, 20L, 30L, 50L, 75L, and 100L. Smaller is cheaper per bag but more expensive per liter. A 20L general-waste bag is usually around ₩500–₩700."
+        },
+        "s4": {
+          "heading": "Where to buy",
+          "body": "Any convenience store (GS25, CU, 7-Eleven, Emart24), most supermarkets, and many small marts. Just ask: \"종량제 봉투 [district name] 20리터 주세요.\""
+        },
+        "tip": "Keep one or two bags of each size at home. You don't want to discover you're out of bags at 10pm on collection night."
+      },
+      "rules": {
+        "title": "the rules",
+        "tagline": "what goes where — food, plastic, paper",
+        "intro": "Four big buckets: general, food, recyclables, big stuff. Recyclables splits into many sub-streams. Here's the short version.",
+        "s1": {
+          "heading": "General waste → white bag",
+          "body": "Anything that can't be recycled or composted: dirty paper, cigarette butts, broken ceramics, used tissues, contaminated plastic. Tie the bag and put it out on collection night."
+        },
+        "s2": {
+          "heading": "Food waste → yellow bag or RFID bin",
+          "body": "Vegetable scraps, fruit peels, rice, meat, fish. Drain liquids first. NOT food waste: bones, shells, seeds, tea bags, eggshells, onion skins — these go in general waste."
+        },
+        "s3": {
+          "heading": "Recyclables → sort by type",
+          "body": "Paper, paper cartons (milk/juice — separate from regular paper!), glass, metal cans, clear plastic, colored plastic, vinyl/film, styrofoam. Rinse, remove labels and caps when possible, flatten. Put them out in clear bags or in the labeled bins at your building."
+        },
+        "s4": {
+          "heading": "The three-step ritual",
+          "body": "비우고 (empty it) → 헹구고 (rinse it) → 분리하고 (separate it). Say it out loud when you're sorting. It's the mantra."
+        },
+        "tip": "If a label says \"OTHER\" or \"기타\" — that's mixed-material plastic. Most districts want it in general waste, not recycling."
+      },
+      "big": {
+        "title": "big trash",
+        "tagline": "register first or get fined. seriously.",
+        "intro": "대형 폐기물 (daehyeong pyegimul) is anything too big for a 100L bag — furniture, mattresses, appliances, suitcases. You can't just drag it to the curb. You have to register it first.",
+        "s1": {
+          "heading": "Step 1: register",
+          "body": "Go to your 구청 (district office) website or call the hotline. List what you're throwing out and pay a fee — usually ₩2,000 for a chair, ₩5,000 for a desk, ₩10,000+ for a mattress or sofa. Some districts have apps; many have English-friendly websites."
+        },
+        "s2": {
+          "heading": "Step 2: get a sticker (or number)",
+          "body": "After paying, you get a sticker to print or write out, or a digital confirmation number. Tape it visibly to the item. Without it, the collectors will leave the item — and you may get fined."
+        },
+        "s3": {
+          "heading": "Step 3: put it out",
+          "body": "Place it at your designated collection spot on the day specified in the registration. Don't put it out early — it's considered illegal dumping, and the fine starts at ₩300,000."
+        },
+        "s4": {
+          "heading": "Electronics are different",
+          "body": "Large electronics (fridges, washers, TVs) can be picked up for free by 폐가전 무상수거 — call 1599-0903 or book online. They'll come to your door. No sticker needed."
+        },
+        "tip": "Moving out? Register your big trash at least 2–3 days in advance. Last-minute dumps are the #1 way foreigners lose their deposit."
+      }
+    }
   }
 }
