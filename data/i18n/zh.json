@@ -12,9 +12,18 @@
     "point_at_trash": "对准垃圾",
     "teach_me": "学习指南"
   },
-  "scan": { "camera": "拍照", "retake": "重新拍照", "see_guide": "查看处理指南", "shutter_aria": "拍照", "use_photo": "使用照片", "cancel_aria": "关闭相机" },
+  "scan": { "camera": "拍照", "retake": "重新拍照", "shutter_aria": "拍照", "use_photo": "使用照片", "cancel_aria": "关闭相机" },
   "analyzing": { "label": "分析中..." },
-  "overlay": { "tap_hint": "点击选择物品", "no_items": "未检测到废弃物，请尝试更清晰的照片。", "select_all": "全选", "deselect_all": "取消全选" },
+  "result": {
+    "back_aria": "返回",
+    "status_found": "找到{count}个受害者。点一个看看。",
+    "status_empty": "什么都没找到。换张更清楚的照片试试。",
+    "group": {
+      "recyclable": "可回收",
+      "food": "厨余",
+      "general": "一般"
+    }
+  },
   "tips": {
     "title": "提高识别率的技巧",
     "cta": "拍摄小贴士",
@@ -46,6 +55,11 @@
     "green": "绿色网袋",
     "special": "特殊厚布袋（마대）",
     "none": "无需袋装 — 直接投放"
+  },
+  "item": {
+    "goes_in": "投放至：",
+    "did_you_know": "你知道吗？",
+    "register_bulky": "在线登记 → clean.gangnam.go.kr"
   },
   "categories": {
     "paper": "纸类 📰",

@@ -9,6 +9,29 @@ import type {
   WasteCategoryDef,
 } from '@/types';
 
+export type CategoryGroup = 'recyclable' | 'food' | 'general';
+
+const CATEGORY_GROUP: Record<WasteCategory, CategoryGroup> = {
+  paper: 'recyclable',
+  paper_carton: 'recyclable',
+  glass: 'recyclable',
+  metal_can: 'recyclable',
+  plastic: 'recyclable',
+  vinyl: 'recyclable',
+  styrofoam: 'recyclable',
+  clothing: 'recyclable',
+  lightbulb: 'recyclable',
+  e_waste: 'recyclable',
+  food: 'food',
+  general: 'general',
+  large: 'general',
+  etc: 'general',
+};
+
+export function getCategoryGroup(c: WasteCategory): CategoryGroup {
+  return CATEGORY_GROUP[c];
+}
+
 export const CATEGORY_IDS: WasteCategory[] = [
   'paper',
   'paper_carton',

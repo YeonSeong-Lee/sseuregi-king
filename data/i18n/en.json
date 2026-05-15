@@ -15,17 +15,20 @@
   "scan": {
     "camera": "Camera",
     "retake": "Retake",
-    "see_guide": "See Disposal Guide",
     "shutter_aria": "Take photo",
     "use_photo": "Use photo",
     "cancel_aria": "Close camera"
   },
   "analyzing": { "label": "Analyzing..." },
-  "overlay": {
-    "tap_hint": "Tap items to select",
-    "no_items": "No waste items detected. Try a clearer photo.",
-    "select_all": "Select all",
-    "deselect_all": "Deselect all"
+  "result": {
+    "back_aria": "Back",
+    "status_found": "i found {count} victims. tap one.",
+    "status_empty": "i found nothing. try a clearer shot.",
+    "group": {
+      "recyclable": "RECYCLABLE",
+      "food": "FOOD WASTE",
+      "general": "GENERAL"
+    }
   },
   "tips": {
     "title": "Tips for better recognition",
@@ -62,6 +65,11 @@
     "green": "Green net cart",
     "special": "Special bag (마대)",
     "none": "No bag — drop-off"
+  },
+  "item": {
+    "goes_in": "Goes in:",
+    "did_you_know": "Did you know?",
+    "register_bulky": "Register online → clean.gangnam.go.kr"
   },
   "categories": {
     "paper": "Paper 📰",

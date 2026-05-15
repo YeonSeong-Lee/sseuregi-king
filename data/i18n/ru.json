@@ -12,9 +12,18 @@
     "point_at_trash": "НАВЕДИ НА МУСОР",
     "teach_me": "ОБУЧИ МЕНЯ"
   },
-  "scan": { "camera": "Камера", "retake": "Переснять", "see_guide": "Смотреть инструкцию", "shutter_aria": "Снять", "use_photo": "Использовать фото", "cancel_aria": "Закрыть камеру" },
+  "scan": { "camera": "Камера", "retake": "Переснять", "shutter_aria": "Снять", "use_photo": "Использовать фото", "cancel_aria": "Закрыть камеру" },
   "analyzing": { "label": "Анализирую..." },
-  "overlay": { "tap_hint": "Нажмите, чтобы выбрать", "no_items": "Мусор не обнаружен. Попробуйте более чёткое фото.", "select_all": "Выбрать все", "deselect_all": "Снять выделение" },
+  "result": {
+    "back_aria": "Назад",
+    "status_found": "нашёл {count} жертв. жми любую.",
+    "status_empty": "ничего не нашёл. попробуй чётче.",
+    "group": {
+      "recyclable": "ПЕРЕРАБОТКА",
+      "food": "ПИЩЕВЫЕ",
+      "general": "ОБЩИЕ"
+    }
+  },
   "tips": {
     "title": "Как улучшить распознавание",
     "cta": "Советы по съёмке",
@@ -46,6 +55,11 @@
     "green": "Зелёная сетка",
     "special": "Спец. мешок (마대)",
     "none": "Без пакета — сдача"
+  },
+  "item": {
+    "goes_in": "Куда:",
+    "did_you_know": "А вы знали?",
+    "register_bulky": "Регистрация онлайн → clean.gangnam.go.kr"
   },
   "categories": {
     "paper": "Бумага 📰",

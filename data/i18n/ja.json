@@ -12,9 +12,18 @@
     "point_at_trash": "ゴミに向ける",
     "teach_me": "学ぶ"
   },
-  "scan": { "camera": "カメラ", "retake": "撮り直す", "see_guide": "処分ガイドを見る", "shutter_aria": "撮影", "use_photo": "この写真を使う", "cancel_aria": "カメラを閉じる" },
+  "scan": { "camera": "カメラ", "retake": "撮り直す", "shutter_aria": "撮影", "use_photo": "この写真を使う", "cancel_aria": "カメラを閉じる" },
   "analyzing": { "label": "分析中..." },
-  "overlay": { "tap_hint": "アイテムをタップして選択", "no_items": "ゴミが検出されませんでした。", "select_all": "すべて選択", "deselect_all": "選択解除" },
+  "result": {
+    "back_aria": "戻る",
+    "status_found": "{count}匹の被害者を見つけた。一つタップして。",
+    "status_empty": "何も見つからなかった。もっとはっきり撮って。",
+    "group": {
+      "recyclable": "リサイクル",
+      "food": "生ごみ",
+      "general": "一般ごみ"
+    }
+  },
   "tips": {
     "title": "認識精度を上げるコツ",
     "cta": "上手に撮るコツ",
@@ -46,6 +55,11 @@
     "green": "緑のネットカート",
     "special": "特殊規格の麻袋（마대）",
     "none": "袋不要 — 持ち込み"
+  },
+  "item": {
+    "goes_in": "投入先：",
+    "did_you_know": "知ってた？",
+    "register_bulky": "オンライン登録 → clean.gangnam.go.kr"
   },
   "categories": {
     "paper": "紙類 📰",

@@ -4,7 +4,10 @@ import { useState, use } from 'react';
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 import { CameraCapture } from '@/components/CameraCapture';
-import { ObjectOverlay } from '@/components/ObjectOverlay';
+import { ScanResultHeader } from '@/components/ScanResultHeader';
+import { DetectedImage } from '@/components/DetectedImage';
+import { DetectedItemList } from '@/components/DetectedItemList';
+import { SpeechBubble } from '@/components/SpeechBubble';
 import { VideoPlayer } from '@/components/VideoPlayer';
 import { PhotoTipsSheet } from '@/components/PhotoTipsSheet';
 import { SadBlob } from '@/components/svg/SadBlob';
@@ -133,21 +136,27 @@ export default function ScanPage({ params }: { params: Promise<{ locale: string 
 
   if (state === 'overlay') return (
     <>
-      <div className="flex flex-col h-full">
-        <div className="flex-1 min-h-0">
-          <ObjectOverlay
-            imageBase64={imageBase64}
-            objects={objects}
-            locale={locale}
-            tapHint={objects.length === 0 ? t('overlay.no_items') : t('overlay.tap_hint')}
-            seeGuideLabel={t('scan.see_guide')}
-            selectAllLabel={t('overlay.select_all')}
-            deselectAllLabel={t('overlay.deselect_all')}
-            retakeLabel={t('scan.retake')}
-            onSeeGuide={sel => { setSelected(sel); setState('video'); }}
-            onRetake={() => { setObjects([]); setImageBase64(''); setError(''); setState('capture'); }}
-          />
-        </div>
+      <div className="flex flex-col h-full px-5 pt-3 pb-6 gap-4 overflow-y-auto">
+        <ScanResultHeader
+          onBack={() => { setObjects([]); setImageBase64(''); setError(''); setState('capture'); }}
+          backAria={t('result.back_aria')}
+        />
+        <DetectedImage imageBase64={imageBase64} objects={objects} locale={locale} />
+        <SpeechBubble tail="none" size="md" className="self-start">
+          {objects.length === 0
+            ? t('result.status_empty')
+            : t('result.status_found', { count: objects.length })}
+        </SpeechBubble>
+        <DetectedItemList
+          objects={objects}
+          locale={locale}
+          groupLabels={{
+            recyclable: t('result.group.recyclable'),
+            food: t('result.group.food'),
+            general: t('result.group.general'),
+          }}
+          onTapItem={obj => { setSelected([obj]); setState('video'); }}
+        />
       </div>
       {tipsSheet}
     </>
@@ -160,6 +169,7 @@ export default function ScanPage({ params }: { params: Promise<{ locale: string 
           <VideoPlayer
             objects={selected}
             locale={locale}
+            district={supportedCode}
             categoryLabels={buildCategoryLabels(t)}
             backLabel={t('video.back')}
             watchOnYoutubeLabel={t('video.watch_on_youtube')}
