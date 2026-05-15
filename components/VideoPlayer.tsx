@@ -17,6 +17,7 @@ const CATEGORY_COLORS: Record<WasteCategory, string> = {
   lightbulb:    'bg-orange-100 text-orange-800 dark:bg-orange-400/20 dark:text-orange-300',
   food:         'bg-lime-100 text-lime-800 dark:bg-lime-500/20 dark:text-lime-300',
   general:      'bg-zinc-200 text-zinc-700 dark:bg-zinc-500/20 dark:text-zinc-300',
+  e_waste:      'bg-indigo-100 text-indigo-800 dark:bg-indigo-500/20 dark:text-indigo-300',
   large:        'bg-red-100 text-red-800 dark:bg-red-500/20 dark:text-red-300',
   etc:          'bg-slate-100 text-slate-700 border border-dashed border-slate-400 dark:bg-slate-500/20 dark:text-slate-200 dark:border-slate-400/60',
 };

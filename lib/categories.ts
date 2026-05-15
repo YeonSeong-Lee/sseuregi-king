@@ -21,6 +21,7 @@ export const CATEGORY_IDS: WasteCategory[] = [
   'lightbulb',
   'food',
   'general',
+  'e_waste',
   'large',
 ];
 

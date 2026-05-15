@@ -428,6 +428,46 @@
       }
     }
   },
+  "e_waste": {
+    "id": "e_waste",
+    "emoji": "📱",
+    "names": { "en": "E-waste", "zh": "电子废弃物", "ja": "小型電子機器", "ru": "Электроника" },
+    "aliases": [
+      "phone", "smartphone", "mobile phone",
+      "tablet", "tablet computer",
+      "laptop", "computer", "monitor",
+      "microwave", "e-waste"
+    ],
+    "examples": {
+      "en": "Phones, tablets, laptops, monitors, microwaves and other small electronics",
+      "zh": "手机、平板、笔记本电脑、显示器、微波炉等小型电子产品",
+      "ja": "スマートフォン、タブレット、ノートパソコン、モニター、電子レンジなどの小型電子機器",
+      "ru": "Телефоны, планшеты, ноутбуки, мониторы, микроволновки и другая мелкая электроника"
+    },
+    "steps": ["drop_off_dong_center"],
+    "districts": {
+      "gangnam": {
+        "bagColor": "none",
+        "bagType": "none",
+        "schedule": {
+          "en": "Drop off small electronics at your dong community center — free of charge. Working items can be donated or traded in.",
+          "zh": "将小型电子产品送至洞居民中心 — 免费回收。仍可使用的物品可考虑捐赠或以旧换新。",
+          "ja": "小型電子機器は洞住民センターへ無料で持ち込み。使用可能なものは寄付や下取りも検討。",
+          "ru": "Сдайте мелкую электронику в общинный центр тона — бесплатно. Рабочие устройства можно подарить или обменять."
+        }
+      },
+      "mapo": {
+        "bagColor": "none",
+        "bagType": "none",
+        "schedule": {
+          "en": "Drop off small electronics at your dong community center — free of charge. Working items can be donated or traded in.",
+          "zh": "将小型电子产品送至洞居民中心 — 免费回收。仍可使用的物品可考虑捐赠或以旧换新。",
+          "ja": "小型電子機器は洞住民センターへ無料で持ち込み。使用可能なものは寄付や下取りも検討。",
+          "ru": "Сдайте мелкую электронику в общинный центр тона — бесплатно. Рабочие устройства можно подарить или обменять."
+        }
+      }
+    }
+  },
   "large": {
     "id": "large",
     "emoji": "🛋️",
@@ -436,36 +476,34 @@
       "furniture", "sofa", "couch", "chair", "desk", "table",
       "mattress", "bed", "wardrobe", "bookshelf",
       "television", "tv", "refrigerator", "washing machine",
-      "appliance", "microwave", "air conditioner",
-      "phone", "smartphone", "mobile phone", "tablet", "tablet computer",
-      "laptop", "computer", "monitor", "electronic device", "electronics", "e-waste"
+      "air conditioner"
     ],
     "examples": {
-      "en": "Furniture, mattresses, large appliances, TVs, phones, laptops, e-waste",
-      "zh": "家具、床垫、大型家电、电视、手机、笔记本电脑、电子废弃物",
-      "ja": "家具、マットレス、大型家電、テレビ、スマートフォン、ノートパソコン、電子廃棄物",
-      "ru": "Мебель, матрасы, крупная бытовая техника, ТВ, телефоны, ноутбуки, электронные отходы"
+      "en": "Furniture, mattresses, large appliances, TVs, refrigerators, air conditioners",
+      "zh": "家具、床垫、大型家电、电视、冰箱、空调",
+      "ja": "家具、マットレス、大型家電、テレビ、冷蔵庫、エアコン",
+      "ru": "Мебель, матрасы, крупная бытовая техника, ТВ, холодильники, кондиционеры"
     },
-    "steps": ["request_pickup_ewaste", "drop_off_dong_center"],
+    "steps": ["request_pickup_ewaste"],
     "districts": {
       "gangnam": {
         "bagColor": "none",
         "bagType": "none",
         "schedule": {
-          "en": "Large appliances: free pickup via edtd.co.kr or 1599-0903. Furniture/mattresses: request a sticker from the dong office. Small electronics: drop off at your dong community center.",
-          "zh": "大型家电：通过 edtd.co.kr 或 1599-0903 申请免费上门收取。家具/床垫：到洞事务所申请贴纸。小型电子产品：送至洞居民中心。",
-          "ja": "大型家電：edtd.co.kr または 1599-0903 で無料訪問回収。家具・マットレス：洞事務所でステッカーを申請。小型電子機器：洞住民センターへ。",
-          "ru": "Крупная техника: бесплатный вывоз через edtd.co.kr или 1599-0903. Мебель/матрасы: получите наклейку в офисе тона. Мелкая электроника — в общинный центр."
+          "en": "Large appliances (fridge, washer, AC, TV): free pickup via edtd.co.kr or 1599-0903. Furniture/mattresses: request a paid sticker from the dong office.",
+          "zh": "大型家电（冰箱、洗衣机、空调、电视）：通过 edtd.co.kr 或 1599-0903 申请免费上门收取。家具/床垫：到洞事务所申请付费贴纸。",
+          "ja": "大型家電（冷蔵庫・洗濯機・エアコン・テレビ）：edtd.co.kr または 1599-0903 で無料訪問回収。家具・マットレス：洞事務所で有料ステッカーを申請。",
+          "ru": "Крупная техника (холодильник, стиралка, кондиционер, ТВ): бесплатный вывоз через edtd.co.kr или 1599-0903. Мебель/матрасы: оплачиваемая наклейка в офисе тона."
         }
       },
       "mapo": {
         "bagColor": "none",
         "bagType": "none",
         "schedule": {
-          "en": "Large appliances: free pickup via edtd.co.kr or 1599-0903. Furniture/mattresses: request a sticker from the dong office. Small electronics: drop off at your dong community center.",
-          "zh": "大型家电：通过 edtd.co.kr 或 1599-0903 申请免费上门收取。家具/床垫：到洞事务所申请贴纸。小型电子产品：送至洞居民中心。",
-          "ja": "大型家電：edtd.co.kr または 1599-0903 で無料訪問回収。家具・マットレス：洞事務所でステッカーを申請。小型電子機器：洞住民センターへ。",
-          "ru": "Крупная техника: бесплатный вывоз через edtd.co.kr или 1599-0903. Мебель/матрасы: получите наклейку в офисе тона. Мелкая электроника — в общинный центр."
+          "en": "Large appliances (fridge, washer, AC, TV): free pickup via edtd.co.kr or 1599-0903. Furniture/mattresses: request a paid sticker from the dong office.",
+          "zh": "大型家电（冰箱、洗衣机、空调、电视）：通过 edtd.co.kr 或 1599-0903 申请免费上门收取。家具/床垫：到洞事务所申请付费贴纸。",
+          "ja": "大型家電（冷蔵庫・洗濯機・エアコン・テレビ）：edtd.co.kr または 1599-0903 で無料訪問回収。家具・マットレス：洞事務所で有料ステッカーを申請。",
+          "ru": "Крупная техника (холодильник, стиралка, кондиционер, ТВ): бесплатный вывоз через edtd.co.kr или 1599-0903. Мебель/матрасы: оплачиваемая наклейка в офисе тона."
         }
       }
     }

@@ -103,6 +103,6 @@ describe('etc pseudo-category', () => {
 
   it('is excluded from CATEGORY_IDS so it never leaks into the filter row', () => {
     expect(CATEGORY_IDS).not.toContain('etc');
-    expect(CATEGORY_IDS).toHaveLength(12);
+    expect(CATEGORY_IDS).toHaveLength(13);
   });
 });

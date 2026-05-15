@@ -20,6 +20,7 @@ const CATEGORY_BG: Record<WasteCategory, string> = {
   lightbulb:    'bg-orange-400',
   food:         'bg-lime-500',
   general:      'bg-zinc-600',
+  e_waste:      'bg-indigo-500',
   large:        'bg-red-500',
   etc:          'bg-slate-500/70',
 };

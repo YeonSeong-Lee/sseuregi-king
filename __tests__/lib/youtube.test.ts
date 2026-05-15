@@ -20,7 +20,7 @@ describe('getYoutubeVideo', () => {
   it('returns a video for every category × locale pair', () => {
     const categories = [
       'paper', 'paper_carton', 'glass', 'metal_can', 'plastic', 'vinyl',
-      'styrofoam', 'clothing', 'lightbulb', 'food', 'general', 'large',
+      'styrofoam', 'clothing', 'lightbulb', 'food', 'general', 'e_waste', 'large',
     ] as const;
     for (const category of categories) {
       for (const locale of ['en', 'ja', 'zh', 'ru'] as const) {

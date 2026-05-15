@@ -34,12 +34,34 @@ describe('enrichObjects', () => {
     expect(result[0].category).toBe('plastic');
   });
 
-  it('routes appliance labels to large', () => {
+  it('routes large appliances and furniture to large', () => {
+    const cases = ['Refrigerator', 'Sofa', 'Washing machine', 'TV'];
+    for (const nameEn of cases) {
+      const result = enrichObjects([{
+        nameEn, nameZh: '', nameJa: '', nameRu: '',
+        category: '', bbox: { x: 0, y: 0, w: 10, h: 10 },
+      }]);
+      expect(result[0].category, nameEn).toBe('large');
+    }
+  });
+
+  it('routes small electronics to e_waste, not large', () => {
+    const cases = ['Phone', 'Smartphone', 'Tablet', 'Laptop', 'Monitor', 'Microwave'];
+    for (const nameEn of cases) {
+      const result = enrichObjects([{
+        nameEn, nameZh: '', nameJa: '', nameRu: '',
+        category: '', bbox: { x: 0, y: 0, w: 10, h: 10 },
+      }]);
+      expect(result[0].category, nameEn).toBe('e_waste');
+    }
+  });
+
+  it('does not force the broad "Appliance" hypernym into large — falls back to etc', () => {
     const result = enrichObjects([{
-      nameEn: 'Refrigerator', nameZh: '', nameJa: '', nameRu: '',
+      nameEn: 'Appliance', nameZh: '', nameJa: '', nameRu: '',
       category: '', bbox: { x: 0, y: 0, w: 10, h: 10 },
     }]);
-    expect(result[0].category).toBe('large');
+    expect(result[0].category).toBe('etc');
   });
 
   it('classifies battery-ish labels under general', () => {

@@ -13,6 +13,7 @@ export type WasteCategory =
   | 'food'
   | 'general'
   | 'large'
+  | 'e_waste'
   | 'etc';
 
 export interface BBox {

@@ -19,7 +19,7 @@ const fixture: DetectedObject[] = [
   },
   {
     nameEn: 'Phone', nameZh: '手机', nameJa: '電話', nameRu: 'Телефон',
-    category: 'large', bbox: { x: 70, y: 10, w: 10, h: 10 },
+    category: 'e_waste', bbox: { x: 70, y: 10, w: 10, h: 10 },
   },
 ];
 
@@ -46,7 +46,7 @@ describe('ObjectOverlay category colors', () => {
     expect(screen.getByRole('button', { name: 'Plastic Bottle' }).className).toContain('bg-blue-500');
     expect(screen.getByRole('button', { name: 'Food Waste' }).className).toContain('bg-lime-500');
     expect(screen.getByRole('button', { name: 'Plastic Bag' }).className).toContain('bg-cyan-500');
-    expect(screen.getByRole('button', { name: 'Phone' }).className).toContain('bg-red-500');
+    expect(screen.getByRole('button', { name: 'Phone' }).className).toContain('bg-indigo-500');
   });
 
   it('toggles ring-2 on the tag when tapped, keeping its category color', async () => {
