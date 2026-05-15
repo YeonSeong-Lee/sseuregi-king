@@ -1,6 +1,6 @@
 import Anthropic from '@anthropic-ai/sdk';
-import { CATEGORY_IDS, getCategoryDef } from '@/lib/categories';
-import type { DetectedObject } from '@/types';
+import { CATEGORY_IDS, ETC_NAMES, getCategoryDef } from '@/lib/categories';
+import type { DetectedObject, WasteCategory } from '@/types';
 
 const MODEL = 'claude-sonnet-4-6';
 const MAX_TOKENS = 1024;
@@ -46,6 +46,15 @@ function clamp(n: number, lo: number, hi: number): number {
   return Math.max(lo, Math.min(hi, n));
 }
 
+const VALID_CATEGORIES = new Set<string>([...CATEGORY_IDS, 'etc']);
+
+function resolveCategory(raw: unknown): WasteCategory {
+  if (typeof raw === 'string' && VALID_CATEGORIES.has(raw)) {
+    return raw as WasteCategory;
+  }
+  return 'etc';
+}
+
 function coerceItem(item: ClaudeItem): DetectedObject | null {
   const b = item.bbox;
   if (
@@ -54,13 +63,17 @@ function coerceItem(item: ClaudeItem): DetectedObject | null {
     typeof b.w !== 'number' || typeof b.h !== 'number'
   ) return null;
 
-  const def = getCategoryDef('paper'); // placeholder — replaced in next task
+  const category = resolveCategory(item.category);
+  const names = category === 'etc'
+    ? ETC_NAMES
+    : getCategoryDef(category).names;
+
   return {
-    nameEn: def.names.en,
-    nameZh: def.names.zh,
-    nameJa: def.names.ja,
-    nameRu: def.names.ru,
-    category: 'paper',
+    nameEn: names.en,
+    nameZh: names.zh,
+    nameJa: names.ja,
+    nameRu: names.ru,
+    category,
     bbox: {
       x: clamp(b.x * 100, 0, 100),
       y: clamp(b.y * 100, 0, 100),

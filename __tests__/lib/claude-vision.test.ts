@@ -57,4 +57,49 @@ describe('claudeDetect', () => {
     expect(result[0].bbox.w).toBeCloseTo(30);
     expect(result[0].bbox.h).toBeCloseTo(40);
   });
+
+  it('hydrates localized names from getCategoryDef for known categories', async () => {
+    process.env.ANTHROPIC_API_KEY = 'test-key';
+    messagesCreateMock.mockResolvedValue({
+      content: [{ type: 'text', text: JSON.stringify([
+        { category: 'paper_carton', label: 'Milk carton', bbox: { x: 0, y: 0, w: 0.5, h: 0.5 } },
+      ]) }],
+    });
+
+    const result = await claudeDetect('base64data');
+
+    expect(result[0].category).toBe('paper_carton');
+    expect(result[0].nameEn).toBe('Paper Carton');
+    expect(result[0].nameZh).toBeTruthy();
+    expect(result[0].nameJa).toBeTruthy();
+    expect(result[0].nameRu).toBeTruthy();
+  });
+
+  it('coerces unknown category to etc with ETC_NAMES', async () => {
+    process.env.ANTHROPIC_API_KEY = 'test-key';
+    messagesCreateMock.mockResolvedValue({
+      content: [{ type: 'text', text: JSON.stringify([
+        { category: 'banana_peel', label: 'banana', bbox: { x: 0, y: 0, w: 0.1, h: 0.1 } },
+      ]) }],
+    });
+
+    const result = await claudeDetect('base64data');
+
+    expect(result[0].category).toBe('etc');
+    expect(result[0].nameEn).toBe('Other ❓');
+  });
+
+  it('accepts etc as an explicit category from Claude', async () => {
+    process.env.ANTHROPIC_API_KEY = 'test-key';
+    messagesCreateMock.mockResolvedValue({
+      content: [{ type: 'text', text: JSON.stringify([
+        { category: 'etc', label: 'unknown thing', bbox: { x: 0, y: 0, w: 0.1, h: 0.1 } },
+      ]) }],
+    });
+
+    const result = await claudeDetect('base64data');
+
+    expect(result[0].category).toBe('etc');
+    expect(result[0].nameEn).toBe('Other ❓');
+  });
 });
