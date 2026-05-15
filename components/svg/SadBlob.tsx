@@ -18,40 +18,39 @@ export function SadBlob({ className }: SadBlobProps) {
       <g
         fill="none"
         stroke={STROKE}
-        strokeWidth="2.2"
         strokeLinecap="round"
         strokeLinejoin="round"
       >
-        {/* Antennae — two upright curls */}
-        <path d="M 48 30 Q 44 18 50 12" />
-        <path d="M 72 30 Q 76 18 70 12" />
+        {/* Antennae — tall ears rising from the top of the head with a slight outward curl */}
+        <path d="M 50 36 Q 44 22 48 8" strokeWidth="2.4" />
+        <path d="M 70 36 Q 76 22 72 8" strokeWidth="2.4" />
 
-        {/* Body — soft, slightly pear-shaped blob */}
+        {/* Body — rounded-square, slightly wider than tall */}
         <path
-          d="M 30 50 Q 28 36 44 32 Q 60 28 76 32 Q 92 36 90 52 Q 92 72 86 84 Q 78 96 60 96 Q 42 96 34 84 Q 28 72 30 50 Z"
+          d="M 28 52 Q 28 38 44 36 Q 60 34 76 36 Q 92 38 92 52 Q 94 70 88 82 Q 80 94 60 94 Q 40 94 32 82 Q 26 70 28 52 Z"
           fill={BODY}
+          strokeWidth="2.6"
         />
 
-        {/* Closed sad eyes — gentle downward arcs */}
-        <path d="M 46 58 Q 50 62 54 58" />
-        <path d="M 66 58 Q 70 62 74 58" />
+        {/* Eyes — open black dots */}
+        <circle cx="50" cy="60" r="3.2" fill={STROKE} stroke="none" />
+        <circle cx="70" cy="60" r="3.2" fill={STROKE} stroke="none" />
 
-        {/* Small frown */}
-        <path d="M 54 76 Q 60 72 66 76" />
+        {/* Mouth — gentle frown (control point above start/end → curve dips upward) */}
+        <path d="M 52 80 Q 60 72 68 80" strokeWidth="2.2" />
 
         {/* Stick arms hanging at the sides */}
-        <path d="M 30 60 Q 22 68 24 78" />
-        <path d="M 90 60 Q 98 68 96 78" />
+        <path d="M 30 65 Q 22 74 24 84" strokeWidth="2.2" />
+        <path d="M 90 65 Q 98 74 96 84" strokeWidth="2.2" />
 
         {/* Tiny dot hands */}
-        <circle cx="24" cy="78" r="1.6" fill={STROKE} />
-        <circle cx="96" cy="78" r="1.6" fill={STROKE} />
+        <circle cx="24" cy="84" r="1.6" fill={STROKE} stroke="none" />
+        <circle cx="96" cy="84" r="1.6" fill={STROKE} stroke="none" />
 
-        {/* Sweat drop on forehead */}
+        {/* Sweat drop — right side of the head, lower than v1 */}
         <path
-          d="M 78 42 Q 76 46 78 49 Q 80 46 78 42 Z"
+          d="M 84 50 Q 81 56 84 60 Q 87 56 84 50 Z"
           fill={DROP}
-          stroke={STROKE}
           strokeWidth="1.4"
         />
       </g>

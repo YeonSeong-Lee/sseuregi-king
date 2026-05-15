@@ -84,11 +84,21 @@ export default function ScanPage({ params }: { params: Promise<{ locale: string 
           </h1>
         </div>
 
-        <div className="flex-1 flex flex-col items-center justify-center gap-6 min-h-0">
+        <div className="flex-1 flex flex-col items-center justify-center gap-3 min-h-0">
           <SadBlob className="w-44 h-44 sm:w-52 sm:h-52" />
-          <p className="font-[family-name:var(--font-fraunces)] italic text-fg-muted text-base">
-            {t('home.tagline')}
-          </p>
+          <div
+            className="relative inline-flex items-center justify-center border-2 border-fg rounded-full px-6 py-2.5"
+            style={{ background: 'var(--mascot-bag)' }}
+          >
+            <span
+              aria-hidden="true"
+              className="absolute left-1/2 -translate-x-1/2 -top-[7px] w-3 h-3 border-l-2 border-t-2 border-fg rotate-45"
+              style={{ background: 'var(--mascot-bag)' }}
+            />
+            <p className="font-[family-name:var(--font-fraunces)] text-fg text-sm font-semibold">
+              {t('home.tagline')}
+            </p>
+          </div>
         </div>
 
         {error && <p className="text-red-600 dark:text-red-400 text-sm text-center mb-2">{error}</p>}
