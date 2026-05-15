@@ -1,13 +1,18 @@
 {
   "meta": {
-    "title": "垃圾图鉴 — 韩国分类回收指南",
+    "title": "Saregi Killer — 韩国分类回收指南",
     "description": "拍下任何垃圾，立即了解在韩国该用哪种袋、哪一天扔、扔到哪里。专为居民和旅居者打造的实用图鉴。"
   },
   "home": {
-    "title": "垃圾图鉴",
-    "subtitle": "拍摄垃圾，了解在韩国如何正确处理"
+    "title": "Saregi Killer",
+    "subtitle": "拍摄垃圾，了解在韩国如何正确处理",
+    "brand_title_line1": "SAREGI",
+    "brand_title_line2": "KILLER",
+    "tagline": "嗨，一起来消灭 saregi 吧。",
+    "point_at_trash": "对准垃圾",
+    "teach_me": "学习指南"
   },
-  "scan": { "camera": "拍照", "gallery": "相册", "retake": "重新拍照", "see_guide": "查看处理指南", "shutter_aria": "拍照", "use_photo": "使用照片", "cancel_aria": "关闭相机" },
+  "scan": { "camera": "拍照", "retake": "重新拍照", "see_guide": "查看处理指南", "shutter_aria": "拍照", "use_photo": "使用照片", "cancel_aria": "关闭相机" },
   "analyzing": { "label": "分析中..." },
   "overlay": { "tap_hint": "点击选择物品", "no_items": "未检测到废弃物，请尝试更清晰的照片。", "select_all": "全选", "deselect_all": "取消全选" },
   "tips": {
@@ -58,7 +63,6 @@
     "large": "大型 🛋️",
     "etc": "其他 ❓"
   },
-  "nav": { "scan": "扫描", "guide": "指南" },
   "theme": {
     "aria_label": "切换主题",
     "system": "跟随系统",

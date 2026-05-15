@@ -8,7 +8,6 @@ interface CameraCaptureProps {
   onCapture: (base64: string) => void;
   onError?: () => void;
   cameraLabel: string;
-  galleryLabel: string;
   shutterAria: string;
   cancelAria: string;
   usePhotoLabel: string;
@@ -22,11 +21,10 @@ function liveCameraSupported(): boolean {
 }
 
 export function CameraCapture({
-  onCapture, onError, cameraLabel, galleryLabel,
+  onCapture, onError, cameraLabel,
   shutterAria, cancelAria, usePhotoLabel, retakeLabel,
 }: CameraCaptureProps) {
   const cameraRef = useRef<HTMLInputElement>(null);
-  const galleryRef = useRef<HTMLInputElement>(null);
   const [showLive, setShowLive] = useState(false);
 
   async function handleFile(file: File | undefined, input: HTMLInputElement) {
@@ -50,18 +48,12 @@ export function CameraCapture({
   }
 
   return (
-    <div className="flex flex-col gap-4 w-full">
+    <>
       <input ref={cameraRef} type="file" accept="image/*" capture="environment"
         className="hidden" onChange={e => handleFile(e.target.files?.[0], e.target as HTMLInputElement)} />
-      <input ref={galleryRef} type="file" accept="image/*"
-        className="hidden" onChange={e => handleFile(e.target.files?.[0], e.target as HTMLInputElement)} />
       <button onClick={handleCameraTap}
-        className="flex items-center justify-center gap-2 bg-blue-500 text-white rounded-2xl py-4 text-lg font-semibold active:scale-95 transition-transform">
-        📷 {cameraLabel}
-      </button>
-      <button onClick={() => galleryRef.current?.click()}
-        className="flex items-center justify-center gap-2 bg-surface-elev border border-line-strong text-fg rounded-2xl py-4 text-lg font-semibold active:scale-95 transition-transform">
-        🖼️ {galleryLabel}
+        className="flex items-center justify-center w-full bg-fg text-background rounded-full py-4 text-sm font-bold tracking-[0.15em] active:scale-95 transition-transform">
+        {cameraLabel}
       </button>
       {showLive && (
         <LiveCamera
@@ -74,6 +66,6 @@ export function CameraCapture({
           retakeLabel={retakeLabel}
         />
       )}
-    </div>
+    </>
   );
 }

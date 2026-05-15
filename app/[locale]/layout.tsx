@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
+import Link from 'next/link';
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, getTranslations } from 'next-intl/server';
-import { BottomNav } from '@/components/BottomNav';
 import { LanguagePicker } from '@/components/LanguagePicker';
 import { HeaderDistrictBadge } from '@/components/HeaderDistrictBadge';
 import { ThemeToggle } from '@/components/ThemeToggle';
@@ -22,7 +22,7 @@ const OG_IMAGE = {
   url: '/og.png',
   width: 1200,
   height: 630,
-  alt: 'Trash Dex — a trash-bag mascot peers through a telescope at the night sky',
+  alt: 'Saregi Killer — a worried blob mascot',
 };
 
 export async function generateMetadata({
@@ -42,7 +42,7 @@ export async function generateMetadata({
     alternates: { canonical: `/${locale}`, languages },
     openGraph: {
       type: 'website',
-      siteName: 'sseuregi-killer',
+      siteName: 'Saregi Killer',
       title,
       description,
       locale: OG_LOCALE[locale] ?? 'en_US',
@@ -69,20 +69,26 @@ export default async function LocaleLayout({
   if (!(routing.locales as readonly string[]).includes(locale)) notFound();
 
   const messages = await getMessages();
-  const t = await getTranslations({ locale, namespace: 'nav' });
 
   return (
     <NextIntlClientProvider messages={messages}>
       <ThemeProvider>
         <DistrictProvider>
           <div className="flex flex-col h-dvh w-full max-w-md mx-auto bg-surface text-fg">
-            <header className="flex justify-end items-center gap-2 px-4 py-2 border-b border-line flex-shrink-0">
-              <HeaderDistrictBadge locale={locale as Locale} />
-              <LanguagePicker locale={locale} />
-              <ThemeToggle />
+            <header className="flex justify-between items-center gap-2 px-4 py-2 border-b border-line flex-shrink-0">
+              <Link
+                href={`/${locale}/scan`}
+                className="font-[family-name:var(--font-fraunces)] font-black text-base tracking-tight"
+              >
+                SAREGI
+              </Link>
+              <div className="flex items-center gap-2">
+                <HeaderDistrictBadge locale={locale as Locale} />
+                <LanguagePicker locale={locale} />
+                <ThemeToggle />
+              </div>
             </header>
             <main className="flex-1 min-h-0 overflow-hidden">{children}</main>
-            <BottomNav locale={locale} scanLabel={t('scan')} guideLabel={t('guide')} />
           </div>
         </DistrictProvider>
       </ThemeProvider>

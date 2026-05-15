@@ -1,15 +1,19 @@
 {
   "meta": {
-    "title": "Trash Dex — sort your trash in Korea",
+    "title": "Saregi Killer — sort your trash in Korea",
     "description": "Scan any waste item and find the right bag, day, and disposal site for your district in Korea. A field guide for residents and travelers."
   },
   "home": {
-    "title": "Trash Dex",
-    "subtitle": "Scan your trash to learn how to dispose of it correctly in Korea"
+    "title": "Saregi Killer",
+    "subtitle": "Scan your trash to learn how to dispose of it correctly in Korea",
+    "brand_title_line1": "SAREGI",
+    "brand_title_line2": "KILLER",
+    "tagline": "hi. let's kill some saregi.",
+    "point_at_trash": "POINT AT TRASH",
+    "teach_me": "TEACH ME"
   },
   "scan": {
     "camera": "Camera",
-    "gallery": "Gallery",
     "retake": "Retake",
     "see_guide": "See Disposal Guide",
     "shutter_aria": "Take photo",
@@ -75,7 +79,6 @@
     "large": "Large 🛋️",
     "etc": "Other ❓"
   },
-  "nav": { "scan": "Scan", "guide": "Guide" },
   "theme": {
     "aria_label": "Change theme",
     "system": "System",

@@ -1,12 +1,13 @@
 // app/[locale]/scan/page.tsx
 'use client';
 import { useState, use } from 'react';
+import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 import { CameraCapture } from '@/components/CameraCapture';
 import { ObjectOverlay } from '@/components/ObjectOverlay';
 import { VideoPlayer } from '@/components/VideoPlayer';
 import { PhotoTipsSheet } from '@/components/PhotoTipsSheet';
-import { MainBgWatcher } from '@/components/svg/MainBgWatcher';
+import { SadBlob } from '@/components/svg/SadBlob';
 import { useDistrictContext } from '@/contexts/DistrictContext';
 import { isSupported } from '@/data/districts';
 import { buildCategoryLabels, getCategoryDisposalText } from '@/lib/categories';
@@ -76,28 +77,34 @@ export default function ScanPage({ params }: { params: Promise<{ locale: string 
 
   if (state === 'capture') return (
     <>
-      <div className="flex flex-col h-full">
-        <div className="relative flex flex-col items-center justify-center flex-1 px-4 gap-8">
-          <MainBgWatcher className="absolute left-2 bottom-2 w-28 h-28 pointer-events-none select-none opacity-90" />
-          <div className="relative z-10 text-center">
-            <div className="text-5xl mb-2">📷</div>
-            <p className="text-fg-muted text-sm">{t('overlay.tap_hint')}</p>
-          </div>
-          {error && <p className="relative z-10 text-red-600 dark:text-red-400 text-sm text-center">{error}</p>}
-          <div className="relative z-10 w-full">
-            <CameraCapture onCapture={handleCapture}
-              onError={() => setError('Failed to process image. Please try again.')}
-              cameraLabel={t('scan.camera')} galleryLabel={t('scan.gallery')}
-              shutterAria={t('scan.shutter_aria')} cancelAria={t('scan.cancel_aria')}
-              usePhotoLabel={t('scan.use_photo')} retakeLabel={t('scan.retake')} />
-          </div>
-          <button
-            type="button"
-            onClick={() => setTipsOpen(true)}
-            className="relative z-10 text-fg-muted text-sm underline-offset-4 hover:underline active:scale-95 transition-transform"
+      <div className="flex flex-col h-full px-6 py-6">
+        <div className="flex flex-col items-center text-center pt-2">
+          <h1 className="font-[family-name:var(--font-fraunces)] font-black text-5xl sm:text-6xl leading-[0.95] tracking-tight">
+            {t('home.brand_title_line1')}<br />{t('home.brand_title_line2')}
+          </h1>
+        </div>
+
+        <div className="flex-1 flex flex-col items-center justify-center gap-6 min-h-0">
+          <SadBlob className="w-44 h-44 sm:w-52 sm:h-52" />
+          <p className="font-[family-name:var(--font-fraunces)] italic text-fg-muted text-base">
+            {t('home.tagline')}
+          </p>
+        </div>
+
+        {error && <p className="text-red-600 dark:text-red-400 text-sm text-center mb-2">{error}</p>}
+
+        <div className="flex flex-col gap-3 pb-2">
+          <CameraCapture onCapture={handleCapture}
+            onError={() => setError('Failed to process image. Please try again.')}
+            cameraLabel={t('home.point_at_trash')}
+            shutterAria={t('scan.shutter_aria')} cancelAria={t('scan.cancel_aria')}
+            usePhotoLabel={t('scan.use_photo')} retakeLabel={t('scan.retake')} />
+          <Link
+            href={`/${locale}/collection`}
+            className="flex items-center justify-center w-full rounded-full border-2 border-fg text-fg py-4 text-sm font-bold tracking-[0.15em] active:scale-95 transition-transform"
           >
-            💡 {t('tips.cta')}
-          </button>
+            {t('home.teach_me')}
+          </Link>
         </div>
       </div>
       {tipsSheet}

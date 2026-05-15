@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Fraunces } from "next/font/google";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -12,20 +12,27 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const fraunces = Fraunces({
+  variable: "--font-fraunces",
+  subsets: ["latin"],
+  axes: ["SOFT", "opsz"],
+  display: "swap",
+});
+
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://sseuregi-king.vercel.app";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Trash Dex — sseuregi-killer",
-    template: "%s · sseuregi-killer",
+    default: "Saregi Killer — sort your trash in Korea",
+    template: "%s · Saregi Killer",
   },
   description: "Scan your trash and learn how to dispose of it correctly in Korea.",
-  applicationName: "sseuregi-killer",
+  applicationName: "Saregi Killer",
   openGraph: {
     type: "website",
-    siteName: "sseuregi-killer",
-    images: [{ url: "/og.png", width: 1200, height: 630, alt: "Trash Dex — a trash-bag mascot peers through a telescope at the night sky" }],
+    siteName: "Saregi Killer",
+    images: [{ url: "/og.png", width: 1200, height: 630, alt: "Saregi Killer — a worried blob mascot" }],
   },
   twitter: {
     card: "summary_large_image",
@@ -44,7 +51,7 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} ${fraunces.variable} h-full antialiased`}
     >
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
