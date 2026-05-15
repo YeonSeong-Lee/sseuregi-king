@@ -1,5 +1,6 @@
 import Anthropic from '@anthropic-ai/sdk';
 import { CATEGORY_IDS, ETC_NAMES, getCategoryDef } from '@/lib/categories';
+import { findTrashItemByLabel } from '@/lib/trash-items';
 import type { DetectedObject, WasteCategory } from '@/types';
 
 const MODEL = 'claude-sonnet-4-6';
@@ -77,6 +78,29 @@ function coerceItem(item: ClaudeItem): DetectedObject | null {
     return null;
   }
 
+  const bbox = {
+    x: clamp(b.x * 100, 0, 100),
+    y: clamp(b.y * 100, 0, 100),
+    w: clamp(b.w * 100, 0, 100),
+    h: clamp(b.h * 100, 0, 100),
+  };
+
+  // 1) Item-level match on the Claude-supplied label.
+  const label = typeof item.label === 'string' ? item.label : '';
+  const matchedItem = label ? findTrashItemByLabel(label) : undefined;
+  if (matchedItem) {
+    return {
+      nameEn: matchedItem.names.en,
+      nameZh: matchedItem.names.zh || matchedItem.names.en,
+      nameJa: matchedItem.names.ja || matchedItem.names.en,
+      nameRu: matchedItem.names.ru || matchedItem.names.en,
+      category: matchedItem.category,
+      bbox,
+      trashItemId: matchedItem.id,
+    };
+  }
+
+  // 2) Category fallback (existing behavior).
   const category = resolveCategory(item.category);
   const names = category === 'etc'
     ? ETC_NAMES
@@ -88,12 +112,7 @@ function coerceItem(item: ClaudeItem): DetectedObject | null {
     nameJa: names.ja,
     nameRu: names.ru,
     category,
-    bbox: {
-      x: clamp(b.x * 100, 0, 100),
-      y: clamp(b.y * 100, 0, 100),
-      w: clamp(b.w * 100, 0, 100),
-      h: clamp(b.h * 100, 0, 100),
-    },
+    bbox,
   };
 }
 

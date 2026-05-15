@@ -1,0 +1,1490 @@
+{
+  "_source": "saregi_killer_visual_database.csv (Gangnam-gu baseline)",
+  "items": [
+    {
+      "id": "pet_bottle_clear",
+      "category": "plastic",
+      "names": {
+        "en": "PET bottle (clear/transparent)",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "aliases": ["pet bottle", "clear pet bottle", "transparent pet bottle", "water bottle", "plastic water bottle", "clear plastic bottle"],
+      "destination": {
+        "en": "투명페트 (Clear PET) bin",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "bagColor": "none",
+      "actionSteps": ["remove_cap", "peel_label", "crush_flat"],
+      "funnyMascot": {
+        "en": "cap off. label off. now crush it like your enemies.",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "funnyFact": {
+        "en": "korea recycles 62% of PET bottles. your country could never.",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "isBulky": false,
+      "bulkyWebsiteUrl": null
+    },
+    {
+      "id": "plastic_bottle_colored",
+      "category": "plastic",
+      "names": {
+        "en": "Plastic bottle (colored)",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "aliases": ["colored plastic bottle", "soda bottle", "soft drink bottle", "colored bottle"],
+      "destination": {
+        "en": "플라스틱 (Plastic) bin",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "bagColor": "none",
+      "actionSteps": ["empty_liquid", "rinse_inside", "remove_label"],
+      "funnyMascot": {
+        "en": "pour it out. rinse it. peel the sticker. you're basically a surgeon now.",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "funnyFact": {
+        "en": "koreans rinse so hard, recycling plants barely need to wash anything.",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "isBulky": false,
+      "bulkyWebsiteUrl": null
+    },
+    {
+      "id": "plastic_container",
+      "category": "plastic",
+      "names": {
+        "en": "Plastic container (shampoo/detergent)",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "aliases": ["shampoo bottle", "shampoo container", "detergent bottle", "lotion bottle", "plastic container", "conditioner bottle"],
+      "destination": {
+        "en": "플라스틱 (Plastic) bin",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "bagColor": "none",
+      "actionSteps": ["empty_liquid", "rinse_inside", "remove_pump"],
+      "funnyMascot": {
+        "en": "squeeze out every last drop. remove the pump. it's spa day for trash.",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "funnyFact": {
+        "en": "the pump mechanism is usually NOT recyclable. surprise!",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "isBulky": false,
+      "bulkyWebsiteUrl": null
+    },
+    {
+      "id": "plastic_bag",
+      "category": "vinyl",
+      "names": {
+        "en": "Plastic bag / vinyl wrap",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "aliases": ["plastic bag", "shopping bag", "grocery bag", "vinyl bag", "snack wrapper", "ramen pouch", "candy wrapper", "plastic wrap"],
+      "destination": {
+        "en": "비닐 (Vinyl) bin",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "bagColor": "transparent",
+      "actionSteps": ["shake_off_food", "wipe_clean", "bundle_together"],
+      "funnyMascot": {
+        "en": "shake it. wipe it. stuff it in a clear bag. vinyl has feelings too.",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "funnyFact": {
+        "en": "dirty vinyl = general waste. clean vinyl = recyclable. the line is thin.",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "isBulky": false,
+      "bulkyWebsiteUrl": null
+    },
+    {
+      "id": "styrofoam_clean",
+      "category": "styrofoam",
+      "names": {
+        "en": "Styrofoam (clean)",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "aliases": ["styrofoam", "clean styrofoam", "foam tray", "foam packing", "packing foam", "polystyrene"],
+      "destination": {
+        "en": "스티로폼 (Styrofoam) bin",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "bagColor": "none",
+      "actionSteps": ["remove_tape", "remove_sticker", "break_pieces"],
+      "funnyMascot": {
+        "en": "peel off every sticker. every. single. one. yes that one too.",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "funnyFact": {
+        "en": "styrofoam takes 500 years to decompose. your grandkids' grandkids will see it.",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "isBulky": false,
+      "bulkyWebsiteUrl": null
+    },
+    {
+      "id": "styrofoam_food_stained",
+      "category": "general",
+      "names": {
+        "en": "Styrofoam (food-stained)",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "aliases": ["dirty styrofoam", "food stained styrofoam", "ramen cup", "instant noodle cup", "cup noodle container", "stained foam"],
+      "destination": {
+        "en": "일반쓰레기 bag",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "bagColor": "white",
+      "actionSteps": ["put_in_bag"],
+      "funnyMascot": {
+        "en": "it touched food. it's dead to recycling now. white bag.",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "funnyFact": {
+        "en": "cup noodle containers are almost NEVER recyclable. tragic.",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "isBulky": false,
+      "bulkyWebsiteUrl": null
+    },
+    {
+      "id": "cardboard_box",
+      "category": "paper",
+      "names": {
+        "en": "Cardboard box",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "aliases": ["cardboard box", "shipping box", "corrugated box", "cardboard", "moving box"],
+      "destination": {
+        "en": "종이 (Paper) bin",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "bagColor": "none",
+      "actionSteps": ["remove_tape", "flatten_box", "tie_with_string"],
+      "funnyMascot": {
+        "en": "rip off the tape. flatten it. tie it up like a present for the earth.",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "funnyFact": {
+        "en": "korea recycles 87% of paper waste. that's an A+ in trash school.",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "isBulky": false,
+      "bulkyWebsiteUrl": null
+    },
+    {
+      "id": "newspaper_office_paper",
+      "category": "paper",
+      "names": {
+        "en": "Newspaper / office paper",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "aliases": ["newspaper", "magazine", "office paper", "printed paper", "notebook", "flyer", "envelope"],
+      "destination": {
+        "en": "종이 (Paper) bin",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "bagColor": "none",
+      "actionSteps": ["remove_plastic_inserts", "stack_flat", "tie_with_string"],
+      "funnyMascot": {
+        "en": "stack them neat. tie them tight. pretend you're a librarian.",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "funnyFact": {
+        "en": "thermal receipts are NOT paper recyclable. they're basically plastic in disguise.",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "isBulky": false,
+      "bulkyWebsiteUrl": null
+    },
+    {
+      "id": "milk_carton",
+      "category": "paper_carton",
+      "names": {
+        "en": "Milk carton / juice box",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "aliases": ["milk carton", "juice carton", "juice box", "tetra pak", "soy milk carton", "drink carton"],
+      "destination": {
+        "en": "종이팩 (Paper carton) bin",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "bagColor": "none",
+      "actionSteps": ["empty_liquid", "rinse_inside", "flatten_box"],
+      "funnyMascot": {
+        "en": "rinse it out. flatten it. these get their OWN bin. they're special.",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "funnyFact": {
+        "en": "paper cartons are recycled into toilet paper. circle of life.",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "isBulky": false,
+      "bulkyWebsiteUrl": null
+    },
+    {
+      "id": "pizza_box",
+      "category": "general",
+      "names": {
+        "en": "Pizza box (greasy)",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "aliases": ["pizza box", "greasy pizza box", "greasy box", "chicken box"],
+      "destination": {
+        "en": "일반쓰레기 bag",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "bagColor": "white",
+      "actionSteps": ["put_in_bag"],
+      "funnyMascot": {
+        "en": "grease killed it. it's general waste now. pour one out for the box.",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "funnyFact": {
+        "en": "the clean lid? recyclable. the greasy bottom? trash. split personality.",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "isBulky": false,
+      "bulkyWebsiteUrl": null
+    },
+    {
+      "id": "glass_bottle_soju",
+      "category": "glass",
+      "names": {
+        "en": "Glass bottle (soju/beer)",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "aliases": ["soju bottle", "beer bottle"],
+      "destination": {
+        "en": "유리 (Glass) bin",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "bagColor": "green",
+      "actionSteps": ["remove_cap", "rinse_inside", "return_for_deposit"],
+      "funnyMascot": {
+        "en": "rinse it. return it to the store. get ₩100~₩130 back. free money.",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "funnyFact": {
+        "en": "soju bottles are reused up to 8 times before recycling. legends.",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "isBulky": false,
+      "bulkyWebsiteUrl": null
+    },
+    {
+      "id": "glass_bottle_other",
+      "category": "glass",
+      "names": {
+        "en": "Glass bottle (other)",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "aliases": ["glass bottle", "wine bottle", "glass jar", "jar", "glass container"],
+      "destination": {
+        "en": "유리 (Glass) bin",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "bagColor": "green",
+      "actionSteps": ["remove_cap", "rinse_inside", "place_gently"],
+      "funnyMascot": {
+        "en": "cap off. rinse. place it gently. it's glass, not a basketball.",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "funnyFact": {
+        "en": "broken glass goes in general waste wrapped in newspaper. handle with care.",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "isBulky": false,
+      "bulkyWebsiteUrl": null
+    },
+    {
+      "id": "aluminum_can",
+      "category": "metal_can",
+      "names": {
+        "en": "Aluminum can",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "aliases": ["aluminum can", "aluminium can", "soda can", "beer can", "drink can"],
+      "destination": {
+        "en": "캔 (Can) bin",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "bagColor": "green",
+      "actionSteps": ["empty_liquid", "rinse_inside", "crush_flat"],
+      "funnyMascot": {
+        "en": "chug it. rinse it. crush it on your forehead. (don't actually.)",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "funnyFact": {
+        "en": "one recycled can saves enough energy to run a TV for 3 hours.",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "isBulky": false,
+      "bulkyWebsiteUrl": null
+    },
+    {
+      "id": "steel_can",
+      "category": "metal_can",
+      "names": {
+        "en": "Steel/tin can (food)",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "aliases": ["tin can", "food can", "tuna can", "steel can", "canned food"],
+      "destination": {
+        "en": "캔 (Can) bin",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "bagColor": "green",
+      "actionSteps": ["empty_food", "rinse_inside", "remove_label"],
+      "funnyMascot": {
+        "en": "scrape out the tuna. rinse it. your cat would be proud.",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "funnyFact": {
+        "en": "steel cans are 100% recyclable and can be recycled forever. immortal.",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "isBulky": false,
+      "bulkyWebsiteUrl": null
+    },
+    {
+      "id": "aerosol_can",
+      "category": "metal_can",
+      "names": {
+        "en": "Aerosol can",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "aliases": ["aerosol can", "spray can", "spray paint can", "hairspray can"],
+      "destination": {
+        "en": "캔 (Can) bin",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "bagColor": "green",
+      "actionSteps": ["use_until_empty", "puncture_hole_outdoors", "place_in_bin"],
+      "funnyMascot": {
+        "en": "use it ALL up. poke a hole OUTSIDE. do NOT do this indoors unless you want drama.",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "funnyFact": {
+        "en": "unexploded aerosol cans in trash trucks have caused actual fires. yikes.",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "isBulky": false,
+      "bulkyWebsiteUrl": null
+    },
+    {
+      "id": "banana_peel",
+      "category": "food",
+      "names": {
+        "en": "Banana peel",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "aliases": ["banana peel", "banana skin"],
+      "destination": {
+        "en": "음식물쓰레기 bin/bag",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "bagColor": "yellow",
+      "actionSteps": ["drain_moisture", "put_in_food_bag"],
+      "funnyMascot": {
+        "en": "drain it. bag it. banana peels are food waste royalty.",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "funnyFact": {
+        "en": "korea turns food waste into animal feed and compost. your banana lives on.",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "isBulky": false,
+      "bulkyWebsiteUrl": null
+    },
+    {
+      "id": "fruit_peels",
+      "category": "food",
+      "names": {
+        "en": "Fruit peels (apple, potato)",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "aliases": ["apple peel", "potato peel", "fruit peel", "vegetable peel", "carrot peel", "pear peel"],
+      "destination": {
+        "en": "음식물쓰레기 bin/bag",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "bagColor": "yellow",
+      "actionSteps": ["drain_moisture", "put_in_food_bag"],
+      "funnyMascot": {
+        "en": "squeeze out the water. into the yellow bag. easy peasy lemon squeezy.",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "funnyFact": {
+        "en": "korea charges food waste by WEIGHT. less water = less money. big brain.",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "isBulky": false,
+      "bulkyWebsiteUrl": null
+    },
+    {
+      "id": "leftover_food",
+      "category": "food",
+      "names": {
+        "en": "Leftover rice / cooked food",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "aliases": ["leftover rice", "cooked food", "leftover food", "food scraps", "leftovers", "rice", "noodles"],
+      "destination": {
+        "en": "음식물쓰레기 bin/bag",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "bagColor": "yellow",
+      "actionSteps": ["drain_moisture", "put_in_food_bag"],
+      "funnyMascot": {
+        "en": "drain the soup. bag the rice. your leftovers have a second life ahead.",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "funnyFact": {
+        "en": "40% of food waste in korea is from households. we can do better.",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "isBulky": false,
+      "bulkyWebsiteUrl": null
+    },
+    {
+      "id": "chicken_bones",
+      "category": "general",
+      "names": {
+        "en": "Chicken bones",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "aliases": ["chicken bones", "fish bone", "bone", "bones", "pork bones", "rib bones"],
+      "destination": {
+        "en": "일반쓰레기 bag",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "bagColor": "white",
+      "actionSteps": ["put_in_bag"],
+      "funnyMascot": {
+        "en": "bones are NOT food waste. animals can't eat them. white bag, please.",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "funnyFact": {
+        "en": "the rule is: 'can an animal eat it?' bones = no. your dog disagrees.",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "isBulky": false,
+      "bulkyWebsiteUrl": null
+    },
+    {
+      "id": "eggshells",
+      "category": "general",
+      "names": {
+        "en": "Eggshells",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "aliases": ["eggshell", "eggshells", "egg shell"],
+      "destination": {
+        "en": "일반쓰레기 bag",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "bagColor": "white",
+      "actionSteps": ["put_in_bag"],
+      "funnyMascot": {
+        "en": "eggshells are general waste. i know. i was shocked too.",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "funnyFact": {
+        "en": "eggshells, nutshells, and clam shells are all general waste. shell shock.",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "isBulky": false,
+      "bulkyWebsiteUrl": null
+    },
+    {
+      "id": "shellfish_shells",
+      "category": "general",
+      "names": {
+        "en": "Clam / shellfish shells",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "aliases": ["clam shell", "shellfish shell", "shell", "oyster shell", "mussel shell"],
+      "destination": {
+        "en": "일반쓰레기 bag",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "bagColor": "white",
+      "actionSteps": ["put_in_bag"],
+      "funnyMascot": {
+        "en": "shells are too hard for composting. white bag. sorry, seafood lover.",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "funnyFact": {
+        "en": "after a samgyeopsal party, bones = general waste, lettuce = food waste. split the bill.",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "isBulky": false,
+      "bulkyWebsiteUrl": null
+    },
+    {
+      "id": "coffee_grounds",
+      "category": "general",
+      "names": {
+        "en": "Coffee grounds",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "aliases": ["coffee grounds", "used coffee", "coffee", "coffee dregs"],
+      "destination": {
+        "en": "일반쓰레기 bag",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "bagColor": "white",
+      "actionSteps": ["put_in_bag"],
+      "funnyMascot": {
+        "en": "coffee grounds are NOT food waste. your morning ritual ends in the white bag.",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "funnyFact": {
+        "en": "some people dry coffee grounds and use them as deodorizer. life hack.",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "isBulky": false,
+      "bulkyWebsiteUrl": null
+    },
+    {
+      "id": "tea_bags",
+      "category": "general",
+      "names": {
+        "en": "Tea bags",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "aliases": ["tea bag", "tea bags", "used tea bag"],
+      "destination": {
+        "en": "일반쓰레기 bag",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "bagColor": "white",
+      "actionSteps": ["put_in_bag"],
+      "funnyMascot": {
+        "en": "tea bags have non-compostable material. white bag. the british would cry.",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "funnyFact": {
+        "en": "the string, tag, and bag material make it non-compostable. betrayal.",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "isBulky": false,
+      "bulkyWebsiteUrl": null
+    },
+    {
+      "id": "onion_garlic_skin",
+      "category": "general",
+      "names": {
+        "en": "Onion/garlic skin",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "aliases": ["onion skin", "garlic skin", "onion peel", "garlic peel", "corn husk", "chili stem"],
+      "destination": {
+        "en": "일반쓰레기 bag",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "bagColor": "white",
+      "actionSteps": ["put_in_bag"],
+      "funnyMascot": {
+        "en": "too fibrous for animal feed. white bag. even trash has standards.",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "funnyFact": {
+        "en": "onion skins, corn husks, and chili stems are all general waste. the hard outer life.",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "isBulky": false,
+      "bulkyWebsiteUrl": null
+    },
+    {
+      "id": "tissues_wipes",
+      "category": "general",
+      "names": {
+        "en": "Tissues / wet wipes",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "aliases": ["tissue", "tissues", "wet wipe", "used tissue", "paper towel", "wipes", "kitchen towel"],
+      "destination": {
+        "en": "일반쓰레기 bag",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "bagColor": "white",
+      "actionSteps": ["put_in_bag"],
+      "funnyMascot": {
+        "en": "used tissues go straight in the white bag. no debate.",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "funnyFact": {
+        "en": "wet wipes contain plastic fibers. they're basically tiny plastic sheets.",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "isBulky": false,
+      "bulkyWebsiteUrl": null
+    },
+    {
+      "id": "diapers",
+      "category": "general",
+      "names": {
+        "en": "Diapers",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "aliases": ["diaper", "diapers", "nappy", "used diaper"],
+      "destination": {
+        "en": "일반쓰레기 bag",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "bagColor": "white",
+      "actionSteps": ["put_in_bag"],
+      "funnyMascot": {
+        "en": "white bag. no questions asked. we don't judge.",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "funnyFact": {
+        "en": "diapers take 500 years to decompose. babies are expensive AND wasteful.",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "isBulky": false,
+      "bulkyWebsiteUrl": null
+    },
+    {
+      "id": "broken_ceramics",
+      "category": "general",
+      "names": {
+        "en": "Broken ceramics / pottery",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "aliases": ["broken plate", "ceramic", "pottery", "broken mug", "broken cup", "broken bowl", "porcelain"],
+      "destination": {
+        "en": "일반쓰레기 bag",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "bagColor": "white",
+      "actionSteps": ["wrap_in_newspaper", "put_in_bag"],
+      "funnyMascot": {
+        "en": "wrap it up so nobody gets cut. then white bag. RIP mug.",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "funnyFact": {
+        "en": "ceramics can't be recycled because they contaminate glass recycling. traitor.",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "isBulky": false,
+      "bulkyWebsiteUrl": null
+    },
+    {
+      "id": "thermal_receipts",
+      "category": "general",
+      "names": {
+        "en": "Receipts (thermal paper)",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "aliases": ["receipt", "receipts", "thermal receipt", "shop receipt"],
+      "destination": {
+        "en": "일반쓰레기 bag",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "bagColor": "white",
+      "actionSteps": ["put_in_bag"],
+      "funnyMascot": {
+        "en": "receipts look like paper but they're LIARS. white bag.",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "funnyFact": {
+        "en": "thermal receipts contain BPA. don't even touch them too long. creepy.",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "isBulky": false,
+      "bulkyWebsiteUrl": null
+    },
+    {
+      "id": "mixed_small_object",
+      "category": "general",
+      "names": {
+        "en": "Toothbrush / pen / hanger",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "aliases": ["toothbrush", "pen", "hanger", "ballpoint pen", "clothes hanger", "plastic hanger", "marker"],
+      "destination": {
+        "en": "일반쓰레기 bag",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "bagColor": "white",
+      "actionSteps": ["put_in_bag"],
+      "funnyMascot": {
+        "en": "mixed materials = not recyclable. white bag for these confused objects.",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "funnyFact": {
+        "en": "a toothbrush is plastic + nylon + rubber. it's having an identity crisis.",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "isBulky": false,
+      "bulkyWebsiteUrl": null
+    },
+    {
+      "id": "batteries",
+      "category": "e_waste",
+      "names": {
+        "en": "Batteries",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "aliases": ["battery", "batteries", "aa battery", "aaa battery", "lithium battery", "9v battery", "button battery"],
+      "destination": {
+        "en": "전용수거함 (Special collection box)",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "bagColor": "none",
+      "actionSteps": ["find_collection_box", "drop_in"],
+      "funnyMascot": {
+        "en": "find the battery box at your community center or mart. drop and walk away.",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "funnyFact": {
+        "en": "one battery can contaminate 600,000 liters of water. scary math.",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "isBulky": false,
+      "bulkyWebsiteUrl": null
+    },
+    {
+      "id": "fluorescent_bulb",
+      "category": "lightbulb",
+      "names": {
+        "en": "Fluorescent light bulb",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "aliases": ["fluorescent bulb", "fluorescent tube", "light bulb", "fluorescent lamp", "cfl bulb"],
+      "destination": {
+        "en": "전용수거함 (Special collection box)",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "bagColor": "none",
+      "actionSteps": ["find_collection_box", "drop_in_carefully"],
+      "funnyMascot": {
+        "en": "don't break it. find the collection box. place it like it's a baby.",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "funnyFact": {
+        "en": "fluorescent bulbs contain mercury. breaking one indoors = ventilate immediately.",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "isBulky": false,
+      "bulkyWebsiteUrl": null
+    },
+    {
+      "id": "expired_medicine",
+      "category": "e_waste",
+      "names": {
+        "en": "Expired medicine",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "aliases": ["medicine", "expired medicine", "pill", "pills", "medication", "drug", "tablet medicine"],
+      "destination": {
+        "en": "약국 수거함 (Pharmacy collection)",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "bagColor": "none",
+      "actionSteps": ["take_to_pharmacy", "drop_in_box"],
+      "funnyMascot": {
+        "en": "bring it back to any pharmacy. they have a box. full circle.",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "funnyFact": {
+        "en": "flushing medicine contaminates water supply. fish don't need your antibiotics.",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "isBulky": false,
+      "bulkyWebsiteUrl": null
+    },
+    {
+      "id": "cooking_oil",
+      "category": "e_waste",
+      "names": {
+        "en": "Cooking oil",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "aliases": ["cooking oil", "used oil", "fryer oil", "used cooking oil", "vegetable oil"],
+      "destination": {
+        "en": "폐식용유 수거함 (Used oil collection)",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "bagColor": "none",
+      "actionSteps": ["cool_down", "pour_in_container", "take_to_collection"],
+      "funnyMascot": {
+        "en": "let it cool. pour it in a bottle. take it to the collection point. chef's kiss.",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "funnyFact": {
+        "en": "1 liter of oil can contaminate 1 million liters of water. ONE. MILLION.",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "isBulky": false,
+      "bulkyWebsiteUrl": null
+    },
+    {
+      "id": "clothing",
+      "category": "clothing",
+      "names": {
+        "en": "Clothing / shoes / bags",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "aliases": ["shirt", "t-shirt", "jeans", "jacket", "clothes", "clothing", "shoes", "sneakers", "handbag", "purse", "backpack", "hoodie", "sweater", "coat"],
+      "destination": {
+        "en": "의류수거함 (Clothing collection bin)",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "bagColor": "none",
+      "actionSteps": ["check_wearable", "fold_neatly", "drop_in_bin"],
+      "funnyMascot": {
+        "en": "if it's wearable, fold it and drop it in the green bin. fashion recycling.",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "funnyFact": {
+        "en": "korea has clothing collection bins everywhere. your old hoodie gets a second life.",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "isBulky": false,
+      "bulkyWebsiteUrl": null
+    },
+    {
+      "id": "mattress",
+      "category": "large",
+      "names": {
+        "en": "Mattress",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "aliases": ["mattress", "bed mattress", "memory foam mattress"],
+      "destination": {
+        "en": "Register online → place outside",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "bagColor": "none",
+      "actionSteps": ["register_online", "pay_fee", "attach_sticker_and_place_outside"],
+      "funnyMascot": {
+        "en": "this one's too big for bags. register online. pay. stick the number. put it out.",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "funnyFact": {
+        "en": "leaving a mattress outside without registration = instant fine. don't risk it.",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "isBulky": true,
+      "bulkyWebsiteUrl": "https://clean.gangnam.go.kr/use/biwa/USEBIWA02020000.do"
+    },
+    {
+      "id": "sofa",
+      "category": "large",
+      "names": {
+        "en": "Sofa / couch",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "aliases": ["sofa", "couch", "loveseat", "sectional"],
+      "destination": {
+        "en": "Register online → place outside",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "bagColor": "none",
+      "actionSteps": ["register_online", "pay_fee", "attach_sticker_and_place_outside"],
+      "funnyMascot": {
+        "en": "your sofa had a good run. register it. pay ₩7,000~₩10,000. say goodbye.",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "funnyFact": {
+        "en": "a 4-person sofa costs ₩10,000 to dispose. breakup fee.",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "isBulky": true,
+      "bulkyWebsiteUrl": "https://clean.gangnam.go.kr/use/biwa/USEBIWA02020000.do"
+    },
+    {
+      "id": "chair",
+      "category": "large",
+      "names": {
+        "en": "Chair (office/dining)",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "aliases": ["chair", "office chair", "dining chair", "stool", "armchair"],
+      "destination": {
+        "en": "Register online → place outside",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "bagColor": "none",
+      "actionSteps": ["register_online", "pay_fee", "attach_sticker_and_place_outside"],
+      "funnyMascot": {
+        "en": "register it. pay the fee. stick the number on it. chair's last ride.",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "funnyFact": {
+        "en": "a single chair costs about ₩2,000~₩3,000 to dispose. cheap funeral.",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "isBulky": true,
+      "bulkyWebsiteUrl": "https://clean.gangnam.go.kr/use/biwa/USEBIWA02020000.do"
+    },
+    {
+      "id": "desk",
+      "category": "large",
+      "names": {
+        "en": "Desk / table",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "aliases": ["desk", "table", "dining table", "office desk", "computer desk", "coffee table"],
+      "destination": {
+        "en": "Register online → place outside",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "bagColor": "none",
+      "actionSteps": ["register_online", "pay_fee", "attach_sticker_and_place_outside"],
+      "funnyMascot": {
+        "en": "desks need registration too. pay up. stick the code. leave it outside.",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "funnyFact": {
+        "en": "fees depend on size. a big desk can cost ₩8,000+. size matters.",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "isBulky": true,
+      "bulkyWebsiteUrl": "https://clean.gangnam.go.kr/use/biwa/USEBIWA02020000.do"
+    },
+    {
+      "id": "wardrobe",
+      "category": "large",
+      "names": {
+        "en": "Wardrobe / cabinet",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "aliases": ["wardrobe", "cabinet", "closet", "bookshelf", "drawer", "armoire", "dresser"],
+      "destination": {
+        "en": "Register online → place outside",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "bagColor": "none",
+      "actionSteps": ["register_online", "pay_fee", "attach_sticker_and_place_outside"],
+      "funnyMascot": {
+        "en": "wardrobes over 100cm = ₩15,000. under 100cm = ₩10,000. measure first.",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "funnyFact": {
+        "en": "the gangnam-gu portal even lets you pay with KakaoPay. fancy.",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "isBulky": true,
+      "bulkyWebsiteUrl": "https://clean.gangnam.go.kr/use/biwa/USEBIWA02020000.do"
+    },
+    {
+      "id": "tv_monitor",
+      "category": "large",
+      "names": {
+        "en": "TV / monitor",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "aliases": ["television", "lcd monitor", "led tv", "big tv", "flat-screen tv"],
+      "destination": {
+        "en": "Register online OR call 1599-0903",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "bagColor": "none",
+      "actionSteps": ["check_free_pickup", "register_online", "attach_sticker"],
+      "funnyMascot": {
+        "en": "TVs might qualify for FREE e-waste pickup. check first. save money.",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "funnyFact": {
+        "en": "e-waste contains gold, silver, and copper. your old TV is a treasure chest.",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "isBulky": true,
+      "bulkyWebsiteUrl": "https://clean.gangnam.go.kr/use/biwa/USEBIWA02020000.do"
+    },
+    {
+      "id": "refrigerator_washer",
+      "category": "large",
+      "names": {
+        "en": "Refrigerator / washing machine",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "aliases": ["refrigerator", "fridge", "washing machine", "washer", "clothes dryer"],
+      "destination": {
+        "en": "Call 1599-0903 for free pickup",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "bagColor": "none",
+      "actionSteps": ["call_1599_0903", "schedule_pickup", "place_outside"],
+      "funnyMascot": {
+        "en": "big appliances often get FREE pickup. call 1599-0903 first. always.",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "funnyFact": {
+        "en": "manufacturers are legally required to take back old appliances in korea. nice.",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "isBulky": true,
+      "bulkyWebsiteUrl": "https://clean.gangnam.go.kr/use/biwa/USEBIWA02020000.do"
+    },
+    {
+      "id": "bicycle",
+      "category": "large",
+      "names": {
+        "en": "Bicycle",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "aliases": ["bicycle", "bike", "old bike", "kids bike"],
+      "destination": {
+        "en": "Register online → place outside",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "bagColor": "none",
+      "actionSteps": ["register_online", "pay_fee", "attach_sticker_and_place_outside"],
+      "funnyMascot": {
+        "en": "your bike's last tour. register. pay. stick. goodbye, old friend.",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "funnyFact": {
+        "en": "bicycles cost about ₩3,000~₩5,000 to dispose. cheaper than a tune-up.",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "isBulky": true,
+      "bulkyWebsiteUrl": "https://clean.gangnam.go.kr/use/biwa/USEBIWA02020000.do"
+    },
+    {
+      "id": "suitcase",
+      "category": "large",
+      "names": {
+        "en": "Suitcase / luggage",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "aliases": ["suitcase", "luggage", "travel bag", "rolling suitcase"],
+      "destination": {
+        "en": "Register online → place outside",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "bagColor": "none",
+      "actionSteps": ["register_online", "pay_fee", "attach_sticker_and_place_outside"],
+      "funnyMascot": {
+        "en": "your suitcase traveled the world. now it travels to the dump. register first.",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "funnyFact": {
+        "en": "wheels and metal parts make luggage non-recyclable. mixed material curse.",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "isBulky": true,
+      "bulkyWebsiteUrl": "https://clean.gangnam.go.kr/use/biwa/USEBIWA02020000.do"
+    },
+    {
+      "id": "carpet",
+      "category": "large",
+      "names": {
+        "en": "Carpet / rug",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "aliases": ["carpet", "rug", "area rug", "shag rug", "floor mat"],
+      "destination": {
+        "en": "Register online → place outside",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "bagColor": "none",
+      "actionSteps": ["register_online", "pay_fee", "attach_sticker_and_place_outside"],
+      "funnyMascot": {
+        "en": "roll it up. register online. pay. stick the number. put it outside.",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "funnyFact": {
+        "en": "carpets can NOT go in clothing donation bins. they're too thick. rejected.",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "isBulky": true,
+      "bulkyWebsiteUrl": "https://clean.gangnam.go.kr/use/biwa/USEBIWA02020000.do"
+    },
+    {
+      "id": "pillow_blanket",
+      "category": "large",
+      "names": {
+        "en": "Pillow / thick blanket",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "aliases": ["pillow", "thick blanket", "comforter", "duvet", "cushion", "throw pillow"],
+      "destination": {
+        "en": "Register online → place outside",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "bagColor": "none",
+      "actionSteps": ["register_online", "pay_fee", "attach_sticker_and_place_outside"],
+      "funnyMascot": {
+        "en": "pillows and thick blankets = bulky waste. NOT clothing donation. register.",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "funnyFact": {
+        "en": "thin blankets CAN go in clothing bins. thick ones can't. thickness discrimination.",
+        "zh": "",
+        "ja": "",
+        "ru": ""
+      },
+      "isBulky": true,
+      "bulkyWebsiteUrl": "https://clean.gangnam.go.kr/use/biwa/USEBIWA02020000.do"
+    }
+  ]
+}

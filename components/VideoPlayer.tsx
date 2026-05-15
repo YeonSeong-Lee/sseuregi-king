@@ -1,9 +1,26 @@
 // components/VideoPlayer.tsx
 'use client';
 import { useState } from 'react';
+import { useTranslations } from 'next-intl';
+import { BagChip } from '@/components/BagChip';
+import { SpeechBubble } from '@/components/SpeechBubble';
+import { StepRow } from '@/components/StepRow';
 import { YoutubeLinkCard } from '@/components/YoutubeLinkCard';
+import { getCategoryDef } from '@/lib/categories';
 import { getYoutubeVideo } from '@/lib/youtube';
-import type { DetectedObject, Locale, WasteCategory } from '@/types';
+import {
+  getTrashItemById,
+  getTrashItemDestination,
+  getTrashItemFunnyFact,
+  getTrashItemMascot,
+} from '@/lib/trash-items';
+import type {
+  BagColor,
+  DetectedObject,
+  Locale,
+  SupportedDistrict,
+  WasteCategory,
+} from '@/types';
 
 const CATEGORY_COLORS: Record<WasteCategory, string> = {
   paper:        'bg-amber-100 text-amber-800 dark:bg-amber-500/20 dark:text-amber-300',
@@ -29,6 +46,7 @@ const NAME_KEY: Record<Locale, keyof Pick<DetectedObject, 'nameEn' | 'nameZh' | 
 interface VideoPlayerProps {
   objects: DetectedObject[];
   locale: Locale;
+  district: SupportedDistrict | null;
   categoryLabels: Record<WasteCategory, string>;
   backLabel: string;
   watchOnYoutubeLabel: string;
@@ -37,15 +55,30 @@ interface VideoPlayerProps {
 }
 
 export function VideoPlayer({
-  objects, locale, categoryLabels, backLabel, watchOnYoutubeLabel, onBack,
+  objects, locale, district, categoryLabels, backLabel, watchOnYoutubeLabel, onBack,
   disposalTexts,
 }: VideoPlayerProps) {
+  const t = useTranslations();
   const [activeIndex, setActiveIndex] = useState(0);
   const active = objects[activeIndex];
   const nameKey = NAME_KEY[locale];
   const video = getYoutubeVideo(active.category, locale);
+  const item = active.trashItemId ? getTrashItemById(active.trashItemId) : undefined;
+
+  // Resolve bag color. For Gangnam, use the item's bag color. For Mapo (or unknown
+  // district), use the category's district rule so guidance stays district-accurate.
+  let bagColor: BagColor = 'none';
+  if (item && district === 'gangnam') {
+    bagColor = item.bagColor;
+  } else if (district) {
+    const def = active.category === 'etc' ? null : getCategoryDef(active.category);
+    bagColor = def?.districts[district]?.bagColor ?? 'none';
+  }
+  const bagLabel = t(`bag.${bagColor}`);
+
   const disposalText = disposalTexts?.[active.category] ?? null;
-  const showDisposal = disposalText !== null;
+  const showFallbackDisposal = !item && disposalText !== null;
+  const showBulkyCta = !!(item?.isBulky && item.bulkyWebsiteUrl && district === 'gangnam');
 
   return (
     <div className="flex flex-col h-full bg-surface">
@@ -66,14 +99,65 @@ export function VideoPlayer({
           ))}
         </div>
       )}
-      <div className="flex-1 flex items-center justify-center p-4 min-h-0">
-        <YoutubeLinkCard key={video.id} video={video} ctaLabel={watchOnYoutubeLabel} />
-      </div>
-      {showDisposal && (
-        <div className="px-4 py-3 border-t border-line shrink-0 bg-surface-elev">
-          <p className="text-fg text-sm leading-relaxed">{disposalText}</p>
+
+      <div className="flex-1 min-h-0 overflow-y-auto px-4 py-4 space-y-4">
+        {item && (
+          <div className="pt-1">
+            <SpeechBubble shape="card" size="md" tail="up" className="ml-4">
+              {getTrashItemMascot(item, locale)}
+            </SpeechBubble>
+          </div>
+        )}
+
+        {item && (
+          <div className="flex items-center justify-between gap-3">
+            <p className="text-sm text-fg-muted leading-tight flex-1">
+              <span className="text-fg-faint">{t('item.goes_in')} </span>
+              <span className="text-fg font-medium">{getTrashItemDestination(item, locale)}</span>
+            </p>
+            <BagChip color={bagColor} label={bagLabel} />
+          </div>
+        )}
+
+        {item && item.actionSteps.length > 0 && (
+          <div className="-mx-1">
+            <StepRow steps={item.actionSteps} locale={locale} interactive />
+            <p className="text-[10px] text-fg-faint text-center pt-1">{t('guide.pin_step_hint')}</p>
+          </div>
+        )}
+
+        {showBulkyCta && item && (
+          <a
+            href={item.bulkyWebsiteUrl ?? '#'}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block w-full text-center rounded-2xl border-2 border-fg bg-red-50 dark:bg-red-500/15 px-4 py-3 font-semibold text-fg active:scale-95 transition-transform"
+          >
+            {t('item.register_bulky')} →
+          </a>
+        )}
+
+        {item && (
+          <section className="rounded-2xl border border-line bg-surface-elev px-4 py-3">
+            <h4 className="text-xs uppercase tracking-wide text-fg-faint">
+              {t('item.did_you_know')}
+            </h4>
+            <p className="mt-1 text-sm text-fg leading-relaxed">
+              {getTrashItemFunnyFact(item, locale)}
+            </p>
+          </section>
+        )}
+
+        <div className="pt-1">
+          <YoutubeLinkCard key={video.id} video={video} ctaLabel={watchOnYoutubeLabel} />
         </div>
-      )}
+
+        {showFallbackDisposal && (
+          <p className="text-fg text-sm leading-relaxed rounded-2xl border border-line bg-surface-elev px-4 py-3">
+            {disposalText}
+          </p>
+        )}
+      </div>
     </div>
   );
 }

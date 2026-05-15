@@ -55,14 +55,16 @@ describe('claudeDetect', () => {
 
     expect(result).toHaveLength(1);
     expect(result[0].category).toBe('paper');
-    expect(result[0].nameEn).toBe('Paper');
+    // The label hits a specific trash-items entry, so we surface its item-level name.
+    expect(result[0].nameEn).toBe('Newspaper / office paper');
+    expect(result[0].trashItemId).toBe('newspaper_office_paper');
     expect(result[0].bbox.x).toBeCloseTo(10);
     expect(result[0].bbox.y).toBeCloseTo(20);
     expect(result[0].bbox.w).toBeCloseTo(30);
     expect(result[0].bbox.h).toBeCloseTo(40);
   });
 
-  it('hydrates localized names from getCategoryDef for known categories', async () => {
+  it('promotes a matched label to its trash-items entry across locales', async () => {
     process.env.ANTHROPIC_API_KEY = 'test-key';
     messagesCreateMock.mockResolvedValue({
       content: [{ type: 'text', text: JSON.stringify([
@@ -73,7 +75,9 @@ describe('claudeDetect', () => {
     const result = await claudeDetect('base64data');
 
     expect(result[0].category).toBe('paper_carton');
-    expect(result[0].nameEn).toBe('Paper Carton');
+    expect(result[0].trashItemId).toBe('milk_carton');
+    expect(result[0].nameEn).toBe('Milk carton / juice box');
+    // Non-EN locales fall back to EN until per-locale translations land.
     expect(result[0].nameZh).toBeTruthy();
     expect(result[0].nameJa).toBeTruthy();
     expect(result[0].nameRu).toBeTruthy();

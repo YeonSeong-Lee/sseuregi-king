@@ -2,24 +2,27 @@ import { describe, it, expect } from 'vitest';
 import { enrichObjects } from '@/lib/matcher';
 
 describe('enrichObjects', () => {
-  it('keeps the raw detected name and assigns the matched category', () => {
+  it('promotes to the matching trash item and preserves detector translations', () => {
     const result = enrichObjects([{
       nameEn: 'Newspaper', nameZh: '报纸', nameJa: '新聞', nameRu: 'Газета',
       category: '', bbox: { x: 10, y: 10, w: 20, h: 20 },
     }]);
     expect(result[0].category).toBe('paper');
-    expect(result[0].nameEn).toBe('Newspaper');
+    expect(result[0].trashItemId).toBe('newspaper_office_paper');
+    expect(result[0].nameEn).toBe('Newspaper / office paper');
+    // Detector-supplied locale names are preserved when the item's translation is empty.
     expect(result[0].nameZh).toBe('报纸');
     expect(result[0].nameJa).toBe('新聞');
     expect(result[0].nameRu).toBe('Газета');
   });
 
-  it('falls back to the raw English name for locales the detector did not translate', () => {
+  it('falls back to the item English name for locales the detector did not translate', () => {
     const result = enrichObjects([{
       nameEn: 'Cardboard box', nameZh: '', nameJa: '', nameRu: '',
       category: '', bbox: { x: 0, y: 0, w: 10, h: 10 },
     }]);
     expect(result[0].category).toBe('paper');
+    expect(result[0].trashItemId).toBe('cardboard_box');
     expect(result[0].nameEn).toBe('Cardboard box');
     expect(result[0].nameZh).toBe('Cardboard box');
     expect(result[0].nameJa).toBe('Cardboard box');
@@ -76,11 +79,14 @@ describe('enrichObjects', () => {
     expect(result[0].category).toBe('etc');
   });
 
-  it('classifies battery-ish labels under general', () => {
+  it('routes batteries to the e_waste/hazardous bucket via the trash-items catalog', () => {
     const result = enrichObjects([{
       nameEn: 'Battery', nameZh: '', nameJa: '', nameRu: '',
       category: '', bbox: { x: 0, y: 0, w: 10, h: 10 },
     }]);
-    expect(result[0].category).toBe('general');
+    // Item-level match wins: batteries item routes to e_waste (drop-off collection),
+    // overriding the legacy general-waste alias.
+    expect(result[0].category).toBe('e_waste');
+    expect(result[0].trashItemId).toBe('batteries');
   });
 });
