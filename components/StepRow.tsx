@@ -127,7 +127,7 @@ export function StepRow({ steps }: StepRowProps) {
                 : 'border-fg/15 text-fg/20 cursor-default'
             }`}
           >
-            ← 이전
+            ←
           </button>
           <button
             type="button"
@@ -140,7 +140,7 @@ export function StepRow({ steps }: StepRowProps) {
                 : 'border-fg/15 text-fg/20 cursor-default'
             }`}
           >
-            다음 →
+            →
           </button>
         </div>
       )}
