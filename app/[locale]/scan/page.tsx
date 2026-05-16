@@ -17,7 +17,7 @@ import type { DetectedObject, Locale } from '@/types';
 type ScanState = 'capture' | 'analyzing' | 'overlay' | 'video';
 
 const MASCOT_PHASES = 4;
-const MASCOT_PHASE_INTERVAL_MS = 1800;
+const MASCOT_PHASE_INTERVAL_MS = 3000;
 
 export default function ScanPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale: rawLocale } = use(params);
@@ -201,24 +201,27 @@ export default function ScanPage({ params }: { params: Promise<{ locale: string 
           onBack={() => { setObjects([]); setImageBase64(''); setError(''); setState('capture'); }}
           backAria={t('result.back_aria')}
         />
-        <DetectedImage imageBase64={imageBase64} objects={objects} />
-        <div className="relative flex items-end self-start max-w-full">
-          <div className="relative z-10 -mr-3 mb-[-4px] shrink-0">
-            <Image
-              src={objects.length > 0 ? '/mascots/mascot-happy.png' : '/mascots/mascot-scan.png'}
-              alt=""
-              width={72}
-              height={72}
-            />
+        <div className="relative">
+          <DetectedImage imageBase64={imageBase64} objects={objects} />
+          <div className="absolute bottom-0 left-3 translate-y-1/2 z-10 flex items-end max-w-[calc(100%-12px)]">
+            <div className="shrink-0 -mr-3">
+              <Image
+                src={objects.length > 0 ? '/mascots/mascot-happy.png' : '/mascots/mascot-scan.png'}
+                alt=""
+                width={96}
+                height={96}
+              />
+            </div>
+            <SpeechBubble tail="left" size="md" shape="card" className="flex-1 min-w-0 max-w-[calc(100%-72px)]">
+              {objects.length > 0 && objects[0].mascotText
+                ? objects[0].mascotText[locale] || objects[0].mascotText.en
+                : objects.length === 0
+                  ? t('result.status_empty')
+                  : t('result.status_found', { count: objects.length })}
+            </SpeechBubble>
           </div>
-          <SpeechBubble tail="left" size="md" shape="card" className="flex-1 min-w-0 max-w-[calc(100%-60px)]">
-            {objects.length > 0 && objects[0].mascotText
-              ? objects[0].mascotText[locale] || objects[0].mascotText.en
-              : objects.length === 0
-                ? t('result.status_empty')
-                : t('result.status_found', { count: objects.length })}
-          </SpeechBubble>
         </div>
+        <div className="h-14" />
         <DetectedItemList
           objects={objects}
           groupLabels={{
