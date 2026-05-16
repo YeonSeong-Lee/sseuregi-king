@@ -2,12 +2,10 @@
 'use client';
 import { useState } from 'react';
 import { useTranslations } from 'next-intl';
-import { BagChip } from '@/components/BagChip';
+import { BagIcon } from '@/components/BagIcon';
 import { SpeechBubble } from '@/components/SpeechBubble';
 import { StepRow } from '@/components/StepRow';
 import type {
-  BagCode,
-  BagColor,
   DetectedObject,
   Locale,
   ScanCategory,
@@ -19,13 +17,6 @@ const CATEGORY_COLORS: Record<ScanCategory, string> = {
   'Food Waste':    'bg-lime-100 text-lime-800 dark:bg-lime-500/20 dark:text-lime-300',
   'Hazardous':     'bg-red-100 text-red-800 dark:bg-red-500/20 dark:text-red-300',
   'Bulky':         'bg-indigo-100 text-indigo-800 dark:bg-indigo-500/20 dark:text-indigo-300',
-};
-
-const BAG_TO_COLOR: Record<BagCode, BagColor> = {
-  B01: 'white',
-  B02: 'yellow',
-  B03: 'transparent',
-  B04: 'transparent',
 };
 
 const CONFIDENCE_LABEL: Record<DetectedObject['confidence'], string> = {
@@ -46,8 +37,7 @@ export function VideoPlayer({ objects, locale, backLabel, onBack }: VideoPlayerP
   const [activeIndex, setActiveIndex] = useState(0);
   const active = objects[activeIndex];
   const name = active.name[locale] || active.name.en;
-  const bagColor = BAG_TO_COLOR[active.bag];
-  const bagLabel = t(`bag.${bagColor}`);
+  const bagLabel = t(`bag.${active.bag}`);
 
   return (
     <div className="flex flex-col h-full bg-surface">
@@ -85,7 +75,10 @@ export function VideoPlayer({ objects, locale, backLabel, onBack }: VideoPlayerP
         </div>
 
         <div className="flex items-center justify-end gap-3">
-          <BagChip color={bagColor} label={bagLabel} />
+          <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-surface-elev border border-line text-xs text-fg">
+            <BagIcon id={active.bag} />
+            <span>{bagLabel}</span>
+          </div>
         </div>
 
         {active.steps.length > 0 && (
