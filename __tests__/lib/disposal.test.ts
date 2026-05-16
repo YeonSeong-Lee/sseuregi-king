@@ -22,8 +22,8 @@ describe('getCategoryDisposal', () => {
   it('returns structured rule for known (category, district)', () => {
     const found = getCategoryDisposal('plastic', 'gangnam');
     expect(found).not.toBeNull();
-    // Plastic recycling starts with V04 (Empty Contents).
-    expect(found!.steps).toContain<VisualActionId>('V04');
+    // Plastic recycling starts with EMPTY_CONTENTS.
+    expect(found!.steps).toContain<VisualActionId>('EMPTY_CONTENTS');
     expect(found!.districtRule.bagColor).toBe('transparent');
     expect(found!.districtRule.schedule.en).toMatch(/thursday/i);
   });
@@ -62,7 +62,7 @@ describe('visual-actions.json library', () => {
 describe('getCategoryDisposalText', () => {
   it('joins action labels and schedule for VideoPlayer', () => {
     const text = getCategoryDisposalText('plastic', 'gangnam', 'en');
-    // V04 = Empty Contents / Pour Out, V05 = Rinse With Water.
+    // EMPTY_CONTENTS, RINSE_LIGHTLY are in the plastic step sequence.
     expect(text).toContain('Empty');
     expect(text).toContain('Rinse');
     expect(text).toMatch(/thursday/i);
@@ -75,15 +75,15 @@ describe('getCategoryDisposalText', () => {
 
 describe('getActionLabel / getVisualAction', () => {
   it('returns the action name for a known visualId', () => {
-    expect(getActionLabel('V04', 'en')).toBe('Empty Contents / Pour Out');
+    expect(getActionLabel('EMPTY_CONTENTS', 'en')).toBe('Empty Contents');
   });
 
   it('falls back to English when the locale label is empty', () => {
-    expect(getActionLabel('V04', 'ja')).toBe('Empty Contents / Pour Out');
+    expect(getActionLabel('EMPTY_CONTENTS', 'ja')).toBe('Empty Contents');
   });
 
   it('exposes the underlying action record', () => {
-    const a = getVisualAction('V01');
+    const a = getVisualAction('REMOVE_CAP_OR_LID_PUMP');
     expect(a?.name.en).toMatch(/Cap/);
     expect(a?.animation).toBeTruthy();
   });

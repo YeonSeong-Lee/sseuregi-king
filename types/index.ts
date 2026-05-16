@@ -77,14 +77,39 @@ export interface StorageData {
 
 export type BagColor = 'transparent' | 'yellow' | 'white' | 'green' | 'special' | 'none';
 
-// Visual action IDs — sourced from visual_actions_library.csv (V01–V40).
-// Keys in `data/visual-actions.json` and referenced from `data/trash-items.json` and
-// each category's `steps` array in `data/waste-categories.json`.
+// Visual action IDs — each value matches a file in public/step-icons/<id>.png.
+// Authoritative metadata lives in data/visual-actions.json.
+// Referenced from data/trash-items.json (actionSteps) and data/waste-categories.json (steps).
 export type VisualActionId =
-  | 'V01' | 'V02' | 'V03' | 'V04' | 'V05' | 'V06' | 'V07' | 'V08' | 'V09' | 'V10'
-  | 'V11' | 'V12' | 'V13' | 'V14' | 'V15' | 'V16' | 'V17' | 'V18' | 'V19' | 'V20'
-  | 'V21' | 'V22' | 'V23' | 'V24' | 'V25' | 'V26' | 'V27' | 'V28' | 'V29' | 'V30'
-  | 'V31' | 'V32' | 'V33' | 'V34' | 'V35' | 'V36' | 'V37' | 'V38' | 'V39' | 'V40';
+  // Preparation / processing
+  | 'REMOVE_CAP_OR_LID_PUMP'
+  | 'PEEL_OFF_LABEL_FILM'
+  | 'EMPTY_CONTENTS'
+  | 'EMPTY_DRINKS_CONTAINER'
+  | 'EMPTY_SPRAY_CAN'
+  | 'RELEASE_GAS'
+  | 'RINSE_LIGHTLY'
+  | 'WIPE_FOOD_RESIDUE_BEFORE_RECYCLING'
+  | 'REMOVE_FOOD_WASTE'
+  | 'REMOVE_TAPE'
+  | 'FLATTEN_BOX'
+  | 'CRUSH'
+  | 'CRUSH_CANS_BOTTLES'
+  | 'BREAK_PIECES'
+  | 'TIE_BUNDLE'
+  | 'SEPARATE_BY_MATERIAL'
+  | 'SEPARATIING_CUP_PARTS'
+  | 'RECYCLE_METALS'
+  // Terminal (final disposal)
+  | 'PUT_IN_GENERAL_BIN'
+  | 'PUT_IN_RECYCLE_PAPER'
+  | 'PUT_IN_RECYCLE_PLASTIC_PET'
+  | 'PUT_IN_RECYCLE_GLASS'
+  | 'PUT_IN_RECYCLE_CANS_METALS'
+  | 'PUT_IN_RECYCLE_BATTERIES_BULBS'
+  | 'DONATION_BIN'
+  | 'FOOD_WASTE_SEPARATE'
+  | 'CALL_COMMUNITY_CENTER';
 
 export interface VisualAction {
   id: VisualActionId;

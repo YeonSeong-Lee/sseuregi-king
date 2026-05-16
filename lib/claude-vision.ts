@@ -1,6 +1,4 @@
 import Anthropic from '@anthropic-ai/sdk';
-import { readFileSync } from 'node:fs';
-import path from 'node:path';
 import { SCAN_RESULT_SCHEMA } from './schemas/scan-result';
 import type {
   BagCode,
@@ -28,18 +26,51 @@ function getClient(): Anthropic {
 let _systemPrompt: string | null = null;
 function getSystemPrompt(): string {
   if (_systemPrompt) return _systemPrompt;
-  const visualCsv = readFileSync(
-    path.join(process.cwd(), 'docs/data-sources/visual_actions_library.csv'),
-    'utf8',
-  );
   _systemPrompt = [
     '[Role]',
     'You are a trash disposal assistant for Gangnam-gu, Seoul.',
     'Reply with ONLY a JSON array of items. No prose, no markdown fences.',
     '',
-    '[Visual Action Library]',
-    'Use V-codes (e.g. V01, V12) for the "visual" field in each step. Definitions:',
-    visualCsv.trim(),
+    '[Visual Action Vocabulary]',
+    'Use EXACTLY one of these codes for the "visual" field in each step. Do NOT invent new codes.',
+    '',
+    'PREPARATION CODES (use earlier in a sequence):',
+    '  REMOVE_CAP_OR_LID_PUMP             — Take off bottle cap, lid, or pump nozzle',
+    '  PEEL_OFF_LABEL_FILM                — Peel labels, shrink films, plastic windows',
+    '  EMPTY_CONTENTS                     — Pour out liquid or shake out remaining contents',
+    '  EMPTY_DRINKS_CONTAINER             — Empty a drink container before recycling',
+    '  EMPTY_SPRAY_CAN                    — Use up aerosol contents completely',
+    '  RELEASE_GAS                        — Puncture aerosol can outdoors to release residual gas',
+    '  RINSE_LIGHTLY                      — Quick rinse with tap water',
+    '  WIPE_FOOD_RESIDUE_BEFORE_RECYCLING — Wipe off grease / food residue',
+    '  REMOVE_FOOD_WASTE                  — Scrape out leftover food bits',
+    '  REMOVE_TAPE                        — Remove sticky tape / strings / shipping labels',
+    '  FLATTEN_BOX                        — Flatten cardboard or paper boxes',
+    '  CRUSH                              — Crush a PET / plastic bottle flat',
+    '  CRUSH_CANS_BOTTLES                 — Crush metal cans flat',
+    '  BREAK_PIECES                       — Break styrofoam or large items into smaller chunks',
+    '  TIE_BUNDLE                         — Stack paper / cardboard and tie into a string bundle',
+    '  SEPARATE_BY_MATERIAL               — Disassemble mixed-material items into components',
+    '  SEPARATIING_CUP_PARTS              — Split paper cup parts (lid + sleeve + body)',
+    '  RECYCLE_METALS                     — Sort out metal components for recycling',
+    '',
+    'TERMINAL CODES (must appear LAST in the sequence, exactly one per item):',
+    '  PUT_IN_GENERAL_BIN                 — White 일반쓰레기 bag (Gangnam-gu general waste)',
+    '  PUT_IN_RECYCLE_PAPER               — Paper / cardboard recycling',
+    '  PUT_IN_RECYCLE_PLASTIC_PET         — Transparent PET / plastic recycling',
+    '  PUT_IN_RECYCLE_GLASS               — Glass recycling',
+    '  PUT_IN_RECYCLE_CANS_METALS         — Can / metal recycling',
+    '  PUT_IN_RECYCLE_BATTERIES_BULBS     — Battery / fluorescent bulb collection box',
+    '  DONATION_BIN                       — 의류수거함 (clothing donation bin)',
+    '  FOOD_WASTE_SEPARATE                — Yellow food-waste bag / RFID food-waste bin',
+    '  CALL_COMMUNITY_CENTER              — Call 1599-0903 / contact 주민센터 (e-waste, Bulky)',
+    '',
+    '[Step Sequencing Rules — HARD RULES, DO NOT VIOLATE]',
+    '1. Choose 2–4 steps per item. Concise but complete.',
+    '2. The final step MUST be a TERMINAL CODE. A PREPARATION code may never be last.',
+    '3. For category="Bulky": the final step MUST be CALL_COMMUNITY_CENTER. Do NOT use any PUT_IN_* code for Bulky items.',
+    '4. Do NOT repeat the same code consecutively. Each consecutive pair must differ.',
+    '5. If only one step makes sense (trivial item), output exactly one TERMINAL code.',
     '',
     '[Korean Disposal Rules — Cheat Sheet]',
     'Counter-intuitive rules that override general intuition:',
@@ -80,7 +111,7 @@ function getSystemPrompt(): string {
     '',
     '[Instructions]',
     '1. Identify EVERY disposable item visible in the photo. When the photo clearly focuses on a single item like furniture or an appliance, treat it as the item being disposed. Skip humans, pets, and purely decorative non-trash.',
-    '2. For each item, determine category, bag, and V-coded steps using the Visual Library + Cheat Sheet + your knowledge of Korean waste rules.',
+    '2. For each item, determine category, bag, and the step sequence using the Visual Action Vocabulary + Sequencing Rules + Cheat Sheet.',
     '3. Output an ARRAY of objects, one per item.',
     '4. item_name and step.text MUST be plain English strings.',
     '   mascot_text and funny_fact MUST be {en, zh, ja, ru} objects.',
@@ -98,7 +129,7 @@ function getSystemPrompt(): string {
     '  "bag":        "general" | "food" | "recycle",',
     '  "bbox":       { "x": number, "y": number, "w": number, "h": number },',
     '  "steps": [',
-    '    { "visual": "V##", "text": string (English) }',
+    '    { "visual": "<one code from the Visual Action Vocabulary>", "text": string (English) }',
     '  ],',
     '  "mascot_text":{ "en": string, "zh": string, "ja": string, "ru": string },',
     '  "funny_fact": { "en": string, "zh": string, "ja": string, "ru": string },',
@@ -120,7 +151,35 @@ const VALID_CATEGORIES = new Set<ScanCategory>([
 const VALID_BAGS = new Set<BagCode>(['general', 'food', 'recycle']);
 const VALID_CONFIDENCE = new Set<ConfidenceLevel>(['high', 'medium', 'low']);
 const LOCALES: Locale[] = ['en', 'zh', 'ja', 'ru'];
-const VISUAL_ID_RE = /^V\d{2}$/;
+const VALID_VISUAL_IDS = new Set<VisualActionId>([
+  'REMOVE_CAP_OR_LID_PUMP',
+  'PEEL_OFF_LABEL_FILM',
+  'EMPTY_CONTENTS',
+  'EMPTY_DRINKS_CONTAINER',
+  'EMPTY_SPRAY_CAN',
+  'RELEASE_GAS',
+  'RINSE_LIGHTLY',
+  'WIPE_FOOD_RESIDUE_BEFORE_RECYCLING',
+  'REMOVE_FOOD_WASTE',
+  'REMOVE_TAPE',
+  'FLATTEN_BOX',
+  'CRUSH',
+  'CRUSH_CANS_BOTTLES',
+  'BREAK_PIECES',
+  'TIE_BUNDLE',
+  'SEPARATE_BY_MATERIAL',
+  'SEPARATIING_CUP_PARTS',
+  'RECYCLE_METALS',
+  'PUT_IN_GENERAL_BIN',
+  'PUT_IN_RECYCLE_PAPER',
+  'PUT_IN_RECYCLE_PLASTIC_PET',
+  'PUT_IN_RECYCLE_GLASS',
+  'PUT_IN_RECYCLE_CANS_METALS',
+  'PUT_IN_RECYCLE_BATTERIES_BULBS',
+  'DONATION_BIN',
+  'FOOD_WASTE_SEPARATE',
+  'CALL_COMMUNITY_CENTER',
+]);
 
 function clamp(n: number, lo: number, hi: number): number {
   return Math.max(lo, Math.min(hi, n));
@@ -165,7 +224,7 @@ function coerceStringField(value: unknown): string | null {
 function coerceStep(raw: unknown): ScanStep | null {
   if (!raw || typeof raw !== 'object') return null;
   const s = raw as { visual?: unknown; text?: unknown };
-  if (typeof s.visual !== 'string' || !VISUAL_ID_RE.test(s.visual)) return null;
+  if (typeof s.visual !== 'string' || !VALID_VISUAL_IDS.has(s.visual as VisualActionId)) return null;
   const text = coerceStringField(s.text);
   if (!text) return null;
   return { visual: s.visual as VisualActionId, text };

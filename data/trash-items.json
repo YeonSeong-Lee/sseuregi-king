@@ -28,7 +28,7 @@
       "bagColor": "transparent",
       "actionSteps": [
         {
-          "visualId": "V01",
+          "visualId": "REMOVE_CAP_OR_LID_PUMP",
           "text": {
             "en": "Remove the cap",
             "zh": "",
@@ -37,7 +37,7 @@
           }
         },
         {
-          "visualId": "V02",
+          "visualId": "PEEL_OFF_LABEL_FILM",
           "text": {
             "en": "Peel off the label",
             "zh": "",
@@ -46,7 +46,7 @@
           }
         },
         {
-          "visualId": "V03",
+          "visualId": "CRUSH",
           "text": {
             "en": "Crush it flat",
             "zh": "",
@@ -105,7 +105,7 @@
       "bagColor": "transparent",
       "actionSteps": [
         {
-          "visualId": "V04",
+          "visualId": "EMPTY_CONTENTS",
           "text": {
             "en": "Empty it completely",
             "zh": "",
@@ -114,7 +114,7 @@
           }
         },
         {
-          "visualId": "V01",
+          "visualId": "REMOVE_CAP_OR_LID_PUMP",
           "text": {
             "en": "Remove the cap",
             "zh": "",
@@ -123,7 +123,7 @@
           }
         },
         {
-          "visualId": "V03",
+          "visualId": "CRUSH",
           "text": {
             "en": "Crush it flat",
             "zh": "",
@@ -182,7 +182,7 @@
       "bagColor": "transparent",
       "actionSteps": [
         {
-          "visualId": "V04",
+          "visualId": "EMPTY_CONTENTS",
           "text": {
             "en": "Empty it completely",
             "zh": "",
@@ -191,7 +191,7 @@
           }
         },
         {
-          "visualId": "V05",
+          "visualId": "RINSE_LIGHTLY",
           "text": {
             "en": "Rinse it out",
             "zh": "",
@@ -200,7 +200,7 @@
           }
         },
         {
-          "visualId": "V03",
+          "visualId": "CRUSH",
           "text": {
             "en": "Crush it flat",
             "zh": "",
@@ -260,7 +260,7 @@
       "bagColor": "transparent",
       "actionSteps": [
         {
-          "visualId": "V06",
+          "visualId": "REMOVE_FOOD_WASTE",
           "text": {
             "en": "Remove all food bits",
             "zh": "",
@@ -269,7 +269,7 @@
           }
         },
         {
-          "visualId": "V05",
+          "visualId": "RINSE_LIGHTLY",
           "text": {
             "en": "Rinse it clean",
             "zh": "",
@@ -278,7 +278,7 @@
           }
         },
         {
-          "visualId": "V07",
+          "visualId": "TIE_BUNDLE",
           "text": {
             "en": "Stack them",
             "zh": "",
@@ -338,7 +338,7 @@
       "bagColor": "transparent",
       "actionSteps": [
         {
-          "visualId": "V04",
+          "visualId": "EMPTY_CONTENTS",
           "text": {
             "en": "Dump out the ice",
             "zh": "",
@@ -347,7 +347,7 @@
           }
         },
         {
-          "visualId": "V05",
+          "visualId": "RINSE_LIGHTLY",
           "text": {
             "en": "Rinse it quick",
             "zh": "",
@@ -356,7 +356,7 @@
           }
         },
         {
-          "visualId": "V07",
+          "visualId": "TIE_BUNDLE",
           "text": {
             "en": "Stack cups together",
             "zh": "",
@@ -415,7 +415,7 @@
       "bagColor": "transparent",
       "actionSteps": [
         {
-          "visualId": "V06",
+          "visualId": "REMOVE_FOOD_WASTE",
           "text": {
             "en": "Shake out crumbs",
             "zh": "",
@@ -424,7 +424,7 @@
           }
         },
         {
-          "visualId": "V08",
+          "visualId": "FLATTEN_BOX",
           "text": {
             "en": "Flatten and fold it",
             "zh": "",
@@ -433,7 +433,7 @@
           }
         },
         {
-          "visualId": "V09",
+          "visualId": "PUT_IN_GENERAL_BIN",
           "text": {
             "en": "Put with other vinyl",
             "zh": "",
@@ -490,7 +490,7 @@
       "bagColor": "transparent",
       "actionSteps": [
         {
-          "visualId": "V10",
+          "visualId": "BREAK_PIECES",
           "text": {
             "en": "Pop all the bubbles (mandatory fun)",
             "zh": "",
@@ -499,7 +499,7 @@
           }
         },
         {
-          "visualId": "V08",
+          "visualId": "FLATTEN_BOX",
           "text": {
             "en": "Flatten it",
             "zh": "",
@@ -508,7 +508,7 @@
           }
         },
         {
-          "visualId": "V09",
+          "visualId": "PUT_IN_GENERAL_BIN",
           "text": {
             "en": "Put with other vinyl",
             "zh": "",
@@ -567,7 +567,7 @@
       "bagColor": "transparent",
       "actionSteps": [
         {
-          "visualId": "V06",
+          "visualId": "REMOVE_FOOD_WASTE",
           "text": {
             "en": "Remove all food",
             "zh": "",
@@ -576,7 +576,7 @@
           }
         },
         {
-          "visualId": "V05",
+          "visualId": "RINSE_LIGHTLY",
           "text": {
             "en": "Rinse it clean",
             "zh": "",
@@ -585,7 +585,7 @@
           }
         },
         {
-          "visualId": "V11",
+          "visualId": "BREAK_PIECES",
           "text": {
             "en": "Break into pieces if large",
             "zh": "",
@@ -643,7 +643,7 @@
       "bagColor": "transparent",
       "actionSteps": [
         {
-          "visualId": "V12",
+          "visualId": "REMOVE_TAPE",
           "text": {
             "en": "Remove tape and labels",
             "zh": "",
@@ -652,7 +652,7 @@
           }
         },
         {
-          "visualId": "V05",
+          "visualId": "RINSE_LIGHTLY",
           "text": {
             "en": "Rinse if food residue",
             "zh": "",
@@ -661,7 +661,7 @@
           }
         },
         {
-          "visualId": "V11",
+          "visualId": "BREAK_PIECES",
           "text": {
             "en": "Break into smaller pieces",
             "zh": "",
@@ -720,7 +720,7 @@
       "bagColor": "white",
       "actionSteps": [
         {
-          "visualId": "V13",
+          "visualId": "PUT_IN_GENERAL_BIN",
           "text": {
             "en": "Ball it up",
             "zh": "",
@@ -779,7 +779,7 @@
       "bagColor": "transparent",
       "actionSteps": [
         {
-          "visualId": "V06",
+          "visualId": "REMOVE_FOOD_WASTE",
           "text": {
             "en": "Shake out every crumb",
             "zh": "",
@@ -788,7 +788,7 @@
           }
         },
         {
-          "visualId": "V08",
+          "visualId": "FLATTEN_BOX",
           "text": {
             "en": "Flatten it",
             "zh": "",
@@ -797,7 +797,7 @@
           }
         },
         {
-          "visualId": "V09",
+          "visualId": "PUT_IN_GENERAL_BIN",
           "text": {
             "en": "Put with other vinyl",
             "zh": "",
@@ -855,7 +855,7 @@
       "bagColor": "transparent",
       "actionSteps": [
         {
-          "visualId": "V06",
+          "visualId": "REMOVE_FOOD_WASTE",
           "text": {
             "en": "Remove all crumbs",
             "zh": "",
@@ -864,7 +864,7 @@
           }
         },
         {
-          "visualId": "V08",
+          "visualId": "FLATTEN_BOX",
           "text": {
             "en": "Flatten the wrapper",
             "zh": "",
@@ -873,7 +873,7 @@
           }
         },
         {
-          "visualId": "V09",
+          "visualId": "PUT_IN_GENERAL_BIN",
           "text": {
             "en": "Put with other vinyl",
             "zh": "",
@@ -931,7 +931,7 @@
       "bagColor": "transparent",
       "actionSteps": [
         {
-          "visualId": "V06",
+          "visualId": "REMOVE_FOOD_WASTE",
           "text": {
             "en": "Shake out seasoning dust",
             "zh": "",
@@ -940,7 +940,7 @@
           }
         },
         {
-          "visualId": "V08",
+          "visualId": "FLATTEN_BOX",
           "text": {
             "en": "Flatten it",
             "zh": "",
@@ -949,7 +949,7 @@
           }
         },
         {
-          "visualId": "V09",
+          "visualId": "PUT_IN_GENERAL_BIN",
           "text": {
             "en": "Put with vinyl",
             "zh": "",
@@ -1006,7 +1006,7 @@
       "bagColor": "white",
       "actionSteps": [
         {
-          "visualId": "V13",
+          "visualId": "PUT_IN_GENERAL_BIN",
           "text": {
             "en": "Just toss it in",
             "zh": "",
@@ -1064,7 +1064,7 @@
       "bagColor": "white",
       "actionSteps": [
         {
-          "visualId": "V13",
+          "visualId": "PUT_IN_GENERAL_BIN",
           "text": {
             "en": "Just toss them in",
             "zh": "",
@@ -1120,7 +1120,7 @@
       "bagColor": "white",
       "actionSteps": [
         {
-          "visualId": "V13",
+          "visualId": "PUT_IN_GENERAL_BIN",
           "text": {
             "en": "Toss it in",
             "zh": "",
@@ -1179,7 +1179,7 @@
       "bagColor": "white",
       "actionSteps": [
         {
-          "visualId": "V13",
+          "visualId": "PUT_IN_GENERAL_BIN",
           "text": {
             "en": "Toss it in",
             "zh": "",
@@ -1236,7 +1236,7 @@
       "bagColor": "white",
       "actionSteps": [
         {
-          "visualId": "V13",
+          "visualId": "PUT_IN_GENERAL_BIN",
           "text": {
             "en": "Put in general waste bag",
             "zh": "",
@@ -1296,7 +1296,7 @@
       "bagColor": "none",
       "actionSteps": [
         {
-          "visualId": "V12",
+          "visualId": "REMOVE_TAPE",
           "text": {
             "en": "Remove all tape and labels",
             "zh": "",
@@ -1305,7 +1305,7 @@
           }
         },
         {
-          "visualId": "V14",
+          "visualId": "FLATTEN_BOX",
           "text": {
             "en": "Flatten it completely",
             "zh": "",
@@ -1314,7 +1314,7 @@
           }
         },
         {
-          "visualId": "V15",
+          "visualId": "TIE_BUNDLE",
           "text": {
             "en": "Tie with string or stack neatly",
             "zh": "",
@@ -1371,7 +1371,7 @@
       "bagColor": "none",
       "actionSteps": [
         {
-          "visualId": "V08",
+          "visualId": "FLATTEN_BOX",
           "text": {
             "en": "Stack them neatly",
             "zh": "",
@@ -1380,7 +1380,7 @@
           }
         },
         {
-          "visualId": "V15",
+          "visualId": "TIE_BUNDLE",
           "text": {
             "en": "Tie with string",
             "zh": "",
@@ -1439,7 +1439,7 @@
       "bagColor": "none",
       "actionSteps": [
         {
-          "visualId": "V08",
+          "visualId": "FLATTEN_BOX",
           "text": {
             "en": "Stack them",
             "zh": "",
@@ -1448,7 +1448,7 @@
           }
         },
         {
-          "visualId": "V15",
+          "visualId": "TIE_BUNDLE",
           "text": {
             "en": "Tie with string",
             "zh": "",
@@ -1506,7 +1506,7 @@
       "bagColor": "none",
       "actionSteps": [
         {
-          "visualId": "V04",
+          "visualId": "EMPTY_CONTENTS",
           "text": {
             "en": "Dump out the liquid",
             "zh": "",
@@ -1515,7 +1515,7 @@
           }
         },
         {
-          "visualId": "V05",
+          "visualId": "RINSE_LIGHTLY",
           "text": {
             "en": "Rinse it quick",
             "zh": "",
@@ -1524,7 +1524,7 @@
           }
         },
         {
-          "visualId": "V07",
+          "visualId": "TIE_BUNDLE",
           "text": {
             "en": "Stack them together",
             "zh": "",
@@ -1584,7 +1584,7 @@
       "bagColor": "white",
       "actionSteps": [
         {
-          "visualId": "V13",
+          "visualId": "PUT_IN_GENERAL_BIN",
           "text": {
             "en": "Just toss it",
             "zh": "",
@@ -1641,7 +1641,7 @@
       "bagColor": "white",
       "actionSteps": [
         {
-          "visualId": "V13",
+          "visualId": "PUT_IN_GENERAL_BIN",
           "text": {
             "en": "Toss in general waste",
             "zh": "",
@@ -1698,7 +1698,7 @@
       "bagColor": "none",
       "actionSteps": [
         {
-          "visualId": "V06",
+          "visualId": "REMOVE_FOOD_WASTE",
           "text": {
             "en": "Tear off the greasy parts",
             "zh": "",
@@ -1707,7 +1707,7 @@
           }
         },
         {
-          "visualId": "V14",
+          "visualId": "FLATTEN_BOX",
           "text": {
             "en": "Flatten the clean parts",
             "zh": "",
@@ -1716,7 +1716,7 @@
           }
         },
         {
-          "visualId": "V15",
+          "visualId": "TIE_BUNDLE",
           "text": {
             "en": "Tie with other cardboard",
             "zh": "",
@@ -1774,7 +1774,7 @@
       "bagColor": "none",
       "actionSteps": [
         {
-          "visualId": "V04",
+          "visualId": "EMPTY_CONTENTS",
           "text": {
             "en": "Empty it completely",
             "zh": "",
@@ -1783,7 +1783,7 @@
           }
         },
         {
-          "visualId": "V05",
+          "visualId": "RINSE_LIGHTLY",
           "text": {
             "en": "Rinse inside",
             "zh": "",
@@ -1792,7 +1792,7 @@
           }
         },
         {
-          "visualId": "V14",
+          "visualId": "FLATTEN_BOX",
           "text": {
             "en": "Cut open and flatten",
             "zh": "",
@@ -1849,7 +1849,7 @@
       "bagColor": "none",
       "actionSteps": [
         {
-          "visualId": "V16",
+          "visualId": "PEEL_OFF_LABEL_FILM",
           "text": {
             "en": "Remove the plastic window",
             "zh": "",
@@ -1858,7 +1858,7 @@
           }
         },
         {
-          "visualId": "V08",
+          "visualId": "FLATTEN_BOX",
           "text": {
             "en": "Flatten it",
             "zh": "",
@@ -1917,7 +1917,7 @@
       "bagColor": "none",
       "actionSteps": [
         {
-          "visualId": "V08",
+          "visualId": "FLATTEN_BOX",
           "text": {
             "en": "Stack neatly",
             "zh": "",
@@ -1926,7 +1926,7 @@
           }
         },
         {
-          "visualId": "V15",
+          "visualId": "TIE_BUNDLE",
           "text": {
             "en": "Tie with string",
             "zh": "",
@@ -1984,7 +1984,7 @@
       "bagColor": "white",
       "actionSteps": [
         {
-          "visualId": "V13",
+          "visualId": "PUT_IN_GENERAL_BIN",
           "text": {
             "en": "Ball it up and toss",
             "zh": "",
@@ -2041,7 +2041,7 @@
       "bagColor": "none",
       "actionSteps": [
         {
-          "visualId": "V08",
+          "visualId": "FLATTEN_BOX",
           "text": {
             "en": "Stack or flatten",
             "zh": "",
@@ -2099,7 +2099,7 @@
       "bagColor": "none",
       "actionSteps": [
         {
-          "visualId": "V01",
+          "visualId": "REMOVE_CAP_OR_LID_PUMP",
           "text": {
             "en": "Remove the cap",
             "zh": "",
@@ -2108,7 +2108,7 @@
           }
         },
         {
-          "visualId": "V05",
+          "visualId": "RINSE_LIGHTLY",
           "text": {
             "en": "Rinse it out",
             "zh": "",
@@ -2117,7 +2117,7 @@
           }
         },
         {
-          "visualId": "V17",
+          "visualId": "PUT_IN_RECYCLE_GLASS",
           "text": {
             "en": "Place gently in glass bin",
             "zh": "",
@@ -2175,7 +2175,7 @@
       "bagColor": "none",
       "actionSteps": [
         {
-          "visualId": "V01",
+          "visualId": "REMOVE_CAP_OR_LID_PUMP",
           "text": {
             "en": "Remove the cap",
             "zh": "",
@@ -2184,7 +2184,7 @@
           }
         },
         {
-          "visualId": "V05",
+          "visualId": "RINSE_LIGHTLY",
           "text": {
             "en": "Rinse it out",
             "zh": "",
@@ -2193,7 +2193,7 @@
           }
         },
         {
-          "visualId": "V17",
+          "visualId": "PUT_IN_RECYCLE_GLASS",
           "text": {
             "en": "Place gently in glass bin",
             "zh": "",
@@ -2253,7 +2253,7 @@
       "bagColor": "none",
       "actionSteps": [
         {
-          "visualId": "V01",
+          "visualId": "REMOVE_CAP_OR_LID_PUMP",
           "text": {
             "en": "Remove the lid",
             "zh": "",
@@ -2262,7 +2262,7 @@
           }
         },
         {
-          "visualId": "V06",
+          "visualId": "REMOVE_FOOD_WASTE",
           "text": {
             "en": "Scoop out remaining food",
             "zh": "",
@@ -2271,7 +2271,7 @@
           }
         },
         {
-          "visualId": "V05",
+          "visualId": "RINSE_LIGHTLY",
           "text": {
             "en": "Rinse it clean",
             "zh": "",
@@ -2329,7 +2329,7 @@
       "bagColor": "white",
       "actionSteps": [
         {
-          "visualId": "V18",
+          "visualId": "SEPARATE_BY_MATERIAL",
           "text": {
             "en": "Wrap in newspaper carefully",
             "zh": "",
@@ -2338,18 +2338,9 @@
           }
         },
         {
-          "visualId": "V19",
+          "visualId": "PUT_IN_GENERAL_BIN",
           "text": {
             "en": "Write 유리조각 on the bag",
-            "zh": "",
-            "ja": "",
-            "ru": ""
-          }
-        },
-        {
-          "visualId": "V13",
-          "text": {
-            "en": "Put in general waste bag",
             "zh": "",
             "ja": "",
             "ru": ""
@@ -2405,7 +2396,7 @@
       "bagColor": "none",
       "actionSteps": [
         {
-          "visualId": "V01",
+          "visualId": "REMOVE_CAP_OR_LID_PUMP",
           "text": {
             "en": "Remove the cork/cap",
             "zh": "",
@@ -2414,7 +2405,7 @@
           }
         },
         {
-          "visualId": "V05",
+          "visualId": "RINSE_LIGHTLY",
           "text": {
             "en": "Rinse it out",
             "zh": "",
@@ -2423,7 +2414,7 @@
           }
         },
         {
-          "visualId": "V17",
+          "visualId": "PUT_IN_RECYCLE_GLASS",
           "text": {
             "en": "Place in glass bin",
             "zh": "",
@@ -2483,7 +2474,7 @@
       "bagColor": "transparent",
       "actionSteps": [
         {
-          "visualId": "V04",
+          "visualId": "EMPTY_CONTENTS",
           "text": {
             "en": "Empty it completely",
             "zh": "",
@@ -2492,7 +2483,7 @@
           }
         },
         {
-          "visualId": "V05",
+          "visualId": "RINSE_LIGHTLY",
           "text": {
             "en": "Rinse it quick",
             "zh": "",
@@ -2501,7 +2492,7 @@
           }
         },
         {
-          "visualId": "V03",
+          "visualId": "CRUSH",
           "text": {
             "en": "Crush it flat",
             "zh": "",
@@ -2562,7 +2553,7 @@
       "bagColor": "transparent",
       "actionSteps": [
         {
-          "visualId": "V20",
+          "visualId": "REMOVE_CAP_OR_LID_PUMP",
           "text": {
             "en": "Open fully and empty",
             "zh": "",
@@ -2571,7 +2562,7 @@
           }
         },
         {
-          "visualId": "V05",
+          "visualId": "RINSE_LIGHTLY",
           "text": {
             "en": "Rinse inside",
             "zh": "",
@@ -2580,7 +2571,7 @@
           }
         },
         {
-          "visualId": "V03",
+          "visualId": "CRUSH",
           "text": {
             "en": "Crush if possible",
             "zh": "",
@@ -2638,7 +2629,7 @@
       "bagColor": "transparent",
       "actionSteps": [
         {
-          "visualId": "V21",
+          "visualId": "EMPTY_SPRAY_CAN",
           "text": {
             "en": "Make sure it's completely empty",
             "zh": "",
@@ -2647,7 +2638,7 @@
           }
         },
         {
-          "visualId": "V22",
+          "visualId": "RELEASE_GAS",
           "text": {
             "en": "Puncture to release gas (outdoors)",
             "zh": "",
@@ -2656,7 +2647,7 @@
           }
         },
         {
-          "visualId": "V03",
+          "visualId": "CRUSH",
           "text": {
             "en": "Crush if possible",
             "zh": "",
@@ -2715,18 +2706,9 @@
       "bagColor": "transparent",
       "actionSteps": [
         {
-          "visualId": "V13",
+          "visualId": "PUT_IN_GENERAL_BIN",
           "text": {
             "en": "Collect a few together",
-            "zh": "",
-            "ja": "",
-            "ru": ""
-          }
-        },
-        {
-          "visualId": "V09",
-          "text": {
-            "en": "Put in can recycling",
             "zh": "",
             "ja": "",
             "ru": ""
@@ -2782,7 +2764,7 @@
       "bagColor": "transparent",
       "actionSteps": [
         {
-          "visualId": "V06",
+          "visualId": "REMOVE_FOOD_WASTE",
           "text": {
             "en": "Remove all food residue",
             "zh": "",
@@ -2791,7 +2773,7 @@
           }
         },
         {
-          "visualId": "V05",
+          "visualId": "RINSE_LIGHTLY",
           "text": {
             "en": "Rinse if greasy",
             "zh": "",
@@ -2800,7 +2782,7 @@
           }
         },
         {
-          "visualId": "V13",
+          "visualId": "PUT_IN_GENERAL_BIN",
           "text": {
             "en": "Ball it up → can recycling",
             "zh": "",
@@ -2861,7 +2843,7 @@
       "bagColor": "none",
       "actionSteps": [
         {
-          "visualId": "V23",
+          "visualId": "SEPARATE_BY_MATERIAL",
           "text": {
             "en": "Factory reset your data!",
             "zh": "",
@@ -2870,7 +2852,7 @@
           }
         },
         {
-          "visualId": "V24",
+          "visualId": "CALL_COMMUNITY_CENTER",
           "text": {
             "en": "Call 1599-0903 for free pickup",
             "zh": "",
@@ -2929,7 +2911,7 @@
       "bagColor": "none",
       "actionSteps": [
         {
-          "visualId": "V23",
+          "visualId": "SEPARATE_BY_MATERIAL",
           "text": {
             "en": "Wipe your data!",
             "zh": "",
@@ -2938,7 +2920,7 @@
           }
         },
         {
-          "visualId": "V24",
+          "visualId": "CALL_COMMUNITY_CENTER",
           "text": {
             "en": "Call 1599-0903 for free pickup",
             "zh": "",
@@ -2998,7 +2980,7 @@
       "bagColor": "none",
       "actionSteps": [
         {
-          "visualId": "V13",
+          "visualId": "PUT_IN_GENERAL_BIN",
           "text": {
             "en": "Bundle cables together",
             "zh": "",
@@ -3007,7 +2989,7 @@
           }
         },
         {
-          "visualId": "V24",
+          "visualId": "CALL_COMMUNITY_CENTER",
           "text": {
             "en": "Drop at 주민센터 or e-waste bin",
             "zh": "",
@@ -3066,7 +3048,7 @@
       "bagColor": "none",
       "actionSteps": [
         {
-          "visualId": "V24",
+          "visualId": "CALL_COMMUNITY_CENTER",
           "text": {
             "en": "Call 1599-0903 for free pickup",
             "zh": "",
@@ -3125,7 +3107,7 @@
       "bagColor": "none",
       "actionSteps": [
         {
-          "visualId": "V13",
+          "visualId": "PUT_IN_GENERAL_BIN",
           "text": {
             "en": "Tape the ends with scotch tape",
             "zh": "",
@@ -3134,7 +3116,7 @@
           }
         },
         {
-          "visualId": "V25",
+          "visualId": "PUT_IN_RECYCLE_BATTERIES_BULBS",
           "text": {
             "en": "Drop in battery collection box",
             "zh": "",
@@ -3192,7 +3174,7 @@
       "bagColor": "none",
       "actionSteps": [
         {
-          "visualId": "V13",
+          "visualId": "PUT_IN_GENERAL_BIN",
           "text": {
             "en": "Tape both sides",
             "zh": "",
@@ -3201,7 +3183,7 @@
           }
         },
         {
-          "visualId": "V25",
+          "visualId": "PUT_IN_RECYCLE_BATTERIES_BULBS",
           "text": {
             "en": "Drop in battery collection box",
             "zh": "",
@@ -3258,7 +3240,7 @@
       "bagColor": "white",
       "actionSteps": [
         {
-          "visualId": "V18",
+          "visualId": "SEPARATE_BY_MATERIAL",
           "text": {
             "en": "Wrap in newspaper",
             "zh": "",
@@ -3267,7 +3249,7 @@
           }
         },
         {
-          "visualId": "V13",
+          "visualId": "PUT_IN_GENERAL_BIN",
           "text": {
             "en": "Put in general waste bag",
             "zh": "",
@@ -3324,7 +3306,7 @@
       "bagColor": "none",
       "actionSteps": [
         {
-          "visualId": "V18",
+          "visualId": "SEPARATE_BY_MATERIAL",
           "text": {
             "en": "Keep it intact — don't break it",
             "zh": "",
@@ -3333,7 +3315,7 @@
           }
         },
         {
-          "visualId": "V25",
+          "visualId": "PUT_IN_RECYCLE_BATTERIES_BULBS",
           "text": {
             "en": "Drop at fluorescent collection box",
             "zh": "",
@@ -3391,7 +3373,7 @@
       "bagColor": "none",
       "actionSteps": [
         {
-          "visualId": "V24",
+          "visualId": "CALL_COMMUNITY_CENTER",
           "text": {
             "en": "Call 1599-0903 for free pickup",
             "zh": "",
@@ -3448,7 +3430,7 @@
       "bagColor": "none",
       "actionSteps": [
         {
-          "visualId": "V04",
+          "visualId": "EMPTY_CONTENTS",
           "text": {
             "en": "Empty all water",
             "zh": "",
@@ -3457,7 +3439,7 @@
           }
         },
         {
-          "visualId": "V24",
+          "visualId": "CALL_COMMUNITY_CENTER",
           "text": {
             "en": "Call 1599-0903 or drop at 주민센터",
             "zh": "",
@@ -3515,27 +3497,9 @@
       "bagColor": "none",
       "actionSteps": [
         {
-          "visualId": "V26",
+          "visualId": "CALL_COMMUNITY_CENTER",
           "text": {
             "en": "Register online at Gangnam-gu",
-            "zh": "",
-            "ja": "",
-            "ru": ""
-          }
-        },
-        {
-          "visualId": "V27",
-          "text": {
-            "en": "Pay the fee (₩5,000-15,000)",
-            "zh": "",
-            "ja": "",
-            "ru": ""
-          }
-        },
-        {
-          "visualId": "V28",
-          "text": {
-            "en": "Stick the number & put outside",
             "zh": "",
             "ja": "",
             "ru": ""
@@ -3591,27 +3555,9 @@
       "bagColor": "none",
       "actionSteps": [
         {
-          "visualId": "V26",
+          "visualId": "CALL_COMMUNITY_CENTER",
           "text": {
             "en": "Register online at Gangnam-gu",
-            "zh": "",
-            "ja": "",
-            "ru": ""
-          }
-        },
-        {
-          "visualId": "V27",
-          "text": {
-            "en": "Pay the fee (₩5,000-20,000)",
-            "zh": "",
-            "ja": "",
-            "ru": ""
-          }
-        },
-        {
-          "visualId": "V28",
-          "text": {
-            "en": "Stick the number & put outside",
             "zh": "",
             "ja": "",
             "ru": ""
@@ -3669,27 +3615,9 @@
       "bagColor": "none",
       "actionSteps": [
         {
-          "visualId": "V26",
+          "visualId": "CALL_COMMUNITY_CENTER",
           "text": {
             "en": "Register online at Gangnam-gu",
-            "zh": "",
-            "ja": "",
-            "ru": ""
-          }
-        },
-        {
-          "visualId": "V27",
-          "text": {
-            "en": "Pay the fee (₩3,000-10,000)",
-            "zh": "",
-            "ja": "",
-            "ru": ""
-          }
-        },
-        {
-          "visualId": "V28",
-          "text": {
-            "en": "Stick the number & put outside",
             "zh": "",
             "ja": "",
             "ru": ""
@@ -3746,27 +3674,9 @@
       "bagColor": "none",
       "actionSteps": [
         {
-          "visualId": "V26",
+          "visualId": "CALL_COMMUNITY_CENTER",
           "text": {
             "en": "Register online at Gangnam-gu",
-            "zh": "",
-            "ja": "",
-            "ru": ""
-          }
-        },
-        {
-          "visualId": "V27",
-          "text": {
-            "en": "Pay the fee (₩1,000-5,000)",
-            "zh": "",
-            "ja": "",
-            "ru": ""
-          }
-        },
-        {
-          "visualId": "V28",
-          "text": {
-            "en": "Stick the number & put outside",
             "zh": "",
             "ja": "",
             "ru": ""
@@ -3822,27 +3732,9 @@
       "bagColor": "none",
       "actionSteps": [
         {
-          "visualId": "V26",
+          "visualId": "CALL_COMMUNITY_CENTER",
           "text": {
             "en": "Register online at Gangnam-gu",
-            "zh": "",
-            "ja": "",
-            "ru": ""
-          }
-        },
-        {
-          "visualId": "V27",
-          "text": {
-            "en": "Pay the fee (₩3,000-10,000)",
-            "zh": "",
-            "ja": "",
-            "ru": ""
-          }
-        },
-        {
-          "visualId": "V28",
-          "text": {
-            "en": "Stick the number & put outside",
             "zh": "",
             "ja": "",
             "ru": ""
@@ -3898,27 +3790,9 @@
       "bagColor": "none",
       "actionSteps": [
         {
-          "visualId": "V26",
+          "visualId": "CALL_COMMUNITY_CENTER",
           "text": {
             "en": "Register online at Gangnam-gu",
-            "zh": "",
-            "ja": "",
-            "ru": ""
-          }
-        },
-        {
-          "visualId": "V27",
-          "text": {
-            "en": "Pay the fee (₩5,000-15,000)",
-            "zh": "",
-            "ja": "",
-            "ru": ""
-          }
-        },
-        {
-          "visualId": "V28",
-          "text": {
-            "en": "Stick the number & put outside",
             "zh": "",
             "ja": "",
             "ru": ""
@@ -3974,18 +3848,9 @@
       "bagColor": "none",
       "actionSteps": [
         {
-          "visualId": "V24",
+          "visualId": "CALL_COMMUNITY_CENTER",
           "text": {
             "en": "Call 1599-0903 for FREE pickup",
-            "zh": "",
-            "ja": "",
-            "ru": ""
-          }
-        },
-        {
-          "visualId": "V29",
-          "text": {
-            "en": "Schedule a pickup date",
             "zh": "",
             "ja": "",
             "ru": ""
@@ -4042,7 +3907,7 @@
       "bagColor": "none",
       "actionSteps": [
         {
-          "visualId": "V04",
+          "visualId": "EMPTY_CONTENTS",
           "text": {
             "en": "Empty all food first",
             "zh": "",
@@ -4051,18 +3916,9 @@
           }
         },
         {
-          "visualId": "V24",
+          "visualId": "CALL_COMMUNITY_CENTER",
           "text": {
             "en": "Call 1599-0903 for FREE pickup",
-            "zh": "",
-            "ja": "",
-            "ru": ""
-          }
-        },
-        {
-          "visualId": "V29",
-          "text": {
-            "en": "Schedule a pickup date",
             "zh": "",
             "ja": "",
             "ru": ""
@@ -4119,18 +3975,9 @@
       "bagColor": "none",
       "actionSteps": [
         {
-          "visualId": "V24",
+          "visualId": "CALL_COMMUNITY_CENTER",
           "text": {
             "en": "Call 1599-0903 for FREE pickup",
-            "zh": "",
-            "ja": "",
-            "ru": ""
-          }
-        },
-        {
-          "visualId": "V29",
-          "text": {
-            "en": "Schedule a pickup date",
             "zh": "",
             "ja": "",
             "ru": ""
@@ -4189,18 +4036,9 @@
       "bagColor": "none",
       "actionSteps": [
         {
-          "visualId": "V24",
+          "visualId": "CALL_COMMUNITY_CENTER",
           "text": {
             "en": "Call 1599-0903 for FREE pickup",
-            "zh": "",
-            "ja": "",
-            "ru": ""
-          }
-        },
-        {
-          "visualId": "V29",
-          "text": {
-            "en": "Schedule a pickup date",
             "zh": "",
             "ja": "",
             "ru": ""
@@ -4256,27 +4094,9 @@
       "bagColor": "none",
       "actionSteps": [
         {
-          "visualId": "V26",
+          "visualId": "CALL_COMMUNITY_CENTER",
           "text": {
             "en": "Register online at Gangnam-gu",
-            "zh": "",
-            "ja": "",
-            "ru": ""
-          }
-        },
-        {
-          "visualId": "V27",
-          "text": {
-            "en": "Pay the fee (₩3,000-5,000)",
-            "zh": "",
-            "ja": "",
-            "ru": ""
-          }
-        },
-        {
-          "visualId": "V28",
-          "text": {
-            "en": "Stick the number & put outside",
             "zh": "",
             "ja": "",
             "ru": ""
@@ -4333,27 +4153,9 @@
       "bagColor": "none",
       "actionSteps": [
         {
-          "visualId": "V26",
+          "visualId": "CALL_COMMUNITY_CENTER",
           "text": {
             "en": "Register online at Gangnam-gu",
-            "zh": "",
-            "ja": "",
-            "ru": ""
-          }
-        },
-        {
-          "visualId": "V27",
-          "text": {
-            "en": "Pay the fee (₩1,000-3,000)",
-            "zh": "",
-            "ja": "",
-            "ru": ""
-          }
-        },
-        {
-          "visualId": "V28",
-          "text": {
-            "en": "Stick the number & put outside",
             "zh": "",
             "ja": "",
             "ru": ""
@@ -4410,27 +4212,9 @@
       "bagColor": "none",
       "actionSteps": [
         {
-          "visualId": "V26",
+          "visualId": "CALL_COMMUNITY_CENTER",
           "text": {
             "en": "Register online at Gangnam-gu",
-            "zh": "",
-            "ja": "",
-            "ru": ""
-          }
-        },
-        {
-          "visualId": "V27",
-          "text": {
-            "en": "Pay the fee (₩1,000-5,000)",
-            "zh": "",
-            "ja": "",
-            "ru": ""
-          }
-        },
-        {
-          "visualId": "V28",
-          "text": {
-            "en": "Stick the number & put outside",
             "zh": "",
             "ja": "",
             "ru": ""
@@ -4486,27 +4270,9 @@
       "bagColor": "none",
       "actionSteps": [
         {
-          "visualId": "V26",
+          "visualId": "CALL_COMMUNITY_CENTER",
           "text": {
             "en": "Register online at Gangnam-gu",
-            "zh": "",
-            "ja": "",
-            "ru": ""
-          }
-        },
-        {
-          "visualId": "V27",
-          "text": {
-            "en": "Pay the fee (₩1,000-3,000)",
-            "zh": "",
-            "ja": "",
-            "ru": ""
-          }
-        },
-        {
-          "visualId": "V28",
-          "text": {
-            "en": "Stick the number & put outside",
             "zh": "",
             "ja": "",
             "ru": ""
@@ -4560,27 +4326,9 @@
       "bagColor": "none",
       "actionSteps": [
         {
-          "visualId": "V26",
+          "visualId": "CALL_COMMUNITY_CENTER",
           "text": {
             "en": "Register online at Gangnam-gu",
-            "zh": "",
-            "ja": "",
-            "ru": ""
-          }
-        },
-        {
-          "visualId": "V27",
-          "text": {
-            "en": "Pay the fee (₩1,000-3,000)",
-            "zh": "",
-            "ja": "",
-            "ru": ""
-          }
-        },
-        {
-          "visualId": "V28",
-          "text": {
-            "en": "Stick the number & put outside",
             "zh": "",
             "ja": "",
             "ru": ""
@@ -4636,7 +4384,7 @@
       "bagColor": "none",
       "actionSteps": [
         {
-          "visualId": "V24",
+          "visualId": "CALL_COMMUNITY_CENTER",
           "text": {
             "en": "Call 1599-0903 for free pickup",
             "zh": "",
@@ -4696,7 +4444,7 @@
       "bagColor": "yellow",
       "actionSteps": [
         {
-          "visualId": "V30",
+          "visualId": "EMPTY_CONTENTS",
           "text": {
             "en": "Drain all liquid",
             "zh": "",
@@ -4705,7 +4453,7 @@
           }
         },
         {
-          "visualId": "V31",
+          "visualId": "FOOD_WASTE_SEPARATE",
           "text": {
             "en": "Put in food waste bin or yellow bag",
             "zh": "",
@@ -4764,7 +4512,7 @@
       "bagColor": "yellow",
       "actionSteps": [
         {
-          "visualId": "V30",
+          "visualId": "EMPTY_CONTENTS",
           "text": {
             "en": "Drain excess moisture",
             "zh": "",
@@ -4773,7 +4521,7 @@
           }
         },
         {
-          "visualId": "V31",
+          "visualId": "FOOD_WASTE_SEPARATE",
           "text": {
             "en": "Put in food waste bin",
             "zh": "",
@@ -4832,7 +4580,7 @@
       "bagColor": "yellow",
       "actionSteps": [
         {
-          "visualId": "V30",
+          "visualId": "EMPTY_CONTENTS",
           "text": {
             "en": "Drain any liquid",
             "zh": "",
@@ -4841,7 +4589,7 @@
           }
         },
         {
-          "visualId": "V31",
+          "visualId": "FOOD_WASTE_SEPARATE",
           "text": {
             "en": "Put in food waste bin",
             "zh": "",
@@ -4900,7 +4648,7 @@
       "bagColor": "white",
       "actionSteps": [
         {
-          "visualId": "V13",
+          "visualId": "PUT_IN_GENERAL_BIN",
           "text": {
             "en": "Put in general waste bag",
             "zh": "",
@@ -4956,7 +4704,7 @@
       "bagColor": "yellow",
       "actionSteps": [
         {
-          "visualId": "V31",
+          "visualId": "FOOD_WASTE_SEPARATE",
           "text": {
             "en": "Put in food waste bin",
             "zh": "",
@@ -5014,7 +4762,7 @@
       "bagColor": "yellow",
       "actionSteps": [
         {
-          "visualId": "V30",
+          "visualId": "EMPTY_CONTENTS",
           "text": {
             "en": "Squeeze out excess water",
             "zh": "",
@@ -5023,7 +4771,7 @@
           }
         },
         {
-          "visualId": "V31",
+          "visualId": "FOOD_WASTE_SEPARATE",
           "text": {
             "en": "Put in food waste bin",
             "zh": "",
@@ -5080,7 +4828,7 @@
       "bagColor": "yellow",
       "actionSteps": [
         {
-          "visualId": "V30",
+          "visualId": "EMPTY_CONTENTS",
           "text": {
             "en": "Separate food from container",
             "zh": "",
@@ -5089,7 +4837,7 @@
           }
         },
         {
-          "visualId": "V06",
+          "visualId": "REMOVE_FOOD_WASTE",
           "text": {
             "en": "Clean the container",
             "zh": "",
@@ -5098,7 +4846,7 @@
           }
         },
         {
-          "visualId": "V31",
+          "visualId": "FOOD_WASTE_SEPARATE",
           "text": {
             "en": "Food → yellow. Container → recycling",
             "zh": "",
@@ -5157,7 +4905,7 @@
       "bagColor": "white",
       "actionSteps": [
         {
-          "visualId": "V13",
+          "visualId": "PUT_IN_GENERAL_BIN",
           "text": {
             "en": "Put in general waste bag",
             "zh": "",
@@ -5215,7 +4963,7 @@
       "bagColor": "white",
       "actionSteps": [
         {
-          "visualId": "V13",
+          "visualId": "PUT_IN_GENERAL_BIN",
           "text": {
             "en": "Put in general waste bag",
             "zh": "",
@@ -5279,18 +5027,9 @@
       "bagColor": "none",
       "actionSteps": [
         {
-          "visualId": "V32",
+          "visualId": "DONATION_BIN",
           "text": {
             "en": "Put in a bag",
-            "zh": "",
-            "ja": "",
-            "ru": ""
-          }
-        },
-        {
-          "visualId": "V33",
-          "text": {
-            "en": "Drop in clothing donation bin (의류수거함)",
             "zh": "",
             "ja": "",
             "ru": ""
@@ -5348,7 +5087,7 @@
       "bagColor": "white",
       "actionSteps": [
         {
-          "visualId": "V13",
+          "visualId": "PUT_IN_GENERAL_BIN",
           "text": {
             "en": "Put in general waste bag",
             "zh": "",
@@ -5410,18 +5149,9 @@
       "bagColor": "none",
       "actionSteps": [
         {
-          "visualId": "V32",
+          "visualId": "DONATION_BIN",
           "text": {
             "en": "Tie them together",
-            "zh": "",
-            "ja": "",
-            "ru": ""
-          }
-        },
-        {
-          "visualId": "V33",
-          "text": {
-            "en": "Drop in clothing donation bin",
             "zh": "",
             "ja": "",
             "ru": ""
@@ -5479,18 +5209,9 @@
       "bagColor": "none",
       "actionSteps": [
         {
-          "visualId": "V32",
+          "visualId": "DONATION_BIN",
           "text": {
             "en": "Fold and bag it",
-            "zh": "",
-            "ja": "",
-            "ru": ""
-          }
-        },
-        {
-          "visualId": "V33",
-          "text": {
-            "en": "Drop in clothing donation bin",
             "zh": "",
             "ja": "",
             "ru": ""
@@ -5549,7 +5270,7 @@
       "bagColor": "none",
       "actionSteps": [
         {
-          "visualId": "V33",
+          "visualId": "DONATION_BIN",
           "text": {
             "en": "Drop in clothing donation bin",
             "zh": "",
@@ -5607,7 +5328,7 @@
       "bagColor": "transparent",
       "actionSteps": [
         {
-          "visualId": "V04",
+          "visualId": "EMPTY_CONTENTS",
           "text": {
             "en": "Empty it completely",
             "zh": "",
@@ -5616,7 +5337,7 @@
           }
         },
         {
-          "visualId": "V05",
+          "visualId": "RINSE_LIGHTLY",
           "text": {
             "en": "Rinse it out",
             "zh": "",
@@ -5625,7 +5346,7 @@
           }
         },
         {
-          "visualId": "V01",
+          "visualId": "REMOVE_CAP_OR_LID_PUMP",
           "text": {
             "en": "Remove the pump top",
             "zh": "",
@@ -5681,7 +5402,7 @@
       "bagColor": "white",
       "actionSteps": [
         {
-          "visualId": "V13",
+          "visualId": "PUT_IN_GENERAL_BIN",
           "text": {
             "en": "Toss in general waste",
             "zh": "",
@@ -5738,7 +5459,7 @@
       "bagColor": "white",
       "actionSteps": [
         {
-          "visualId": "V18",
+          "visualId": "SEPARATE_BY_MATERIAL",
           "text": {
             "en": "Wrap blade in paper for safety",
             "zh": "",
@@ -5747,7 +5468,7 @@
           }
         },
         {
-          "visualId": "V13",
+          "visualId": "PUT_IN_GENERAL_BIN",
           "text": {
             "en": "Put in general waste bag",
             "zh": "",
@@ -5806,7 +5527,7 @@
       "bagColor": "white",
       "actionSteps": [
         {
-          "visualId": "V13",
+          "visualId": "PUT_IN_GENERAL_BIN",
           "text": {
             "en": "Toss in general waste",
             "zh": "",
@@ -5863,7 +5584,7 @@
       "bagColor": "white",
       "actionSteps": [
         {
-          "visualId": "V13",
+          "visualId": "PUT_IN_GENERAL_BIN",
           "text": {
             "en": "Toss in general waste",
             "zh": "",
@@ -5921,7 +5642,7 @@
       "bagColor": "transparent",
       "actionSteps": [
         {
-          "visualId": "V04",
+          "visualId": "EMPTY_CONTENTS",
           "text": {
             "en": "Empty completely",
             "zh": "",
@@ -5930,7 +5651,7 @@
           }
         },
         {
-          "visualId": "V05",
+          "visualId": "RINSE_LIGHTLY",
           "text": {
             "en": "Rinse it out",
             "zh": "",
@@ -5990,7 +5711,7 @@
       "bagColor": "white",
       "actionSteps": [
         {
-          "visualId": "V13",
+          "visualId": "PUT_IN_GENERAL_BIN",
           "text": {
             "en": "Toss in general waste",
             "zh": "",
@@ -6047,7 +5768,7 @@
       "bagColor": "none",
       "actionSteps": [
         {
-          "visualId": "V08",
+          "visualId": "FLATTEN_BOX",
           "text": {
             "en": "Flatten it",
             "zh": "",
@@ -6056,7 +5777,7 @@
           }
         },
         {
-          "visualId": "V09",
+          "visualId": "PUT_IN_GENERAL_BIN",
           "text": {
             "en": "Put with paper recycling",
             "zh": "",
@@ -6114,7 +5835,7 @@
       "bagColor": "white",
       "actionSteps": [
         {
-          "visualId": "V34",
+          "visualId": "WIPE_FOOD_RESIDUE_BEFORE_RECYCLING",
           "text": {
             "en": "Soak in newspaper/paper towels",
             "zh": "",
@@ -6123,7 +5844,7 @@
           }
         },
         {
-          "visualId": "V13",
+          "visualId": "PUT_IN_GENERAL_BIN",
           "text": {
             "en": "Put soaked paper in general waste",
             "zh": "",
@@ -6182,7 +5903,7 @@
       "bagColor": "white",
       "actionSteps": [
         {
-          "visualId": "V18",
+          "visualId": "SEPARATE_BY_MATERIAL",
           "text": {
             "en": "Wrap in newspaper",
             "zh": "",
@@ -6191,18 +5912,9 @@
           }
         },
         {
-          "visualId": "V19",
+          "visualId": "PUT_IN_GENERAL_BIN",
           "text": {
             "en": "Write 도자기 on the bag",
-            "zh": "",
-            "ja": "",
-            "ru": ""
-          }
-        },
-        {
-          "visualId": "V13",
-          "text": {
-            "en": "Put in general waste",
             "zh": "",
             "ja": "",
             "ru": ""
@@ -6260,18 +5972,9 @@
       "bagColor": "none",
       "actionSteps": [
         {
-          "visualId": "V26",
+          "visualId": "CALL_COMMUNITY_CENTER",
           "text": {
             "en": "If large: register as bulky waste",
-            "zh": "",
-            "ja": "",
-            "ru": ""
-          }
-        },
-        {
-          "visualId": "V27",
-          "text": {
-            "en": "If small: put in metal recycling",
             "zh": "",
             "ja": "",
             "ru": ""
@@ -6327,7 +6030,7 @@
       "bagColor": "white",
       "actionSteps": [
         {
-          "visualId": "V13",
+          "visualId": "PUT_IN_GENERAL_BIN",
           "text": {
             "en": "Squeeze dry and toss",
             "zh": "",
@@ -6383,7 +6086,7 @@
       "bagColor": "white",
       "actionSteps": [
         {
-          "visualId": "V13",
+          "visualId": "PUT_IN_GENERAL_BIN",
           "text": {
             "en": "Put in general waste bag",
             "zh": "",
@@ -6442,7 +6145,7 @@
       "bagColor": "white",
       "actionSteps": [
         {
-          "visualId": "V18",
+          "visualId": "SEPARATE_BY_MATERIAL",
           "text": {
             "en": "Wrap in newspaper",
             "zh": "",
@@ -6451,7 +6154,7 @@
           }
         },
         {
-          "visualId": "V13",
+          "visualId": "PUT_IN_GENERAL_BIN",
           "text": {
             "en": "Put in general waste",
             "zh": "",
@@ -6509,7 +6212,7 @@
       "bagColor": "white",
       "actionSteps": [
         {
-          "visualId": "V35",
+          "visualId": "REMOVE_FOOD_WASTE",
           "text": {
             "en": "Scoop out remaining wax",
             "zh": "",
@@ -6518,7 +6221,7 @@
           }
         },
         {
-          "visualId": "V05",
+          "visualId": "RINSE_LIGHTLY",
           "text": {
             "en": "Clean the glass jar",
             "zh": "",
@@ -6527,7 +6230,7 @@
           }
         },
         {
-          "visualId": "V17",
+          "visualId": "PUT_IN_RECYCLE_GLASS",
           "text": {
             "en": "Jar → glass recycling. Wax → general waste",
             "zh": "",
@@ -6584,7 +6287,7 @@
       "bagColor": "white",
       "actionSteps": [
         {
-          "visualId": "V36",
+          "visualId": "SEPARATE_BY_MATERIAL",
           "text": {
             "en": "Separate glass from frame",
             "zh": "",
@@ -6593,7 +6296,7 @@
           }
         },
         {
-          "visualId": "V17",
+          "visualId": "PUT_IN_RECYCLE_GLASS",
           "text": {
             "en": "Glass → glass recycling",
             "zh": "",
@@ -6602,7 +6305,7 @@
           }
         },
         {
-          "visualId": "V13",
+          "visualId": "PUT_IN_GENERAL_BIN",
           "text": {
             "en": "Frame → general waste",
             "zh": "",
@@ -6658,7 +6361,7 @@
       "bagColor": "white",
       "actionSteps": [
         {
-          "visualId": "V36",
+          "visualId": "SEPARATE_BY_MATERIAL",
           "text": {
             "en": "Separate metal frame from fabric if possible",
             "zh": "",
@@ -6667,7 +6370,7 @@
           }
         },
         {
-          "visualId": "V13",
+          "visualId": "PUT_IN_GENERAL_BIN",
           "text": {
             "en": "Put in general waste",
             "zh": "",
@@ -6725,7 +6428,7 @@
       "bagColor": "white",
       "actionSteps": [
         {
-          "visualId": "V13",
+          "visualId": "PUT_IN_GENERAL_BIN",
           "text": {
             "en": "Put in general waste bag",
             "zh": "",
@@ -6783,7 +6486,7 @@
       "bagColor": "none",
       "actionSteps": [
         {
-          "visualId": "V24",
+          "visualId": "CALL_COMMUNITY_CENTER",
           "text": {
             "en": "Drop at 주민센터 or e-waste bin",
             "zh": "",
@@ -6841,7 +6544,7 @@
       "bagColor": "none",
       "actionSteps": [
         {
-          "visualId": "V40",
+          "visualId": "SEPARATE_BY_MATERIAL",
           "text": {
             "en": "Remove batteries first",
             "zh": "",
@@ -6850,7 +6553,7 @@
           }
         },
         {
-          "visualId": "V25",
+          "visualId": "PUT_IN_RECYCLE_BATTERIES_BULBS",
           "text": {
             "en": "Batteries → battery collection box",
             "zh": "",
@@ -6859,7 +6562,7 @@
           }
         },
         {
-          "visualId": "V24",
+          "visualId": "CALL_COMMUNITY_CENTER",
           "text": {
             "en": "Clock → e-waste bin or 주민센터",
             "zh": "",
@@ -6917,7 +6620,7 @@
       "bagColor": "transparent",
       "actionSteps": [
         {
-          "visualId": "V37",
+          "visualId": "BREAK_PIECES",
           "text": {
             "en": "Pop and deflate them",
             "zh": "",
@@ -6926,7 +6629,7 @@
           }
         },
         {
-          "visualId": "V08",
+          "visualId": "FLATTEN_BOX",
           "text": {
             "en": "Flatten",
             "zh": "",
@@ -6935,7 +6638,7 @@
           }
         },
         {
-          "visualId": "V09",
+          "visualId": "PUT_IN_GENERAL_BIN",
           "text": {
             "en": "Put with vinyl recycling",
             "zh": "",
@@ -6992,18 +6695,9 @@
       "bagColor": "transparent",
       "actionSteps": [
         {
-          "visualId": "V13",
+          "visualId": "PUT_IN_GENERAL_BIN",
           "text": {
             "en": "Bag them up so they don't fly away",
-            "zh": "",
-            "ja": "",
-            "ru": ""
-          }
-        },
-        {
-          "visualId": "V09",
-          "text": {
-            "en": "Put with styrofoam recycling",
             "zh": "",
             "ja": "",
             "ru": ""
@@ -7059,7 +6753,7 @@
       "bagColor": "white",
       "actionSteps": [
         {
-          "visualId": "V13",
+          "visualId": "PUT_IN_GENERAL_BIN",
           "text": {
             "en": "Toss in general waste",
             "zh": "",
@@ -7117,7 +6811,7 @@
       "bagColor": "white",
       "actionSteps": [
         {
-          "visualId": "V12",
+          "visualId": "REMOVE_TAPE",
           "text": {
             "en": "Peel off from the box",
             "zh": "",
@@ -7126,7 +6820,7 @@
           }
         },
         {
-          "visualId": "V13",
+          "visualId": "PUT_IN_GENERAL_BIN",
           "text": {
             "en": "Label → general waste",
             "zh": "",
@@ -7183,7 +6877,7 @@
       "bagColor": "none",
       "actionSteps": [
         {
-          "visualId": "V08",
+          "visualId": "FLATTEN_BOX",
           "text": {
             "en": "Flatten it out",
             "zh": "",
@@ -7192,7 +6886,7 @@
           }
         },
         {
-          "visualId": "V09",
+          "visualId": "PUT_IN_GENERAL_BIN",
           "text": {
             "en": "Put with paper recycling",
             "zh": "",
@@ -7251,7 +6945,7 @@
       "bagColor": "none",
       "actionSteps": [
         {
-          "visualId": "V25",
+          "visualId": "PUT_IN_RECYCLE_BATTERIES_BULBS",
           "text": {
             "en": "Take to any pharmacy (약국)",
             "zh": "",
@@ -7307,7 +7001,7 @@
       "bagColor": "none",
       "actionSteps": [
         {
-          "visualId": "V25",
+          "visualId": "PUT_IN_RECYCLE_BATTERIES_BULBS",
           "text": {
             "en": "Take to 주민센터 hazardous waste",
             "zh": "",
@@ -7364,7 +7058,7 @@
       "bagColor": "none",
       "actionSteps": [
         {
-          "visualId": "V21",
+          "visualId": "EMPTY_SPRAY_CAN",
           "text": {
             "en": "Let remaining paint dry completely",
             "zh": "",
@@ -7373,7 +7067,7 @@
           }
         },
         {
-          "visualId": "V25",
+          "visualId": "PUT_IN_RECYCLE_BATTERIES_BULBS",
           "text": {
             "en": "Take to 주민센터 hazardous waste",
             "zh": "",
@@ -7432,7 +7126,7 @@
       "bagColor": "none",
       "actionSteps": [
         {
-          "visualId": "V21",
+          "visualId": "EMPTY_SPRAY_CAN",
           "text": {
             "en": "Make sure completely empty",
             "zh": "",
@@ -7441,7 +7135,7 @@
           }
         },
         {
-          "visualId": "V25",
+          "visualId": "PUT_IN_RECYCLE_BATTERIES_BULBS",
           "text": {
             "en": "Take to 주민센터 hazardous waste",
             "zh": "",
@@ -7498,7 +7192,7 @@
       "bagColor": "none",
       "actionSteps": [
         {
-          "visualId": "V21",
+          "visualId": "EMPTY_SPRAY_CAN",
           "text": {
             "en": "Use up all the gas",
             "zh": "",
@@ -7507,7 +7201,7 @@
           }
         },
         {
-          "visualId": "V25",
+          "visualId": "PUT_IN_RECYCLE_BATTERIES_BULBS",
           "text": {
             "en": "Take to 주민센터 or toss empty in general waste",
             "zh": "",
@@ -7565,7 +7259,7 @@
       "bagColor": "white",
       "actionSteps": [
         {
-          "visualId": "V13",
+          "visualId": "PUT_IN_GENERAL_BIN",
           "text": {
             "en": "Toss in general waste",
             "zh": "",
@@ -7624,7 +7318,7 @@
       "bagColor": "none",
       "actionSteps": [
         {
-          "visualId": "V24",
+          "visualId": "CALL_COMMUNITY_CENTER",
           "text": {
             "en": "Call 1599-0903 for free pickup",
             "zh": "",
@@ -7681,7 +7375,7 @@
       "bagColor": "none",
       "actionSteps": [
         {
-          "visualId": "V04",
+          "visualId": "EMPTY_CONTENTS",
           "text": {
             "en": "Empty water tank",
             "zh": "",
@@ -7690,7 +7384,7 @@
           }
         },
         {
-          "visualId": "V24",
+          "visualId": "CALL_COMMUNITY_CENTER",
           "text": {
             "en": "Call 1599-0903 or drop at 주민센터",
             "zh": "",
@@ -7747,7 +7441,7 @@
       "bagColor": "none",
       "actionSteps": [
         {
-          "visualId": "V04",
+          "visualId": "EMPTY_CONTENTS",
           "text": {
             "en": "Empty all water",
             "zh": "",
@@ -7756,7 +7450,7 @@
           }
         },
         {
-          "visualId": "V24",
+          "visualId": "CALL_COMMUNITY_CENTER",
           "text": {
             "en": "Call 1599-0903 for free pickup",
             "zh": "",
@@ -7813,7 +7507,7 @@
       "bagColor": "none",
       "actionSteps": [
         {
-          "visualId": "V24",
+          "visualId": "CALL_COMMUNITY_CENTER",
           "text": {
             "en": "Call 1599-0903 for free pickup",
             "zh": "",
@@ -7871,7 +7565,7 @@
       "bagColor": "white",
       "actionSteps": [
         {
-          "visualId": "V38",
+          "visualId": "TIE_BUNDLE",
           "text": {
             "en": "Roll it up tight",
             "zh": "",
@@ -7880,7 +7574,7 @@
           }
         },
         {
-          "visualId": "V13",
+          "visualId": "PUT_IN_GENERAL_BIN",
           "text": {
             "en": "Put in general waste bag",
             "zh": "",
@@ -7938,18 +7632,9 @@
       "bagColor": "none",
       "actionSteps": [
         {
-          "visualId": "V26",
+          "visualId": "CALL_COMMUNITY_CENTER",
           "text": {
             "en": "Register as bulky waste if heavy",
-            "zh": "",
-            "ja": "",
-            "ru": ""
-          }
-        },
-        {
-          "visualId": "V27",
-          "text": {
-            "en": "Or take to scrap metal dealer (고철상)",
             "zh": "",
             "ja": "",
             "ru": ""
@@ -8005,7 +7690,7 @@
       "bagColor": "white",
       "actionSteps": [
         {
-          "visualId": "V06",
+          "visualId": "REMOVE_FOOD_WASTE",
           "text": {
             "en": "Remove soil and plant",
             "zh": "",
@@ -8014,7 +7699,7 @@
           }
         },
         {
-          "visualId": "V13",
+          "visualId": "PUT_IN_GENERAL_BIN",
           "text": {
             "en": "Pot → general waste",
             "zh": "",
@@ -8071,27 +7756,9 @@
       "bagColor": "none",
       "actionSteps": [
         {
-          "visualId": "V26",
+          "visualId": "CALL_COMMUNITY_CENTER",
           "text": {
             "en": "Register online at Gangnam-gu",
-            "zh": "",
-            "ja": "",
-            "ru": ""
-          }
-        },
-        {
-          "visualId": "V27",
-          "text": {
-            "en": "Pay the fee (₩1,000-3,000)",
-            "zh": "",
-            "ja": "",
-            "ru": ""
-          }
-        },
-        {
-          "visualId": "V28",
-          "text": {
-            "en": "Stick the number & put outside",
             "zh": "",
             "ja": "",
             "ru": ""
@@ -8146,7 +7813,7 @@
       "bagColor": "none",
       "actionSteps": [
         {
-          "visualId": "V24",
+          "visualId": "CALL_COMMUNITY_CENTER",
           "text": {
             "en": "Call 1599-0903 for FREE pickup",
             "zh": "",
@@ -8202,7 +7869,7 @@
       "bagColor": "transparent",
       "actionSteps": [
         {
-          "visualId": "V04",
+          "visualId": "EMPTY_CONTENTS",
           "text": {
             "en": "Empty completely",
             "zh": "",
@@ -8211,7 +7878,7 @@
           }
         },
         {
-          "visualId": "V05",
+          "visualId": "RINSE_LIGHTLY",
           "text": {
             "en": "Rinse it out",
             "zh": "",
@@ -8220,7 +7887,7 @@
           }
         },
         {
-          "visualId": "V03",
+          "visualId": "CRUSH",
           "text": {
             "en": "Crush flat",
             "zh": "",
@@ -8277,7 +7944,7 @@
       "bagColor": "transparent",
       "actionSteps": [
         {
-          "visualId": "V06",
+          "visualId": "REMOVE_FOOD_WASTE",
           "text": {
             "en": "Scoop out remaining yogurt",
             "zh": "",
@@ -8286,7 +7953,7 @@
           }
         },
         {
-          "visualId": "V05",
+          "visualId": "RINSE_LIGHTLY",
           "text": {
             "en": "Rinse it clean",
             "zh": "",
@@ -8295,7 +7962,7 @@
           }
         },
         {
-          "visualId": "V07",
+          "visualId": "TIE_BUNDLE",
           "text": {
             "en": "Stack them",
             "zh": "",
@@ -8352,7 +8019,7 @@
       "bagColor": "transparent",
       "actionSteps": [
         {
-          "visualId": "V06",
+          "visualId": "REMOVE_FOOD_WASTE",
           "text": {
             "en": "Scoop out all ice cream",
             "zh": "",
@@ -8361,7 +8028,7 @@
           }
         },
         {
-          "visualId": "V05",
+          "visualId": "RINSE_LIGHTLY",
           "text": {
             "en": "Rinse it clean",
             "zh": "",
@@ -8419,7 +8086,7 @@
       "bagColor": "none",
       "actionSteps": [
         {
-          "visualId": "V01",
+          "visualId": "REMOVE_CAP_OR_LID_PUMP",
           "text": {
             "en": "Remove cap/dropper",
             "zh": "",
@@ -8428,7 +8095,7 @@
           }
         },
         {
-          "visualId": "V05",
+          "visualId": "RINSE_LIGHTLY",
           "text": {
             "en": "Rinse it out",
             "zh": "",
@@ -8437,7 +8104,7 @@
           }
         },
         {
-          "visualId": "V17",
+          "visualId": "PUT_IN_RECYCLE_GLASS",
           "text": {
             "en": "Place in glass bin",
             "zh": "",
@@ -8494,7 +8161,7 @@
       "bagColor": "transparent",
       "actionSteps": [
         {
-          "visualId": "V04",
+          "visualId": "EMPTY_CONTENTS",
           "text": {
             "en": "Empty completely",
             "zh": "",
@@ -8503,7 +8170,7 @@
           }
         },
         {
-          "visualId": "V01",
+          "visualId": "REMOVE_CAP_OR_LID_PUMP",
           "text": {
             "en": "Remove the spray nozzle",
             "zh": "",
@@ -8512,7 +8179,7 @@
           }
         },
         {
-          "visualId": "V05",
+          "visualId": "RINSE_LIGHTLY",
           "text": {
             "en": "Rinse the bottle",
             "zh": "",
@@ -8570,7 +8237,7 @@
       "bagColor": "none",
       "actionSteps": [
         {
-          "visualId": "V04",
+          "visualId": "EMPTY_CONTENTS",
           "text": {
             "en": "Empty completely",
             "zh": "",
@@ -8579,7 +8246,7 @@
           }
         },
         {
-          "visualId": "V05",
+          "visualId": "RINSE_LIGHTLY",
           "text": {
             "en": "Rinse inside",
             "zh": "",
@@ -8588,7 +8255,7 @@
           }
         },
         {
-          "visualId": "V14",
+          "visualId": "FLATTEN_BOX",
           "text": {
             "en": "Cut open and flatten",
             "zh": "",
@@ -8645,18 +8312,9 @@
       "bagColor": "transparent",
       "actionSteps": [
         {
-          "visualId": "V09",
+          "visualId": "PUT_IN_GENERAL_BIN",
           "text": {
             "en": "Collect several together",
-            "zh": "",
-            "ja": "",
-            "ru": ""
-          }
-        },
-        {
-          "visualId": "V13",
-          "text": {
-            "en": "Put in transparent bag with plastics",
             "zh": "",
             "ja": "",
             "ru": ""
@@ -8711,7 +8369,7 @@
       "bagColor": "white",
       "actionSteps": [
         {
-          "visualId": "V13",
+          "visualId": "PUT_IN_GENERAL_BIN",
           "text": {
             "en": "Toss in general waste",
             "zh": "",
@@ -8769,7 +8427,7 @@
       "bagColor": "transparent",
       "actionSteps": [
         {
-          "visualId": "V06",
+          "visualId": "REMOVE_FOOD_WASTE",
           "text": {
             "en": "Empty and shake out crumbs",
             "zh": "",
@@ -8778,7 +8436,7 @@
           }
         },
         {
-          "visualId": "V05",
+          "visualId": "RINSE_LIGHTLY",
           "text": {
             "en": "Rinse if food residue",
             "zh": "",
@@ -8787,7 +8445,7 @@
           }
         },
         {
-          "visualId": "V09",
+          "visualId": "PUT_IN_GENERAL_BIN",
           "text": {
             "en": "Put with vinyl recycling",
             "zh": "",
@@ -8844,7 +8502,7 @@
       "bagColor": "transparent",
       "actionSteps": [
         {
-          "visualId": "V06",
+          "visualId": "REMOVE_FOOD_WASTE",
           "text": {
             "en": "Remove all food",
             "zh": "",
@@ -8853,7 +8511,7 @@
           }
         },
         {
-          "visualId": "V05",
+          "visualId": "RINSE_LIGHTLY",
           "text": {
             "en": "Rinse it clean",
             "zh": "",
@@ -8862,7 +8520,7 @@
           }
         },
         {
-          "visualId": "V03",
+          "visualId": "CRUSH",
           "text": {
             "en": "Crush flat",
             "zh": "",
@@ -8921,7 +8579,7 @@
       "bagColor": "none",
       "actionSteps": [
         {
-          "visualId": "V08",
+          "visualId": "FLATTEN_BOX",
           "text": {
             "en": "Stack neatly",
             "zh": "",
@@ -8930,7 +8588,7 @@
           }
         },
         {
-          "visualId": "V15",
+          "visualId": "TIE_BUNDLE",
           "text": {
             "en": "Tie with string",
             "zh": "",
@@ -8987,7 +8645,7 @@
       "bagColor": "none",
       "actionSteps": [
         {
-          "visualId": "V13",
+          "visualId": "PUT_IN_GENERAL_BIN",
           "text": {
             "en": "Put with paper recycling",
             "zh": "",
@@ -9045,7 +8703,7 @@
       "bagColor": "white",
       "actionSteps": [
         {
-          "visualId": "V36",
+          "visualId": "SEPARATE_BY_MATERIAL",
           "text": {
             "en": "Remove paper contents first",
             "zh": "",
@@ -9054,7 +8712,7 @@
           }
         },
         {
-          "visualId": "V13",
+          "visualId": "PUT_IN_GENERAL_BIN",
           "text": {
             "en": "Binder → general waste",
             "zh": "",
@@ -9111,7 +8769,7 @@
       "bagColor": "none",
       "actionSteps": [
         {
-          "visualId": "V25",
+          "visualId": "PUT_IN_RECYCLE_BATTERIES_BULBS",
           "text": {
             "en": "Drop at electronics store or 주민센터",
             "zh": "",
@@ -9168,7 +8826,7 @@
       "bagColor": "white",
       "actionSteps": [
         {
-          "visualId": "V13",
+          "visualId": "PUT_IN_GENERAL_BIN",
           "text": {
             "en": "Toss in general waste",
             "zh": "",
@@ -9225,7 +8883,7 @@
       "bagColor": "white",
       "actionSteps": [
         {
-          "visualId": "V13",
+          "visualId": "PUT_IN_GENERAL_BIN",
           "text": {
             "en": "Bag it and put in general waste",
             "zh": "",
@@ -9282,7 +8940,7 @@
       "bagColor": "transparent",
       "actionSteps": [
         {
-          "visualId": "V06",
+          "visualId": "REMOVE_FOOD_WASTE",
           "text": {
             "en": "Remove all food",
             "zh": "",
@@ -9291,7 +8949,7 @@
           }
         },
         {
-          "visualId": "V05",
+          "visualId": "RINSE_LIGHTLY",
           "text": {
             "en": "Rinse it clean",
             "zh": "",
@@ -9300,7 +8958,7 @@
           }
         },
         {
-          "visualId": "V03",
+          "visualId": "CRUSH",
           "text": {
             "en": "Crush if possible",
             "zh": "",
@@ -9356,7 +9014,7 @@
       "bagColor": "white",
       "actionSteps": [
         {
-          "visualId": "V13",
+          "visualId": "PUT_IN_GENERAL_BIN",
           "text": {
             "en": "Tie it up and put in general waste",
             "zh": "",
@@ -9414,27 +9072,9 @@
       "bagColor": "none",
       "actionSteps": [
         {
-          "visualId": "V26",
+          "visualId": "CALL_COMMUNITY_CENTER",
           "text": {
             "en": "Register online at Gangnam-gu",
-            "zh": "",
-            "ja": "",
-            "ru": ""
-          }
-        },
-        {
-          "visualId": "V27",
-          "text": {
-            "en": "Pay the fee",
-            "zh": "",
-            "ja": "",
-            "ru": ""
-          }
-        },
-        {
-          "visualId": "V28",
-          "text": {
-            "en": "Stick the number & put outside",
             "zh": "",
             "ja": "",
             "ru": ""
@@ -9490,7 +9130,7 @@
       "bagColor": "none",
       "actionSteps": [
         {
-          "visualId": "V12",
+          "visualId": "REMOVE_TAPE",
           "text": {
             "en": "Remove ribbons and plastic",
             "zh": "",
@@ -9499,7 +9139,7 @@
           }
         },
         {
-          "visualId": "V14",
+          "visualId": "FLATTEN_BOX",
           "text": {
             "en": "Flatten the box",
             "zh": "",
@@ -9508,7 +9148,7 @@
           }
         },
         {
-          "visualId": "V15",
+          "visualId": "TIE_BUNDLE",
           "text": {
             "en": "Tie with other cardboard",
             "zh": "",
@@ -9566,7 +9206,7 @@
       "bagColor": "white",
       "actionSteps": [
         {
-          "visualId": "V13",
+          "visualId": "PUT_IN_GENERAL_BIN",
           "text": {
             "en": "Toss in general waste",
             "zh": "",
@@ -9624,7 +9264,7 @@
       "bagColor": "white",
       "actionSteps": [
         {
-          "visualId": "V38",
+          "visualId": "TIE_BUNDLE",
           "text": {
             "en": "Fold in half",
             "zh": "",
@@ -9633,7 +9273,7 @@
           }
         },
         {
-          "visualId": "V39",
+          "visualId": "REMOVE_TAPE",
           "text": {
             "en": "Cut the ear loops",
             "zh": "",
@@ -9642,7 +9282,7 @@
           }
         },
         {
-          "visualId": "V13",
+          "visualId": "PUT_IN_GENERAL_BIN",
           "text": {
             "en": "Put in general waste",
             "zh": "",
@@ -9700,7 +9340,7 @@
       "bagColor": "white",
       "actionSteps": [
         {
-          "visualId": "V13",
+          "visualId": "PUT_IN_GENERAL_BIN",
           "text": {
             "en": "Toss in general waste",
             "zh": "",
@@ -9758,7 +9398,7 @@
       "bagColor": "white",
       "actionSteps": [
         {
-          "visualId": "V13",
+          "visualId": "PUT_IN_GENERAL_BIN",
           "text": {
             "en": "Roll up and put in general waste",
             "zh": "",
@@ -9815,7 +9455,7 @@
       "bagColor": "white",
       "actionSteps": [
         {
-          "visualId": "V13",
+          "visualId": "PUT_IN_GENERAL_BIN",
           "text": {
             "en": "Put in general waste (not on the ground!)",
             "zh": "",
@@ -9874,7 +9514,7 @@
       "bagColor": "none",
       "actionSteps": [
         {
-          "visualId": "V23",
+          "visualId": "SEPARATE_BY_MATERIAL",
           "text": {
             "en": "Wipe your data!",
             "zh": "",
@@ -9883,7 +9523,7 @@
           }
         },
         {
-          "visualId": "V24",
+          "visualId": "CALL_COMMUNITY_CENTER",
           "text": {
             "en": "Drop at 주민센터 e-waste bin",
             "zh": "",
@@ -9942,7 +9582,7 @@
       "bagColor": "none",
       "actionSteps": [
         {
-          "visualId": "V24",
+          "visualId": "CALL_COMMUNITY_CENTER",
           "text": {
             "en": "Drop at 주민센터 e-waste bin",
             "zh": "",
@@ -10000,7 +9640,7 @@
       "bagColor": "white",
       "actionSteps": [
         {
-          "visualId": "V36",
+          "visualId": "SEPARATE_BY_MATERIAL",
           "text": {
             "en": "Separate cardboard from plastic pieces",
             "zh": "",
@@ -10009,7 +9649,7 @@
           }
         },
         {
-          "visualId": "V13",
+          "visualId": "PUT_IN_GENERAL_BIN",
           "text": {
             "en": "Cardboard → paper. Rest → general waste",
             "zh": "",
@@ -10067,7 +9707,7 @@
       "bagColor": "none",
       "actionSteps": [
         {
-          "visualId": "V33",
+          "visualId": "DONATION_BIN",
           "text": {
             "en": "Drop in clothing donation bin",
             "zh": "",
@@ -10124,7 +9764,7 @@
       "bagColor": "white",
       "actionSteps": [
         {
-          "visualId": "V13",
+          "visualId": "PUT_IN_GENERAL_BIN",
           "text": {
             "en": "Toss in general waste",
             "zh": "",

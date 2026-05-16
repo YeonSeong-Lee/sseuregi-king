@@ -6,11 +6,29 @@
   "paper": {
     "id": "paper",
     "emoji": "📰",
-    "names": { "en": "Paper", "zh": "纸类", "ja": "紙類", "ru": "Бумага" },
+    "names": {
+      "en": "Paper",
+      "zh": "纸类",
+      "ja": "紙類",
+      "ru": "Бумага"
+    },
     "aliases": [
-      "paper", "newspaper", "magazine", "book", "flyer", "envelope",
-      "cardboard", "cardboard box", "box", "shipping box", "corrugated box",
-      "office paper", "printed paper", "notebook", "calendar", "poster"
+      "paper",
+      "newspaper",
+      "magazine",
+      "book",
+      "flyer",
+      "envelope",
+      "cardboard",
+      "cardboard box",
+      "box",
+      "shipping box",
+      "corrugated box",
+      "office paper",
+      "printed paper",
+      "notebook",
+      "calendar",
+      "poster"
     ],
     "examples": {
       "en": "Newspaper, magazines, cardboard boxes, books, envelopes, office paper",
@@ -18,7 +36,10 @@
       "ja": "新聞紙、雑誌、段ボール、本、封筒、コピー用紙",
       "ru": "Газеты, журналы, картонные коробки, книги, конверты, офисная бумага"
     },
-    "steps": ["V15", "V12"],
+    "steps": [
+      "TIE_BUNDLE",
+      "REMOVE_TAPE"
+    ],
     "districts": {
       "gangnam": {
         "bagColor": "none",
@@ -45,10 +66,21 @@
   "paper_carton": {
     "id": "paper_carton",
     "emoji": "🥛",
-    "names": { "en": "Paper Carton", "zh": "纸盒", "ja": "紙パック", "ru": "Тетрапак" },
+    "names": {
+      "en": "Paper Carton",
+      "zh": "纸盒",
+      "ja": "紙パック",
+      "ru": "Тетрапак"
+    },
     "aliases": [
-      "milk carton", "juice carton", "carton", "tetra pak", "drink carton",
-      "beverage carton", "soy milk carton", "soju carton"
+      "milk carton",
+      "juice carton",
+      "carton",
+      "tetra pak",
+      "drink carton",
+      "beverage carton",
+      "soy milk carton",
+      "soju carton"
     ],
     "examples": {
       "en": "Milk cartons, juice cartons, soy milk packs, soju packs",
@@ -56,7 +88,11 @@
       "ja": "牛乳パック、ジュースパック、豆乳パック、焼酎パック",
       "ru": "Упаковки из-под молока, сока, соевого молока, соджу"
     },
-    "steps": ["V05", "V08", "V15"],
+    "steps": [
+      "RINSE_LIGHTLY",
+      "FLATTEN_BOX",
+      "TIE_BUNDLE"
+    ],
     "districts": {
       "gangnam": {
         "bagColor": "none",
@@ -83,10 +119,21 @@
   "glass": {
     "id": "glass",
     "emoji": "🍾",
-    "names": { "en": "Glass", "zh": "玻璃类", "ja": "ガラス類", "ru": "Стекло" },
+    "names": {
+      "en": "Glass",
+      "zh": "玻璃类",
+      "ja": "ガラス類",
+      "ru": "Стекло"
+    },
     "aliases": [
-      "glass bottle", "glass jar", "jar", "wine bottle", "beer bottle",
-      "soju bottle", "bottle", "glass container"
+      "glass bottle",
+      "glass jar",
+      "jar",
+      "wine bottle",
+      "beer bottle",
+      "soju bottle",
+      "bottle",
+      "glass container"
     ],
     "examples": {
       "en": "Glass bottles, jars, wine/beer/soju bottles",
@@ -94,7 +141,11 @@
       "ja": "ガラス瓶、ジャム瓶、ワイン/ビール/焼酎の瓶",
       "ru": "Стеклянные бутылки, банки, бутылки из-под вина/пива/соджу"
     },
-    "steps": ["V01", "V05", "V09"],
+    "steps": [
+      "REMOVE_CAP_OR_LID_PUMP",
+      "RINSE_LIGHTLY",
+      "PUT_IN_GENERAL_BIN"
+    ],
     "districts": {
       "gangnam": {
         "bagColor": "green",
@@ -121,10 +172,23 @@
   "metal_can": {
     "id": "metal_can",
     "emoji": "🥫",
-    "names": { "en": "Metal Can", "zh": "金属罐", "ja": "金属缶", "ru": "Металлические банки" },
+    "names": {
+      "en": "Metal Can",
+      "zh": "金属罐",
+      "ja": "金属缶",
+      "ru": "Металлические банки"
+    },
     "aliases": [
-      "aluminum can", "aluminium can", "can", "tin can", "soda can",
-      "beer can", "food can", "metal can", "spray can", "aerosol can"
+      "aluminum can",
+      "aluminium can",
+      "can",
+      "tin can",
+      "soda can",
+      "beer can",
+      "food can",
+      "metal can",
+      "spray can",
+      "aerosol can"
     ],
     "examples": {
       "en": "Aluminum cans, tin cans, food cans, spray cans (empty)",
@@ -132,7 +196,12 @@
       "ja": "アルミ缶、スチール缶、食品缶、スプレー缶（空）",
       "ru": "Алюминиевые банки, жестяные банки, банки от консервов, баллончики (пустые)"
     },
-    "steps": ["V04", "V05", "V03", "V09"],
+    "steps": [
+      "EMPTY_CONTENTS",
+      "RINSE_LIGHTLY",
+      "CRUSH",
+      "PUT_IN_GENERAL_BIN"
+    ],
     "districts": {
       "gangnam": {
         "bagColor": "green",
@@ -159,12 +228,28 @@
   "plastic": {
     "id": "plastic",
     "emoji": "🍶",
-    "names": { "en": "Plastic", "zh": "塑料", "ja": "プラスチック", "ru": "Пластик" },
+    "names": {
+      "en": "Plastic",
+      "zh": "塑料",
+      "ja": "プラスチック",
+      "ru": "Пластик"
+    },
     "aliases": [
-      "plastic bottle", "pet bottle", "water bottle", "soda bottle", "beverage bottle",
-      "plastic container", "plastic cup", "yogurt cup", "yogurt container",
-      "plastic lid", "plastic tray", "plastic toy", "plastic bowl",
-      "plastic", "container"
+      "plastic bottle",
+      "pet bottle",
+      "water bottle",
+      "soda bottle",
+      "beverage bottle",
+      "plastic container",
+      "plastic cup",
+      "yogurt cup",
+      "yogurt container",
+      "plastic lid",
+      "plastic tray",
+      "plastic toy",
+      "plastic bowl",
+      "plastic",
+      "container"
     ],
     "examples": {
       "en": "PET bottles, plastic containers, cups, lids, hard plastic items",
@@ -172,7 +257,13 @@
       "ja": "ペットボトル、プラスチック容器、プラスチックカップ、蓋、硬質プラスチック",
       "ru": "ПЭТ-бутылки, пластиковые контейнеры, стаканчики, крышки, твёрдый пластик"
     },
-    "steps": ["V04", "V05", "V02", "V03", "V09"],
+    "steps": [
+      "EMPTY_CONTENTS",
+      "RINSE_LIGHTLY",
+      "PEEL_OFF_LABEL_FILM",
+      "CRUSH",
+      "PUT_IN_GENERAL_BIN"
+    ],
     "districts": {
       "gangnam": {
         "bagColor": "transparent",
@@ -199,11 +290,27 @@
   "vinyl": {
     "id": "vinyl",
     "emoji": "🛍️",
-    "names": { "en": "Vinyl / Plastic Film", "zh": "塑料袋/塑料膜", "ja": "ビニール類", "ru": "Полиэтилен / Плёнка" },
+    "names": {
+      "en": "Vinyl / Plastic Film",
+      "zh": "塑料袋/塑料膜",
+      "ja": "ビニール類",
+      "ru": "Полиэтилен / Плёнка"
+    },
     "aliases": [
-      "plastic bag", "shopping bag", "grocery bag", "vinyl bag", "trash bag",
-      "wrapper", "candy wrapper", "snack wrapper", "pouch", "ramen pouch",
-      "film", "plastic film", "plastic wrap", "bubble wrap"
+      "plastic bag",
+      "shopping bag",
+      "grocery bag",
+      "vinyl bag",
+      "trash bag",
+      "wrapper",
+      "candy wrapper",
+      "snack wrapper",
+      "pouch",
+      "ramen pouch",
+      "film",
+      "plastic film",
+      "plastic wrap",
+      "bubble wrap"
     ],
     "examples": {
       "en": "Plastic bags, food wrappers, snack/ramen pouches, plastic film",
@@ -211,7 +318,11 @@
       "ja": "ビニール袋、食品包装、スナック/ラーメンの袋、ビニールフィルム",
       "ru": "Пакеты, обёртки от еды, упаковки от снеков/рамёна, плёнка"
     },
-    "steps": ["V04", "V05", "V09"],
+    "steps": [
+      "EMPTY_CONTENTS",
+      "RINSE_LIGHTLY",
+      "PUT_IN_GENERAL_BIN"
+    ],
     "districts": {
       "gangnam": {
         "bagColor": "transparent",
@@ -238,10 +349,21 @@
   "styrofoam": {
     "id": "styrofoam",
     "emoji": "🫙",
-    "names": { "en": "Styrofoam", "zh": "泡沫塑料", "ja": "発泡スチロール", "ru": "Пенопласт" },
+    "names": {
+      "en": "Styrofoam",
+      "zh": "泡沫塑料",
+      "ja": "発泡スチロール",
+      "ru": "Пенопласт"
+    },
     "aliases": [
-      "styrofoam", "foam", "polystyrene", "foam cup", "foam tray",
-      "foam container", "packing foam", "ramen cup"
+      "styrofoam",
+      "foam",
+      "polystyrene",
+      "foam cup",
+      "foam tray",
+      "foam container",
+      "packing foam",
+      "ramen cup"
     ],
     "examples": {
       "en": "Foam trays, foam cups, packing foam, ramen cups",
@@ -249,7 +371,11 @@
       "ja": "発泡スチロールトレイ・カップ、緩衝材、カップ麺の容器",
       "ru": "Пенопластовые лотки, стаканы, упаковочный пенопласт, лапша в стаканах"
     },
-    "steps": ["V05", "V02", "V09"],
+    "steps": [
+      "RINSE_LIGHTLY",
+      "PEEL_OFF_LABEL_FILM",
+      "PUT_IN_GENERAL_BIN"
+    ],
     "districts": {
       "gangnam": {
         "bagColor": "transparent",
@@ -276,11 +402,29 @@
   "clothing": {
     "id": "clothing",
     "emoji": "👕",
-    "names": { "en": "Used Clothing", "zh": "旧衣物", "ja": "古着", "ru": "Старая одежда" },
+    "names": {
+      "en": "Used Clothing",
+      "zh": "旧衣物",
+      "ja": "古着",
+      "ru": "Старая одежда"
+    },
     "aliases": [
-      "clothing", "clothes", "shirt", "t-shirt", "pants", "jeans",
-      "jacket", "coat", "sweater", "dress", "skirt", "hoodie",
-      "fabric", "textile", "sock", "scarf"
+      "clothing",
+      "clothes",
+      "shirt",
+      "t-shirt",
+      "pants",
+      "jeans",
+      "jacket",
+      "coat",
+      "sweater",
+      "dress",
+      "skirt",
+      "hoodie",
+      "fabric",
+      "textile",
+      "sock",
+      "scarf"
     ],
     "examples": {
       "en": "Shirts, pants, jackets, sweaters, fabric scraps",
@@ -288,7 +432,9 @@
       "ja": "シャツ、ズボン、ジャケット、セーター、布類",
       "ru": "Рубашки, брюки, куртки, свитера, ткани"
     },
-    "steps": ["V25"],
+    "steps": [
+      "PUT_IN_RECYCLE_BATTERIES_BULBS"
+    ],
     "districts": {
       "gangnam": {
         "bagColor": "none",
@@ -315,10 +461,22 @@
   "lightbulb": {
     "id": "lightbulb",
     "emoji": "💡",
-    "names": { "en": "Lights & Bulbs", "zh": "灯具/灯泡", "ja": "蛍光灯・照明", "ru": "Лампы и лампочки" },
+    "names": {
+      "en": "Lights & Bulbs",
+      "zh": "灯具/灯泡",
+      "ja": "蛍光灯・照明",
+      "ru": "Лампы и лампочки"
+    },
     "aliases": [
-      "lightbulb", "light bulb", "bulb", "fluorescent lamp", "fluorescent tube",
-      "lamp", "led bulb", "halogen bulb", "compact fluorescent"
+      "lightbulb",
+      "light bulb",
+      "bulb",
+      "fluorescent lamp",
+      "fluorescent tube",
+      "lamp",
+      "led bulb",
+      "halogen bulb",
+      "compact fluorescent"
     ],
     "examples": {
       "en": "Fluorescent tubes, LED bulbs, halogen and incandescent bulbs",
@@ -326,7 +484,9 @@
       "ja": "蛍光灯、LED電球、ハロゲン電球、白熱電球",
       "ru": "Люминесцентные трубки, LED-лампы, галогенные и лампы накаливания"
     },
-    "steps": ["V25"],
+    "steps": [
+      "PUT_IN_RECYCLE_BATTERIES_BULBS"
+    ],
     "districts": {
       "gangnam": {
         "bagColor": "none",
@@ -353,10 +513,22 @@
   "food": {
     "id": "food",
     "emoji": "🍱",
-    "names": { "en": "Food Waste", "zh": "厨余垃圾", "ja": "生ごみ", "ru": "Пищевые отходы" },
+    "names": {
+      "en": "Food Waste",
+      "zh": "厨余垃圾",
+      "ja": "生ごみ",
+      "ru": "Пищевые отходы"
+    },
     "aliases": [
-      "food", "food waste", "food scraps", "leftovers", "banana peel",
-      "vegetable scraps", "fruit peel", "rice", "noodles"
+      "food",
+      "food waste",
+      "food scraps",
+      "leftovers",
+      "banana peel",
+      "vegetable scraps",
+      "fruit peel",
+      "rice",
+      "noodles"
     ],
     "examples": {
       "en": "Leftover rice, soft fruit/vegetable peels, banana peels (no bones, shells, or pits)",
@@ -364,7 +536,10 @@
       "ja": "残飯、柔らかい野菜くず、バナナの皮（骨・貝殻・種は不可）",
       "ru": "Остатки риса, мягкие очистки овощей и фруктов, банановая кожура (без костей, раковин, косточек)"
     },
-    "steps": ["V30", "V31"],
+    "steps": [
+      "EMPTY_CONTENTS",
+      "FOOD_WASTE_SEPARATE"
+    ],
     "districts": {
       "gangnam": {
         "bagColor": "yellow",
@@ -391,12 +566,28 @@
   "general": {
     "id": "general",
     "emoji": "🗑️",
-    "names": { "en": "General Waste", "zh": "一般垃圾", "ja": "一般ごみ", "ru": "Общий мусор" },
+    "names": {
+      "en": "General Waste",
+      "zh": "一般垃圾",
+      "ja": "一般ごみ",
+      "ru": "Общий мусор"
+    },
     "aliases": [
-      "battery", "batteries",
-      "bone", "fish bone", "eggshell", "fruit seed", "fruit pit",
-      "onion peel", "vegetable root", "tea bag", "diaper",
-      "cigarette", "ash", "chopsticks", "toothpick"
+      "battery",
+      "batteries",
+      "bone",
+      "fish bone",
+      "eggshell",
+      "fruit seed",
+      "fruit pit",
+      "onion peel",
+      "vegetable root",
+      "tea bag",
+      "diaper",
+      "cigarette",
+      "ash",
+      "chopsticks",
+      "toothpick"
     ],
     "examples": {
       "en": "Fish/meat bones, eggshells, fruit seeds, onion peels, vegetable roots, anything not recyclable",
@@ -404,7 +595,10 @@
       "ja": "魚や肉の骨、卵の殻、果物の種、玉ねぎの皮、野菜の根、その他リサイクルできないもの",
       "ru": "Рыбьи/мясные кости, яичная скорлупа, косточки фруктов, луковая шелуха, корни овощей и всё, что нельзя переработать"
     },
-    "steps": ["V30", "V13"],
+    "steps": [
+      "EMPTY_CONTENTS",
+      "PUT_IN_GENERAL_BIN"
+    ],
     "districts": {
       "gangnam": {
         "bagColor": "white",
@@ -431,12 +625,23 @@
   "e_waste": {
     "id": "e_waste",
     "emoji": "📱",
-    "names": { "en": "E-waste", "zh": "电子废弃物", "ja": "小型電子機器", "ru": "Электроника" },
+    "names": {
+      "en": "E-waste",
+      "zh": "电子废弃物",
+      "ja": "小型電子機器",
+      "ru": "Электроника"
+    },
     "aliases": [
-      "phone", "smartphone", "mobile phone",
-      "tablet", "tablet computer",
-      "laptop", "computer", "monitor",
-      "microwave", "e-waste"
+      "phone",
+      "smartphone",
+      "mobile phone",
+      "tablet",
+      "tablet computer",
+      "laptop",
+      "computer",
+      "monitor",
+      "microwave",
+      "e-waste"
     ],
     "examples": {
       "en": "Phones, tablets, laptops, monitors, microwaves and other small electronics",
@@ -444,7 +649,9 @@
       "ja": "スマートフォン、タブレット、ノートパソコン、モニター、電子レンジなどの小型電子機器",
       "ru": "Телефоны, планшеты, ноутбуки, мониторы, микроволновки и другая мелкая электроника"
     },
-    "steps": ["V25"],
+    "steps": [
+      "PUT_IN_RECYCLE_BATTERIES_BULBS"
+    ],
     "districts": {
       "gangnam": {
         "bagColor": "none",
@@ -471,11 +678,27 @@
   "large": {
     "id": "large",
     "emoji": "🛋️",
-    "names": { "en": "Large Waste", "zh": "大型废弃物", "ja": "大型廃棄物", "ru": "Крупногабаритный мусор" },
+    "names": {
+      "en": "Large Waste",
+      "zh": "大型废弃物",
+      "ja": "大型廃棄物",
+      "ru": "Крупногабаритный мусор"
+    },
     "aliases": [
-      "furniture", "sofa", "couch", "chair", "desk", "table",
-      "mattress", "bed", "wardrobe", "bookshelf",
-      "television", "tv", "refrigerator", "washing machine",
+      "furniture",
+      "sofa",
+      "couch",
+      "chair",
+      "desk",
+      "table",
+      "mattress",
+      "bed",
+      "wardrobe",
+      "bookshelf",
+      "television",
+      "tv",
+      "refrigerator",
+      "washing machine",
       "air conditioner"
     ],
     "examples": {
@@ -484,7 +707,9 @@
       "ja": "家具、マットレス、大型家電、テレビ、冷蔵庫、エアコン",
       "ru": "Мебель, матрасы, крупная бытовая техника, ТВ, холодильники, кондиционеры"
     },
-    "steps": ["V24"],
+    "steps": [
+      "CALL_COMMUNITY_CENTER"
+    ],
     "districts": {
       "gangnam": {
         "bagColor": "none",

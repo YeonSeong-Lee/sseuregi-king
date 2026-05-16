@@ -33,7 +33,7 @@ function goodItem(overrides: Partial<RawItem> = {}): RawItem {
     category: 'Recyclable',
     bag: 'recycle',
     bbox: { x: 0.1, y: 0.2, w: 0.3, h: 0.4 },
-    steps: [{ visual: 'V01', text: 'Remove the cap' }],
+    steps: [{ visual: 'REMOVE_CAP_OR_LID_PUMP', text: 'Remove the cap' }],
     mascot_text: L4('Another one. Bold of you.'),
     funny_fact: L4('Korea uses 4.9B PET bottles per year.'),
     confidence: 'high',
@@ -74,7 +74,7 @@ describe('claudeDetect (stream)', () => {
     await expect(claudeDetect('base64data')).rejects.toThrow('ANTHROPIC_API_KEY not set');
   });
 
-  it('embeds the visual library and Korean disposal cheat sheet in the system prompt', async () => {
+  it('embeds the visual vocabulary and Korean disposal cheat sheet in the system prompt', async () => {
     process.env.ANTHROPIC_API_KEY = 'test-key';
     respond([]);
 
@@ -83,7 +83,8 @@ describe('claudeDetect (stream)', () => {
     const callArg = messagesStreamMock.mock.calls[0][0];
     const systemText = Array.isArray(callArg.system) ? callArg.system[0].text : callArg.system;
     expect(systemText).toContain('general');
-    expect(systemText).toContain('V01');
+    expect(systemText).toContain('REMOVE_CAP_OR_LID_PUMP');
+    expect(systemText).toContain('CALL_COMMUNITY_CENTER');
     expect(systemText).toContain('Cheat Sheet');
     expect(systemText).toContain('1599-0903');
     expect(systemText).not.toContain('T001');
@@ -112,7 +113,7 @@ describe('claudeDetect (stream)', () => {
     expect(result[0].category).toBe('Recyclable');
     expect(result[0].bag).toBe('recycle');
     expect(result[0].confidence).toBe('high');
-    expect(result[0].steps[0].visual).toBe('V01');
+    expect(result[0].steps[0].visual).toBe('REMOVE_CAP_OR_LID_PUMP');
     expect(result[0].steps[0].text).toBe('Remove the cap');
     expect(result[0].bbox.x).toBeCloseTo(10);
     expect(result[0].bbox.w).toBeCloseTo(30);
@@ -301,16 +302,16 @@ describe('claudeDetect validation', () => {
     const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {});
     respond([goodItem({
       steps: [
-        { visual: 'V01', text: 'cap' },
+        { visual: 'REMOVE_CAP_OR_LID_PUMP', text: 'cap' },
         { visual: 'XX', text: 'bad' }, // bad code
-        { visual: 'V03', text: '' }, // empty text
-        { visual: 'V09', text: 'bin' },
+        { visual: 'CRUSH', text: '' }, // empty text
+        { visual: 'PUT_IN_GENERAL_BIN', text: 'bin' },
       ],
     })]);
 
     const result = await claudeDetect('base64data');
     expect(result).toHaveLength(1);
-    expect(result[0].steps.map(s => s.visual)).toEqual(['V01', 'V09']);
+    expect(result[0].steps.map(s => s.visual)).toEqual(['REMOVE_CAP_OR_LID_PUMP', 'PUT_IN_GENERAL_BIN']);
     warnSpy.mockRestore();
   });
 

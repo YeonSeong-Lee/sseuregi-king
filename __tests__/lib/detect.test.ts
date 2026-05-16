@@ -17,7 +17,7 @@ const sample: DetectedObject = {
   category: 'Recyclable',
   bag: 'general',
   bbox: { x: 0, y: 0, w: 50, h: 50 },
-  steps: [{ visual: 'V01', text: 'Remove cap' }],
+  steps: [{ visual: 'REMOVE_CAP_OR_LID_PUMP', text: 'Remove cap' }],
   mascotText: L4('hi'),
   funnyFact: L4('fact'),
   confidence: 'high',

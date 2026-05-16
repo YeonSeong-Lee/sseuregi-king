@@ -56,7 +56,7 @@ describe('POST /api/analyze', () => {
       category: 'Recyclable',
       bag: 'recycle',
       bbox: { x: 10, y: 10, w: 20, h: 20 },
-      steps: [{ visual: 'V01', text: 'Remove cap' }],
+      steps: [{ visual: 'REMOVE_CAP_OR_LID_PUMP', text: 'Remove cap' }],
       mascotText: L4('m'),
       funnyFact: L4('f'),
       confidence: 'high',

@@ -9,7 +9,7 @@ function make(overrides: Partial<DetectedObject>): DetectedObject {
     category: 'Recyclable',
     bag: 'recycle',
     bbox: { x: 0, y: 0, w: 10, h: 10 },
-    steps: [{ visual: 'V01', text: 's' }],
+    steps: [{ visual: 'REMOVE_CAP_OR_LID_PUMP', text: 's' }],
     mascotText: { en: 'm', zh: 'm', ja: 'm', ru: 'm' },
     funnyFact: { en: 'f', zh: 'f', ja: 'f', ru: 'f' },
     confidence: 'high',

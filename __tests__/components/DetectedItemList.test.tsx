@@ -10,7 +10,7 @@ function make(overrides: Partial<DetectedObject>): DetectedObject {
     category: 'Recyclable',
     bag: 'recycle',
     bbox: { x: 0, y: 0, w: 1, h: 1 },
-    steps: [{ visual: 'V01', text: 's' }],
+    steps: [{ visual: 'REMOVE_CAP_OR_LID_PUMP', text: 's' }],
     mascotText: { en: 'm', zh: 'm', ja: 'm', ru: 'm' },
     funnyFact: { en: 'f', zh: 'f', ja: 'f', ru: 'f' },
     confidence: 'high',
@@ -40,10 +40,12 @@ describe('DetectedItemList', () => {
     render(
       <DetectedItemList objects={fixture} groupLabels={labels} onTapItem={vi.fn()} />,
     );
-    expect(screen.getAllByRole('button')).toHaveLength(3);
-    expect(screen.getByRole('button', { name: /Banana peel/ })).toBeTruthy();
-    expect(screen.getByRole('button', { name: /Plastic bottle/ })).toBeTruthy();
-    expect(screen.getByRole('button', { name: /Cardboard/ })).toBeTruthy();
+    // Items are non-clickable cards (commit c864679 disabled navigation on tap).
+    const items = screen.getAllByRole('listitem');
+    expect(items.length).toBeGreaterThanOrEqual(3);
+    expect(screen.getByText('Banana peel')).toBeTruthy();
+    expect(screen.getByText('Plastic bottle')).toBeTruthy();
+    expect(screen.getByText('Cardboard')).toBeTruthy();
   });
 
   it('shows the right group label per category', () => {
@@ -54,7 +56,8 @@ describe('DetectedItemList', () => {
     expect(screen.getAllByText('RECYCLABLE')).toHaveLength(2);
   });
 
-  it('fires onTapItem with the tapped object', async () => {
+  // onTapItem prop is currently a no-op (commit c864679 disabled navigation on tap).
+  it.skip('fires onTapItem with the tapped object', async () => {
     const onTap = vi.fn();
     const user = userEvent.setup();
     render(
@@ -69,7 +72,9 @@ describe('DetectedItemList', () => {
     render(
       <DetectedItemList objects={fixture} groupLabels={labels} onTapItem={vi.fn()} />,
     );
-    expect(screen.getByText('1')).toBeTruthy();
+    // Step badges also render "1" inside each StepRow, so "1" is non-unique;
+    // item-circle "2" and "3" are unique to the per-item number.
+    expect(screen.getAllByText('1').length).toBeGreaterThanOrEqual(1);
     expect(screen.getByText('2')).toBeTruthy();
     expect(screen.getByText('3')).toBeTruthy();
   });
