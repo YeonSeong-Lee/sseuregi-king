@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useSyncExternalStore } from 'react';
+import { useEffect, useRef, useSyncExternalStore, type RefObject } from 'react';
 import { TRASH_ITEMS } from './items';
 
 const PICKS = [0, 1, 2, 1, 0] as const;
@@ -47,7 +47,11 @@ interface ItemState {
   size: number;
 }
 
-export function FloatingTrash() {
+interface FloatingTrashProps {
+  floorRef?: RefObject<HTMLElement | null>;
+}
+
+export function FloatingTrash({ floorRef }: FloatingTrashProps = {}) {
   const reducedMotion = useReducedMotion();
   const containerRef = useRef<HTMLDivElement | null>(null);
   const itemRefs = useRef<(HTMLDivElement | null)[]>([]);
@@ -55,25 +59,39 @@ export function FloatingTrash() {
   const rafRef = useRef<number | null>(null);
   const prevTimeRef = useRef<number | null>(null);
   const boundsRef = useRef({ w: 0, h: 0 });
+  const floorYRef = useRef(0);
 
   useEffect(() => {
     const container = containerRef.current;
     if (!container) return;
 
-    const rect = container.getBoundingClientRect();
-    boundsRef.current = { w: rect.width, h: rect.height };
+    const measureFloorY = () => {
+      const containerRect = container.getBoundingClientRect();
+      boundsRef.current = { w: containerRect.width, h: containerRect.height };
+      const floorEl = floorRef?.current;
+      if (floorEl) {
+        const floorRect = floorEl.getBoundingClientRect();
+        floorYRef.current = Math.max(0, floorRect.top - containerRect.top);
+      } else {
+        floorYRef.current = containerRect.height;
+      }
+    };
+
+    measureFloorY();
+    const initialFloorY = floorYRef.current;
+    const containerW = boundsRef.current.w;
 
     stateRef.current = PICKS.map((_, i) => {
       const size = rand(MIN_SIZE, MAX_SIZE);
       const slot = (i + 0.5) / PICKS.length;
-      const xJitter = rand(-rect.width / (PICKS.length * 2), rect.width / (PICKS.length * 2));
+      const xJitter = rand(-containerW / (PICKS.length * 2), containerW / (PICKS.length * 2));
       const x = Math.min(
-        Math.max(0, slot * rect.width - size / 2 + xJitter),
-        Math.max(0, rect.width - size),
+        Math.max(0, slot * containerW - size / 2 + xJitter),
+        Math.max(0, containerW - size),
       );
       return {
         x,
-        y: Math.max(0, rect.height - size),
+        y: Math.max(0, initialFloorY - size),
         vx: rand(-SPAWN_VX_RANGE, SPAWN_VX_RANGE),
         vy: -rand(KICK_VY_MIN, KICK_VY_MAX),
         rot: rand(0, 360),
@@ -100,7 +118,9 @@ export function FloatingTrash() {
       const prev = prevTimeRef.current;
       prevTimeRef.current = now;
       const dt = prev === null ? 0 : Math.min((now - prev) / 1000, MAX_DT);
-      const { w, h } = boundsRef.current;
+      measureFloorY();
+      const { w } = boundsRef.current;
+      const floorY = floorYRef.current;
       const items = stateRef.current;
 
       for (let i = 0; i < items.length; i++) {
@@ -117,7 +137,7 @@ export function FloatingTrash() {
           s.vx = -Math.abs(s.vx);
         }
 
-        const floor = h - s.size;
+        const floor = floorY - s.size;
         if (s.y >= floor && s.vy > 0) {
           s.y = floor;
           const bounced = s.vy * BOUNCE_DAMPING;
@@ -140,15 +160,18 @@ export function FloatingTrash() {
     };
 
     const onResize = () => {
-      const r = container.getBoundingClientRect();
-      boundsRef.current = { w: r.width, h: r.height };
+      measureFloorY();
+      const w = boundsRef.current.w;
+      const floorY = floorYRef.current;
       stateRef.current.forEach((s) => {
-        s.x = Math.min(Math.max(0, s.x), Math.max(0, r.width - s.size));
-        s.y = Math.min(Math.max(0, s.y), Math.max(0, r.height - s.size));
+        s.x = Math.min(Math.max(0, s.x), Math.max(0, w - s.size));
+        s.y = Math.min(Math.max(0, s.y), Math.max(0, floorY - s.size));
       });
     };
     const ro = new ResizeObserver(onResize);
     ro.observe(container);
+    const floorEl = floorRef?.current;
+    if (floorEl) ro.observe(floorEl);
 
     const onVisibility = () => {
       if (document.hidden) {
@@ -171,7 +194,7 @@ export function FloatingTrash() {
       ro.disconnect();
       document.removeEventListener('visibilitychange', onVisibility);
     };
-  }, [reducedMotion]);
+  }, [reducedMotion, floorRef]);
 
   return (
     <div
