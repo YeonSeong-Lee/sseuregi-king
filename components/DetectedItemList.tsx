@@ -2,7 +2,7 @@
 'use client';
 import { type CategoryGroup } from '@/lib/categories';
 import { BagIcon } from '@/components/BagIcon';
-import type { DetectedObject, Locale, ScanCategory } from '@/types';
+import type { DetectedObject, ScanCategory } from '@/types';
 
 const SCAN_GROUP: Record<ScanCategory, CategoryGroup> = {
   'Recyclable':    'recyclable',
@@ -20,19 +20,18 @@ const GROUP_PILL: Record<CategoryGroup, string> = {
 
 interface DetectedItemListProps {
   objects: DetectedObject[];
-  locale: Locale;
   groupLabels: Record<CategoryGroup, string>;
   onTapItem: (obj: DetectedObject) => void;
 }
 
-export function DetectedItemList({ objects, locale, groupLabels, onTapItem }: DetectedItemListProps) {
+export function DetectedItemList({ objects, groupLabels, onTapItem }: DetectedItemListProps) {
   return (
     <ul className="flex flex-col gap-3 w-full">
       {objects.map((obj, i) => {
         const group = SCAN_GROUP[obj.category];
-        const label = obj.name[locale] || obj.name.en;
+        const label = obj.name;
         return (
-          <li key={`${obj.name.en}-${i}`}>
+          <li key={`${obj.name}-${i}`}>
             <button
               type="button"
               onClick={() => onTapItem(obj)}

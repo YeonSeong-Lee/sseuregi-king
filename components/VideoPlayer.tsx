@@ -36,7 +36,7 @@ export function VideoPlayer({ objects, locale, backLabel, onBack }: VideoPlayerP
   const t = useTranslations();
   const [activeIndex, setActiveIndex] = useState(0);
   const active = objects[activeIndex];
-  const name = active.name[locale] || active.name.en;
+  const name = active.name;
   const bagLabel = t(`bag.${active.bag}`);
 
   return (
@@ -57,11 +57,11 @@ export function VideoPlayer({ objects, locale, backLabel, onBack }: VideoPlayerP
         <div className="flex gap-2 px-4 py-2 overflow-x-auto border-b border-line shrink-0">
           {objects.map((obj, i) => (
             <button
-              key={`${obj.name.en}-${i}`}
+              key={`${obj.name}-${i}`}
               onClick={() => setActiveIndex(i)}
               className={`shrink-0 px-3 py-1 rounded-full text-sm ${i === activeIndex ? 'bg-blue-500 text-white' : 'bg-surface-elev text-fg-muted'}`}
             >
-              {obj.name[locale] || obj.name.en}
+              {obj.name}
             </button>
           ))}
         </div>
@@ -86,7 +86,7 @@ export function VideoPlayer({ objects, locale, backLabel, onBack }: VideoPlayerP
             <StepRow
               steps={active.steps.map(s => ({
                 visualId: s.visual,
-                label: s.text[locale] || s.text.en,
+                label: s.text,
               }))}
               interactive
             />

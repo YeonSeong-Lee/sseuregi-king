@@ -29,11 +29,11 @@ const L4 = (s: string) => ({ en: s, zh: s, ja: s, ru: s });
 
 function goodItem(overrides: Partial<RawItem> = {}): RawItem {
   return {
-    item_name: L4('PET Water Bottle'),
+    item_name: 'PET Water Bottle',
     category: 'Recyclable',
     bag: 'B03',
     bbox: { x: 0.1, y: 0.2, w: 0.3, h: 0.4 },
-    steps: [{ visual: 'V01', text: L4('Remove the cap') }],
+    steps: [{ visual: 'V01', text: 'Remove the cap' }],
     mascot_text: L4('Another one. Bold of you.'),
     funny_fact: L4('Korea uses 4.9B PET bottles per year.'),
     confidence: 'high',
@@ -108,28 +108,24 @@ describe('claudeDetect (stream)', () => {
     const result = await claudeDetect('base64data');
 
     expect(result).toHaveLength(1);
-    expect(result[0].name.en).toBe('PET Water Bottle');
+    expect(result[0].name).toBe('PET Water Bottle');
     expect(result[0].category).toBe('Recyclable');
     expect(result[0].bag).toBe('B03');
     expect(result[0].confidence).toBe('high');
     expect(result[0].steps[0].visual).toBe('V01');
-    expect(result[0].steps[0].text.ja).toBe('Remove the cap');
+    expect(result[0].steps[0].text).toBe('Remove the cap');
     expect(result[0].bbox.x).toBeCloseTo(10);
     expect(result[0].bbox.w).toBeCloseTo(30);
   });
 
-  it('preserves all four locale strings on every text field', async () => {
+  it('preserves all four locale strings on mascot_text and funny_fact', async () => {
     process.env.ANTHROPIC_API_KEY = 'test-key';
     respond([goodItem({
-      item_name: { en: 'Bottle', zh: '瓶', ja: 'ボトル', ru: 'Бутылка' },
       mascot_text: { en: 'A', zh: '甲', ja: 'ア', ru: 'А' },
       funny_fact: { en: 'F', zh: '事', ja: 'コト', ru: 'Ф' },
     })]);
 
     const r = (await claudeDetect('base64data'))[0];
-    expect(r.name.zh).toBe('瓶');
-    expect(r.name.ja).toBe('ボトル');
-    expect(r.name.ru).toBe('Бутылка');
     expect(r.mascotText.zh).toBe('甲');
     expect(r.funnyFact.ru).toBe('Ф');
   });
@@ -145,27 +141,27 @@ describe('claudeDetect (stream)', () => {
 
   it('emits items as their JSON closes during streaming (progressive)', async () => {
     process.env.ANTHROPIC_API_KEY = 'test-key';
-    const two = JSON.stringify([goodItem(), goodItem({ item_name: L4('Can') })]);
+    const two = JSON.stringify([goodItem(), goodItem({ item_name: 'Can' })]);
     // Split the response into two chunks crossing the item boundary.
     const mid = two.indexOf('},{') + 1; // after the first item's closing brace
     respondChunks([two.slice(0, mid), two.slice(mid)]);
 
     const result = await claudeDetect('base64data');
     expect(result).toHaveLength(2);
-    expect(result[0].name.en).toBe('PET Water Bottle');
-    expect(result[1].name.en).toBe('Can');
+    expect(result[0].name).toBe('PET Water Bottle');
+    expect(result[1].name).toBe('Can');
   });
 
   it('recovers complete items even if final item is truncated', async () => {
     process.env.ANTHROPIC_API_KEY = 'test-key';
     const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {});
-    const two = JSON.stringify([goodItem(), goodItem({ item_name: L4('Can') })]);
+    const two = JSON.stringify([goodItem(), goodItem({ item_name: 'Can' })]);
     const truncated = two.slice(0, two.length - 30); // second item gets cut mid-way
     respondChunks([truncated]);
 
     const result = await claudeDetect('base64data');
     expect(result.length).toBeGreaterThanOrEqual(1);
-    expect(result[0].name.en).toBe('PET Water Bottle');
+    expect(result[0].name).toBe('PET Water Bottle');
     warnSpy.mockRestore();
   });
 });
@@ -207,11 +203,11 @@ describe('parsePartial', () => {
 
   it('extracts complete items from truncated array', () => {
     const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {});
-    const two = JSON.stringify([goodItem(), goodItem({ item_name: L4('Can') })]);
+    const two = JSON.stringify([goodItem(), goodItem({ item_name: 'Can' })]);
     const truncated = two.slice(0, two.length - 30);
     const result = parsePartial(truncated);
     expect(result.length).toBeGreaterThanOrEqual(1);
-    expect(result[0].name.en).toBe('PET Water Bottle');
+    expect(result[0].name).toBe('PET Water Bottle');
     warnSpy.mockRestore();
   });
 
@@ -221,7 +217,7 @@ describe('parsePartial', () => {
 
   it('returns empty array when no complete items survive validation', () => {
     const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {});
-    expect(parsePartial('[{"item_name": {"en": "X"')).toEqual([]);
+    expect(parsePartial('[{"item_name": "X"')).toEqual([]);
     warnSpy.mockRestore();
   });
 
@@ -269,17 +265,18 @@ describe('claudeDetect validation', () => {
     warnSpy.mockRestore();
   });
 
-  it('drops items missing required localized fields', async () => {
+  it('drops items missing required fields', async () => {
     process.env.ANTHROPIC_API_KEY = 'test-key';
     const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {});
     respond([
-      goodItem({ item_name: { en: 'X' } }), // missing zh/ja/ru
+      goodItem({ item_name: '' }), // empty string
       goodItem({ mascot_text: 'just a string' }), // not an object
+      goodItem({ mascot_text: { en: 'X' } }), // missing zh/ja/ru
     ]);
 
     const result = await claudeDetect('base64data');
     expect(result).toHaveLength(0);
-    expect(warnSpy).toHaveBeenCalledTimes(2);
+    expect(warnSpy).toHaveBeenCalledTimes(3);
     warnSpy.mockRestore();
   });
 
@@ -304,10 +301,10 @@ describe('claudeDetect validation', () => {
     const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {});
     respond([goodItem({
       steps: [
-        { visual: 'V01', text: L4('cap') },
-        { visual: 'XX', text: L4('bad') }, // bad code
-        { visual: 'V03', text: { en: 'partial' } }, // missing locales
-        { visual: 'V09', text: L4('bin') },
+        { visual: 'V01', text: 'cap' },
+        { visual: 'XX', text: 'bad' }, // bad code
+        { visual: 'V03', text: '' }, // empty text
+        { visual: 'V09', text: 'bin' },
       ],
     })]);
 

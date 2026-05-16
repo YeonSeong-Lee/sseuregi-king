@@ -105,11 +105,11 @@ export function DetectedImage({ imageBase64, objects }: DetectedImageProps) {
         />
       )}
       {objects.map((obj, i) => {
-        const label = obj.name[locale] || obj.name.en;
+        const label = obj.name;
         const { cx, cy, tail } = positions[i];
         return (
           <div
-            key={`${obj.name.en}-${i}`}
+            key={`${obj.name}-${i}`}
             data-testid="bbox-tag"
             className="absolute"
             style={{

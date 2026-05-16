@@ -341,22 +341,29 @@ export async function* claudeDetectStream(
 ): AsyncGenerator<DetectedObject, void, unknown> {
   let buffer = '';
   let emitted = 0;
+  let dirty = false;
 
   for await (const chunk of streamClaudeText(base64Image, signal)) {
     buffer += chunk;
-    if (!chunk.includes('}')) continue; // no new item could have completed
+    if (chunk.includes('}')) {
+      const items = parsePartial(buffer);
+      while (emitted < items.length) {
+        yield items[emitted];
+        emitted++;
+      }
+      dirty = false;
+    } else {
+      dirty = true;
+    }
+  }
+
+  // Final sweep only if the last chunk didn't trigger one — avoids redundant parsing.
+  if (dirty) {
     const items = parsePartial(buffer);
     while (emitted < items.length) {
       yield items[emitted];
       emitted++;
     }
-  }
-
-  // Final sweep — catch anything completed at the very end
-  const items = parsePartial(buffer);
-  while (emitted < items.length) {
-    yield items[emitted];
-    emitted++;
   }
 }
 

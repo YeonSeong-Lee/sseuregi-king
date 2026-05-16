@@ -1,14 +1,42 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 
 vi.mock('@/lib/detect', () => ({
-  detectWaste: vi.fn(),
+  detectWasteStream: vi.fn(),
 }));
 
-import { detectWaste } from '@/lib/detect';
+import { detectWasteStream } from '@/lib/detect';
 import { POST } from '@/app/api/analyze/route';
 import type { DetectedObject } from '@/types';
 
 const L4 = (s: string) => ({ en: s, zh: s, ja: s, ru: s });
+
+async function* yieldItems(items: DetectedObject[]): AsyncGenerator<DetectedObject> {
+  for (const it of items) yield it;
+}
+
+async function* yieldThenThrow(items: DetectedObject[], err: Error): AsyncGenerator<DetectedObject> {
+  for (const it of items) yield it;
+  throw err;
+}
+
+async function readNdjson(res: Response): Promise<Array<{ type: string; item?: DetectedObject; error?: string }>> {
+  const reader = res.body!.getReader();
+  const decoder = new TextDecoder();
+  let buf = '';
+  const events: Array<{ type: string; item?: DetectedObject; error?: string }> = [];
+  while (true) {
+    const { value, done } = await reader.read();
+    if (done) break;
+    buf += decoder.decode(value, { stream: true });
+    const lines = buf.split('\n');
+    buf = lines.pop() ?? '';
+    for (const line of lines) {
+      if (!line.trim()) continue;
+      events.push(JSON.parse(line));
+    }
+  }
+  return events;
+}
 
 describe('POST /api/analyze', () => {
   beforeEach(() => vi.clearAllMocks());
@@ -22,38 +50,50 @@ describe('POST /api/analyze', () => {
     expect(res.status).toBe(400);
   });
 
-  it('returns detected objects on success', async () => {
+  it('streams item events as NDJSON followed by done', async () => {
     const mock: DetectedObject[] = [{
-      name: L4('Plastic'),
+      name: 'Plastic',
       category: 'Recyclable',
       bag: 'B03',
       bbox: { x: 10, y: 10, w: 20, h: 20 },
-      steps: [{ visual: 'V01', text: L4('Remove cap') }],
+      steps: [{ visual: 'V01', text: 'Remove cap' }],
       mascotText: L4('m'),
       funnyFact: L4('f'),
       confidence: 'high',
     }];
-    vi.mocked(detectWaste).mockResolvedValue(mock);
+    vi.mocked(detectWasteStream).mockReturnValue(yieldItems(mock));
 
     const req = new Request('http://localhost/api/analyze', {
       method: 'POST',
       body: JSON.stringify({ image: 'base64data' }),
     });
     const res = await POST(req);
-    const body = await res.json();
     expect(res.status).toBe(200);
-    expect(body.objects[0].category).toBe('Recyclable');
-    expect(body.objects[0].bag).toBe('B03');
+    expect(res.headers.get('Content-Type')).toContain('application/x-ndjson');
+
+    const events = await readNdjson(res);
+    expect(events).toHaveLength(2);
+    expect(events[0].type).toBe('item');
+    expect(events[0].item?.category).toBe('Recyclable');
+    expect(events[0].item?.bag).toBe('B03');
+    expect(events[1].type).toBe('done');
   });
 
-  it('returns 500 when detect throws', async () => {
-    vi.mocked(detectWaste).mockRejectedValue(new Error('boom'));
+  it('emits an error event when detect throws mid-stream', async () => {
+    const consoleSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
+    vi.mocked(detectWasteStream).mockReturnValue(yieldThenThrow([], new Error('boom')));
 
     const req = new Request('http://localhost/api/analyze', {
       method: 'POST',
       body: JSON.stringify({ image: 'base64data' }),
     });
     const res = await POST(req);
-    expect(res.status).toBe(500);
+    expect(res.status).toBe(200);
+
+    const events = await readNdjson(res);
+    const errorEvent = events.find(e => e.type === 'error');
+    expect(errorEvent).toBeDefined();
+    expect(errorEvent?.error).toBe('Analysis failed');
+    consoleSpy.mockRestore();
   });
 });

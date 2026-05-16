@@ -201,7 +201,7 @@ export default function ScanPage({ params }: { params: Promise<{ locale: string 
           onBack={() => { setObjects([]); setImageBase64(''); setError(''); setState('capture'); }}
           backAria={t('result.back_aria')}
         />
-        <DetectedImage imageBase64={imageBase64} objects={objects} locale={locale} />
+        <DetectedImage imageBase64={imageBase64} objects={objects} />
         <div className="relative flex items-end self-start max-w-full">
           <div className="relative z-10 -mr-3 mb-[-4px] shrink-0">
             <Image
@@ -221,7 +221,6 @@ export default function ScanPage({ params }: { params: Promise<{ locale: string 
         </div>
         <DetectedItemList
           objects={objects}
-          locale={locale}
           groupLabels={{
             recyclable: t('result.group.recyclable'),
             food: t('result.group.food'),
