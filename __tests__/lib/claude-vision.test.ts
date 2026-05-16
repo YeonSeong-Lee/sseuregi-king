@@ -52,7 +52,7 @@ describe('claudeDetect', () => {
     await expect(claudeDetect('base64data')).rejects.toThrow('ANTHROPIC_API_KEY not set');
   });
 
-  it('embeds the bag-code reference and item DB in the system prompt', async () => {
+  it('embeds the visual library and Korean disposal cheat sheet in the system prompt', async () => {
     process.env.ANTHROPIC_API_KEY = 'test-key';
     respond([]);
 
@@ -63,7 +63,9 @@ describe('claudeDetect', () => {
     expect(systemText).toContain('B01');
     expect(systemText).toContain('B04');
     expect(systemText).toContain('V01');
-    expect(systemText).toContain('T001');
+    expect(systemText).toContain('Cheat Sheet');
+    expect(systemText).toContain('1599-0903');
+    expect(systemText).not.toContain('T001');
     expect(systemText).toMatch(/Gangnam/);
   });
 
