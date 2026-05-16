@@ -29,7 +29,8 @@
       "food": "生ごみ",
       "general": "一般ごみ"
     },
-    "guide_title": "捨て方ガイド"
+    "guide_title": "捨て方ガイド",
+    "did_you_know": "知っていましたか？"
   },
   "tips": {
     "title": "認識精度を上げるコツ",

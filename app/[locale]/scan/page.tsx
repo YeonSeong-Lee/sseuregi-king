@@ -326,6 +326,16 @@ export default function ScanPage({ params }: { params: Promise<{ locale: string 
           isLoading={isGuideFetching}
           title={t('result.guide_title')}
         />
+        {objects.length > 0 && objects[0].funnyFact && (
+          <section className="rounded-2xl border-l-4 border-amber-400 bg-amber-50 dark:bg-amber-500/10 px-4 py-3">
+            <h3 className="text-xs uppercase tracking-wide font-semibold text-amber-600 dark:text-amber-400">
+              {t('result.did_you_know')}
+            </h3>
+            <p className="mt-1 text-sm text-fg leading-relaxed">
+              {objects[0].funnyFact[locale] || objects[0].funnyFact.en}
+            </p>
+          </section>
+        )}
       </div>
       {tipsSheet}
     </>

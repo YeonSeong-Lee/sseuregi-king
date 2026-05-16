@@ -35,7 +35,8 @@
       "food": "FOOD WASTE",
       "general": "GENERAL"
     },
-    "guide_title": "HOW TO DISPOSE"
+    "guide_title": "HOW TO DISPOSE",
+    "did_you_know": "Did you know?"
   },
   "tips": {
     "title": "Tips for better recognition",
