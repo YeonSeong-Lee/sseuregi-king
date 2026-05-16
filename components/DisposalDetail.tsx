@@ -2,6 +2,7 @@
 import { useTranslations } from 'next-intl';
 import { BagChip } from '@/components/BagChip';
 import { CATEGORY_BADGE } from '@/components/DisposalCard';
+import { GangnamBulkyWasteCard } from '@/components/GangnamBulkyWasteCard';
 import { StepRow } from '@/components/StepRow';
 import { YoutubeLinkCard } from '@/components/YoutubeLinkCard';
 import { getActionLabel } from '@/lib/disposal';
@@ -77,6 +78,12 @@ export function DisposalDetail({
           </h4>
           <p className="mt-2 text-sm text-fg-muted leading-relaxed">{examples}</p>
         </section>
+      )}
+
+      {category.id === 'large' && (
+        <div className="px-4 pt-2 pb-8">
+          <GangnamBulkyWasteCard locale={locale} />
+        </div>
       )}
     </div>
   );

@@ -211,5 +211,16 @@
         "tip": "Moving out? Register your big trash at least 2–3 days in advance. Last-minute dumps are the #1 way foreigners lose their deposit."
       }
     }
+  },
+  "gangnam_bulky": {
+    "title": "Gangnam-gu Bulky Waste Registration",
+    "appliances_label": "Home appliances — Free pickup",
+    "appliances_desc": "Small electronics (1–4 items) or large appliances (fridge, washer, AC, TV). Completely free of charge.",
+    "appliances_cta": "Apply online",
+    "furniture_label": "Furniture & other items — Paid",
+    "furniture_desc": "Register at least 3 days in advance. Write your receipt number on the item before placing it outside. Contact: 태화용역",
+    "furniture_cta": "Apply online",
+    "phone": "Call",
+    "note": "Collection: Mon–Sat (excluding public holidays). Must register at least 3 days before. Placing items outside without a receipt number is considered illegal dumping — fine from ₩300,000."
   }
 }
