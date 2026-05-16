@@ -112,9 +112,17 @@ export default function ScanPage({ params }: { params: Promise<{ locale: string 
 
   if (state === 'analyzing') return (
     <>
-      <div className="flex flex-col items-center justify-center h-full gap-4">
-        <div className="text-5xl animate-pulse">🔍</div>
-        <p className="text-fg text-lg font-medium">{t('analyzing.label')}</p>
+      <div className="flex flex-col items-center justify-center h-full gap-6">
+        <Image
+          src="/mascots/mascot-scan.png"
+          alt=""
+          width={120}
+          height={120}
+          className="animate-pulse"
+        />
+        <SpeechBubble tail="up" size="md">
+          {t('analyzing.label')}
+        </SpeechBubble>
       </div>
       {tipsSheet}
     </>
@@ -128,19 +136,21 @@ export default function ScanPage({ params }: { params: Promise<{ locale: string 
           backAria={t('result.back_aria')}
         />
         <DetectedImage imageBase64={imageBase64} objects={objects} locale={locale} />
-        <div className="relative flex items-end self-start">
+        <div className="relative flex items-end self-start max-w-full">
           <div className="relative z-10 -mr-3 mb-[-4px] shrink-0">
             <Image
-              src="/mascots/mascot-scan.png"
+              src={objects.length > 0 ? '/mascots/mascot-happy.png' : '/mascots/mascot-scan.png'}
               alt=""
-              width={64}
-              height={64}
+              width={72}
+              height={72}
             />
           </div>
-          <SpeechBubble tail="left" size="md">
-            {objects.length === 0
-              ? t('result.status_empty')
-              : t('result.status_found', { count: objects.length })}
+          <SpeechBubble tail="left" size="md" shape="card" className="flex-1 min-w-0 max-w-[calc(100%-60px)]">
+            {objects.length > 0 && objects[0].mascotText
+              ? objects[0].mascotText[locale] || objects[0].mascotText.en
+              : objects.length === 0
+                ? t('result.status_empty')
+                : t('result.status_found', { count: objects.length })}
           </SpeechBubble>
         </div>
         <DetectedItemList

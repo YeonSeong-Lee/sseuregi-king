@@ -1,6 +1,7 @@
 // components/DetectedItemList.tsx
 'use client';
 import { type CategoryGroup } from '@/lib/categories';
+import { BagIcon } from '@/components/BagIcon';
 import type { DetectedObject, Locale, ScanCategory } from '@/types';
 
 const SCAN_GROUP: Record<ScanCategory, CategoryGroup> = {
@@ -35,7 +36,7 @@ export function DetectedItemList({ objects, locale, groupLabels, onTapItem }: De
             <button
               type="button"
               onClick={() => onTapItem(obj)}
-              className="flex items-center gap-3 w-full px-3 py-3 rounded-2xl border-2 border-fg bg-surface-elev text-left active:scale-[0.98] transition-transform"
+              className="flex items-center gap-3 w-full px-3 py-4 rounded-2xl border-2 border-fg bg-surface-elev text-left active:scale-[0.98] transition-transform"
             >
               <span
                 aria-hidden="true"
@@ -47,12 +48,15 @@ export function DetectedItemList({ objects, locale, groupLabels, onTapItem }: De
                 <span className="block font-[family-name:var(--font-fraunces)] font-bold text-lg truncate">
                   {label}
                 </span>
+                <span className="flex items-center gap-2 mt-1">
+                  <span
+                    className={`px-2.5 py-0.5 rounded-full text-[10px] font-bold tracking-widest uppercase ${GROUP_PILL[group]}`}
+                  >
+                    {groupLabels[group]}
+                  </span>
+                </span>
               </span>
-              <span
-                className={`shrink-0 px-3 py-1 rounded-full text-[10px] font-bold tracking-widest uppercase ${GROUP_PILL[group]}`}
-              >
-                {groupLabels[group]}
-              </span>
+              <BagIcon id={obj.bag} />
               <span aria-hidden="true" className="shrink-0 text-2xl text-fg leading-none">→</span>
             </button>
           </li>
