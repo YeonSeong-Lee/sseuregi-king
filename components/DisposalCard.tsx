@@ -60,8 +60,7 @@ export function DisposalCard({
       </div>
       <div className="px-3 pt-3">
         <StepRow
-          steps={steps.map(id => ({ visualId: id, label: getActionLabel(id, locale) }))}
-          interactive={false}
+          steps={steps.map(id => ({ visualId: id, label: getActionLabel(id, locale) }))}}
         />
       </div>
       <p className="px-4 py-3 mt-1 text-sm text-fg-muted leading-relaxed border-t border-line bg-surface/40">

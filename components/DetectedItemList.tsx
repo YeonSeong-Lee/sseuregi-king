@@ -80,7 +80,7 @@ export function DetectedItemList({ objects, isStreaming = false, groupLabels, on
               <div className="border-t border-line px-3 pb-3">
                 <StepRow
                   steps={obj.steps.map(s => ({ visualId: s.visual, label: s.text }))}
-                  interactive={false}
+
                 />
               </div>
             </div>

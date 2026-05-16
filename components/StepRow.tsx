@@ -4,8 +4,6 @@ import useEmblaCarousel from 'embla-carousel-react';
 import { StepIcon } from '@/components/svg/StepIcons';
 import type { VisualActionId } from '@/types';
 
-const CYCLE_MS = 1500;
-
 export interface StepItem {
   visualId: VisualActionId;
   label: string;
@@ -16,7 +14,7 @@ interface StepRowProps {
   interactive?: boolean;
 }
 
-export function StepRow({ steps, interactive = true }: StepRowProps) {
+export function StepRow({ steps }: StepRowProps) {
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: false, align: 'center' });
   const [selectedIndex, setSelectedIndex] = useState(0);
 
@@ -31,17 +29,6 @@ export function StepRow({ steps, interactive = true }: StepRowProps) {
     onSelect();
     return () => { emblaApi.off('select', onSelect); };
   }, [emblaApi, onSelect]);
-
-  // Auto-cycle for non-interactive (scan result / card) mode
-  useEffect(() => {
-    if (interactive) return;
-    if (!emblaApi || steps.length === 0) return;
-    const id = setInterval(() => {
-      const next = (emblaApi.selectedScrollSnap() + 1) % steps.length;
-      emblaApi.scrollTo(next);
-    }, CYCLE_MS);
-    return () => clearInterval(id);
-  }, [emblaApi, interactive, steps.length]);
 
   const scrollTo = useCallback(
     (index: number) => emblaApi?.scrollTo(index),
