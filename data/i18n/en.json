@@ -19,7 +19,13 @@
     "use_photo": "Use photo",
     "cancel_aria": "Close camera"
   },
-  "analyzing": { "label": "Analyzing..." },
+  "analyzing": {
+    "label": "Analyzing...",
+    "label_0": "Taking a look at your photo…",
+    "label_1": "Spotting some trash…",
+    "label_2": "Figuring out where each one goes…",
+    "label_3": "Almost done."
+  },
   "result": {
     "back_aria": "Back",
     "status_found": "i found {count} victims. tap one.",

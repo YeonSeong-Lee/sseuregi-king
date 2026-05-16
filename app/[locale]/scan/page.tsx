@@ -1,6 +1,6 @@
 // app/[locale]/scan/page.tsx
 'use client';
-import { useState, use } from 'react';
+import { useState, use, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
@@ -16,6 +16,9 @@ import type { DetectedObject, Locale } from '@/types';
 
 type ScanState = 'capture' | 'analyzing' | 'overlay' | 'video';
 
+const MASCOT_PHASES = 4;
+const MASCOT_PHASE_INTERVAL_MS = 1800;
+
 export default function ScanPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale: rawLocale } = use(params);
   const locale = rawLocale as Locale;
@@ -27,6 +30,23 @@ export default function ScanPage({ params }: { params: Promise<{ locale: string 
   const [selected, setSelected] = useState<DetectedObject[]>([]);
   const [error, setError] = useState('');
   const [tipsOpen, setTipsOpen] = useState(false);
+  const [mascotPhase, setMascotPhase] = useState(0);
+  const abortRef = useRef<AbortController | null>(null);
+
+  useEffect(() => {
+    if (state !== 'analyzing') return;
+    setMascotPhase(0);
+    const id = setInterval(() => {
+      setMascotPhase(p => Math.min(p + 1, MASCOT_PHASES - 1));
+    }, MASCOT_PHASE_INTERVAL_MS);
+    return () => clearInterval(id);
+  }, [state]);
+
+  useEffect(() => {
+    return () => {
+      abortRef.current?.abort();
+    };
+  }, []);
 
   const tipItems = [
     { emoji: '💡', title: t('tips.lighting_title'), body: t('tips.lighting_body') },
@@ -44,21 +64,67 @@ export default function ScanPage({ params }: { params: Promise<{ locale: string 
   );
 
   async function handleCapture(base64: string) {
+    abortRef.current?.abort();
+    const controller = new AbortController();
+    abortRef.current = controller;
+
     setImageBase64(base64);
+    setObjects([]);
     setState('analyzing');
     setError('');
+
     try {
       const res = await fetch('/api/analyze', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ image: base64 }),
+        signal: controller.signal,
       });
-      if (!res.ok) throw new Error('Analysis failed');
-      const data: { objects: DetectedObject[] } = await res.json();
-      setObjects(data.objects);
-      setState('overlay');
-      if (data.objects.length === 0) setTipsOpen(true);
-    } catch {
+      if (!res.ok || !res.body) throw new Error('Analysis failed');
+
+      const reader = res.body.getReader();
+      const decoder = new TextDecoder();
+      let buf = '';
+      const collected: DetectedObject[] = [];
+      let firstItemSeen = false;
+      let serverError: string | null = null;
+
+      while (true) {
+        const { value, done } = await reader.read();
+        if (done) break;
+        buf += decoder.decode(value, { stream: true });
+        const lines = buf.split('\n');
+        buf = lines.pop() ?? '';
+        for (const line of lines) {
+          const trimmed = line.trim();
+          if (!trimmed) continue;
+          let event: { type?: string; item?: DetectedObject; error?: string };
+          try {
+            event = JSON.parse(trimmed);
+          } catch {
+            continue;
+          }
+          if (event.type === 'item' && event.item) {
+            collected.push(event.item);
+            if (!firstItemSeen) {
+              firstItemSeen = true;
+              setState('overlay');
+            }
+            setObjects([...collected]);
+          } else if (event.type === 'error') {
+            serverError = event.error ?? 'Analysis failed';
+          }
+        }
+      }
+
+      if (serverError) throw new Error(serverError);
+
+      if (!firstItemSeen) {
+        setState('overlay');
+        setTipsOpen(true);
+      }
+    } catch (err) {
+      if ((err as { name?: string }).name === 'AbortError') return;
       setError('Failed to analyze. Please try again.');
       setState('capture');
     }
@@ -121,7 +187,7 @@ export default function ScanPage({ params }: { params: Promise<{ locale: string 
           className="animate-pulse"
         />
         <SpeechBubble tail="up" size="md">
-          {t('analyzing.label')}
+          {t(`analyzing.label_${mascotPhase}`)}
         </SpeechBubble>
       </div>
       {tipsSheet}

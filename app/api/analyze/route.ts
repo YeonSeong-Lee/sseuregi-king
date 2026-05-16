@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { detectWaste } from '@/lib/detect';
+import { detectWasteStream } from '@/lib/detect';
 
 export const runtime = 'nodejs';
 export const maxDuration = 60;
@@ -16,17 +16,61 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: 'image field is required' }, { status: 400 });
   }
 
-  try {
-    const objects = await detectWaste(body.image);
-    return NextResponse.json({ objects });
-  } catch (err) {
-    const e = err as { code?: unknown; details?: unknown; message?: unknown };
-    console.error('analyze error:', {
-      message: e.message,
-      code: e.code,
-      details: e.details,
-      err,
-    });
-    return NextResponse.json({ error: 'Analysis failed' }, { status: 500 });
-  }
+  const image = body.image;
+  const encoder = new TextEncoder();
+  const upstreamAbort = new AbortController();
+
+  const stream = new ReadableStream<Uint8Array>({
+    async start(controller) {
+      const onClientAbort = () => upstreamAbort.abort();
+      request.signal.addEventListener('abort', onClientAbort);
+
+      const send = (obj: unknown) => {
+        controller.enqueue(encoder.encode(JSON.stringify(obj) + '\n'));
+      };
+
+      try {
+        for await (const item of detectWasteStream(image, upstreamAbort.signal)) {
+          send({ type: 'item', item });
+        }
+        send({ type: 'done' });
+      } catch (err) {
+        const e = err as { code?: unknown; details?: unknown; message?: unknown; name?: unknown };
+        if (e.name === 'AbortError') {
+          // client went away — no need to log noisily
+        } else {
+          console.error('analyze error:', {
+            message: e.message,
+            code: e.code,
+            details: e.details,
+            err,
+          });
+          try {
+            send({ type: 'error', error: 'Analysis failed' });
+          } catch {
+            // controller may already be closed
+          }
+        }
+      } finally {
+        request.signal.removeEventListener('abort', onClientAbort);
+        try {
+          controller.close();
+        } catch {
+          // already closed
+        }
+      }
+    },
+    cancel() {
+      upstreamAbort.abort();
+    },
+  });
+
+  return new Response(stream, {
+    headers: {
+      'Content-Type': 'application/x-ndjson; charset=utf-8',
+      'Cache-Control': 'no-cache, no-transform',
+      Connection: 'keep-alive',
+      'X-Accel-Buffering': 'no',
+    },
+  });
 }

@@ -1,12 +1,12 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 
-const { messagesCreateMock } = vi.hoisted(() => ({
-  messagesCreateMock: vi.fn(),
+const { messagesStreamMock } = vi.hoisted(() => ({
+  messagesStreamMock: vi.fn(),
 }));
 
 vi.mock('@anthropic-ai/sdk', () => ({
   default: function Anthropic() {
-    return { messages: { create: messagesCreateMock } };
+    return { messages: { stream: messagesStreamMock } };
   },
 }));
 
@@ -17,7 +17,7 @@ let tryParseStrict: typeof import('@/lib/claude-vision').tryParseStrict;
 let parsePartial: typeof import('@/lib/claude-vision').parsePartial;
 
 beforeEach(async () => {
-  messagesCreateMock.mockReset();
+  messagesStreamMock.mockReset();
   delete process.env.ANTHROPIC_API_KEY;
   vi.resetModules();
   ({ claudeDetect, tryParseStrict, parsePartial } = await import('@/lib/claude-vision'));
@@ -31,7 +31,7 @@ function goodItem(overrides: Partial<RawItem> = {}): RawItem {
   return {
     item_name: L4('PET Water Bottle'),
     category: 'Recyclable',
-    bag: 'B04',
+    bag: 'B03',
     bbox: { x: 0.1, y: 0.2, w: 0.3, h: 0.4 },
     steps: [{ visual: 'V01', text: L4('Remove the cap') }],
     mascot_text: L4('Another one. Bold of you.'),
@@ -41,13 +41,35 @@ function goodItem(overrides: Partial<RawItem> = {}): RawItem {
   };
 }
 
-function respond(items: unknown): void {
-  messagesCreateMock.mockResolvedValue({
-    content: [{ type: 'text', text: JSON.stringify(items) }],
-  });
+// Build a fake stream object that yields a sequence of text chunks as content_block_delta events.
+function makeStream(chunks: string[]) {
+  return {
+    [Symbol.asyncIterator]() {
+      let i = 0;
+      return {
+        async next() {
+          if (i >= chunks.length) return { value: undefined, done: true };
+          const value = {
+            type: 'content_block_delta',
+            delta: { type: 'text_delta', text: chunks[i++] },
+          };
+          return { value, done: false };
+        },
+      };
+    },
+    abort() {},
+  };
 }
 
-describe('claudeDetect', () => {
+function respondChunks(chunks: string[]): void {
+  messagesStreamMock.mockImplementation(() => makeStream(chunks));
+}
+
+function respond(items: unknown): void {
+  respondChunks([JSON.stringify(items)]);
+}
+
+describe('claudeDetect (stream)', () => {
   it('throws when ANTHROPIC_API_KEY is not set', async () => {
     await expect(claudeDetect('base64data')).rejects.toThrow('ANTHROPIC_API_KEY not set');
   });
@@ -58,15 +80,25 @@ describe('claudeDetect', () => {
 
     await claudeDetect('base64data');
 
-    const callArg = messagesCreateMock.mock.calls[0][0];
+    const callArg = messagesStreamMock.mock.calls[0][0];
     const systemText = Array.isArray(callArg.system) ? callArg.system[0].text : callArg.system;
     expect(systemText).toContain('B01');
-    expect(systemText).toContain('B04');
     expect(systemText).toContain('V01');
     expect(systemText).toContain('Cheat Sheet');
     expect(systemText).toContain('1599-0903');
     expect(systemText).not.toContain('T001');
     expect(systemText).toMatch(/Gangnam/);
+  });
+
+  it('passes output_config.format with json_schema to the Anthropic SDK', async () => {
+    process.env.ANTHROPIC_API_KEY = 'test-key';
+    respond([]);
+
+    await claudeDetect('base64data');
+
+    const callArg = messagesStreamMock.mock.calls[0][0];
+    expect(callArg.output_config?.format?.type).toBe('json_schema');
+    expect(callArg.output_config?.format?.schema).toBeDefined();
   });
 
   it('parses a well-formed item with bbox converted to 0-100 percent', async () => {
@@ -78,7 +110,7 @@ describe('claudeDetect', () => {
     expect(result).toHaveLength(1);
     expect(result[0].name.en).toBe('PET Water Bottle');
     expect(result[0].category).toBe('Recyclable');
-    expect(result[0].bag).toBe('B04');
+    expect(result[0].bag).toBe('B03');
     expect(result[0].confidence).toBe('high');
     expect(result[0].steps[0].visual).toBe('V01');
     expect(result[0].steps[0].text.ja).toBe('Remove the cap');
@@ -102,88 +134,38 @@ describe('claudeDetect', () => {
     expect(r.funnyFact.ru).toBe('Ф');
   });
 
-  it('strips markdown fences before parsing', async () => {
-    process.env.ANTHROPIC_API_KEY = 'test-key';
-    const json = JSON.stringify([goodItem()]);
-    messagesCreateMock.mockResolvedValue({
-      content: [{ type: 'text', text: '```json\n' + json + '\n```' }],
-    });
-
-    const result = await claudeDetect('base64data');
-    expect(result).toHaveLength(1);
-  });
-
-  it('returns empty array (no throw) when response is not valid JSON on both attempts', async () => {
+  it('returns empty array (no throw) when response is not valid JSON', async () => {
     process.env.ANTHROPIC_API_KEY = 'test-key';
     const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {});
-    messagesCreateMock.mockResolvedValue({
-      content: [{ type: 'text', text: 'I see a newspaper.' }],
-    });
-    const result = await claudeDetect('base64data');
-    expect(result).toEqual([]);
-    expect(messagesCreateMock).toHaveBeenCalledTimes(2);
-    warnSpy.mockRestore();
-  });
-
-  it('returns empty array when JSON is not an array on both attempts', async () => {
-    process.env.ANTHROPIC_API_KEY = 'test-key';
-    const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {});
-    messagesCreateMock.mockResolvedValue({
-      content: [{ type: 'text', text: '{"category":"Recyclable"}' }],
-    });
+    respondChunks(['I see a newspaper.']);
     const result = await claudeDetect('base64data');
     expect(result).toEqual([]);
     warnSpy.mockRestore();
   });
 
-  it('throws when there is no text content block (initial call SDK-level failure)', async () => {
+  it('emits items as their JSON closes during streaming (progressive)', async () => {
     process.env.ANTHROPIC_API_KEY = 'test-key';
-    messagesCreateMock.mockResolvedValue({ content: [] });
-    await expect(claudeDetect('base64data')).rejects.toThrow(/no text content/);
-  });
-
-  it('retries once with larger max_tokens when initial response has truncated JSON', async () => {
-    process.env.ANTHROPIC_API_KEY = 'test-key';
-    const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {});
-    const truncated = JSON.stringify([goodItem()]).slice(0, -10);  // chop off tail
-    const full = JSON.stringify([goodItem()]);
-    messagesCreateMock
-      .mockResolvedValueOnce({ content: [{ type: 'text', text: truncated }] })
-      .mockResolvedValueOnce({ content: [{ type: 'text', text: full }] });
+    const two = JSON.stringify([goodItem(), goodItem({ item_name: L4('Can') })]);
+    // Split the response into two chunks crossing the item boundary.
+    const mid = two.indexOf('},{') + 1; // after the first item's closing brace
+    respondChunks([two.slice(0, mid), two.slice(mid)]);
 
     const result = await claudeDetect('base64data');
-    expect(result).toHaveLength(1);
-    expect(messagesCreateMock).toHaveBeenCalledTimes(2);
-    expect(messagesCreateMock.mock.calls[0][0].max_tokens).toBeLessThan(
-      messagesCreateMock.mock.calls[1][0].max_tokens
-    );
-    warnSpy.mockRestore();
+    expect(result).toHaveLength(2);
+    expect(result[0].name.en).toBe('PET Water Bottle');
+    expect(result[1].name.en).toBe('Can');
   });
 
-  it('recovers complete items via partial parse when both attempts truncate', async () => {
+  it('recovers complete items even if final item is truncated', async () => {
     process.env.ANTHROPIC_API_KEY = 'test-key';
     const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {});
     const two = JSON.stringify([goodItem(), goodItem({ item_name: L4('Can') })]);
-    const truncated = two.slice(0, two.length - 30);  // second item gets cut mid-way
-    messagesCreateMock.mockResolvedValue({ content: [{ type: 'text', text: truncated }] });
+    const truncated = two.slice(0, two.length - 30); // second item gets cut mid-way
+    respondChunks([truncated]);
 
     const result = await claudeDetect('base64data');
     expect(result.length).toBeGreaterThanOrEqual(1);
     expect(result[0].name.en).toBe('PET Water Bottle');
-    warnSpy.mockRestore();
-  });
-
-  it('falls back to partial parse on initial response when retry call throws', async () => {
-    process.env.ANTHROPIC_API_KEY = 'test-key';
-    const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {});
-    const two = JSON.stringify([goodItem(), goodItem({ item_name: L4('Can') })]);
-    const truncated = two.slice(0, two.length - 30);
-    messagesCreateMock
-      .mockResolvedValueOnce({ content: [{ type: 'text', text: truncated }] })
-      .mockRejectedValueOnce(new Error('Anthropic 503'));
-
-    const result = await claudeDetect('base64data');
-    expect(result.length).toBeGreaterThanOrEqual(1);
     warnSpy.mockRestore();
   });
 });
@@ -252,7 +234,9 @@ describe('parsePartial', () => {
     expect(result[0].funnyFact.en).toBe('Has { brace } in text');
     warnSpy.mockRestore();
   });
+});
 
+describe('claudeDetect validation', () => {
   it('returns empty array when Claude detects no waste', async () => {
     process.env.ANTHROPIC_API_KEY = 'test-key';
     respond([]);
@@ -265,7 +249,7 @@ describe('parsePartial', () => {
     const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {});
     respond([
       goodItem(),
-      goodItem({ category: 'paper' }),  // legacy WasteCategory, no longer valid
+      goodItem({ category: 'paper' }), // legacy WasteCategory, no longer valid
     ]);
 
     const result = await claudeDetect('base64data');
@@ -289,7 +273,7 @@ describe('parsePartial', () => {
     process.env.ANTHROPIC_API_KEY = 'test-key';
     const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {});
     respond([
-      goodItem({ item_name: { en: 'X' } }),       // missing zh/ja/ru
+      goodItem({ item_name: { en: 'X' } }), // missing zh/ja/ru
       goodItem({ mascot_text: 'just a string' }), // not an object
     ]);
 
@@ -303,10 +287,10 @@ describe('parsePartial', () => {
     process.env.ANTHROPIC_API_KEY = 'test-key';
     const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {});
     respond([
-      goodItem({ bbox: { x: 0.1, y: 0.1 } }),                   // partial
-      goodItem({ bbox: { x: 0.1, y: 0.1, w: 0, h: 0.2 } }),     // zero width
-      goodItem({ bbox: { x: 0.1, y: 0.1, w: 0.2, h: -0.1 } }),  // negative height
-      goodItem(),                                                // good
+      goodItem({ bbox: { x: 0.1, y: 0.1 } }), // partial
+      goodItem({ bbox: { x: 0.1, y: 0.1, w: 0, h: 0.2 } }), // zero width
+      goodItem({ bbox: { x: 0.1, y: 0.1, w: 0.2, h: -0.1 } }), // negative height
+      goodItem(), // good
     ]);
 
     const result = await claudeDetect('base64data');
@@ -321,8 +305,8 @@ describe('parsePartial', () => {
     respond([goodItem({
       steps: [
         { visual: 'V01', text: L4('cap') },
-        { visual: 'XX', text: L4('bad') },           // bad code
-        { visual: 'V03', text: { en: 'partial' } },   // missing locales
+        { visual: 'XX', text: L4('bad') }, // bad code
+        { visual: 'V03', text: { en: 'partial' } }, // missing locales
         { visual: 'V09', text: L4('bin') },
       ],
     })]);

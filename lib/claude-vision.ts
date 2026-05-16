@@ -1,6 +1,7 @@
 import Anthropic from '@anthropic-ai/sdk';
 import { readFileSync } from 'node:fs';
 import path from 'node:path';
+import { SCAN_RESULT_SCHEMA } from './schemas/scan-result';
 import type {
   BagCode,
   ConfidenceLevel,
@@ -13,8 +14,7 @@ import type {
 } from '@/types';
 
 const MODEL = 'claude-sonnet-4-6';
-const MAX_TOKENS_INITIAL = 8192;
-const MAX_TOKENS_RETRY = 16384;
+const MAX_TOKENS = 8192;
 
 let _client: Anthropic | null = null;
 function getClient(): Anthropic {
@@ -82,7 +82,8 @@ function getSystemPrompt(): string {
     '1. Identify EVERY disposable item visible in the photo. Skip humans, pets, and decorative non-trash.',
     '2. For each item, determine category, bag, and V-coded steps using the Visual Library + Cheat Sheet + your knowledge of Korean waste rules.',
     '3. Output an ARRAY of objects, one per item.',
-    '4. All human-readable fields (item_name, step.text, mascot_text, funny_fact) MUST be {en, zh, ja, ru} objects.',
+    '4. item_name and step.text MUST be plain English strings.',
+    '   mascot_text and funny_fact MUST be {en, zh, ja, ru} objects.',
     '   Keep the sarcastic / playful mascot tone consistent across all four languages.',
     '5. confidence values:',
     '   - "high"   = common item, clear photo, well-known disposal',
@@ -92,12 +93,12 @@ function getSystemPrompt(): string {
     '',
     '[Output Schema (per item)]',
     '{',
-    '  "item_name":  { "en": string, "zh": string, "ja": string, "ru": string },',
+    '  "item_name":  string (English),',
     '  "category":   "Recyclable" | "General Waste" | "Food Waste" | "Hazardous" | "Bulky",',
     '  "bag":        "B01" | "B02" | "B03",',
     '  "bbox":       { "x": number, "y": number, "w": number, "h": number },',
     '  "steps": [',
-    '    { "visual": "V##", "text": { "en": string, "zh": string, "ja": string, "ru": string } }',
+    '    { "visual": "V##", "text": string (English) }',
     '  ],',
     '  "mascot_text":{ "en": string, "zh": string, "ja": string, "ru": string },',
     '  "funny_fact": { "en": string, "zh": string, "ja": string, "ru": string },',
@@ -156,17 +157,22 @@ type RawItem = {
   confidence?: unknown;
 };
 
+function coerceStringField(value: unknown): string | null {
+  if (typeof value !== 'string' || value.length === 0) return null;
+  return value;
+}
+
 function coerceStep(raw: unknown): ScanStep | null {
   if (!raw || typeof raw !== 'object') return null;
   const s = raw as { visual?: unknown; text?: unknown };
   if (typeof s.visual !== 'string' || !VISUAL_ID_RE.test(s.visual)) return null;
-  const text = coerceLocalized(s.text);
+  const text = coerceStringField(s.text);
   if (!text) return null;
   return { visual: s.visual as VisualActionId, text };
 }
 
 function coerceItem(raw: RawItem): DetectedObject | null {
-  const name = coerceLocalized(raw.item_name);
+  const name = coerceStringField(raw.item_name);
   if (!name) {
     console.warn('claude-vision: dropping item with missing item_name', raw);
     return null;
@@ -237,24 +243,41 @@ function coerceItem(raw: RawItem): DetectedObject | null {
   };
 }
 
-async function callClaude(base64Image: string, maxTokens: number): Promise<string> {
+async function* streamClaudeText(
+  base64Image: string,
+  signal?: AbortSignal,
+): AsyncGenerator<string, void, unknown> {
   const client = getClient();
-  const response = await client.messages.create({
-    model: MODEL,
-    max_tokens: maxTokens,
-    system: [{ type: 'text', text: getSystemPrompt(), cache_control: { type: 'ephemeral' } }],
-    messages: [{
-      role: 'user',
-      content: [
-        { type: 'image', source: { type: 'base64', media_type: 'image/jpeg', data: base64Image } },
-        { type: 'text', text: 'Identify the disposable items in this photo.' },
-      ],
-    }],
-  });
+  const stream = client.messages.stream(
+    {
+      model: MODEL,
+      max_tokens: MAX_TOKENS,
+      system: [{ type: 'text', text: getSystemPrompt(), cache_control: { type: 'ephemeral' } }],
+      output_config: {
+        format: { type: 'json_schema', schema: SCAN_RESULT_SCHEMA as unknown as Record<string, unknown> },
+      },
+      messages: [{
+        role: 'user',
+        content: [
+          { type: 'image', source: { type: 'base64', media_type: 'image/jpeg', data: base64Image } },
+          { type: 'text', text: 'Identify the disposable items in this photo.' },
+        ],
+      }],
+    },
+    { signal },
+  );
 
-  const textBlock = response.content.find(b => b.type === 'text') as { type: 'text'; text: string } | undefined;
-  if (!textBlock) throw new Error('Claude returned no text content');
-  return textBlock.text;
+  try {
+    for await (const event of stream) {
+      if (event.type === 'content_block_delta' && event.delta.type === 'text_delta') {
+        yield event.delta.text;
+      }
+    }
+  } finally {
+    if (typeof (stream as { abort?: () => void }).abort === 'function') {
+      (stream as { abort: () => void }).abort();
+    }
+  }
 }
 
 export function tryParseStrict(text: string): DetectedObject[] | null {
@@ -312,30 +335,36 @@ export function parsePartial(text: string): DetectedObject[] {
   return items;
 }
 
-export async function claudeDetect(base64Image: string): Promise<DetectedObject[]> {
-  const initialText = await callClaude(base64Image, MAX_TOKENS_INITIAL);
-  const initialItems = tryParseStrict(initialText);
-  if (initialItems !== null) return initialItems;
-  console.warn('claude-vision: initial JSON parse failed', {
-    length: initialText.length,
-    tail: initialText.slice(-200),
-  });
+export async function* claudeDetectStream(
+  base64Image: string,
+  signal?: AbortSignal,
+): AsyncGenerator<DetectedObject, void, unknown> {
+  let buffer = '';
+  let emitted = 0;
 
-  let retryText = '';
-  try {
-    retryText = await callClaude(base64Image, MAX_TOKENS_RETRY);
-    const retryItems = tryParseStrict(retryText);
-    if (retryItems !== null) return retryItems;
-    console.warn('claude-vision: retry JSON parse failed; attempting partial recovery', {
-      length: retryText.length,
-      tail: retryText.slice(-200),
-    });
-  } catch (err) {
-    console.warn('claude-vision: retry call threw; falling back to initial text', { err });
+  for await (const chunk of streamClaudeText(base64Image, signal)) {
+    buffer += chunk;
+    if (!chunk.includes('}')) continue; // no new item could have completed
+    const items = parsePartial(buffer);
+    while (emitted < items.length) {
+      yield items[emitted];
+      emitted++;
+    }
   }
 
-  const sourceText = retryText.length >= initialText.length ? retryText : initialText;
-  const recovered = parsePartial(sourceText);
-  console.warn('claude-vision: partial recovery result', { count: recovered.length });
-  return recovered;
+  // Final sweep — catch anything completed at the very end
+  const items = parsePartial(buffer);
+  while (emitted < items.length) {
+    yield items[emitted];
+    emitted++;
+  }
+}
+
+// Convenience non-streaming wrapper. Buffers items until the stream is done.
+export async function claudeDetect(base64Image: string): Promise<DetectedObject[]> {
+  const items: DetectedObject[] = [];
+  for await (const item of claudeDetectStream(base64Image)) {
+    items.push(item);
+  }
+  return items;
 }

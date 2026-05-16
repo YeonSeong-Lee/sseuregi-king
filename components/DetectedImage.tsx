@@ -3,12 +3,11 @@
 import { useMemo } from 'react';
 import Image from 'next/image';
 import { SpeechBubble } from '@/components/SpeechBubble';
-import type { DetectedObject, Locale } from '@/types';
+import type { DetectedObject } from '@/types';
 
 interface DetectedImageProps {
   imageBase64: string;
   objects: DetectedObject[];
-  locale: Locale;
 }
 
 // Below this y%, a "label above bbox" bubble would clip the container top —
@@ -88,7 +87,7 @@ function resolvePositions(objects: DetectedObject[]): BubblePos[] {
   }));
 }
 
-export function DetectedImage({ imageBase64, objects, locale }: DetectedImageProps) {
+export function DetectedImage({ imageBase64, objects }: DetectedImageProps) {
   const positions = useMemo(() => resolvePositions(objects), [objects]);
 
   return (

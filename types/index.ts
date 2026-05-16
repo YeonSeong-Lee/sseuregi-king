@@ -23,8 +23,6 @@ export interface BBox {
   h: number;
 }
 
-// All human-readable scan fields are returned as 4-language objects so the
-// UI can switch locale without re-calling the model.
 export type LocalizedText = Record<Locale, string>;
 
 // High-level grouping returned by Claude — distinct from the fine-grained
@@ -36,21 +34,19 @@ export type ScanCategory =
   | 'Hazardous'
   | 'Bulky';
 
-// Bag codes sourced from visual_actions_library.csv (=== BAG VISUALS === block):
-// B01 = White general waste bag (일반쓰레기 종량제봉투)
-// B02 = Yellow food waste bag (음식물쓰레기 종량제봉투)
-// B03 = Transparent recycling bag (재활용 투명봉투)
+// Bag codes: B01 = White general waste bag, B02 = Yellow food waste bag,
+// B03 = Transparent recycling bag
 export type BagCode = 'B01' | 'B02' | 'B03';
 
 export type ConfidenceLevel = 'high' | 'medium' | 'low';
 
 export interface ScanStep {
   visual: VisualActionId;
-  text: LocalizedText;
+  text: string;
 }
 
 export interface DetectedObject {
-  name: LocalizedText;
+  name: string;
   category: ScanCategory;
   bag: BagCode;
   bbox: BBox;

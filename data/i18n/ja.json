@@ -13,7 +13,13 @@
     "teach_me": "学ぶ"
   },
   "scan": { "camera": "カメラ", "retake": "撮り直す", "shutter_aria": "撮影", "use_photo": "この写真を使う", "cancel_aria": "カメラを閉じる" },
-  "analyzing": { "label": "分析中..." },
+  "analyzing": {
+    "label": "分析中...",
+    "label_0": "写真をのぞいてるよ…",
+    "label_1": "ゴミを見つけてるよ…",
+    "label_2": "捨て方をまとめてるよ…",
+    "label_3": "もうすぐだよ。"
+  },
   "result": {
     "back_aria": "戻る",
     "status_found": "{count}匹の被害者を見つけた。一つタップして。",

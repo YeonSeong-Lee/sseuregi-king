@@ -15,7 +15,7 @@ const L4 = (s: string) => ({ en: s, zh: s, ja: s, ru: s });
 const sample: DetectedObject = {
   name: L4('Bottle'),
   category: 'Recyclable',
-  bag: 'B04',
+  bag: 'B01',
   bbox: { x: 0, y: 0, w: 50, h: 50 },
   steps: [{ visual: 'V01', text: L4('Remove cap') }],
   mascotText: L4('hi'),

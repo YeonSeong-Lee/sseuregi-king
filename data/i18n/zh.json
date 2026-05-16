@@ -13,7 +13,13 @@
     "teach_me": "学习指南"
   },
   "scan": { "camera": "拍照", "retake": "重新拍照", "shutter_aria": "拍照", "use_photo": "使用照片", "cancel_aria": "关闭相机" },
-  "analyzing": { "label": "分析中..." },
+  "analyzing": {
+    "label": "分析中...",
+    "label_0": "正在看你的照片…",
+    "label_1": "找到了一些垃圾…",
+    "label_2": "正在整理处理方法…",
+    "label_3": "马上就好。"
+  },
   "result": {
     "back_aria": "返回",
     "status_found": "找到{count}个受害者。点一个看看。",

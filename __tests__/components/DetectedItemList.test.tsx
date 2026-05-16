@@ -25,7 +25,7 @@ const fixture: DetectedObject[] = [
   }),
   make({
     name: { en: 'Plastic bottle', zh: '塑料瓶', ja: 'ペットボトル', ru: 'Пластиковая бутылка' },
-    category: 'Recyclable', bag: 'B04',
+    category: 'Recyclable', bag: 'B03',
   }),
   make({
     name: { en: 'Cardboard', zh: '纸板', ja: '段ボール', ru: 'Картон' },
