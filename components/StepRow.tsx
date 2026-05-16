@@ -35,9 +35,12 @@ export function StepRow({ steps }: StepRowProps) {
     [emblaApi],
   );
 
+  const canPrev = selectedIndex > 0;
+  const canNext = selectedIndex < steps.length - 1;
+
   return (
     <div className="w-full">
-      {/* Step counter */}
+      {/* Step counter + progress bar */}
       {steps.length > 1 && (
         <div className="flex items-center gap-2 px-2 pt-2 pb-1">
           <span className="text-xs font-bold text-fg tracking-wide">
@@ -111,6 +114,38 @@ export function StepRow({ steps }: StepRowProps) {
           })}
         </div>
       </div>
+
+      {/* Prev / Next arrows */}
+      {steps.length > 1 && (
+        <div className="flex justify-between items-center px-2 pt-2 pb-1">
+          <button
+            type="button"
+            aria-label="Previous step"
+            onClick={() => scrollTo(selectedIndex - 1)}
+            disabled={!canPrev}
+            className={`flex items-center gap-1 text-xs font-bold px-3 py-1.5 rounded-full border-2 transition-all duration-150 ${
+              canPrev
+                ? 'border-fg text-fg active:scale-95'
+                : 'border-fg/15 text-fg/20 cursor-default'
+            }`}
+          >
+            ← 이전
+          </button>
+          <button
+            type="button"
+            aria-label="Next step"
+            onClick={() => scrollTo(selectedIndex + 1)}
+            disabled={!canNext}
+            className={`flex items-center gap-1 text-xs font-bold px-3 py-1.5 rounded-full border-2 transition-all duration-150 ${
+              canNext
+                ? 'border-fg text-fg active:scale-95'
+                : 'border-fg/15 text-fg/20 cursor-default'
+            }`}
+          >
+            다음 →
+          </button>
+        </div>
+      )}
     </div>
   );
 }
