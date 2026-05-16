@@ -36,7 +36,7 @@ export function StepRow({ steps, interactive = true }: StepRowProps) {
         const isActive = i === shown;
         const inner = (
           <>
-            <span className="relative flex items-center justify-center w-9 h-9">
+            <span className="relative flex items-center justify-center w-11 h-11">
               <span
                 aria-hidden="true"
                 className={`absolute -top-1 -left-1 text-[10px] leading-none rounded-full px-1 py-0.5 ${
@@ -45,24 +45,30 @@ export function StepRow({ steps, interactive = true }: StepRowProps) {
               >
                 {i + 1}
               </span>
-              <span className={`block w-9 h-9 ${isActive ? 'animate-step-active' : ''}`}>
+              <span
+                className={`block w-11 h-11 transition-transform duration-150 ${
+                  isActive ? 'animate-step-active scale-110' : ''
+                }`}
+              >
                 <StepIcon id={step.visualId} />
               </span>
             </span>
-            <span className="text-[10px] leading-tight text-center truncate w-full">
+            <span className="text-[10px] leading-tight text-center line-clamp-2 w-full">
               {step.label}
             </span>
           </>
         );
 
         return (
-          <li key={`${step.visualId}-${i}`} className="shrink-0 w-16">
+          <li key={`${step.visualId}-${i}`} className="shrink-0 w-[4.5rem]">
             {interactive ? (
               <button
                 type="button"
                 onClick={() => setPinned(pinned === i ? null : i)}
                 className={`group flex flex-col items-center gap-1 w-full rounded-xl py-1.5 px-1 transition-colors ${
-                  isActive ? 'bg-blue-100 text-blue-700 dark:bg-blue-500/15 dark:text-blue-300' : 'text-fg-faint'
+                  isActive
+                    ? 'bg-blue-100 text-blue-700 ring-2 ring-blue-400 dark:bg-blue-500/15 dark:text-blue-300 dark:ring-blue-500'
+                    : 'text-fg-faint'
                 }`}
                 aria-pressed={pinned === i}
               >
