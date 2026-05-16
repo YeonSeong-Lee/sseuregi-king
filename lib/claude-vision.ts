@@ -13,7 +13,8 @@ import type {
 } from '@/types';
 
 const MODEL = 'claude-sonnet-4-6';
-const MAX_TOKENS = 4096;
+const MAX_TOKENS_INITIAL = 8192;
+const MAX_TOKENS_RETRY = 16384;
 
 let _client: Anthropic | null = null;
 function getClient(): Anthropic {
@@ -211,11 +212,11 @@ function coerceItem(raw: RawItem): DetectedObject | null {
   };
 }
 
-export async function claudeDetect(base64Image: string): Promise<DetectedObject[]> {
+async function callClaude(base64Image: string, maxTokens: number): Promise<string> {
   const client = getClient();
   const response = await client.messages.create({
     model: MODEL,
-    max_tokens: MAX_TOKENS,
+    max_tokens: maxTokens,
     system: [{ type: 'text', text: getSystemPrompt(), cache_control: { type: 'ephemeral' } }],
     messages: [{
       role: 'user',
@@ -228,19 +229,88 @@ export async function claudeDetect(base64Image: string): Promise<DetectedObject[
 
   const textBlock = response.content.find(b => b.type === 'text') as { type: 'text'; text: string } | undefined;
   if (!textBlock) throw new Error('Claude returned no text content');
+  return textBlock.text;
+}
 
-  const cleaned = stripJsonFences(textBlock.text);
+export function tryParseStrict(text: string): DetectedObject[] | null {
+  const cleaned = stripJsonFences(text);
   let parsed: unknown;
   try {
     parsed = JSON.parse(cleaned);
   } catch {
-    throw new Error(`Claude returned invalid JSON: ${cleaned.slice(0, 200)}`);
+    return null;
   }
-  if (!Array.isArray(parsed)) {
-    throw new Error('Claude returned non-array JSON');
-  }
-
+  if (!Array.isArray(parsed)) return null;
   return (parsed as RawItem[])
     .map(coerceItem)
     .filter((x): x is DetectedObject => x !== null);
+}
+
+export function parsePartial(text: string): DetectedObject[] {
+  const cleaned = stripJsonFences(text);
+  const candidates: string[] = [];
+  let depth = 0;
+  let start = -1;
+  let inString = false;
+  let escape = false;
+  for (let i = 0; i < cleaned.length; i++) {
+    const ch = cleaned[i];
+    if (escape) { escape = false; continue; }
+    if (inString) {
+      if (ch === '\\') escape = true;
+      else if (ch === '"') inString = false;
+      continue;
+    }
+    if (ch === '"') { inString = true; continue; }
+    if (ch === '{') {
+      if (depth === 0) start = i;
+      depth++;
+    } else if (ch === '}') {
+      depth--;
+      if (depth === 0 && start !== -1) {
+        candidates.push(cleaned.slice(start, i + 1));
+        start = -1;
+      }
+    }
+  }
+
+  const items: DetectedObject[] = [];
+  for (const raw of candidates) {
+    try {
+      const obj = JSON.parse(raw) as RawItem;
+      const coerced = coerceItem(obj);
+      if (coerced) items.push(coerced);
+    } catch {
+      // ignore malformed candidate
+    }
+  }
+  return items;
+}
+
+export async function claudeDetect(base64Image: string): Promise<DetectedObject[]> {
+  const initialText = await callClaude(base64Image, MAX_TOKENS_INITIAL);
+  const initialItems = tryParseStrict(initialText);
+  if (initialItems !== null) return initialItems;
+  console.warn('claude-vision: initial JSON parse failed', {
+    length: initialText.length,
+    tail: initialText.slice(-200),
+  });
+
+  let retryText = '';
+  try {
+    retryText = await callClaude(base64Image, MAX_TOKENS_RETRY);
+    const retryItems = tryParseStrict(retryText);
+    if (retryItems !== null) return retryItems;
+    console.warn('claude-vision: retry JSON parse failed; attempting partial recovery', {
+      length: retryText.length,
+      tail: retryText.slice(-200),
+    });
+  } catch (err) {
+    console.warn('claude-vision: retry call threw; falling back to initial text', { err });
+  }
+
+  const sourceText = retryText.length >= initialText.length ? retryText : initialText;
+  const recovered = parsePartial(sourceText);
+  console.warn('claude-vision: partial recovery result', { count: recovered.length });
+  return recovered;
 }

@@ -13,12 +13,14 @@ vi.mock('@anthropic-ai/sdk', () => ({
 // claudeDetect is re-imported in beforeEach so the module-level
 // `_client` and `_systemPrompt` singletons are fresh per test.
 let claudeDetect: typeof import('@/lib/claude-vision').claudeDetect;
+let tryParseStrict: typeof import('@/lib/claude-vision').tryParseStrict;
+let parsePartial: typeof import('@/lib/claude-vision').parsePartial;
 
 beforeEach(async () => {
   messagesCreateMock.mockReset();
   delete process.env.ANTHROPIC_API_KEY;
   vi.resetModules();
-  ({ claudeDetect } = await import('@/lib/claude-vision'));
+  ({ claudeDetect, tryParseStrict, parsePartial } = await import('@/lib/claude-vision'));
 });
 
 type RawItem = Record<string, unknown>;
@@ -109,26 +111,144 @@ describe('claudeDetect', () => {
     expect(result).toHaveLength(1);
   });
 
-  it('throws with diagnostic when response is not valid JSON', async () => {
+  it('returns empty array (no throw) when response is not valid JSON on both attempts', async () => {
     process.env.ANTHROPIC_API_KEY = 'test-key';
+    const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {});
     messagesCreateMock.mockResolvedValue({
       content: [{ type: 'text', text: 'I see a newspaper.' }],
     });
-    await expect(claudeDetect('base64data')).rejects.toThrow(/invalid JSON/);
+    const result = await claudeDetect('base64data');
+    expect(result).toEqual([]);
+    expect(messagesCreateMock).toHaveBeenCalledTimes(2);
+    warnSpy.mockRestore();
   });
 
-  it('throws when JSON is not an array', async () => {
+  it('returns empty array when JSON is not an array on both attempts', async () => {
     process.env.ANTHROPIC_API_KEY = 'test-key';
+    const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {});
     messagesCreateMock.mockResolvedValue({
       content: [{ type: 'text', text: '{"category":"Recyclable"}' }],
     });
-    await expect(claudeDetect('base64data')).rejects.toThrow(/non-array/);
+    const result = await claudeDetect('base64data');
+    expect(result).toEqual([]);
+    warnSpy.mockRestore();
   });
 
-  it('throws when there is no text content block', async () => {
+  it('throws when there is no text content block (initial call SDK-level failure)', async () => {
     process.env.ANTHROPIC_API_KEY = 'test-key';
     messagesCreateMock.mockResolvedValue({ content: [] });
     await expect(claudeDetect('base64data')).rejects.toThrow(/no text content/);
+  });
+
+  it('retries once with larger max_tokens when initial response has truncated JSON', async () => {
+    process.env.ANTHROPIC_API_KEY = 'test-key';
+    const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {});
+    const truncated = JSON.stringify([goodItem()]).slice(0, -10);  // chop off tail
+    const full = JSON.stringify([goodItem()]);
+    messagesCreateMock
+      .mockResolvedValueOnce({ content: [{ type: 'text', text: truncated }] })
+      .mockResolvedValueOnce({ content: [{ type: 'text', text: full }] });
+
+    const result = await claudeDetect('base64data');
+    expect(result).toHaveLength(1);
+    expect(messagesCreateMock).toHaveBeenCalledTimes(2);
+    expect(messagesCreateMock.mock.calls[0][0].max_tokens).toBeLessThan(
+      messagesCreateMock.mock.calls[1][0].max_tokens
+    );
+    warnSpy.mockRestore();
+  });
+
+  it('recovers complete items via partial parse when both attempts truncate', async () => {
+    process.env.ANTHROPIC_API_KEY = 'test-key';
+    const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {});
+    const two = JSON.stringify([goodItem(), goodItem({ item_name: L4('Can') })]);
+    const truncated = two.slice(0, two.length - 30);  // second item gets cut mid-way
+    messagesCreateMock.mockResolvedValue({ content: [{ type: 'text', text: truncated }] });
+
+    const result = await claudeDetect('base64data');
+    expect(result.length).toBeGreaterThanOrEqual(1);
+    expect(result[0].name.en).toBe('PET Water Bottle');
+    warnSpy.mockRestore();
+  });
+
+  it('falls back to partial parse on initial response when retry call throws', async () => {
+    process.env.ANTHROPIC_API_KEY = 'test-key';
+    const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {});
+    const two = JSON.stringify([goodItem(), goodItem({ item_name: L4('Can') })]);
+    const truncated = two.slice(0, two.length - 30);
+    messagesCreateMock
+      .mockResolvedValueOnce({ content: [{ type: 'text', text: truncated }] })
+      .mockRejectedValueOnce(new Error('Anthropic 503'));
+
+    const result = await claudeDetect('base64data');
+    expect(result.length).toBeGreaterThanOrEqual(1);
+    warnSpy.mockRestore();
+  });
+});
+
+describe('tryParseStrict', () => {
+  beforeEach(async () => {
+    vi.resetModules();
+    ({ tryParseStrict } = await import('@/lib/claude-vision'));
+  });
+
+  it('returns array of coerced items on valid JSON array', () => {
+    const text = JSON.stringify([goodItem()]);
+    const result = tryParseStrict(text);
+    expect(result).not.toBeNull();
+    expect(result).toHaveLength(1);
+  });
+
+  it('returns null on syntactically invalid JSON', () => {
+    expect(tryParseStrict('[ {"x": 1, ')).toBeNull();
+    expect(tryParseStrict('not json at all')).toBeNull();
+  });
+
+  it('returns null on non-array JSON', () => {
+    expect(tryParseStrict('{"x": 1}')).toBeNull();
+  });
+
+  it('strips markdown fences before parsing', () => {
+    const json = JSON.stringify([goodItem()]);
+    const result = tryParseStrict('```json\n' + json + '\n```');
+    expect(result).toHaveLength(1);
+  });
+});
+
+describe('parsePartial', () => {
+  beforeEach(async () => {
+    vi.resetModules();
+    ({ parsePartial } = await import('@/lib/claude-vision'));
+  });
+
+  it('extracts complete items from truncated array', () => {
+    const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {});
+    const two = JSON.stringify([goodItem(), goodItem({ item_name: L4('Can') })]);
+    const truncated = two.slice(0, two.length - 30);
+    const result = parsePartial(truncated);
+    expect(result.length).toBeGreaterThanOrEqual(1);
+    expect(result[0].name.en).toBe('PET Water Bottle');
+    warnSpy.mockRestore();
+  });
+
+  it('returns empty array on completely malformed text', () => {
+    expect(parsePartial('total garbage no braces')).toEqual([]);
+  });
+
+  it('returns empty array when no complete items survive validation', () => {
+    const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {});
+    expect(parsePartial('[{"item_name": {"en": "X"')).toEqual([]);
+    warnSpy.mockRestore();
+  });
+
+  it('handles braces inside strings correctly', () => {
+    const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {});
+    const item = goodItem({ funny_fact: L4('Has { brace } in text') });
+    const text = JSON.stringify([item]);
+    const result = parsePartial(text);
+    expect(result).toHaveLength(1);
+    expect(result[0].funnyFact.en).toBe('Has { brace } in text');
+    warnSpy.mockRestore();
   });
 
   it('returns empty array when Claude detects no waste', async () => {
