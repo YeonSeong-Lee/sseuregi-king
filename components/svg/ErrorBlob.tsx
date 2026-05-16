@@ -1,14 +1,14 @@
 import Image from 'next/image';
 
-interface SadBlobProps {
+interface ErrorBlobProps {
   className?: string;
 }
 
-export function SadBlob({ className }: SadBlobProps) {
+export function ErrorBlob({ className }: ErrorBlobProps) {
   return (
     <div className={`relative ${className ?? ''}`}>
       <Image
-        src="/mascots/mascot-idle.png"
+        src="/mascots/mascot-reject.png"
         alt="mascot"
         fill
         style={{ objectFit: 'contain' }}
