@@ -23,14 +23,42 @@ export interface BBox {
   h: number;
 }
 
+// All human-readable scan fields are returned as 4-language objects so the
+// UI can switch locale without re-calling the model.
+export type LocalizedText = Record<Locale, string>;
+
+// High-level grouping returned by Claude — distinct from the fine-grained
+// `WasteCategory` used by the /guide page. Mapped to a CategoryGroup for UI pills.
+export type ScanCategory =
+  | 'Recyclable'
+  | 'General Waste'
+  | 'Food Waste'
+  | 'Hazardous'
+  | 'Bulky';
+
+// Bag codes sourced from visual_actions_library.csv (=== BAG VISUALS === block):
+// B01 = White general waste bag (일반쓰레기 종량제봉투)
+// B02 = Yellow food waste bag (음식물쓰레기 종량제봉투)
+// B03 = Transparent recycling bag (재활용 투명봉투)
+// B04 = Clear PET separate bag (투명페트 전용봉투)
+export type BagCode = 'B01' | 'B02' | 'B03' | 'B04';
+
+export type ConfidenceLevel = 'high' | 'medium' | 'low';
+
+export interface ScanStep {
+  visual: VisualActionId;
+  text: LocalizedText;
+}
+
 export interface DetectedObject {
-  nameEn: string;
-  nameZh: string;
-  nameJa: string;
-  nameRu: string;
-  category: WasteCategory;
+  name: LocalizedText;
+  category: ScanCategory;
+  bag: BagCode;
   bbox: BBox;
-  trashItemId?: string; // T001..T150 when an item-level match landed
+  steps: ScanStep[];
+  mascotText: LocalizedText;
+  funnyFact: LocalizedText;
+  confidence: ConfidenceLevel;
 }
 
 export interface YoutubePick {

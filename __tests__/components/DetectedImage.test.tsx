@@ -3,27 +3,43 @@ import { render, screen } from '@testing-library/react';
 import { DetectedImage } from '@/components/DetectedImage';
 import type { DetectedObject } from '@/types';
 
+function make(overrides: Partial<DetectedObject>): DetectedObject {
+  return {
+    name: { en: 'Item', zh: '物', ja: 'モノ', ru: 'Предмет' },
+    category: 'Recyclable',
+    bag: 'B03',
+    bbox: { x: 0, y: 0, w: 10, h: 10 },
+    steps: [{ visual: 'V01', text: { en: 's', zh: 's', ja: 's', ru: 's' } }],
+    mascotText: { en: 'm', zh: 'm', ja: 'm', ru: 'm' },
+    funnyFact: { en: 'f', zh: 'f', ja: 'f', ru: 'f' },
+    confidence: 'high',
+    ...overrides,
+  };
+}
+
 const fixture: DetectedObject[] = [
-  {
-    nameEn: 'Banana peel', nameZh: '香蕉皮', nameJa: 'バナナの皮', nameRu: 'Кожура банана',
-    category: 'food', bbox: { x: 10, y: 30, w: 20, h: 20 },
-  },
-  {
-    nameEn: 'Plastic bottle', nameZh: '塑料瓶', nameJa: 'ペットボトル', nameRu: 'Пластиковая бутылка',
-    category: 'plastic', bbox: { x: 60, y: 30, w: 15, h: 25 },
-  },
-  {
-    nameEn: 'Cardboard', nameZh: '纸板', nameJa: '段ボール', nameRu: 'Картон',
-    category: 'paper', bbox: { x: 40, y: 70, w: 20, h: 15 },
-  },
+  make({
+    name: { en: 'Banana peel', zh: '香蕉皮', ja: 'バナナの皮', ru: 'Кожура банана' },
+    category: 'Food Waste', bag: 'B02',
+    bbox: { x: 10, y: 30, w: 20, h: 20 },
+  }),
+  make({
+    name: { en: 'Plastic bottle', zh: '塑料瓶', ja: 'ペットボトル', ru: 'Пластиковая бутылка' },
+    category: 'Recyclable', bag: 'B04',
+    bbox: { x: 60, y: 30, w: 15, h: 25 },
+  }),
+  make({
+    name: { en: 'Cardboard', zh: '纸板', ja: '段ボール', ru: 'Картон' },
+    category: 'Recyclable', bag: 'B03',
+    bbox: { x: 40, y: 70, w: 20, h: 15 },
+  }),
 ];
 
 describe('DetectedImage', () => {
-  it('renders one dashed bbox per detected object', () => {
+  it('renders one tag per detected object (no rect)', () => {
     render(<DetectedImage imageBase64="" objects={fixture} locale="en" />);
-    const boxes = screen.getAllByTestId('bbox-rect');
-    expect(boxes).toHaveLength(3);
-    boxes.forEach(b => expect(b.className).toContain('border-dashed'));
+    expect(screen.getAllByTestId('bbox-tag')).toHaveLength(3);
+    expect(screen.queryByTestId('bbox-rect')).toBeNull();
   });
 
   it('renders the locale-appropriate label for each object', () => {
@@ -33,12 +49,10 @@ describe('DetectedImage', () => {
     expect(screen.getByText('段ボール')).toBeTruthy();
   });
 
-  it('places the bbox at the % coordinates from the object', () => {
+  it('positions the tag at the horizontal center of the bbox', () => {
     render(<DetectedImage imageBase64="" objects={[fixture[0]]} locale="en" />);
-    const box = screen.getByTestId('bbox-rect') as HTMLElement;
-    expect(box.style.left).toBe('10%');
-    expect(box.style.top).toBe('30%');
-    expect(box.style.width).toBe('20%');
-    expect(box.style.height).toBe('20%');
+    // fixture[0] bbox: x=10, w=20 → center = 20%
+    const tag = screen.getByTestId('bbox-tag') as HTMLElement;
+    expect(tag.style.left).toBe('20%');
   });
 });

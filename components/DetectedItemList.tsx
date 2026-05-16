@@ -1,11 +1,14 @@
 // components/DetectedItemList.tsx
 'use client';
-import { getCategoryGroup, type CategoryGroup } from '@/lib/categories';
-import { getTrashItemById } from '@/lib/trash-items';
-import type { DetectedObject, Locale } from '@/types';
+import { type CategoryGroup } from '@/lib/categories';
+import type { DetectedObject, Locale, ScanCategory } from '@/types';
 
-const NAME_KEY: Record<Locale, keyof Pick<DetectedObject, 'nameEn' | 'nameZh' | 'nameJa' | 'nameRu'>> = {
-  en: 'nameEn', zh: 'nameZh', ja: 'nameJa', ru: 'nameRu',
+const SCAN_GROUP: Record<ScanCategory, CategoryGroup> = {
+  'Recyclable':    'recyclable',
+  'General Waste': 'general',
+  'Food Waste':    'food',
+  'Hazardous':     'general',
+  'Bulky':         'general',
 };
 
 const GROUP_PILL: Record<CategoryGroup, string> = {
@@ -22,14 +25,13 @@ interface DetectedItemListProps {
 }
 
 export function DetectedItemList({ objects, locale, groupLabels, onTapItem }: DetectedItemListProps) {
-  const nameKey = NAME_KEY[locale];
   return (
     <ul className="flex flex-col gap-3 w-full">
       {objects.map((obj, i) => {
-        const group = getCategoryGroup(obj.category);
-        const item = obj.trashItemId ? getTrashItemById(obj.trashItemId) : undefined;
+        const group = SCAN_GROUP[obj.category];
+        const label = obj.name[locale] || obj.name.en;
         return (
-          <li key={`${obj.nameEn}-${i}`}>
+          <li key={`${obj.name.en}-${i}`}>
             <button
               type="button"
               onClick={() => onTapItem(obj)}
@@ -43,11 +45,8 @@ export function DetectedItemList({ objects, locale, groupLabels, onTapItem }: De
               </span>
               <span className="flex-1 min-w-0">
                 <span className="block font-[family-name:var(--font-fraunces)] font-bold text-lg truncate">
-                  {obj[nameKey]}
+                  {label}
                 </span>
-                {item?.koreanTag && (
-                  <span className="block text-[11px] text-fg-faint truncate">{item.koreanTag}</span>
-                )}
               </span>
               <span
                 className={`shrink-0 px-3 py-1 rounded-full text-[10px] font-bold tracking-widest uppercase ${GROUP_PILL[group]}`}

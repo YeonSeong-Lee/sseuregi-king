@@ -11,9 +11,6 @@ import { SpeechBubble } from '@/components/SpeechBubble';
 import { VideoPlayer } from '@/components/VideoPlayer';
 import { PhotoTipsSheet } from '@/components/PhotoTipsSheet';
 import { SadBlob } from '@/components/svg/SadBlob';
-import { useDistrictContext } from '@/contexts/DistrictContext';
-import { isSupported } from '@/data/districts';
-import { buildCategoryLabels, getCategoryDisposalText } from '@/lib/categories';
 import type { DetectedObject, Locale } from '@/types';
 
 type ScanState = 'capture' | 'analyzing' | 'overlay' | 'video';
@@ -22,7 +19,6 @@ export default function ScanPage({ params }: { params: Promise<{ locale: string 
   const { locale: rawLocale } = use(params);
   const locale = rawLocale as Locale;
   const t = useTranslations();
-  const district = useDistrictContext();
 
   const [state, setState] = useState<ScanState>('capture');
   const [imageBase64, setImageBase64] = useState('');
@@ -45,17 +41,6 @@ export default function ScanPage({ params }: { params: Promise<{ locale: string 
       tips={tipItems}
     />
   );
-
-  const supportedCode =
-    (district.state.status === 'detected' || district.state.status === 'manual') &&
-    isSupported(district.state.info.code)
-      ? district.state.info.code
-      : null;
-
-  const disposalTexts: Record<string, string | null> = {};
-  for (const obj of selected) {
-    disposalTexts[obj.category] = getCategoryDisposalText(obj.category, supportedCode, locale);
-  }
 
   async function handleCapture(base64: string) {
     setImageBase64(base64);
@@ -169,12 +154,8 @@ export default function ScanPage({ params }: { params: Promise<{ locale: string 
           <VideoPlayer
             objects={selected}
             locale={locale}
-            district={supportedCode}
-            categoryLabels={buildCategoryLabels(t)}
             backLabel={t('video.back')}
-            watchOnYoutubeLabel={t('video.watch_on_youtube')}
             onBack={() => setState('overlay')}
-            disposalTexts={disposalTexts}
           />
         </div>
       </div>

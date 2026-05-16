@@ -4,19 +4,33 @@ import userEvent from '@testing-library/user-event';
 import { DetectedItemList } from '@/components/DetectedItemList';
 import type { DetectedObject } from '@/types';
 
+function make(overrides: Partial<DetectedObject>): DetectedObject {
+  return {
+    name: { en: 'Item', zh: '物', ja: 'モノ', ru: 'Предмет' },
+    category: 'Recyclable',
+    bag: 'B03',
+    bbox: { x: 0, y: 0, w: 1, h: 1 },
+    steps: [{ visual: 'V01', text: { en: 's', zh: 's', ja: 's', ru: 's' } }],
+    mascotText: { en: 'm', zh: 'm', ja: 'm', ru: 'm' },
+    funnyFact: { en: 'f', zh: 'f', ja: 'f', ru: 'f' },
+    confidence: 'high',
+    ...overrides,
+  };
+}
+
 const fixture: DetectedObject[] = [
-  {
-    nameEn: 'Banana peel', nameZh: '香蕉皮', nameJa: 'バナナの皮', nameRu: 'Кожура банана',
-    category: 'food', bbox: { x: 0, y: 0, w: 1, h: 1 },
-  },
-  {
-    nameEn: 'Plastic bottle', nameZh: '塑料瓶', nameJa: 'ペットボトル', nameRu: 'Пластиковая бутылка',
-    category: 'plastic', bbox: { x: 0, y: 0, w: 1, h: 1 },
-  },
-  {
-    nameEn: 'Cardboard', nameZh: '纸板', nameJa: '段ボール', nameRu: 'Картон',
-    category: 'paper', bbox: { x: 0, y: 0, w: 1, h: 1 },
-  },
+  make({
+    name: { en: 'Banana peel', zh: '香蕉皮', ja: 'バナナの皮', ru: 'Кожура банана' },
+    category: 'Food Waste', bag: 'B02',
+  }),
+  make({
+    name: { en: 'Plastic bottle', zh: '塑料瓶', ja: 'ペットボトル', ru: 'Пластиковая бутылка' },
+    category: 'Recyclable', bag: 'B04',
+  }),
+  make({
+    name: { en: 'Cardboard', zh: '纸板', ja: '段ボール', ru: 'Картон' },
+    category: 'Recyclable', bag: 'B03',
+  }),
 ];
 
 const labels = { recyclable: 'RECYCLABLE', food: 'FOOD WASTE', general: 'GENERAL' };
