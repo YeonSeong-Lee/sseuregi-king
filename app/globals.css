@@ -3,12 +3,12 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 :root {
-  --background: #efe8d4;
+  --background: #ffffff;
   --foreground: #1a1a1a;
 
-  --surface: #efe8d4;
-  --surface-elev: #f5efde;
-  --surface-soft: rgba(245, 239, 222, 0.7);
+  --surface: #ffffff;
+  --surface-elev: #f8f8f8;
+  --surface-soft: rgba(248, 248, 248, 0.7);
   --fg: #1a1a1a;
   --fg-muted: #58524a;
   --fg-faint: #8a8174;
