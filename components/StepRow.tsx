@@ -50,6 +50,32 @@ export function StepRow({ steps, interactive = true }: StepRowProps) {
 
   return (
     <div className="w-full">
+      {/* Step counter */}
+      {steps.length > 1 && (
+        <div className="flex items-center gap-2 px-2 pt-2 pb-1">
+          <span className="text-xs font-bold text-fg tracking-wide">
+            {selectedIndex + 1} / {steps.length}
+          </span>
+          <div className="flex-1 flex items-center gap-1">
+            {steps.map((_, i) => (
+              <button
+                key={i}
+                type="button"
+                aria-label={`Step ${i + 1}`}
+                onClick={() => scrollTo(i)}
+                className={`h-1.5 rounded-full transition-all duration-300 ${
+                  i === selectedIndex
+                    ? 'bg-fg flex-[2]'
+                    : i < selectedIndex
+                      ? 'bg-fg/40 flex-1'
+                      : 'bg-fg/15 flex-1'
+                }`}
+              />
+            ))}
+          </div>
+        </div>
+      )}
+
       {/* Embla viewport */}
       <div ref={emblaRef} className="overflow-hidden">
         <div className="flex">
@@ -60,16 +86,16 @@ export function StepRow({ steps, interactive = true }: StepRowProps) {
                 <div
                   className={`relative flex flex-col items-center gap-3 rounded-2xl py-5 px-4 transition-all duration-200 ${
                     isActive
-                      ? 'bg-blue-50 ring-2 ring-blue-400 dark:bg-blue-500/15 dark:ring-blue-500'
-                      : 'bg-surface-elev/40'
+                      ? 'bg-surface-elev border-2 border-fg'
+                      : 'bg-surface-elev/40 border-2 border-transparent'
                   }`}
                 >
                   {/* Step number badge */}
                   <span
-                    className={`absolute top-2.5 left-3 text-xs font-semibold leading-none rounded-full px-1.5 py-0.5 ${
+                    className={`absolute top-2.5 left-3 w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold leading-none transition-all duration-200 ${
                       isActive
-                        ? 'bg-blue-500 text-white'
-                        : 'bg-surface-elev text-fg-faint'
+                        ? 'bg-fg text-accent-fg scale-110'
+                        : 'bg-fg/15 text-fg-faint'
                     }`}
                   >
                     {i + 1}
@@ -78,7 +104,7 @@ export function StepRow({ steps, interactive = true }: StepRowProps) {
                   {/* Icon */}
                   <div
                     className={`w-40 h-40 transition-transform duration-200 ${
-                      isActive ? 'scale-105' : 'scale-95 opacity-60'
+                      isActive ? 'scale-105' : 'scale-95 opacity-50'
                     }`}
                   >
                     <StepIcon id={step.visualId} />
@@ -86,8 +112,8 @@ export function StepRow({ steps, interactive = true }: StepRowProps) {
 
                   {/* Label */}
                   <p
-                    className={`text-sm leading-snug text-center font-medium ${
-                      isActive ? 'text-blue-700 dark:text-blue-300' : 'text-fg-faint'
+                    className={`text-sm leading-snug text-center font-semibold ${
+                      isActive ? 'text-fg' : 'text-fg-faint'
                     }`}
                   >
                     {step.label}
@@ -98,25 +124,6 @@ export function StepRow({ steps, interactive = true }: StepRowProps) {
           })}
         </div>
       </div>
-
-      {/* Dot indicator */}
-      {steps.length > 1 && (
-        <div className="flex justify-center items-center gap-2 mt-3">
-          {steps.map((_, i) => (
-            <button
-              key={i}
-              type="button"
-              aria-label={`Step ${i + 1}`}
-              onClick={() => scrollTo(i)}
-              className={`rounded-full transition-all duration-200 ${
-                i === selectedIndex
-                  ? 'bg-blue-500 w-3 h-2'
-                  : 'bg-surface-elev w-2 h-2 hover:bg-fg-faint'
-              }`}
-            />
-          ))}
-        </div>
-      )}
     </div>
   );
 }
