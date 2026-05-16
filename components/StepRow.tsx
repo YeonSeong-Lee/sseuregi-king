@@ -36,7 +36,7 @@ export function StepRow({ steps, interactive = true }: StepRowProps) {
         const isActive = i === shown;
         const inner = (
           <>
-            <span className="relative flex items-center justify-center w-11 h-11">
+            <span className="relative flex items-center justify-center w-14 h-14">
               <span
                 aria-hidden="true"
                 className={`absolute -top-1 -left-1 text-[10px] leading-none rounded-full px-1 py-0.5 ${
@@ -46,7 +46,7 @@ export function StepRow({ steps, interactive = true }: StepRowProps) {
                 {i + 1}
               </span>
               <span
-                className={`block w-11 h-11 transition-transform duration-150 ${
+                className={`block w-14 h-14 transition-transform duration-150 ${
                   isActive ? 'animate-step-active scale-110' : ''
                 }`}
               >
@@ -60,7 +60,7 @@ export function StepRow({ steps, interactive = true }: StepRowProps) {
         );
 
         return (
-          <li key={`${step.visualId}-${i}`} className="shrink-0 w-[4.5rem]">
+          <li key={`${step.visualId}-${i}`} className="shrink-0 w-[5.5rem]">
             {interactive ? (
               <button
                 type="button"
