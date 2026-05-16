@@ -64,7 +64,6 @@ export function DisposalDetail({
           steps={steps.map(id => ({ visualId: id, label: getActionLabel(id, locale) }))}
           interactive
         />
-        <p className="text-[10px] text-fg-faint text-center pt-1">{t('guide.pin_step_hint')}</p>
       </div>
 
       <p className="mx-4 mt-4 px-4 py-3 text-sm text-fg leading-relaxed rounded-xl border border-line bg-surface-elev">

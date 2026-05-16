@@ -223,7 +223,7 @@ export default function ScanPage({ params }: { params: Promise<{ locale: string 
               height={72}
               className="shrink-0 animate-pulse"
             />
-            <SpeechBubble tail="left" size="md" shape="card" className="flex-1 min-w-0">
+            <SpeechBubble tail="left-bottom" size="md" shape="card" className="flex-1 min-w-0">
               {t(`analyzing.label_${mascotPhase}`)}
             </SpeechBubble>
           </div>
@@ -259,7 +259,7 @@ export default function ScanPage({ params }: { params: Promise<{ locale: string 
         />
         <div className="relative">
           <DetectedImage imageBase64={imageBase64} objects={objects} />
-          <div className="absolute bottom-0 left-3 translate-y-1/2 z-10 flex items-end max-w-[calc(100%-12px)]">
+          <div className="absolute bottom-0 left-0 translate-y-1/2 z-10 flex items-end max-w-full">
             <div className="shrink-0 -mr-3">
               <Image
                 src={objects.length > 0 ? '/mascots/mascot-happy.png' : '/mascots/mascot-scan.png'}
@@ -268,7 +268,7 @@ export default function ScanPage({ params }: { params: Promise<{ locale: string 
                 height={96}
               />
             </div>
-            <SpeechBubble tail="left" size="md" shape="card" className="flex-1 min-w-0 max-w-[calc(100%-72px)]">
+            <SpeechBubble tail="left-bottom" size="md" shape="card" className="flex-1 min-w-0 max-w-[calc(100%-72px)]">
               {objects.length > 0 && objects[0].mascotText
                 ? objects[0].mascotText[locale] || objects[0].mascotText.en
                 : objects.length === 0

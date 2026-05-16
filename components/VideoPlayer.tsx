@@ -120,7 +120,6 @@ export function VideoPlayer({ objects, locale, backLabel, onBack }: VideoPlayerP
         {/* Step row */}
         {active.steps.length > 0 && (
           <div className="-mx-1">
-            <p className="text-[10px] text-fg-faint text-center pb-1">{t('guide.pin_step_hint')}</p>
             <StepRow
               steps={active.steps.map(s => ({
                 visualId: s.visual,

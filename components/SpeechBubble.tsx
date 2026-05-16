@@ -6,7 +6,7 @@ import type { ReactNode } from 'react';
 
 interface SpeechBubbleProps {
   children: ReactNode;
-  tail?: 'down' | 'up' | 'left' | 'none';
+  tail?: 'down' | 'up' | 'left' | 'left-bottom' | 'none';
   size?: 'sm' | 'md';
   shape?: 'pill' | 'card';
   className?: string;
@@ -14,12 +14,12 @@ interface SpeechBubbleProps {
 
 const SIZE_CLASS: Record<NonNullable<SpeechBubbleProps['size']>, string> = {
   sm: 'px-3 py-1 text-xs',
-  md: 'px-5 py-2 text-sm',
+  md: 'px-5 py-3 text-sm',
 };
 
 const SHAPE_CLASS: Record<NonNullable<SpeechBubbleProps['shape']>, string> = {
   pill: 'inline-flex items-center justify-center rounded-full',
-  card: 'block rounded-2xl leading-snug',
+  card: 'block rounded-3xl leading-snug',
 };
 
 export function SpeechBubble({
@@ -58,6 +58,15 @@ export function SpeechBubble({
           data-testid="speech-bubble-tail"
           data-tail="left"
           className="absolute top-1/2 -translate-y-1/2 -left-[7px] w-3 h-3 border-l-2 border-b-2 border-fg rotate-45"
+          style={{ background: 'var(--mascot-bag)' }}
+        />
+      )}
+      {tail === 'left-bottom' && (
+        <span
+          aria-hidden="true"
+          data-testid="speech-bubble-tail"
+          data-tail="left-bottom"
+          className="absolute top-[70%] -translate-y-1/2 -left-[7px] w-3 h-3 border-l-2 border-b-2 border-fg rotate-45"
           style={{ background: 'var(--mascot-bag)' }}
         />
       )}
