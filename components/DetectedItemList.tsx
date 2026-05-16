@@ -1,6 +1,7 @@
 // components/DetectedItemList.tsx
 'use client';
 import { type CategoryGroup } from '@/lib/categories';
+import { StepRow } from '@/components/StepRow';
 import type { DetectedObject, ScanCategory } from '@/types';
 
 const SCAN_GROUP: Record<ScanCategory, CategoryGroup> = {
@@ -53,31 +54,39 @@ export function DetectedItemList({ objects, isStreaming = false, groupLabels, on
             key={`${obj.name}-${i}`}
             className="animate-fade-in"
           >
-            <button
-              type="button"
-              onClick={() => onTapItem(obj)}
-              className="flex items-center gap-3 w-full px-3 py-4 rounded-2xl border-2 border-fg bg-surface-elev text-left active:scale-[0.98] transition-transform"
-            >
-              <span
-                aria-hidden="true"
-                className="shrink-0 w-9 h-9 rounded-full bg-fg text-accent-fg flex items-center justify-center font-bold text-sm"
+            <div className="rounded-2xl border-2 border-fg bg-surface-elev overflow-hidden">
+              <button
+                type="button"
+                onClick={() => onTapItem(obj)}
+                className="flex items-center gap-3 w-full px-3 py-4 text-left active:scale-[0.98] transition-transform"
               >
-                {i + 1}
-              </span>
-              <span className="flex-1 min-w-0">
-                <span className="block font-[family-name:var(--font-fraunces)] font-bold text-lg truncate">
-                  {label}
+                <span
+                  aria-hidden="true"
+                  className="shrink-0 w-9 h-9 rounded-full bg-fg text-accent-fg flex items-center justify-center font-bold text-sm"
+                >
+                  {i + 1}
                 </span>
-                <span className="flex items-center gap-2 mt-1">
-                  <span
-                    className={`px-2.5 py-0.5 rounded-full text-[10px] font-bold tracking-widest uppercase ${GROUP_PILL[group]}`}
-                  >
-                    {groupLabels[group]}
+                <span className="flex-1 min-w-0">
+                  <span className="block font-[family-name:var(--font-fraunces)] font-bold text-lg truncate">
+                    {label}
+                  </span>
+                  <span className="flex items-center gap-2 mt-1">
+                    <span
+                      className={`px-2.5 py-0.5 rounded-full text-[10px] font-bold tracking-widest uppercase ${GROUP_PILL[group]}`}
+                    >
+                      {groupLabels[group]}
+                    </span>
                   </span>
                 </span>
-              </span>
-              <span aria-hidden="true" className="shrink-0 text-2xl text-fg leading-none">→</span>
-            </button>
+                <span aria-hidden="true" className="shrink-0 text-2xl text-fg leading-none">→</span>
+              </button>
+              <div className="border-t border-line px-3 pb-3">
+                <StepRow
+                  steps={obj.steps.map(s => ({ visualId: s.visual, label: s.text }))}
+                  interactive={false}
+                />
+              </div>
+            </div>
           </li>
         );
       })}
