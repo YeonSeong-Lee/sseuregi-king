@@ -327,14 +327,23 @@ export default function ScanPage({ params }: { params: Promise<{ locale: string 
           title={t('result.guide_title')}
         />
         {objects.length > 0 && objects[0].funnyFact && (
-          <section className="rounded-2xl border-l-4 border-amber-400 bg-amber-50 dark:bg-amber-500/10 px-4 py-3">
-            <h3 className="text-xs uppercase tracking-wide font-semibold text-amber-600 dark:text-amber-400">
-              {t('result.did_you_know')}
-            </h3>
-            <p className="mt-1 text-sm text-fg leading-relaxed">
-              {objects[0].funnyFact[locale] || objects[0].funnyFact.en}
-            </p>
-          </section>
+          <div className="flex items-end gap-3">
+            <Image
+              src="/mascots/mascot-happy.png"
+              alt="mascot"
+              width={64}
+              height={64}
+              className="shrink-0 object-contain"
+            />
+            <div className="flex-1 min-w-0">
+              <p className="text-[10px] uppercase tracking-wide font-semibold text-fg-muted mb-1">
+                {t('result.did_you_know')}
+              </p>
+              <SpeechBubble shape="card" size="md" tail="left" className="w-full">
+                {objects[0].funnyFact[locale] || objects[0].funnyFact.en}
+              </SpeechBubble>
+            </div>
+          </div>
         )}
         <a
           href="https://www.gangnam.go.kr/waste/apply/info.do?mid=ID03_020704"

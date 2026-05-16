@@ -131,14 +131,23 @@ export function VideoPlayer({ objects, locale, backLabel, onBack }: VideoPlayerP
         )}
 
         {/* Did you know */}
-        <section className="rounded-2xl border-l-4 border-amber-400 bg-amber-50 dark:bg-amber-500/10 px-4 py-3">
-          <h4 className="text-xs uppercase tracking-wide font-semibold text-amber-600 dark:text-amber-400">
-            {t('item.did_you_know')}
-          </h4>
-          <p className="mt-1 text-sm text-fg leading-relaxed">
-            {active.funnyFact[locale] || active.funnyFact.en}
-          </p>
-        </section>
+        <div className="flex items-end gap-3">
+          <Image
+            src={mascotSrc}
+            alt="mascot"
+            width={64}
+            height={64}
+            className="shrink-0 object-contain"
+          />
+          <div className="flex-1 min-w-0">
+            <p className="text-[10px] uppercase tracking-wide font-semibold text-fg-muted mb-1">
+              {t('item.did_you_know')}
+            </p>
+            <SpeechBubble shape="card" size="md" tail="left" className="w-full">
+              {active.funnyFact[locale] || active.funnyFact.en}
+            </SpeechBubble>
+          </div>
+        </div>
       </div>
     </div>
   );
