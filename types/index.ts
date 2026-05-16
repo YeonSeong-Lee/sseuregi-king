@@ -40,8 +40,7 @@ export type ScanCategory =
 // B01 = White general waste bag (일반쓰레기 종량제봉투)
 // B02 = Yellow food waste bag (음식물쓰레기 종량제봉투)
 // B03 = Transparent recycling bag (재활용 투명봉투)
-// B04 = Clear PET separate bag (투명페트 전용봉투)
-export type BagCode = 'B01' | 'B02' | 'B03' | 'B04';
+export type BagCode = 'B01' | 'B02' | 'B03';
 
 export type ConfidenceLevel = 'high' | 'medium' | 'low';
 

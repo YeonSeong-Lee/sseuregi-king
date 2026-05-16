@@ -46,7 +46,7 @@ function getSystemPrompt(): string {
     ' 1. Bones (chicken, fish, beef, pork) → General Waste (B01), NOT food waste — they break the food waste machine.',
     ' 2. Shellfish shells (clam, oyster, crab, shrimp) → General Waste (B01), NOT food waste.',
     ' 3. Hard nut shells (walnut, coconut, macadamia) → General Waste. Peanut shells → Food waste.',
-    ' 4. Clear PET bottles (water, soda) → bag B04 (clear PET separate), NOT B03. Remove cap + label first.',
+    ' 4. Clear PET bottles (water, soda) → bag B03 (transparent recycling). Remove cap + label first.',
     ' 5. Other plastics, vinyl, styrofoam, cans → bag B03 (transparent recycling), once rinsed clean.',
     ' 6. Broken glass / broken ceramic → wrap in newspaper, write "유리조각" (glass) or "도자기" (ceramic) on the outside of the B01 bag.',
     ' 7. Mirror, drinking glass, ceramic plates/mugs → General Waste, NEVER glass recycling — different composition contaminates it.',
@@ -94,7 +94,7 @@ function getSystemPrompt(): string {
     '{',
     '  "item_name":  { "en": string, "zh": string, "ja": string, "ru": string },',
     '  "category":   "Recyclable" | "General Waste" | "Food Waste" | "Hazardous" | "Bulky",',
-    '  "bag":        "B01" | "B02" | "B03" | "B04",',
+    '  "bag":        "B01" | "B02" | "B03",',
     '  "bbox":       { "x": number, "y": number, "w": number, "h": number },',
     '  "steps": [',
     '    { "visual": "V##", "text": { "en": string, "zh": string, "ja": string, "ru": string } }',
@@ -116,7 +116,7 @@ const VALID_CATEGORIES = new Set<ScanCategory>([
   'Hazardous',
   'Bulky',
 ]);
-const VALID_BAGS = new Set<BagCode>(['B01', 'B02', 'B03', 'B04']);
+const VALID_BAGS = new Set<BagCode>(['B01', 'B02', 'B03']);
 const VALID_CONFIDENCE = new Set<ConfidenceLevel>(['high', 'medium', 'low']);
 const LOCALES: Locale[] = ['en', 'zh', 'ja', 'ru'];
 const VISUAL_ID_RE = /^V\d{2}$/;
