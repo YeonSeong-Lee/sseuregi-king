@@ -13,6 +13,7 @@
   "dependencies": {
     "@anthropic-ai/sdk": "^0.96.0",
     "@google-cloud/vision": "^5.3.6",
+    "embla-carousel-react": "^8.6.0",
     "next": "16.2.6",
     "next-intl": "^4.11.1",
     "react": "19.2.4",

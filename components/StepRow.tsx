@@ -1,5 +1,6 @@
 'use client';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
+import useEmblaCarousel from 'embla-carousel-react';
 import { StepIcon } from '@/components/svg/StepIcons';
 import type { VisualActionId } from '@/types';
 
@@ -16,76 +17,106 @@ interface StepRowProps {
 }
 
 export function StepRow({ steps, interactive = true }: StepRowProps) {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [pinned, setPinned] = useState<number | null>(null);
+  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: false, align: 'center' });
+  const [selectedIndex, setSelectedIndex] = useState(0);
+
+  const onSelect = useCallback(() => {
+    if (!emblaApi) return;
+    setSelectedIndex(emblaApi.selectedScrollSnap());
+  }, [emblaApi]);
 
   useEffect(() => {
-    if (interactive && pinned !== null) return;
-    if (steps.length === 0) return;
+    if (!emblaApi) return;
+    emblaApi.on('select', onSelect);
+    onSelect();
+    return () => { emblaApi.off('select', onSelect); };
+  }, [emblaApi, onSelect]);
+
+  // Auto-cycle for non-interactive (scan result / card) mode
+  useEffect(() => {
+    if (interactive) return;
+    if (!emblaApi || steps.length === 0) return;
     const id = setInterval(() => {
-      setActiveIndex(i => (i + 1) % steps.length);
+      const next = (emblaApi.selectedScrollSnap() + 1) % steps.length;
+      emblaApi.scrollTo(next);
     }, CYCLE_MS);
     return () => clearInterval(id);
-  }, [steps.length, pinned, interactive]);
+  }, [emblaApi, interactive, steps.length]);
 
-  const shown = interactive ? (pinned ?? activeIndex) : activeIndex;
+  const scrollTo = useCallback(
+    (index: number) => emblaApi?.scrollTo(index),
+    [emblaApi],
+  );
 
   return (
-    <ol className="flex items-start gap-1 overflow-x-auto py-1 -mx-1 px-1 scrollbar-none">
-      {steps.map((step, i) => {
-        const isActive = i === shown;
-        const inner = (
-          <>
-            <span className="relative flex items-center justify-center w-14 h-14">
-              <span
-                aria-hidden="true"
-                className={`absolute -top-1 -left-1 text-[10px] leading-none rounded-full px-1 py-0.5 ${
-                  isActive ? 'bg-blue-500 text-white' : 'bg-surface-elev text-fg-faint'
-                }`}
-              >
-                {i + 1}
-              </span>
-              <span
-                className={`block w-14 h-14 transition-transform duration-150 ${
-                  isActive ? 'animate-step-active scale-110' : ''
-                }`}
-              >
-                <StepIcon id={step.visualId} />
-              </span>
-            </span>
-            <span className="text-[10px] leading-tight text-center line-clamp-2 w-full">
-              {step.label}
-            </span>
-          </>
-        );
+    <div className="w-full">
+      {/* Embla viewport */}
+      <div ref={emblaRef} className="overflow-hidden">
+        <div className="flex">
+          {steps.map((step, i) => {
+            const isActive = i === selectedIndex;
+            return (
+              <div key={`${step.visualId}-${i}`} className="flex-none w-full px-2">
+                <div
+                  className={`relative flex flex-col items-center gap-3 rounded-2xl py-5 px-4 transition-all duration-200 ${
+                    isActive
+                      ? 'bg-blue-50 ring-2 ring-blue-400 dark:bg-blue-500/15 dark:ring-blue-500'
+                      : 'bg-surface-elev/40'
+                  }`}
+                >
+                  {/* Step number badge */}
+                  <span
+                    className={`absolute top-2.5 left-3 text-xs font-semibold leading-none rounded-full px-1.5 py-0.5 ${
+                      isActive
+                        ? 'bg-blue-500 text-white'
+                        : 'bg-surface-elev text-fg-faint'
+                    }`}
+                  >
+                    {i + 1}
+                  </span>
 
-        return (
-          <li key={`${step.visualId}-${i}`} className="shrink-0 w-[5.5rem]">
-            {interactive ? (
-              <button
-                type="button"
-                onClick={() => setPinned(pinned === i ? null : i)}
-                className={`group flex flex-col items-center gap-1 w-full rounded-xl py-1.5 px-1 transition-colors ${
-                  isActive
-                    ? 'bg-blue-100 text-blue-700 ring-2 ring-blue-400 dark:bg-blue-500/15 dark:text-blue-300 dark:ring-blue-500'
-                    : 'text-fg-faint'
-                }`}
-                aria-pressed={pinned === i}
-              >
-                {inner}
-              </button>
-            ) : (
-              <div
-                className={`flex flex-col items-center gap-1 w-full rounded-xl py-1.5 px-1 ${
-                  isActive ? 'bg-blue-100 text-blue-700 dark:bg-blue-500/15 dark:text-blue-300' : 'text-fg-faint'
-                }`}
-              >
-                {inner}
+                  {/* Icon */}
+                  <div
+                    className={`w-40 h-40 transition-transform duration-200 ${
+                      isActive ? 'scale-105' : 'scale-95 opacity-60'
+                    }`}
+                  >
+                    <StepIcon id={step.visualId} />
+                  </div>
+
+                  {/* Label */}
+                  <p
+                    className={`text-sm leading-snug text-center font-medium ${
+                      isActive ? 'text-blue-700 dark:text-blue-300' : 'text-fg-faint'
+                    }`}
+                  >
+                    {step.label}
+                  </p>
+                </div>
               </div>
-            )}
-          </li>
-        );
-      })}
-    </ol>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* Dot indicator */}
+      {steps.length > 1 && (
+        <div className="flex justify-center items-center gap-2 mt-3">
+          {steps.map((_, i) => (
+            <button
+              key={i}
+              type="button"
+              aria-label={`Step ${i + 1}`}
+              onClick={() => scrollTo(i)}
+              className={`rounded-full transition-all duration-200 ${
+                i === selectedIndex
+                  ? 'bg-blue-500 w-3 h-2'
+                  : 'bg-surface-elev w-2 h-2 hover:bg-fg-faint'
+              }`}
+            />
+          ))}
+        </div>
+      )}
+    </div>
   );
 }

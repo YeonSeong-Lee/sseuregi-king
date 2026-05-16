@@ -6,8 +6,8 @@ export function StepIcon({ id }: { id: VisualActionId }) {
     <Image
       src={`/step-icons/${id}.png`}
       alt=""
-      width={56}
-      height={56}
+      width={160}
+      height={160}
       className="w-full h-full object-contain"
     />
   );
