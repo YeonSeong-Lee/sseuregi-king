@@ -75,9 +75,7 @@ export function StepRow({ steps }: StepRowProps) {
               <div key={`${step.visualId}-${i}`} className="flex-none w-full px-2">
                 <div
                   className={`relative flex flex-col items-center gap-3 rounded-2xl py-5 px-4 transition-all duration-200 ${
-                    isActive
-                      ? 'bg-surface-elev border-2 border-fg'
-                      : 'bg-surface-elev/40 border-2 border-transparent'
+                    isActive ? 'bg-surface-elev' : 'bg-surface-elev/40'
                   }`}
                 >
                   {/* Step number badge */}
