@@ -46,7 +46,7 @@ export function StepRow({ steps, interactive = true }: StepRowProps) {
                 {i + 1}
               </span>
               <span className={`block w-9 h-9 ${isActive ? 'animate-step-active' : ''}`}>
-                <StepIcon id={step.visualId} active={isActive} />
+                <StepIcon id={step.visualId} />
               </span>
             </span>
             <span className="text-[10px] leading-tight text-center truncate w-full">

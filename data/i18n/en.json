@@ -64,7 +64,11 @@
     "white": "White general-waste bag",
     "green": "Green net cart",
     "special": "Special bag (마대)",
-    "none": "No bag — drop-off"
+    "none": "No bag — drop-off",
+    "B01": "White general-waste bag",
+    "B02": "Yellow food-waste bag",
+    "B03": "Transparent recycling bag",
+    "B04": "Clear PET-only bag"
   },
   "item": {
     "goes_in": "Goes in:",
