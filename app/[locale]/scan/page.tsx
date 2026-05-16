@@ -19,6 +19,9 @@ type ScanState = 'capture' | 'analyzing' | 'overlay' | 'video';
 const MASCOT_PHASES = 4;
 const MASCOT_PHASE_INTERVAL_MS = 3000;
 
+// Progress steps shown during the analyzing phase
+const ANALYZING_STEPS = [0, 1, 2, 3] as const;
+
 export default function ScanPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale: rawLocale } = use(params);
   const locale = rawLocale as Locale;
@@ -31,6 +34,7 @@ export default function ScanPage({ params }: { params: Promise<{ locale: string 
   const [error, setError] = useState('');
   const [tipsOpen, setTipsOpen] = useState(false);
   const [mascotPhase, setMascotPhase] = useState(0);
+  const [isStreaming, setIsStreaming] = useState(false);
   const abortRef = useRef<AbortController | null>(null);
 
   useEffect(() => {
@@ -71,6 +75,7 @@ export default function ScanPage({ params }: { params: Promise<{ locale: string 
     setImageBase64(base64);
     setObjects([]);
     setState('analyzing');
+    setIsStreaming(true);
     setError('');
 
     try {
@@ -117,6 +122,7 @@ export default function ScanPage({ params }: { params: Promise<{ locale: string 
         }
       }
 
+      setIsStreaming(false);
       if (serverError) throw new Error(serverError);
 
       if (!firstItemSeen) {
@@ -124,6 +130,7 @@ export default function ScanPage({ params }: { params: Promise<{ locale: string 
         setTipsOpen(true);
       }
     } catch (err) {
+      setIsStreaming(false);
       if ((err as { name?: string }).name === 'AbortError') return;
       setError('Failed to analyze. Please try again.');
       setState('capture');
@@ -178,17 +185,66 @@ export default function ScanPage({ params }: { params: Promise<{ locale: string 
 
   if (state === 'analyzing') return (
     <>
-      <div className="flex flex-col items-center justify-center h-full gap-6">
-        <Image
-          src="/mascots/mascot-scan.png"
-          alt=""
-          width={120}
-          height={120}
-          className="animate-pulse"
-        />
-        <SpeechBubble tail="up" size="md">
-          {t(`analyzing.label_${mascotPhase}`)}
-        </SpeechBubble>
+      <div className="flex flex-col h-full">
+        {/* Captured image with scan-line overlay */}
+        <div className="relative flex-1 min-h-0 overflow-hidden bg-black">
+          {imageBase64 && (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img
+              src={`data:image/jpeg;base64,${imageBase64}`}
+              alt=""
+              className="w-full h-full object-contain"
+            />
+          )}
+
+          {/* Scanning line */}
+          <div
+            aria-hidden="true"
+            className="absolute inset-x-0 h-0.5 bg-gradient-to-r from-transparent via-emerald-400 to-transparent opacity-80 animate-scan-line"
+          />
+
+          {/* Corner brackets */}
+          <div aria-hidden="true" className="absolute inset-4 pointer-events-none">
+            <span className="absolute top-0 left-0 w-6 h-6 border-t-2 border-l-2 border-emerald-400 rounded-tl" />
+            <span className="absolute top-0 right-0 w-6 h-6 border-t-2 border-r-2 border-emerald-400 rounded-tr" />
+            <span className="absolute bottom-0 left-0 w-6 h-6 border-b-2 border-l-2 border-emerald-400 rounded-bl" />
+            <span className="absolute bottom-0 right-0 w-6 h-6 border-b-2 border-r-2 border-emerald-400 rounded-br" />
+          </div>
+        </div>
+
+        {/* Bottom info panel */}
+        <div className="flex flex-col gap-4 px-5 py-5">
+          {/* Mascot + speech bubble row */}
+          <div className="flex items-end gap-3">
+            <Image
+              src="/mascots/mascot-scan.png"
+              alt=""
+              width={72}
+              height={72}
+              className="shrink-0 animate-pulse"
+            />
+            <SpeechBubble tail="left" size="md" shape="card" className="flex-1 min-w-0">
+              {t(`analyzing.label_${mascotPhase}`)}
+            </SpeechBubble>
+          </div>
+
+          {/* Step progress dots */}
+          <div className="flex items-center gap-2 px-1">
+            {ANALYZING_STEPS.map(step => (
+              <div
+                key={step}
+                className={[
+                  'h-1.5 rounded-full transition-all duration-700',
+                  step < mascotPhase
+                    ? 'bg-emerald-500 flex-1'
+                    : step === mascotPhase
+                      ? 'bg-emerald-400 flex-[2] animate-pulse'
+                      : 'bg-fg/20 flex-1',
+                ].join(' ')}
+              />
+            ))}
+          </div>
+        </div>
       </div>
       {tipsSheet}
     </>
@@ -224,6 +280,7 @@ export default function ScanPage({ params }: { params: Promise<{ locale: string 
         <div className="h-14" />
         <DetectedItemList
           objects={objects}
+          isStreaming={isStreaming}
           groupLabels={{
             recyclable: t('result.group.recyclable'),
             food: t('result.group.food'),
