@@ -20,6 +20,10 @@ type ScanState = 'capture' | 'analyzing' | 'overlay' | 'video';
 const MASCOT_PHASES = 4;
 const MASCOT_PHASE_INTERVAL_MS = 3000;
 
+const TAGLINE_COUNT = 5;
+const TYPING_SPEED_MS = 40;
+const TYPING_PAUSE_MS = 2200;
+
 // Progress steps shown during the analyzing phase
 const ANALYZING_STEPS = [0, 1, 2, 3] as const;
 
@@ -38,16 +42,43 @@ export default function ScanPage({ params }: { params: Promise<{ locale: string 
   const [isStreaming, setIsStreaming] = useState(false);
   const [guideText, setGuideText] = useState('');
   const [isGuideFetching, setIsGuideFetching] = useState(false);
+  const [taglineIndex, setTaglineIndex] = useState(0);
+  const [displayedText, setDisplayedText] = useState('');
+  const [isTyping, setIsTyping] = useState(false);
   const abortRef = useRef<AbortController | null>(null);
 
   useEffect(() => {
     if (state !== 'analyzing') return;
-    setMascotPhase(0);
     const id = setInterval(() => {
       setMascotPhase(p => Math.min(p + 1, MASCOT_PHASES - 1));
     }, MASCOT_PHASE_INTERVAL_MS);
     return () => clearInterval(id);
   }, [state]);
+
+  useEffect(() => {
+    if (state !== 'capture') return;
+    const fullText = t(`home.tagline_${taglineIndex}`);
+    let charIdx = 0;
+    let timer: ReturnType<typeof setTimeout>;
+    const typeNext = () => {
+      if (charIdx === 0) {
+        setDisplayedText('');
+        setIsTyping(true);
+      }
+      charIdx++;
+      setDisplayedText(fullText.slice(0, charIdx));
+      if (charIdx < fullText.length) {
+        timer = setTimeout(typeNext, TYPING_SPEED_MS);
+      } else {
+        setIsTyping(false);
+        timer = setTimeout(() => {
+          setTaglineIndex(i => (i + 1) % TAGLINE_COUNT);
+        }, TYPING_PAUSE_MS);
+      }
+    };
+    timer = setTimeout(typeNext, TYPING_SPEED_MS);
+    return () => clearTimeout(timer);
+  }, [state, taglineIndex, t]);
 
   useEffect(() => {
     return () => {
@@ -182,7 +213,7 @@ export default function ScanPage({ params }: { params: Promise<{ locale: string 
         <div className="flex-1 flex flex-col items-center justify-center gap-3 min-h-0">
           <SadBlob className="w-44 h-44 sm:w-52 sm:h-52" />
           <div
-            className="relative inline-flex items-center justify-center border-2 border-fg rounded-full px-6 py-2.5"
+            className="relative inline-flex items-center justify-center border-2 border-fg rounded-full px-6 py-2.5 min-w-[220px]"
             style={{ background: 'var(--mascot-bag)' }}
           >
             <span
@@ -191,7 +222,13 @@ export default function ScanPage({ params }: { params: Promise<{ locale: string 
               style={{ background: 'var(--mascot-bag)' }}
             />
             <p className="font-[family-name:var(--font-fraunces)] text-fg text-sm font-semibold">
-              {t('home.tagline')}
+              {displayedText}
+              {isTyping && (
+                <span
+                  aria-hidden="true"
+                  className="inline-block w-[2px] h-[1em] bg-fg align-middle ml-[1px] animate-pulse"
+                />
+              )}
             </p>
           </div>
         </div>
