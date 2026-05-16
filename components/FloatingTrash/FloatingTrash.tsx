@@ -5,11 +5,17 @@ import { TRASH_ITEMS } from './items';
 
 const PICKS = [0, 1, 2, 1, 0] as const;
 
-const MIN_SIZE = 32;
+const MIN_SIZE = 36;
 const MAX_SIZE = 56;
-const MIN_SPEED = 40;
-const MAX_SPEED = 80;
-const MAX_ROT_SPEED = 30;
+const GRAVITY = 1400;
+const MAX_FALL_SPEED = 900;
+const BOUNCE_DAMPING = 0.72;
+const MIN_BOUNCE_VY = 220;
+const KICK_VY_MIN = 520;
+const KICK_VY_MAX = 760;
+const KICK_VX_RANGE = 90;
+const SPAWN_VX_RANGE = 80;
+const MAX_ROT_SPEED = 240;
 const MAX_DT = 0.05;
 const REDUCED_MOTION_QUERY = '(prefers-reduced-motion: reduce)';
 
@@ -57,15 +63,19 @@ export function FloatingTrash() {
     const rect = container.getBoundingClientRect();
     boundsRef.current = { w: rect.width, h: rect.height };
 
-    stateRef.current = PICKS.map(() => {
+    stateRef.current = PICKS.map((_, i) => {
       const size = rand(MIN_SIZE, MAX_SIZE);
-      const speed = rand(MIN_SPEED, MAX_SPEED);
-      const angle = rand(0, Math.PI * 2);
+      const slot = (i + 0.5) / PICKS.length;
+      const xJitter = rand(-rect.width / (PICKS.length * 2), rect.width / (PICKS.length * 2));
+      const x = Math.min(
+        Math.max(0, slot * rect.width - size / 2 + xJitter),
+        Math.max(0, rect.width - size),
+      );
       return {
-        x: rand(0, Math.max(0, rect.width - size)),
-        y: rand(0, Math.max(0, rect.height - size)),
-        vx: Math.cos(angle) * speed,
-        vy: Math.sin(angle) * speed,
+        x,
+        y: Math.max(0, rect.height - size),
+        vx: rand(-SPAWN_VX_RANGE, SPAWN_VX_RANGE),
+        vy: -rand(KICK_VY_MIN, KICK_VY_MAX),
         rot: rand(0, 360),
         rotSpeed: rand(-MAX_ROT_SPEED, MAX_ROT_SPEED),
         size,
@@ -95,8 +105,10 @@ export function FloatingTrash() {
 
       for (let i = 0; i < items.length; i++) {
         const s = items[i];
+        s.vy = Math.min(s.vy + GRAVITY * dt, MAX_FALL_SPEED);
         s.x += s.vx * dt;
         s.y += s.vy * dt;
+
         if (s.x <= 0) {
           s.x = 0;
           s.vx = Math.abs(s.vx);
@@ -104,13 +116,20 @@ export function FloatingTrash() {
           s.x = w - s.size;
           s.vx = -Math.abs(s.vx);
         }
-        if (s.y <= 0) {
-          s.y = 0;
-          s.vy = Math.abs(s.vy);
-        } else if (s.y + s.size >= h) {
-          s.y = h - s.size;
-          s.vy = -Math.abs(s.vy);
+
+        const floor = h - s.size;
+        if (s.y >= floor && s.vy > 0) {
+          s.y = floor;
+          const bounced = s.vy * BOUNCE_DAMPING;
+          if (bounced < MIN_BOUNCE_VY) {
+            s.vy = -rand(KICK_VY_MIN, KICK_VY_MAX);
+            s.vx += rand(-KICK_VX_RANGE, KICK_VX_RANGE);
+            s.rotSpeed = rand(-MAX_ROT_SPEED, MAX_ROT_SPEED);
+          } else {
+            s.vy = -bounced;
+          }
         }
+
         s.rot += s.rotSpeed * dt;
         const el = itemRefs.current[i];
         if (el) {
