@@ -6,7 +6,7 @@ import type { ReactNode } from 'react';
 
 interface SpeechBubbleProps {
   children: ReactNode;
-  tail?: 'down' | 'up' | 'none';
+  tail?: 'down' | 'up' | 'left' | 'none';
   size?: 'sm' | 'md';
   shape?: 'pill' | 'card';
   className?: string;
@@ -49,6 +49,15 @@ export function SpeechBubble({
           data-testid="speech-bubble-tail"
           data-tail="down"
           className="absolute left-1/2 -translate-x-1/2 -bottom-[7px] w-3 h-3 border-r-2 border-b-2 border-fg rotate-45"
+          style={{ background: 'var(--mascot-bag)' }}
+        />
+      )}
+      {tail === 'left' && (
+        <span
+          aria-hidden="true"
+          data-testid="speech-bubble-tail"
+          data-tail="left"
+          className="absolute top-1/2 -translate-y-1/2 -left-[7px] w-3 h-3 border-l-2 border-b-2 border-fg rotate-45"
           style={{ background: 'var(--mascot-bag)' }}
         />
       )}

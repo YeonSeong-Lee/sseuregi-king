@@ -1,6 +1,7 @@
 // app/[locale]/scan/page.tsx
 'use client';
 import { useState, use } from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 import { CameraCapture } from '@/components/CameraCapture';
@@ -127,11 +128,21 @@ export default function ScanPage({ params }: { params: Promise<{ locale: string 
           backAria={t('result.back_aria')}
         />
         <DetectedImage imageBase64={imageBase64} objects={objects} locale={locale} />
-        <SpeechBubble tail="none" size="md" className="self-start">
-          {objects.length === 0
-            ? t('result.status_empty')
-            : t('result.status_found', { count: objects.length })}
-        </SpeechBubble>
+        <div className="relative flex items-end self-start">
+          <div className="relative z-10 -mr-3 mb-[-4px] shrink-0">
+            <Image
+              src="/mascots/mascot-scan.png"
+              alt=""
+              width={64}
+              height={64}
+            />
+          </div>
+          <SpeechBubble tail="left" size="md">
+            {objects.length === 0
+              ? t('result.status_empty')
+              : t('result.status_found', { count: objects.length })}
+          </SpeechBubble>
+        </div>
         <DetectedItemList
           objects={objects}
           locale={locale}
