@@ -28,7 +28,8 @@
       "recyclable": "リサイクル",
       "food": "生ごみ",
       "general": "一般ごみ"
-    }
+    },
+    "guide_title": "捨て方ガイド"
   },
   "tips": {
     "title": "認識精度を上げるコツ",

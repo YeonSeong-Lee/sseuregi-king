@@ -54,7 +54,7 @@ describe('POST /api/analyze', () => {
     const mock: DetectedObject[] = [{
       name: 'Plastic',
       category: 'Recyclable',
-      bag: 'B03',
+      bag: 'recycle',
       bbox: { x: 10, y: 10, w: 20, h: 20 },
       steps: [{ visual: 'V01', text: 'Remove cap' }],
       mascotText: L4('m'),
@@ -75,7 +75,7 @@ describe('POST /api/analyze', () => {
     expect(events).toHaveLength(2);
     expect(events[0].type).toBe('item');
     expect(events[0].item?.category).toBe('Recyclable');
-    expect(events[0].item?.bag).toBe('B03');
+    expect(events[0].item?.bag).toBe('recycle');
     expect(events[1].type).toBe('done');
   });
 

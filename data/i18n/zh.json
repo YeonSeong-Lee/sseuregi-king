@@ -28,7 +28,8 @@
       "recyclable": "可回收",
       "food": "厨余",
       "general": "一般"
-    }
+    },
+    "guide_title": "处理方法"
   },
   "tips": {
     "title": "提高识别率的技巧",

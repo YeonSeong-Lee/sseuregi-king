@@ -20,7 +20,7 @@ export const SCAN_RESULT_SCHEMA = {
         type: 'string',
         enum: ['Recyclable', 'General Waste', 'Food Waste', 'Hazardous', 'Bulky'],
       },
-      bag: { type: 'string', enum: ['B01', 'B02', 'B03'] },
+      bag: { type: 'string', enum: ['general', 'food', 'recycle'] },
       bbox: {
         type: 'object',
         properties: {

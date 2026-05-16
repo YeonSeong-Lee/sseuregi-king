@@ -34,7 +34,8 @@
       "recyclable": "RECYCLABLE",
       "food": "FOOD WASTE",
       "general": "GENERAL"
-    }
+    },
+    "guide_title": "HOW TO DISPOSE"
   },
   "tips": {
     "title": "Tips for better recognition",

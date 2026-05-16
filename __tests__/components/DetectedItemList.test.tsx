@@ -8,7 +8,7 @@ function make(overrides: Partial<DetectedObject>): DetectedObject {
   return {
     name: 'Item',
     category: 'Recyclable',
-    bag: 'B03',
+    bag: 'recycle',
     bbox: { x: 0, y: 0, w: 1, h: 1 },
     steps: [{ visual: 'V01', text: 's' }],
     mascotText: { en: 'm', zh: 'm', ja: 'm', ru: 'm' },
@@ -21,15 +21,15 @@ function make(overrides: Partial<DetectedObject>): DetectedObject {
 const fixture: DetectedObject[] = [
   make({
     name: 'Banana peel',
-    category: 'Food Waste', bag: 'B02',
+    category: 'Food Waste', bag: 'food',
   }),
   make({
     name: 'Plastic bottle',
-    category: 'Recyclable', bag: 'B03',
+    category: 'Recyclable', bag: 'recycle',
   }),
   make({
     name: 'Cardboard',
-    category: 'Recyclable', bag: 'B03',
+    category: 'Recyclable', bag: 'recycle',
   }),
 ];
 

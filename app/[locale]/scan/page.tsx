@@ -8,6 +8,7 @@ import { CameraCapture } from '@/components/CameraCapture';
 import { ScanResultHeader } from '@/components/ScanResultHeader';
 import { DetectedImage } from '@/components/DetectedImage';
 import { DetectedItemList } from '@/components/DetectedItemList';
+import { GuideTextSection } from '@/components/GuideTextSection';
 import { SpeechBubble } from '@/components/SpeechBubble';
 import { VideoPlayer } from '@/components/VideoPlayer';
 import { PhotoTipsSheet } from '@/components/PhotoTipsSheet';
@@ -35,6 +36,8 @@ export default function ScanPage({ params }: { params: Promise<{ locale: string 
   const [tipsOpen, setTipsOpen] = useState(false);
   const [mascotPhase, setMascotPhase] = useState(0);
   const [isStreaming, setIsStreaming] = useState(false);
+  const [guideText, setGuideText] = useState('');
+  const [isGuideFetching, setIsGuideFetching] = useState(false);
   const abortRef = useRef<AbortController | null>(null);
 
   useEffect(() => {
@@ -77,6 +80,8 @@ export default function ScanPage({ params }: { params: Promise<{ locale: string 
     setState('analyzing');
     setIsStreaming(true);
     setError('');
+    setGuideText('');
+    setIsGuideFetching(false);
 
     try {
       const res = await fetch('/api/analyze', {
@@ -128,6 +133,34 @@ export default function ScanPage({ params }: { params: Promise<{ locale: string 
       if (!firstItemSeen) {
         setState('overlay');
         setTipsOpen(true);
+      }
+
+      // Fetch Claude text guide after items are detected
+      if (collected.length > 0 && !controller.signal.aborted) {
+        setIsGuideFetching(true);
+        try {
+          const guideRes = await fetch('/api/guide-text', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ items: collected, locale }),
+            signal: controller.signal,
+          });
+          if (guideRes.ok && guideRes.body) {
+            const reader = guideRes.body.getReader();
+            const decoder = new TextDecoder();
+            while (true) {
+              const { value, done } = await reader.read();
+              if (done) break;
+              setGuideText(prev => prev + decoder.decode(value, { stream: true }));
+            }
+          }
+        } catch (guideErr) {
+          if ((guideErr as { name?: string }).name !== 'AbortError') {
+            console.warn('guide-text fetch failed:', guideErr);
+          }
+        } finally {
+          setIsGuideFetching(false);
+        }
       }
     } catch (err) {
       setIsStreaming(false);
@@ -287,6 +320,11 @@ export default function ScanPage({ params }: { params: Promise<{ locale: string 
             general: t('result.group.general'),
           }}
           onTapItem={obj => { setSelected([obj]); setState('video'); }}
+        />
+        <GuideTextSection
+          text={guideText}
+          isLoading={isGuideFetching}
+          title={t('result.guide_title')}
         />
       </div>
       {tipsSheet}

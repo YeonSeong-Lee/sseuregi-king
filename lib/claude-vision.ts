@@ -43,17 +43,17 @@ function getSystemPrompt(): string {
     '',
     '[Korean Disposal Rules — Cheat Sheet]',
     'Counter-intuitive rules that override general intuition:',
-    ' 1. Bones (chicken, fish, beef, pork) → General Waste (B01), NOT food waste — they break the food waste machine.',
-    ' 2. Shellfish shells (clam, oyster, crab, shrimp) → General Waste (B01), NOT food waste.',
+    ' 1. Bones (chicken, fish, beef, pork) → General Waste (general), NOT food waste — they break the food waste machine.',
+    ' 2. Shellfish shells (clam, oyster, crab, shrimp) → General Waste (general), NOT food waste.',
     ' 3. Hard nut shells (walnut, coconut, macadamia) → General Waste. Peanut shells → Food waste.',
-    ' 4. Clear PET bottles (water, soda) → bag B03 (transparent recycling). Remove cap + label first.',
-    ' 5. Other plastics, vinyl, styrofoam, cans → bag B03 (transparent recycling), once rinsed clean.',
-    ' 6. Broken glass / broken ceramic → wrap in newspaper, write "유리조각" (glass) or "도자기" (ceramic) on the outside of the B01 bag.',
+    ' 4. Clear PET bottles (water, soda) → bag recycle (transparent recycling). Remove cap + label first.',
+    ' 5. Other plastics, vinyl, styrofoam, cans → bag recycle (transparent recycling), once rinsed clean.',
+    ' 6. Broken glass / broken ceramic → wrap in newspaper, write "유리조각" (glass) or "도자기" (ceramic) on the outside of the general bag.',
     ' 7. Mirror, drinking glass, ceramic plates/mugs → General Waste, NEVER glass recycling — different composition contaminates it.',
     ' 8. Receipts (thermal / BPA paper) → General Waste, NEVER paper recycling.',
     ' 9. Pizza box → tear off greasy parts as General Waste; only the clean cardboard parts go to Paper recycling.',
     '10. Used cooking oil → soak into newspaper / paper towels, then General Waste. NEVER pour down drain.',
-    '11. Wet tissue, paper towels, used napkins → General Waste (B01), not paper recycling.',
+    '11. Wet tissue, paper towels, used napkins → General Waste (general), not paper recycling.',
     '12. Large appliances (TV, refrigerator, washing machine, AC, microwave) → FREE pickup via 1599-0903. Do NOT route as Bulky Waste fee.',
     '13. Small electronics (phone, laptop, charger, hair dryer, kettle, fan, vacuum, headphones) → FREE pickup via 1599-0903 OR drop at 주민센터 e-waste bin.',
     '14. Batteries (AA / AAA / button) → 폐건전지 collection box (apartment lobby / 주민센터 / convenience store). Hazardous. Tape the ends first.',
@@ -95,7 +95,7 @@ function getSystemPrompt(): string {
     '{',
     '  "item_name":  string (English),',
     '  "category":   "Recyclable" | "General Waste" | "Food Waste" | "Hazardous" | "Bulky",',
-    '  "bag":        "B01" | "B02" | "B03",',
+    '  "bag":        "general" | "food" | "recycle",',
     '  "bbox":       { "x": number, "y": number, "w": number, "h": number },',
     '  "steps": [',
     '    { "visual": "V##", "text": string (English) }',
@@ -117,7 +117,7 @@ const VALID_CATEGORIES = new Set<ScanCategory>([
   'Hazardous',
   'Bulky',
 ]);
-const VALID_BAGS = new Set<BagCode>(['B01', 'B02', 'B03']);
+const VALID_BAGS = new Set<BagCode>(['general', 'food', 'recycle']);
 const VALID_CONFIDENCE = new Set<ConfidenceLevel>(['high', 'medium', 'low']);
 const LOCALES: Locale[] = ['en', 'zh', 'ja', 'ru'];
 const VISUAL_ID_RE = /^V\d{2}$/;

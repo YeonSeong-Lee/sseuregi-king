@@ -31,7 +31,7 @@ function goodItem(overrides: Partial<RawItem> = {}): RawItem {
   return {
     item_name: 'PET Water Bottle',
     category: 'Recyclable',
-    bag: 'B03',
+    bag: 'recycle',
     bbox: { x: 0.1, y: 0.2, w: 0.3, h: 0.4 },
     steps: [{ visual: 'V01', text: 'Remove the cap' }],
     mascot_text: L4('Another one. Bold of you.'),
@@ -82,7 +82,7 @@ describe('claudeDetect (stream)', () => {
 
     const callArg = messagesStreamMock.mock.calls[0][0];
     const systemText = Array.isArray(callArg.system) ? callArg.system[0].text : callArg.system;
-    expect(systemText).toContain('B01');
+    expect(systemText).toContain('general');
     expect(systemText).toContain('V01');
     expect(systemText).toContain('Cheat Sheet');
     expect(systemText).toContain('1599-0903');
@@ -110,7 +110,7 @@ describe('claudeDetect (stream)', () => {
     expect(result).toHaveLength(1);
     expect(result[0].name).toBe('PET Water Bottle');
     expect(result[0].category).toBe('Recyclable');
-    expect(result[0].bag).toBe('B03');
+    expect(result[0].bag).toBe('recycle');
     expect(result[0].confidence).toBe('high');
     expect(result[0].steps[0].visual).toBe('V01');
     expect(result[0].steps[0].text).toBe('Remove the cap');

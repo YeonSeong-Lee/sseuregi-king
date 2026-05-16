@@ -34,9 +34,9 @@ export type ScanCategory =
   | 'Hazardous'
   | 'Bulky';
 
-// Bag codes: B01 = White general waste bag, B02 = Yellow food waste bag,
-// B03 = Transparent recycling bag
-export type BagCode = 'B01' | 'B02' | 'B03';
+// Bag codes: general = White general waste bag, food = Yellow food waste bag,
+// recycle = Transparent recycling bag
+export type BagCode = 'general' | 'food' | 'recycle';
 
 export type ConfidenceLevel = 'high' | 'medium' | 'low';
 
