@@ -295,7 +295,7 @@ export default function ScanPage({ params }: { params: Promise<{ locale: string 
           <div className="absolute bottom-0 left-0 translate-y-1/2 z-10 flex items-end max-w-full">
             <div className="shrink-0 -mr-3">
               <Image
-                src={objects.length > 0 ? '/mascots/mascot-happy.png' : '/mascots/mascot-scan.png'}
+                src={objects.length > 0 ? `/bag-icons/${objects[0].bag}.png` : '/mascots/mascot-scan.png'}
                 alt=""
                 width={96}
                 height={96}

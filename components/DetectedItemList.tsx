@@ -1,7 +1,6 @@
 // components/DetectedItemList.tsx
 'use client';
 import { type CategoryGroup } from '@/lib/categories';
-import { BagIcon } from '@/components/BagIcon';
 import type { DetectedObject, ScanCategory } from '@/types';
 
 const SCAN_GROUP: Record<ScanCategory, CategoryGroup> = {
@@ -77,7 +76,6 @@ export function DetectedItemList({ objects, isStreaming = false, groupLabels, on
                   </span>
                 </span>
               </span>
-              <BagIcon id={obj.bag} />
               <span aria-hidden="true" className="shrink-0 text-2xl text-fg leading-none">→</span>
             </button>
           </li>
