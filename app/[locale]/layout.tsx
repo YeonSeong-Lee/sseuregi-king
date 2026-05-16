@@ -77,7 +77,7 @@ export default async function LocaleLayout({
               href={`/${locale}/scan`}
               className="font-[family-name:var(--font-fraunces)] font-black text-base tracking-tight"
             >
-              SAREGI
+              sseuregi
             </Link>
             <div className="flex items-center gap-2">
               <HeaderDistrictBadge locale={locale as Locale} />
