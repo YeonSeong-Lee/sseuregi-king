@@ -13,6 +13,7 @@ import { SpeechBubble } from '@/components/SpeechBubble';
 import { VideoPlayer } from '@/components/VideoPlayer';
 import { PhotoTipsSheet } from '@/components/PhotoTipsSheet';
 import { SadBlob } from '@/components/svg/SadBlob';
+import { FloatingTrash } from '@/components/FloatingTrash/FloatingTrash';
 import type { DetectedObject, Locale } from '@/types';
 
 type ScanState = 'capture' | 'analyzing' | 'overlay' | 'video';
@@ -203,14 +204,15 @@ export default function ScanPage({ params }: { params: Promise<{ locale: string 
 
   if (state === 'capture') return (
     <>
-      <div className="flex flex-col h-full px-6 py-6">
-        <div className="flex flex-col items-center text-center pt-2">
+      <div className="relative flex flex-col h-full px-6 py-6">
+        <FloatingTrash />
+        <div className="relative z-10 flex flex-col items-center text-center pt-2">
           <h1 className="font-[family-name:var(--font-fraunces)] font-black text-5xl sm:text-6xl leading-[0.95] tracking-tight">
             {t('home.brand_title_line1')}<br />{t('home.brand_title_line2')}
           </h1>
         </div>
 
-        <div className="flex-1 flex flex-col items-center justify-center gap-3 min-h-0">
+        <div className="relative z-10 flex-1 flex flex-col items-center justify-center gap-3 min-h-0">
           <SadBlob className="w-44 h-44 sm:w-52 sm:h-52" />
           <div
             className="relative inline-flex items-center justify-center border-2 border-fg rounded-full px-6 py-2.5 min-w-[220px]"
@@ -233,9 +235,9 @@ export default function ScanPage({ params }: { params: Promise<{ locale: string 
           </div>
         </div>
 
-        {error && <p className="text-red-600 dark:text-red-400 text-sm text-center mb-2">{error}</p>}
+        {error && <p className="relative z-10 text-red-600 dark:text-red-400 text-sm text-center mb-2">{error}</p>}
 
-        <div className="flex flex-col gap-3 pb-2">
+        <div className="relative z-10 flex flex-col gap-3 pb-2">
           <CameraCapture onCapture={handleCapture}
             onError={() => setError('Failed to process image. Please try again.')}
             cameraLabel={t('home.point_at_trash')}
