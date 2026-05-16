@@ -55,10 +55,8 @@ export function DetectedItemList({ objects, isStreaming = false, groupLabels, on
             className="animate-fade-in"
           >
             <div className="rounded-2xl border-2 border-fg bg-surface-elev overflow-hidden">
-              <button
-                type="button"
-                onClick={() => onTapItem(obj)}
-                className="flex items-center gap-3 w-full px-3 py-4 text-left active:scale-[0.98] transition-transform"
+              <div
+                className="flex items-center gap-3 w-full px-3 py-4 text-left"
               >
                 <span
                   aria-hidden="true"
@@ -78,8 +76,7 @@ export function DetectedItemList({ objects, isStreaming = false, groupLabels, on
                     </span>
                   </span>
                 </span>
-                <span aria-hidden="true" className="shrink-0 text-2xl text-fg leading-none">→</span>
-              </button>
+              </div>
               <div className="border-t border-line px-3 pb-3">
                 <StepRow
                   steps={obj.steps.map(s => ({ visualId: s.visual, label: s.text }))}

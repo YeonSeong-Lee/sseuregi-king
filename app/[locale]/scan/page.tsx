@@ -319,7 +319,7 @@ export default function ScanPage({ params }: { params: Promise<{ locale: string 
             food: t('result.group.food'),
             general: t('result.group.general'),
           }}
-          onTapItem={obj => { setSelected([obj]); setState('video'); }}
+          onTapItem={() => {}}
         />
         <GuideTextSection
           text={guideText}
