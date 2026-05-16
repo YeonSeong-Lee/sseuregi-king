@@ -1,4 +1,4 @@
-visual_id,action_name,description_for_illustration,used_by_categories,typical_order_in_sequence,animation_suggestion
+id,action_name,description_for_illustration,used_by_categories,typical_order_in_sequence,animation_suggestion
 V01,Remove Cap / Lid / Pump,Hand twisting off a bottle cap or pulling off a pump nozzle,"Recyclable (Plastic, Glass, PET)",1,Twist-off motion
 V02,Peel Off Label,Fingers peeling a label/sticker off a bottle,Recyclable (PET),2,Peeling motion
 V03,Crush / Flatten (Bottle/Can),Hands crushing a plastic bottle or aluminum can flat,"Recyclable (PET, Plastic, Metal)",3,Squish/compress motion
@@ -39,9 +39,3 @@ V37,Pop And Deflate,Hands popping air pillows and pressing air out,Recyclable (V
 V38,Fold In Half,Hands folding a mask or mat in half,General Waste,1,Fold motion
 V39,Cut Ear Loops / Strings,Scissors cutting the ear loops off a disposable mask,General Waste (mask),2,Snip motion
 V40,Remove Batteries,Hands opening battery compartment and removing batteries,Free Pickup (Electronics),1,Open + remove
-
-=== BAG VISUALS ===
-bag_id,bag_name_en,bag_name_kr,color_hex,used_for,where_to_buy,sizes_available
-B01,White General Waste Bag,일반쓰레기 종량제봉투,#FFFFFF,"General waste — everything that can't be recycled, composted, or donated","Convenience stores (CU, GS25, 7-Eleven), supermarkets","5L, 10L, 20L, 50L, 75L, 100L"
-B02,Yellow Food Waste Bag,음식물쓰레기 종량제봉투,#FFD700,"Food waste — leftovers, fruit peels, cooked food (NO bones/shells/seeds)","Convenience stores, supermarkets","1L, 2L, 3L, 5L"
-B03,Transparent Recycling Bag,재활용 투명봉투,#E0E0E0,"All recyclables — plastic, vinyl, cans, styrofoam (sorted by type)","Convenience stores, supermarkets, Daiso","20L, 50L, 75L, 100L"
