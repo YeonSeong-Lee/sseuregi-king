@@ -336,6 +336,14 @@ export default function ScanPage({ params }: { params: Promise<{ locale: string 
             </p>
           </section>
         )}
+        <a
+          href="https://www.gangnam.go.kr/waste/apply/info.do?mid=ID03_020704"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center justify-center w-full rounded-2xl border-2 border-rose-700/70 dark:border-rose-400/60 bg-rose-100 dark:bg-rose-500/15 py-4 text-sm font-bold text-fg tracking-wide active:scale-95 transition-transform"
+        >
+          {t('trash101.gangnam_apply_btn')}
+        </a>
       </div>
       {tipsSheet}
     </>

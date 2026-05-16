@@ -51,7 +51,7 @@ export function Trash101({ locale }: { locale: Locale }) {
         <SpeechBubble text={t('mascot_greeting')} />
       </div>
 
-      <ul className="flex flex-col gap-3 px-4 pb-8">
+      <ul className="flex flex-col gap-3 px-4 pb-4">
         {LESSONS.map(lesson => (
           <li key={lesson.id}>
             <button
@@ -80,6 +80,17 @@ export function Trash101({ locale }: { locale: Locale }) {
           </li>
         ))}
       </ul>
+
+      <div className="px-4 pb-8">
+        <a
+          href="https://www.gangnam.go.kr/waste/apply/info.do?mid=ID03_020704"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center justify-center w-full rounded-2xl border-2 border-rose-700/70 dark:border-rose-400/60 bg-rose-100 dark:bg-rose-500/15 py-4 text-sm font-bold text-fg tracking-wide active:scale-95 transition-transform"
+        >
+          {t('gangnam_apply_btn')}
+        </a>
+      </div>
     </div>
   );
 }
