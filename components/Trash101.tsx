@@ -1,5 +1,6 @@
 'use client';
 import { useState } from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 import { GradBlob } from '@/components/svg/GradBlob';
@@ -11,13 +12,14 @@ interface LessonMeta {
   id: LessonId;
   swatch: string;
   border: string;
+  icon: string;
 }
 
 const LESSONS: LessonMeta[] = [
-  { id: 'ceremony', swatch: 'bg-amber-100 dark:bg-amber-500/15', border: 'border-amber-700/70 dark:border-amber-400/60' },
-  { id: 'bags',     swatch: 'bg-emerald-100 dark:bg-emerald-500/15', border: 'border-emerald-700/70 dark:border-emerald-400/60' },
-  { id: 'rules',    swatch: 'bg-blue-100 dark:bg-blue-500/15', border: 'border-blue-700/70 dark:border-blue-400/60' },
-  { id: 'big',      swatch: 'bg-rose-100 dark:bg-rose-500/15', border: 'border-rose-700/70 dark:border-rose-400/60' },
+  { id: 'ceremony', swatch: 'bg-amber-100 dark:bg-amber-500/15', border: 'border-amber-700/70 dark:border-amber-400/60', icon: '/mascots/mascot-happy.png' },
+  { id: 'bags',     swatch: 'bg-emerald-100 dark:bg-emerald-500/15', border: 'border-emerald-700/70 dark:border-emerald-400/60', icon: '/bag-icons/general.png' },
+  { id: 'rules',    swatch: 'bg-blue-100 dark:bg-blue-500/15', border: 'border-blue-700/70 dark:border-blue-400/60', icon: '/step-icons/SEPARATE_BY_MATERIAL.png' },
+  { id: 'big',      swatch: 'bg-rose-100 dark:bg-rose-500/15', border: 'border-rose-700/70 dark:border-rose-400/60', icon: '/step-icons/CALL_COMMUNITY_CENTER.png' },
 ];
 
 export function Trash101({ locale }: { locale: Locale }) {
@@ -59,8 +61,10 @@ export function Trash101({ locale }: { locale: Locale }) {
             >
               <span
                 aria-hidden="true"
-                className={`w-12 h-12 shrink-0 rounded-xl border-2 ${lesson.border} ${lesson.swatch}`}
-              />
+                className={`relative w-12 h-12 shrink-0 rounded-xl border-2 ${lesson.border} ${lesson.swatch}`}
+              >
+                <Image src={lesson.icon} alt="" fill style={{ objectFit: 'contain' }} className="p-1.5" />
+              </span>
               <span className="flex-1 min-w-0">
                 <span className="block font-[family-name:var(--font-fraunces)] font-bold text-fg text-base leading-tight">
                   {t(`lessons.${lesson.id}.title`)}
@@ -123,7 +127,9 @@ function LessonView({
       </header>
 
       <div className="px-5 pt-5 pb-2 flex items-start gap-4">
-        <div className={`w-14 h-14 shrink-0 rounded-xl border-2 ${lesson.border} ${lesson.swatch}`} aria-hidden="true" />
+        <div className={`relative w-14 h-14 shrink-0 rounded-xl border-2 ${lesson.border} ${lesson.swatch}`} aria-hidden="true">
+          <Image src={lesson.icon} alt="" fill style={{ objectFit: 'contain' }} className="p-1.5" />
+        </div>
         <p className="text-fg-muted text-sm leading-relaxed italic font-[family-name:var(--font-fraunces)]">
           {t(`lessons.${lessonId}.intro`)}
         </p>
